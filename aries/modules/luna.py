@@ -118,3 +118,4 @@ async def main():
     )
     await idle()
 
+ run = luna.run
