@@ -5,8 +5,8 @@ from telethon import events
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, run_async
 
-from zerotwobot import telethn, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus
+from aries import telethn, dispatcher
+from aries.modules.helper_funcs.chat_status import dev_plus
 
 DEBUG_MODE = False
 

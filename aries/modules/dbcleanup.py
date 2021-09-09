@@ -1,9 +1,9 @@
 from time import sleep
 
-import zerotwobot.modules.sql.global_bans_sql as gban_sql
-import zerotwobot.modules.sql.users_sql as user_sql
-from zerotwobot import DEV_USERS, OWNER_ID, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus
+import aries.modules.sql.global_bans_sql as gban_sql
+import aries.modules.sql.users_sql as user_sql
+from aries import DEV_USERS, OWNER_ID, dispatcher
+from aries.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
