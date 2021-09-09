@@ -5,8 +5,6 @@ from asyncio import gather, get_event_loop, sleep
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
-from aries.sample_config import ARQ_API_KEY, LANGUAGE
-from aries.modules.sample_config import *
 
 is_config = os.path.exists("config.py")
 
@@ -17,16 +15,13 @@ else:
 
 luna = Client(
     ":memory:",
-    bot_token="1914584978:AAEuz9eFFiKop48U2w-2pDQtaNQ61RtbieY",
+    bot_token=bot_token,
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
-
-
-session = ClientSession()
-chat_id = None
-arq = ARQ("https://thearq.tech", ARQ_API_KEY, session)
+bot_id = int(bot_token.split(":")[0])
+arq = None
 
 
 async def lunaQuery(query: str, user_id: int):
@@ -122,4 +117,4 @@ async def main():
 
 
 loop = get_event_loop()
-
+loop.run_until_complete(main())
