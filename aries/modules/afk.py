@@ -3,13 +3,13 @@ import html
 from datetime import datetime
 import humanize
 
-from zerotwobot import dispatcher
-from zerotwobot.modules.disable import (
+from aries import dispatcher
+from aries.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
-from zerotwobot.modules.sql import afk_sql as sql
-from zerotwobot.modules.users import get_user_id
+from aries.modules.sql import afk_sql as sql
+from aries.modules.users import get_user_id
 from telegram import MessageEntity, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, Filters, MessageHandler, run_async
