@@ -3,7 +3,7 @@ import threading
 
 from sqlalchemy import Column, String, Boolean
 
-from zerotwobot.modules.sql import SESSION, BASE
+from aries.modules.sql import SESSION, BASE
 
 
 class Permissions(BASE):

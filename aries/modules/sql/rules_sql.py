@@ -1,6 +1,6 @@
 import threading
 
-from zerotwobot.modules.sql import BASE, SESSION
+from aries.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String, UnicodeText, distinct, func
 
 
