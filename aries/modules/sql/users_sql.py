@@ -1,7 +1,7 @@
 import threading
 
-from zerotwobot import dispatcher
-from zerotwobot.modules.sql import BASE, SESSION
+from aries import dispatcher
+from aries.modules.sql import BASE, SESSION
 from sqlalchemy import (
     Column,
     ForeignKey,
