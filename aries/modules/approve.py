@@ -1,11 +1,11 @@
 import html
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot import dispatcher, DRAGONS
-from zerotwobot.modules.helper_funcs.extraction import extract_user
+from aries.modules.disable import DisableAbleCommandHandler
+from aries import dispatcher, DRAGONS
+from aries.modules.helper_funcs.extraction import extract_user
 from telegram.ext import CallbackContext, run_async, CallbackQueryHandler
-import zerotwobot.modules.sql.approve_sql as sql
-from zerotwobot.modules.helper_funcs.chat_status import user_admin
-from zerotwobot.modules.log_channel import loggable
+import aries.modules.sql.approve_sql as sql
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.log_channel import loggable
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update
 from telegram.utils.helpers import mention_html
 from telegram.error import BadRequest

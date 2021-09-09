@@ -5,8 +5,8 @@ import textwrap
 import bs4
 import jikanpy
 import requests
-from zerotwobot import dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
+from aries import dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Message
 from telegram.ext import CallbackContext, run_async
 

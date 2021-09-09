@@ -1,17 +1,17 @@
 import html
 from typing import Optional
 
-import zerotwobot.modules.sql.blsticker_sql as sql
-from zerotwobot import LOGGER, dispatcher
-from zerotwobot.modules.connection import connected
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.alternate import send_message
-from zerotwobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from zerotwobot.modules.helper_funcs.misc import split_message
-from zerotwobot.modules.helper_funcs.string_handling import extract_time
+import aries.modules.sql.blsticker_sql as sql
+from aries import LOGGER, dispatcher
+from aries.modules.connection import connected
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.alternate import send_message
+from aries.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from aries.modules.helper_funcs.misc import split_message
+from aries.modules.helper_funcs.string_handling import extract_time
 
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.warns import warn
+from aries.modules.log_channel import loggable
+from aries.modules.warns import warn
 from telegram import Chat, Message, ParseMode, Update, User, ChatPermissions
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler

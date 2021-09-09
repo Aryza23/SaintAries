@@ -6,18 +6,18 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-import zerotwobot.modules.sql.blacklist_sql as sql
-from zerotwobot import dispatcher, LOGGER
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from zerotwobot.modules.helper_funcs.extraction import extract_text
-from zerotwobot.modules.helper_funcs.misc import split_message
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.warns import warn
-from zerotwobot.modules.helper_funcs.string_handling import extract_time
-from zerotwobot.modules.connection import connected
-from zerotwobot.modules.sql.approve_sql import is_approved
-from zerotwobot.modules.helper_funcs.alternate import send_message, typing_action
+import aries.modules.sql.blacklist_sql as sql
+from aries import dispatcher, LOGGER
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from aries.modules.helper_funcs.extraction import extract_text
+from aries.modules.helper_funcs.misc import split_message
+from aries.modules.log_channel import loggable
+from aries.modules.warns import warn
+from aries.modules.helper_funcs.string_handling import extract_time
+from aries.modules.connection import connected
+from aries.modules.sql.approve_sql import is_approved
+from aries.modules.helper_funcs.alternate import send_message, typing_action
 
 BLACKLIST_GROUP = 11
 

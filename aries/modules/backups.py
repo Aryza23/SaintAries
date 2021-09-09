@@ -5,23 +5,23 @@ from telegram import ParseMode, Message
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, run_async
 
-import zerotwobot.modules.sql.notes_sql as sql
-from zerotwobot import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
-from zerotwobot.__main__ import DATA_IMPORT
-from zerotwobot.modules.helper_funcs.chat_status import user_admin
-from zerotwobot.modules.helper_funcs.alternate import typing_action
+import aries.modules.sql.notes_sql as sql
+from aries import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
+from aries.__main__ import DATA_IMPORT
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.helper_funcs.alternate import typing_action
 
-# from zerotwobot.modules.rules import get_rules
-import zerotwobot.modules.sql.rules_sql as rulessql
+# from aries.modules.rules import get_rules
+import aries.modules.sql.rules_sql as rulessql
 
-# from zerotwobot.modules.sql import warns_sql as warnssql
-import zerotwobot.modules.sql.blacklist_sql as blacklistsql
-from zerotwobot.modules.sql import disable_sql as disabledsql
+# from aries.modules.sql import warns_sql as warnssql
+import aries.modules.sql.blacklist_sql as blacklistsql
+from aries.modules.sql import disable_sql as disabledsql
 
-# from zerotwobot.modules.sql import cust_filters_sql as filtersql
-# import zerotwobot.modules.sql.welcome_sql as welcsql
-import zerotwobot.modules.sql.locks_sql as locksql
-from zerotwobot.modules.connection import connected
+# from aries.modules.sql import cust_filters_sql as filtersql
+# import aries.modules.sql.welcome_sql as welcsql
+import aries.modules.sql.locks_sql as locksql
+from aries.modules.connection import connected
 
 
 @run_async
@@ -325,7 +325,7 @@ def export_data(update, context):
         },
     }
     baccinfo = json.dumps(backup, indent=4)
-    with open("zerotwobot{}.backup".format(chat_id), "w") as f:
+    with open("aries{}.backup".format(chat_id), "w") as f:
         f.write(str(baccinfo))
     context.bot.sendChatAction(current_chat_id, "upload_document")
     tgl = time.strftime("%H:%M:%S - %d/%m/%Y", time.localtime(time.time()))
@@ -341,15 +341,15 @@ def export_data(update, context):
         pass
     context.bot.sendDocument(
         current_chat_id,
-        document=open("zerotwobot{}.backup".format(chat_id), "rb"),
-        caption="*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `zerotwobot-Backup` was specially made for notes.".format(
+        document=open("aries{}.backup".format(chat_id), "rb"),
+        caption="*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `aries-Backup` was specially made for notes.".format(
             chat.title, chat_id, tgl,
         ),
         timeout=360,
         reply_to_message_id=msg.message_id,
         parse_mode=ParseMode.MARKDOWN,
     )
-    os.remove("zerotwobot{}.backup".format(chat_id))  # Cleaning file
+    os.remove("aries{}.backup".format(chat_id))  # Cleaning file
 
 
 # Temporary data

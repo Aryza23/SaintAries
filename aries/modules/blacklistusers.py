@@ -1,7 +1,7 @@
 # Module to blacklist users and prevent them from using commands by @TheRealPhoenix
 import html
-import zerotwobot.modules.sql.blacklistusers_sql as sql
-from zerotwobot import (
+import aries.modules.sql.blacklistusers_sql as sql
+from aries import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -10,12 +10,12 @@ from zerotwobot import (
     WOLVES,
     dispatcher,
 )
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus
-from zerotwobot.modules.helper_funcs.extraction import (
+from aries.modules.helper_funcs.chat_status import dev_plus
+from aries.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from zerotwobot.modules.log_channel import gloggable
+from aries.modules.log_channel import gloggable
 from telegram import ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, run_async
