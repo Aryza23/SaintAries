@@ -1,6 +1,6 @@
-from zerotwobot.modules.helper_funcs.chat_status import user_admin
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot import dispatcher
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.disable import DisableAbleCommandHandler
+from aries import dispatcher
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import ParseMode, Update
