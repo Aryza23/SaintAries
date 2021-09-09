@@ -4,7 +4,7 @@ import urllib.request
 import time
 import json
 import os
-from os import TOKEN
+from aries import TOKEN
 import logging
 
 logging.basicConfig(filename="bot.log", format="%(asctime)s - %(levelname)s - %(message)s",
