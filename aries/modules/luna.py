@@ -6,6 +6,7 @@ from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
 from aries.modules import sample_config
+from aries.modules.sample_config import bot_token
 
 is_config = os.path.exists("config.py")
 
