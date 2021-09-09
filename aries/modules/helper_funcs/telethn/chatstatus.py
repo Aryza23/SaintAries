@@ -1,5 +1,5 @@
-from zerotwobot.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
-from zerotwobot import DRAGONS
+from aries.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
+from aries import DRAGONS
 from telethon.tl.types import ChannelParticipantsAdmins
 
 
@@ -42,13 +42,13 @@ async def is_user_admin(user_id: int, chat_id):
     return status
 
 
-async def zerotwo_is_admin(chat_id: int):
+async def aries_is_admin(chat_id: int):
     status = False
     zerotwo = await telethn.get_me()
     async for user in telethn.iter_participants(
         chat_id, filter=ChannelParticipantsAdmins,
     ):
-        if zerotwo.id == user.id:
+        if aries.id == user.id:
             status = True
             break
     return status
