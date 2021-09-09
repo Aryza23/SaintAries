@@ -6,7 +6,7 @@ attrs==21.2.0
 beautifulsoup4==4.9.3
 bleach==3.3.0
 cachetools==4.2.2
-certifi==2020.12.5
+certifi==2021.5.30
 cffi==1.14.5
 chardet==4.0.0
 click==8.0.1
@@ -69,3 +69,5 @@ wikipedia==1.4.0
 yarl==1.6.3
 zalgo-text==0.6
 python-arq
+pyTelegramBotAPI==3.7.7
+
