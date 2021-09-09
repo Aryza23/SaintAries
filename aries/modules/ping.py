@@ -5,9 +5,9 @@ import requests
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
 
-from zerotwobot import StartTime, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import sudo_plus
-from zerotwobot.modules.disable import DisableAbleCommandHandler
+from aries import StartTime, dispatcher
+from aries.modules.helper_funcs.chat_status import sudo_plus
+from aries.modules.disable import DisableAbleCommandHandler
 
 sites_list = {
     "Telegram": "https://api.telegram.org",

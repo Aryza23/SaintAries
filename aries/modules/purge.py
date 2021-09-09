@@ -1,8 +1,8 @@
 import time
 from telethon import events
 
-from zerotwobot import telethn
-from zerotwobot.modules.helper_funcs.telethn.chatstatus import (
+from aries import telethn
+from aries.modules.helper_funcs.telethn.chatstatus import (
     can_delete_messages,
     user_is_admin,
 )
