@@ -3,14 +3,14 @@ from io import BytesIO
 import random
 from typing import Optional
 
-import zerotwobot.modules.sql.notes_sql as sql
-from zerotwobot import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.handlers import MessageHandlerChecker
-from zerotwobot.modules.helper_funcs.chat_status import user_admin, connection_status
-from zerotwobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from zerotwobot.modules.helper_funcs.msg_types import get_note_type
-from zerotwobot.modules.helper_funcs.string_handling import (
+import aries.modules.sql.notes_sql as sql
+from aries import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.handlers import MessageHandlerChecker
+from aries.modules.helper_funcs.chat_status import user_admin, connection_status
+from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from aries.modules.helper_funcs.msg_types import get_note_type
+from aries.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
 )
 from telegram import (
