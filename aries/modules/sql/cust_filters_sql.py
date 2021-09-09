@@ -2,8 +2,8 @@ import threading
 
 from sqlalchemy import Column, String, UnicodeText, Boolean, Integer, distinct, func
 
-from zerotwobot.modules.helper_funcs.msg_types import Types
-from zerotwobot.modules.sql import BASE, SESSION
+from aries.modules.helper_funcs.msg_types import Types
+from aries.modules.sql import BASE, SESSION
 
 
 class CustomFilters(BASE):
