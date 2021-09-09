@@ -15,25 +15,25 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html, escape_markdown
 
-from zerotwobot import dispatcher, LOGGER, DRAGONS
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.handlers import MessageHandlerChecker
-from zerotwobot.modules.helper_funcs.chat_status import user_admin
-from zerotwobot.modules.helper_funcs.extraction import extract_text
-from zerotwobot.modules.helper_funcs.filters import CustomFilters
-from zerotwobot.modules.helper_funcs.misc import build_keyboard_parser
-from zerotwobot.modules.helper_funcs.msg_types import get_filter_type
-from zerotwobot.modules.helper_funcs.string_handling import (
+from aries import dispatcher, LOGGER, DRAGONS
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.handlers import MessageHandlerChecker
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.helper_funcs.extraction import extract_text
+from aries.modules.helper_funcs.filters import CustomFilters
+from aries.modules.helper_funcs.misc import build_keyboard_parser
+from aries.modules.helper_funcs.msg_types import get_filter_type
+from aries.modules.helper_funcs.string_handling import (
     split_quotes,
     button_markdown_parser,
     escape_invalid_curly_brackets,
     markdown_to_html,
 )
-from zerotwobot.modules.sql import cust_filters_sql as sql
+from aries.modules.sql import cust_filters_sql as sql
 
-from zerotwobot.modules.connection import connected
+from aries.modules.connection import connected
 
-from zerotwobot.modules.helper_funcs.alternate import send_message, typing_action
+from aries.modules.helper_funcs.alternate import send_message, typing_action
 
 HANDLER_GROUP = 10
 
