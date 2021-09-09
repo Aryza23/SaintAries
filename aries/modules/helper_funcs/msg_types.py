@@ -1,6 +1,6 @@
 from enum import IntEnum, unique
 
-from zerotwobot.modules.helper_funcs.string_handling import button_markdown_parser
+from aries.modules.helper_funcs.string_handling import button_markdown_parser
 from telegram import Message
 
 
