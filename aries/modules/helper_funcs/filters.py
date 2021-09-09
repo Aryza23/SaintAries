@@ -1,4 +1,4 @@
-from zerotwobot import DEV_USERS, DRAGONS, DEMONS
+from aries import DEV_USERS, DRAGONS, DEMONS
 from telegram import Message
 from telegram.ext import BaseFilter
 
