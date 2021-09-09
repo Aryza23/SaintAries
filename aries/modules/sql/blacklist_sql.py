@@ -2,7 +2,7 @@ import threading
 
 from sqlalchemy import func, distinct, Column, String, UnicodeText, Integer
 
-from zerotwobot.modules.sql import SESSION, BASE
+from aries.modules.sql import SESSION, BASE
 
 
 class BlackListFilters(BASE):
