@@ -1,11 +1,11 @@
 #remove session files
-
+**session**
 
 #remove pycache files
 **pycache**
 
 #remove config.py
-
+aries/config.py
 
 
 #remove log files
@@ -13,7 +13,7 @@
 
 #remove env files
 
-
+**env
 
 #remove vscode files if it exists
 **vscode
