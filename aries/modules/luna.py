@@ -2,6 +2,8 @@ import re
 import os
 from asyncio import gather, get_event_loop, sleep
 
+from aries.sample_config import ARQ_API_BASE_URL as ARQ_API
+from aries.sample_config import ARQ_API_KEY, bot_id, bot_token, owner_id, LANGUAGE
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
@@ -20,8 +22,9 @@ luna = Client(
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
+aiohttp_session = ClientSession()
+arq = ARQ(ARQ_API, ARQ_API_KEY, aiohttp_session)
 bot_id = int(bot_token.split(":")[0])
-arq = None
 
 
 async def lunaQuery(query: str, user_id: int):
