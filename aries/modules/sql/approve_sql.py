@@ -2,7 +2,7 @@ import threading
 
 from sqlalchemy import Column, String, Integer
 
-from zerotwobot.modules.sql import BASE, SESSION
+from aries.modules.sql import BASE, SESSION
 
 
 class Approvals(BASE):
