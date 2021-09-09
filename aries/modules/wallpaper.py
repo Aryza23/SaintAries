@@ -1,8 +1,8 @@
 from random import randint
 
 import requests as r
-from zerotwobot import SUPPORT_CHAT, WALL_API, dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
+from aries import SUPPORT_CHAT, WALL_API, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext, run_async
 

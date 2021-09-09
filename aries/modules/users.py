@@ -11,10 +11,10 @@ from telegram.ext import (
     run_async,
 )
 
-import zerotwobot.modules.sql.users_sql as sql
-from zerotwobot import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
-from zerotwobot.modules.sql.users_sql import get_all_users
+import aries.modules.sql.users_sql as sql
+from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher
+from aries.modules.helper_funcs.chat_status import dev_plus, sudo_plus
+from aries.modules.sql.users_sql import get_all_users
 
 USERS_GROUP = 4
 CHAT_GROUP = 5

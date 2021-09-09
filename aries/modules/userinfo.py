@@ -13,7 +13,7 @@ from telegram.ext.dispatcher import run_async
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from zerotwobot import (
+from aries import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -24,15 +24,15 @@ from zerotwobot import (
     dispatcher,
     sw,
 )
-from zerotwobot.__main__ import STATS, TOKEN, USER_INFO
-import zerotwobot.modules.sql.userinfo_sql as sql
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.sql.global_bans_sql import is_user_gbanned
-from zerotwobot.modules.sql.afk_sql import is_afk, check_afk_status
-from zerotwobot.modules.sql.users_sql import get_user_num_chats
-from zerotwobot.modules.helper_funcs.chat_status import sudo_plus
-from zerotwobot.modules.helper_funcs.extraction import extract_user
-from zerotwobot import telethn as ZerotwoTelethonClient
+from aries.__main__ import STATS, TOKEN, USER_INFO
+import aries.modules.sql.userinfo_sql as sql
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.sql.global_bans_sql import is_user_gbanned
+from aries.modules.sql.afk_sql import is_afk, check_afk_status
+from aries.modules.sql.users_sql import get_user_num_chats
+from aries.modules.helper_funcs.chat_status import sudo_plus
+from aries.modules.helper_funcs.extraction import extract_user
+from aries import telethn as ariesTelethonClient
 
 
 def no_by_per(totalhp, percentage):
@@ -160,7 +160,7 @@ def get_id(update: Update, context: CallbackContext):
             )
 
 
-@ZerotwoTelethonClient.on(
+@ariesTelethonClient.on(
     events.NewMessage(
         pattern="/ginfo ", from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
     ),
