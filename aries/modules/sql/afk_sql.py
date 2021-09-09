@@ -2,7 +2,7 @@ import threading
 
 from datetime import datetime
 
-from zerotwobot.modules.sql import BASE, SESSION
+from aries.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, Integer, UnicodeText, DateTime
 
 
