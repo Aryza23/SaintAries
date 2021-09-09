@@ -4,7 +4,7 @@ import re
 from sys import argv
 from typing import Optional
 
-from zerotwobot import (
+from aries import (
     ALLOW_EXCL,
     CERT_PATH,
     DONATION_LINK,
@@ -22,9 +22,9 @@ from zerotwobot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from zerotwobot.modules import ALL_MODULES
-from zerotwobot.modules.helper_funcs.chat_status import is_user_admin
-from zerotwobot.modules.helper_funcs.misc import paginate_modules
+from aries.modules import ALL_MODULES
+from aries.modules.helper_funcs.chat_status import is_user_admin
+from aries.modules.helper_funcs.misc import paginate_modules
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
@@ -79,7 +79,7 @@ Type /help to get available commands.
 
 HELP_STRINGS = """
 Hey there!.
-My Name is {}, from Darling in The FranXX. Take me as your group's darling to have fun with me. \
+My Name is {}, . Take me as your group's to have fun with me. \
 I can help you with the following commands.
 
 *Main* commands available:
@@ -97,12 +97,12 @@ And the following:
     "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n",
 )
 
-ZEROTWO_IMG = "https://telegra.ph/file/3a09ae55283b69f3da197.jpg"
+ARIES_IMG = "https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project by contacting @joker_hacker_6521 \
+ You can support the project by contacting @IdzXartez \
  Supporting isnt always financial! \
- Those who cannot provide monetary support are welcome to help us develop the bot at @jokers_botsupport."""
+ Those who cannot provide monetary support are welcome to help us develop the bot at @IDZEROIDSUPPORT."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -115,7 +115,7 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("zerotwobot.modules." + module_name)
+    imported_module = importlib.import_module("aries.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -209,7 +209,7 @@ def start(update: Update, context: CallbackContext):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(
-                ZEROTWO_IMG,
+                ARIES_IMG,
                 PM_START_TEXT.format(
                     escape_markdown(first_name), escape_markdown(context.bot.first_name),
                 ),
@@ -232,23 +232,23 @@ def start(update: Update, context: CallbackContext):
                             ),
                             InlineKeyboardButton(
                                 text="🔔 Updates",
-                                url="https://t.me/jokers_botupdates",
+                                url="https://t.me/IDZEROID",
                             ),
                         ],
                         [
                             InlineKeyboardButton(
-                                text="🧾 Getting Started",
-                                url="https://t.me/jokers_botupdates/4",
+                                text="🧾 Ofc Group",
+                                url="https://t.me/IDZEROIDSUPPORT",
                             ),
                             InlineKeyboardButton(
-                                text="🗄 Source code",
-                                url="https://github.com/jokershacker22/zerotwobot",
+                                text="🗄 Source Code ",
+                                url="https://github.com/idzero23/SaintAries",
                             ),
                         ],
                         [
                             InlineKeyboardButton(
-                                text="🃏 Clown Sec",
-                                url="https://t.me/okatu_gang",
+                                text="Owner",
+                                url="https://t.me/IdzXartez",
                             ),
                         ],
                     ],
@@ -585,7 +585,7 @@ def donate(update: Update, context: CallbackContext):
             DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
         )
 
-        if OWNER_ID != 1638803785 and DONATION_LINK:
+        if OWNER_ID != 1192108540 and DONATION_LINK:
             update.effective_message.reply_text(
                 "You can also donate to the person currently running me "
                 "[here]({})".format(DONATION_LINK),
