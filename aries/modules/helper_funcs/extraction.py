@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from zerotwobot import LOGGER
-from zerotwobot.modules.users import get_user_id
+from aries import LOGGER
+from aries.modules.users import get_user_id
 from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 
