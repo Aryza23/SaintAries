@@ -23,7 +23,7 @@ luna = Client(
 
 
 
-aiohttpsession = aiohttp.ClientSession()
+session = ClientSession()
 chat_id = None
 arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
