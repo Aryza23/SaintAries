@@ -3,6 +3,7 @@ import time
 import re
 from sys import argv
 from typing import Optional
+from aries.modules.luna import run
 
 from aries import (
     ALLOW_EXCL,
