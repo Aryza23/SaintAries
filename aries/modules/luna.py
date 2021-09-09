@@ -119,3 +119,4 @@ async def main():
     await idle()
 
 
+  __mod_name__ = "luna"
