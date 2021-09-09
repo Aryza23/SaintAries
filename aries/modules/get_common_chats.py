@@ -1,9 +1,9 @@
 import os
 from time import sleep
 
-from zerotwobot import OWNER_ID, dispatcher
-from zerotwobot.modules.helper_funcs.extraction import extract_user
-from zerotwobot.modules.sql.users_sql import get_user_com_chats
+from aries import OWNER_ID, dispatcher
+from aries.modules.helper_funcs.extraction import extract_user
+from aries.modules.sql.users_sql import get_user_com_chats
 from telegram import Update
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.ext import CallbackContext, CommandHandler, Filters

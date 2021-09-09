@@ -14,9 +14,9 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html
 
-import zerotwobot.modules.sql.global_bans_sql as sql
-from zerotwobot.modules.sql.users_sql import get_user_com_chats
-from zerotwobot import (
+import aries.modules.sql.global_bans_sql as sql
+from aries.modules.sql.users_sql import get_user_com_chats
+from aries import (
     DEV_USERS,
     EVENT_LOGS,
     OWNER_ID,
@@ -30,16 +30,16 @@ from zerotwobot import (
     sw,
     dispatcher,
 )
-from zerotwobot.modules.helper_funcs.chat_status import (
+from aries.modules.helper_funcs.chat_status import (
     is_user_admin,
     support_plus,
     user_admin,
 )
-from zerotwobot.modules.helper_funcs.extraction import (
+from aries.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from zerotwobot.modules.helper_funcs.misc import send_to_list
+from aries.modules.helper_funcs.misc import send_to_list
 
 GBAN_ENFORCE_GROUP = 6
 

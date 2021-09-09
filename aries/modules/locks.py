@@ -9,20 +9,20 @@ from telegram.utils.helpers import mention_html
 
 from alphabet_detector import AlphabetDetector
 
-import zerotwobot.modules.sql.locks_sql as sql
-from zerotwobot import dispatcher, DRAGONS, LOGGER
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.chat_status import (
+import aries.modules.sql.locks_sql as sql
+from aries import dispatcher, DRAGONS, LOGGER
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import (
     can_delete,
     is_user_admin,
     user_not_admin,
     is_bot_admin,
     user_admin,
 )
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.connection import connected
-from zerotwobot.modules.sql.approve_sql import is_approved
-from zerotwobot.modules.helper_funcs.alternate import send_message, typing_action
+from aries.modules.log_channel import loggable
+from aries.modules.connection import connected
+from aries.modules.sql.approve_sql import is_approved
+from aries.modules.helper_funcs.alternate import send_message, typing_action
 
 ad = AlphabetDetector()
 

@@ -2,8 +2,8 @@ import datetime
 from typing import List
 
 import requests
-from zerotwobot import TIME_API_KEY, dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
+from aries import TIME_API_KEY, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
 

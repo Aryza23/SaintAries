@@ -7,8 +7,8 @@ import time
 import uuid
 from io import BytesIO
 
-import zerotwobot.modules.sql.feds_sql as sql
-from zerotwobot import (
+import aries.modules.sql.feds_sql as sql
+from aries import (
     EVENT_LOGS,
     LOGGER,
     SUPPORT_CHAT,
@@ -18,15 +18,15 @@ from zerotwobot import (
     WOLVES,
     dispatcher,
 )
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.alternate import send_message
-from zerotwobot.modules.helper_funcs.chat_status import is_user_admin
-from zerotwobot.modules.helper_funcs.extraction import (
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.alternate import send_message
+from aries.modules.helper_funcs.chat_status import is_user_admin
+from aries.modules.helper_funcs.extraction import (
     extract_unt_fedban,
     extract_user,
     extract_user_fban,
 )
-from zerotwobot.modules.helper_funcs.string_handling import markdown_parser
+from aries.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,

@@ -2,11 +2,11 @@ import html
 import random
 import time
 
-import zerotwobot.modules.fun_strings as fun_strings
-from zerotwobot import dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.chat_status import is_user_admin
-from zerotwobot.modules.helper_funcs.extraction import extract_user
+import aries.modules.fun_strings as fun_strings
+from aries import dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import is_user_admin
+from aries.modules.helper_funcs.extraction import extract_user
 from telegram import ChatPermissions, ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, run_async
