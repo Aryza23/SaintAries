@@ -5,9 +5,9 @@ import time
 from functools import partial
 from contextlib import suppress
 
-import zerotwobot.modules.sql.welcome_sql as sql
-import zerotwobot
-from zerotwobot import (
+import aries.modules.sql.welcome_sql as sql
+import aries
+from aries import (
     DEV_USERS,
     LOGGER,
     OWNER_ID,
@@ -19,18 +19,18 @@ from zerotwobot import (
     dispatcher,
     JOIN_LOGGER,
 )
-from zerotwobot.modules.helper_funcs.chat_status import (
+from aries.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
 )
-from zerotwobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from zerotwobot.modules.helper_funcs.msg_types import get_welcome_type
-from zerotwobot.modules.helper_funcs.string_handling import (
+from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from aries.modules.helper_funcs.msg_types import get_welcome_type
+from aries.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
 )
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.sql.global_bans_sql import is_user_gbanned
+from aries.modules.log_channel import loggable
+from aries.modules.sql.global_bans_sql import is_user_gbanned
 from telegram import (
     ChatPermissions,
     InlineKeyboardButton,
@@ -164,7 +164,7 @@ def new_member(update: Update, context: CallbackContext):
 
     for new_mem in new_members:
 
-        if new_mem.id == bot.id and not zerotwobot.ALLOW_CHATS:
+        if new_mem.id == bot.id and not aries.ALLOW_CHATS:
             with suppress(BadRequest):
                 update.effective_message.reply_text(f"Groups are disabled for {bot.first_name}, I'm outta here.")
             bot.leave_chat(update.effective_chat.id)

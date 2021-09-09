@@ -3,24 +3,24 @@ import re
 from typing import Optional
 
 import telegram
-from zerotwobot import TIGERS, WOLVES, dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.chat_status import (
+from aries import TIGERS, WOLVES, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     is_user_admin,
     user_admin,
     user_admin_no_reply)
-from zerotwobot.modules.helper_funcs.extraction import (
+from aries.modules.helper_funcs.extraction import (
     extract_text,
     extract_user,
     extract_user_and_text,
 )
-from zerotwobot.modules.helper_funcs.filters import CustomFilters
-from zerotwobot.modules.helper_funcs.misc import split_message
-from zerotwobot.modules.helper_funcs.string_handling import split_quotes
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.sql import warns_sql as sql
+from aries.modules.helper_funcs.filters import CustomFilters
+from aries.modules.helper_funcs.misc import split_message
+from aries.modules.helper_funcs.string_handling import split_quotes
+from aries.modules.log_channel import loggable
+from aries.modules.sql import warns_sql as sql
 from telegram import (
     CallbackQuery,
     Chat,
@@ -42,7 +42,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html
-from zerotwobot.modules.sql.approve_sql import is_approved
+from aries.modules.sql.approve_sql import is_approved
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
