@@ -1,9 +1,9 @@
 import html
 
-from zerotwobot import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from zerotwobot.modules.log_channel import loggable
-from zerotwobot.modules.sql import reporting_sql as sql
+from aries import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
+from aries.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from aries.modules.log_channel import loggable
+from aries.modules.sql import reporting_sql as sql
 from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (

@@ -1,9 +1,9 @@
 from typing import Optional
 
-import zerotwobot.modules.sql.rules_sql as sql
-from zerotwobot import dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import user_admin
-from zerotwobot.modules.helper_funcs.string_handling import markdown_parser
+import aries.modules.sql.rules_sql as sql
+from aries import dispatcher
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,

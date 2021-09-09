@@ -11,8 +11,8 @@ from telegram import TelegramError, Update
 from telegram.ext import run_async, CallbackContext
 from telegram.utils.helpers import mention_html
 
-from zerotwobot import dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
+from aries import dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 

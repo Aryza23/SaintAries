@@ -1,7 +1,7 @@
 import speedtest
-from zerotwobot import DEV_USERS, dispatcher
-from zerotwobot.modules.disable import DisableAbleCommandHandler
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus
+from aries import DEV_USERS, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
 

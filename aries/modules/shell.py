@@ -1,7 +1,7 @@
 import subprocess
 
-from zerotwobot import LOGGER, dispatcher
-from zerotwobot.modules.helper_funcs.chat_status import dev_plus
+from aries import LOGGER, dispatcher
+from aries.modules.helper_funcs.chat_status import dev_plus
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.ext.dispatcher import run_async

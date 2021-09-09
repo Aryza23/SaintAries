@@ -2,9 +2,9 @@ import sre_constants
 
 import regex
 import telegram
-from zerotwobot import LOGGER, dispatcher
-from zerotwobot.modules.disable import DisableAbleMessageHandler
-from zerotwobot.modules.helper_funcs.regex_helper import infinite_loop_check
+from aries import LOGGER, dispatcher
+from aries.modules.disable import DisableAbleMessageHandler
+from aries.modules.helper_funcs.regex_helper import infinite_loop_check
 from telegram import Update
 from telegram.ext import CallbackContext, Filters, run_async
 
