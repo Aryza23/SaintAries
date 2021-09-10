@@ -632,11 +632,13 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 def main():
 
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):{ALIVE_TEXT}
+    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "●Saint Aries Online Now●")
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "●◉✿─⌊Saint Aries Online Now⌉─✿◉●")
         except Unauthorized:
-            LOGGER.warning("Bot isnt able to send message to support_chat, go and check!",)
+            LOGGER.warning(
+                "Bot isnt able to send message to support_chat, go and check!",
+            )
         except BadRequest as e:
             LOGGER.warning(e.message)
 
