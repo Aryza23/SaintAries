@@ -634,7 +634,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):{ALIVE_TEXT}
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "●◉✿─⌊Sαιητ λrιεs Oηlιηε Πσω....⌉─✿◉●")
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "⌊ ら凡ﾉ几イ 凡尺ﾉモら ロ几乚ﾉ几モ 几ロ山 ⌉")
         except Unauthorized:
             LOGGER.warning("Bot isnt able to send message to support_chat, go and check!",)
         except BadRequest as e:
