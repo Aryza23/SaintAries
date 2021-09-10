@@ -46,7 +46,7 @@ PySocks==1.7.1
 python-dotenv==0.17.1
 python-telegram-bot==12.8
 regex==2021.4.4
-requests==2.25.1
+requests
 rsa==4.7.2
 sgmllib3k==1.0.0
 simplejson==3.17.2
