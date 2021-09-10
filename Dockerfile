@@ -1,11 +1,6 @@
-# We're using Debian Slim Buster image
-FROM python:3.8.5-slim-buster
-
+FROM python:3.9.7-slim-buster
 ENV PIP_NO_CACHE_DIR 1
-
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
-
-# Installing Required Packages
 RUN apt update && apt upgrade -y && \
     apt install --no-install-recommends -y \
     debian-keyring \
@@ -61,19 +56,9 @@ RUN apt update && apt upgrade -y && \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 
-# Pypi package Repo upgrade
 RUN pip3 install --upgrade pip setuptools
-
-# Copy Python Requirements to /root/aries
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
-
-#Copy config file to /root/aries/aries
-
 ENV PATH="/home/bot/bin:$PATH"
-
-# Install requirements
 RUN pip3 install -U -r requirements.txt
-
-# Starting Worker
 CMD ["python3","-m","aries"]
