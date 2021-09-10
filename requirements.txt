@@ -15,7 +15,7 @@ colorama==0.4.4
 cryptography==3.4.7
 CurrencyConverter==0.16.1
 decorator==5.0.9
-emoji==1.2.0
+emoji
 feedparser==6.0.2
 future==0.18.2
 geographiclib==1.50
@@ -70,4 +70,4 @@ yarl==1.6.3
 zalgo-text==0.6
 python-arq
 pyTelegramBotAPI==3.7.7
-
+fontTools
