@@ -1,5 +1,5 @@
 from telethon import events
-from SaintAries import telethn
+from aries import telethn
 
 
 def register(**args):
