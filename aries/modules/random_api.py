@@ -1,6 +1,6 @@
 import requests
-from SaintAries.events import register
-from SaintAries import telethn as tbot
+from aries.events import register
+from aries import telethn as tbot
 
 
 @register(pattern="^/asupan ?(.*)")
