@@ -78,3 +78,4 @@ aiogram == 2.13
 aioredis==1.3.0 # Redis 
 PyYAML>5.0
 envparse
+loguru
