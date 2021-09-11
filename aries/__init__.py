@@ -246,7 +246,7 @@ OPERATORS.append(OWNER_ID)
 OPERATORS.append(918317361)
 
 # SpamWatch
-spamwatch_api = get_str_key("SW_API", required=True)
+spamwatch_api = get_str_key("sw_api", required=True)
 sw = spamwatch.Client(spamwatch_api)
 
 # Support for custom BotAPI servers
