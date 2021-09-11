@@ -75,7 +75,7 @@ googletrans==4.0.0-rc1
 motor
 odmantic # MongoDB ORM
 aiogram == 2.13
-aioredis==1.3.0 # Redis 
+
 PyYAML>5.0
 envparse
 loguru
@@ -84,7 +84,7 @@ dnspython
 
 
 redis
-aioredis
+
 aiohttp[speedups]
 cryptg
 cryptography
