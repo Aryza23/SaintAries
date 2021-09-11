@@ -21,8 +21,8 @@ from pyrogram import Client
 from aries.config import get_int_key, get_str_key
 
 TOKEN = get_str_key("TOKEN", required=True)
-APP_ID = get_int_key("APP_ID", required=True)
-APP_HASH = get_str_key("APP_HASH", required=True)
+API_ID = get_int_key("API_ID", required=True)
+API_HASH = get_str_key("API_HASH", required=True)
 session_name = TOKEN.split(":")[0]
 pbot = Client(
     session_name,
