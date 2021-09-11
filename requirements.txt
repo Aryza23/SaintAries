@@ -80,3 +80,4 @@ PyYAML>5.0
 envparse
 loguru
 pymongo
+dnspython
