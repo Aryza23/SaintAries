@@ -82,6 +82,7 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
+    BOT_ID = os.environ.get("BOT_ID", None)
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     DB_URI = os.environ.get("DATABASE_URL")
@@ -151,6 +152,7 @@ else:
     SPAMWATCH_SUPPORT_CHAT = Config.SPAMWATCH_SUPPORT_CHAT
     SPAMWATCH_API = Config.SPAMWATCH_API
     INFOPIC = Config.INFOPIC
+    BOT_ID = Config.BOT_ID
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
