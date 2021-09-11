@@ -74,3 +74,4 @@ fontTools
 googletrans==4.0.0-rc1
 motor
 odmantic # MongoDB ORM
+aiogram == 2.13
