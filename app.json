@@ -72,6 +72,11 @@
          "value": "DaisyX",
          "required": false
       },
+      "MONGO_URI": {
+         "description": "Create A Database In Mongodb And Get URL",
+         "value": "",
+         "required": true
+      },
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
          "required": true,
