@@ -6,7 +6,7 @@
          "anime",
          "group",
          "manager",
-         "Mizuhara"
+         "aries"
       ],
    "repository": "https://github.com/idzero23/SaintAries",
    "addons": [
@@ -33,11 +33,15 @@
          "required": true,
          "value": ""
       },
-
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
          "value": "1192108540"
+      },
+      "BOT_ID": {
+         "description": "Your bot ID use other bot for get id.",
+         "required": true,
+         "value": "1914584978"
       },
       "OWNER_USERNAME": {
          "description": "Your username without the @",
