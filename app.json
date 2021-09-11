@@ -101,6 +101,11 @@
          "required": false,
          "value": "1192108540"
       },
+      "STRING_SESSION": {
+         "description": "run repl run And get your String Session",
+         "value": "",
+         "required": true
+      },
       "TIGERS": {
          "description": "A space separated list of user IDs who you wanna assign as tiger users.",
          "required": false,
