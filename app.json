@@ -79,7 +79,7 @@
       },
       "sw_api": {
          "description": "Spamwatch API Token, Get one from @SpamWatchBot.",
-         "required": True,
+         "required": true,
          "value": "mEPd37f1pWsVvBNDZD2jiAz9KsT8EbPONR4JdM2GE9TH_N60OYcim2J8Asa8yLeB"
       },
       "STRICT_GBAN": {
