@@ -33,6 +33,29 @@
          "required": true,
          "value": ""
       },
+      "API_PORT": {
+         "description": "Don't change.",
+         "value": "8080"
+      },
+      "API_PORT": {
+         "description": "Your Bot Token Obtained From @BotFather.",
+         "value": ""
+      },
+      "REDIS_URI": {
+         "description": "Get from redislabs.com",
+         "value": "",
+         "required": true
+      },
+      "REDIS_PORT": {
+         "description": "Get from redislabs.com",
+         "value": "",
+         "required": true
+      },
+      "REDIS_PASS": {
+         "description": "Get from redislabs.com",
+         "value": "",
+         "required": true
+      },
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
