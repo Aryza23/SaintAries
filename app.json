@@ -61,6 +61,11 @@
          "required": true,
          "value": "1192108540"
       },
+      "OPERATORS": {
+         "description": "Space seperated list of sudoes",
+         "value": "",
+         "required": true
+      },
       "BOT_ID": {
          "description": "Your bot ID use other bot for get id.",
          "required": true,
