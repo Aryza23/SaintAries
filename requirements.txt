@@ -71,4 +71,4 @@ zalgo-text==0.6
 python-arq
 pyTelegramBotAPI==3.7.7
 fontTools
-googletrans
+googletrans==4.0.0-rc1
