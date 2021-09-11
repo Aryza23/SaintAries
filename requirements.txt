@@ -12,7 +12,7 @@ chardet==4.0.0
 click==8.0.1
 coffeehouse==2.2.6
 colorama==0.4.4
-cryptography==3.4.7
+
 CurrencyConverter==0.16.1
 decorator==5.0.9
 
@@ -106,7 +106,7 @@ dnspython # needed to connect to cloud MongoDB instances
 # Optional deps to make bot faster
 aiohttp[speedups]
 cryptg
-cryptography
+
 
 # Other
 jikanpy
