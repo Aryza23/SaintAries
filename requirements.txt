@@ -1,7 +1,7 @@
 aiohttp==3.7.4.post0
 alphabet-detector==0.0.7
 async-lru==1.0.2
-async-timeout==3.0.1
+
 attrs==21.2.0
 beautifulsoup4==4.9.3
 bleach==3.3.0
@@ -10,22 +10,21 @@ certifi==2021.5.30
 cffi==1.14.5
 chardet==4.0.0
 click==8.0.1
-coffeehouse==2.2.6
+
 colorama==0.4.4
 
 CurrencyConverter==0.16.1
 decorator==5.0.9
 
-feedparser==6.0.2
 future==0.18.2
 geographiclib==1.50
-geopy==2.1.0
-google-trans-new==1.1.9
+
+
 humanize==3.6.0
 idna==2.10
-jikanpy==4.3.2
+
 joblib==1.0.1
-lxml==4.6.3
+
 markdown2==2.4.0
 multidict==5.1.0
 
@@ -33,7 +32,7 @@ packaging==20.9
 
 pretty-errors==1.2.21
 psutil==5.8.0
-psycopg2-binary==2.8.6
+
 pyaes==1.6.1
 pyasn1==0.4.8
 pycparser==2.20
@@ -45,36 +44,36 @@ Pyrogram==1.2.9
 PySocks==1.7.1
 python-dotenv==0.17.1
 python-telegram-bot==12.8
-regex==2021.4.4
+
 requests
 rsa==4.7.2
 sgmllib3k==1.0.0
 simplejson==3.17.2
 six==1.16.0
 soupsieve==2.2.1
-spamwatch==0.3.0
+
 speedtest-cli==2.1.3
 spongemock==0.3.4
-SQLAlchemy==1.3.20
-telegraph==1.4.1
 
-TgCrypto==1.2.2
+
+
+
 tornado==6.1
 tqdm==4.61.0
 typing-extensions==3.10.0.0
 ujson==4.0.2
 urllib3==1.26.5
 webencodings==0.5.1
-wikipedia==1.4.0
+
 yarl==1.6.3
 
 python-arq
 pyTelegramBotAPI==3.7.7
 fontTools
 googletrans==4.0.0-rc1
-motor
+
 odmantic # MongoDB ORM
-aiogram == 2.13
+
 
 PyYAML>5.0
 envparse
@@ -85,46 +84,43 @@ dnspython
 
 redis
 
-aiohttp[speedups]
 cryptg
 cryptography
 
 # General
 telethon
-pyrogram>=1.0.7
+
 aiogram
 
 # DBs
-redis
+
 aioredis # Redis memery storage fom aiogram
-pymongo
+
 motor
-odmantic # MongoDB ORM
+
 sqlalchemy==1.3.20 # For old modules
-dnspython # needed to connect to cloud MongoDB instances
 
 # Optional deps to make bot faster
 aiohttp[speedups]
-cryptg
+
 
 
 # Other
 jikanpy
-envparse
 hypercorn
 aiocron
 apscheduler
-requests
+
 python-rapidjson
-PyYAML>5.0
+
 coloredlogs
-loguru
+
 babel
 captcha
 async-timeout
 regex
 bs4
-lxml
+
 spamwatch
 httpx[http2]
 wikipedia
@@ -146,7 +142,7 @@ tldextract
 dateparser
 twistdl
 
-#Pyrogram
+
 tgCrypto>=1.2.2
 
 #Old DB Processes
