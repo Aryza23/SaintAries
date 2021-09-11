@@ -1,32 +1,22 @@
 # Copyright (C) 2021 Red-Aura & TeamDaisyX & HamkerCat
-
 # This file is part of Daisy (Telegram Bot)
-
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import re
 
+
+import re
 import emoji
-
-url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
-import re
-
 import aiohttp
-
-# from google_trans_new import google_translator
 from googletrans import Translator as google_translator
 from pyrogram import filters
-
 from aries import BOT_ID
 from aries.db.mongo_helpers.aichat import add_chat, get_session, remove_chat
 from aries.function.inlinehelper import arq
@@ -34,6 +24,8 @@ from aries.function.pluginhelpers import admins_only, edit_or_reply
 from aries.services.pyrogram import pbot as aries
 
 translator = google_translator()
+
+url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
 
 async def lunaQuery(query: str, user_id: int):
@@ -364,17 +356,10 @@ async def inuka(client, message):
 
 
 __help__ = """
-<b> Chatbot </b>
 Saint Aries AI IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
 
  - /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
  - /chatbot EN : Enables English only chatbot
- 
- 
-<b> Assistant </b>
- - /ask [question]: Ask question from aries
- - /ask [reply to voice note]: Get voice reply
- 
 """
 
 __mod_name__ = "AI Assistant"
