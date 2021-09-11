@@ -1,8 +1,3 @@
-@InukaAsith
-InukaAsith Updated
-…
- 2 contributors
-50 lines (39 sloc)  1.55 KB
 # This file is part of Daisy (Telegram Bot)
 
 # This program is free software: you can redistribute it and/or modify
