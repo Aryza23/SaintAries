@@ -57,6 +57,11 @@
          "required": true,
          "value": "-1001422528389"
       },
+      "SUDO_USERS": {
+         "description": "For gbans",
+         "value": "",
+         "required": true
+      },
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
          "required": true,
@@ -79,7 +84,7 @@
       },
       "sw_api": {
          "description": "Spamwatch API Token, Get one from @SpamWatchBot.",
-         "required": true,
+         "required": True,
          "value": "mEPd37f1pWsVvBNDZD2jiAz9KsT8EbPONR4JdM2GE9TH_N60OYcim2J8Asa8yLeB"
       },
       "STRICT_GBAN": {
