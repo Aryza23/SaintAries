@@ -82,3 +82,4 @@ loguru
 pymongo
 dnspython
 pykeyboard
+search_engine_parser
