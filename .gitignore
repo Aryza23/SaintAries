@@ -21,3 +21,24 @@ aries/config.py
 testing.py
 
 **pyc
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Telethon session cache
+*.session
+*.session-journal
+
+# Config
+data/bot_conf.yaml
+
+# Logs
+logs/
+
+# Virtual envirment
+venv/
+
+.vscode/
+.idea/
