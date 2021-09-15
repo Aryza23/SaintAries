@@ -57,16 +57,12 @@ en_chats = []
 # AI Chat (C) 2020-2021 by @InukaAsith
 
 
-@aries.on_message(
-    filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private
-)
+@aries.on_message(filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private)
 @admins_only
 async def hmm(_, message):
     global daisy_chats
     if len(message.command) != 2:
-        await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
-        )
+        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
         message.continue_propagation()
     status = message.text.split(None, 1)[1]
     chat_id = message.chat.id
@@ -76,9 +72,7 @@ async def hmm(_, message):
         if not lol:
             await lel.edit("Aries AI Already Activated In This Chat")
             return
-        await lel.edit(
-            f"Aries AI Successfully Added For Users In The Chat {message.chat.id}"
-        )
+        await lel.edit(f"Aries AI Successfully Added For Users In The Chat {message.chat.id}")
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
@@ -86,9 +80,7 @@ async def hmm(_, message):
         if not Escobar:
             await lel.edit("Aries AI Was Not Activated In This Chat")
             return
-        await lel.edit(
-            f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}"
-        )
+        await lel.edit(f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}")
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
@@ -98,9 +90,7 @@ async def hmm(_, message):
         await message.reply_text("AI Chat Is Already Disabled.")
         message.continue_propagation()
     else:
-        await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
-        )
+        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
 
 
 @aries.on_message(
@@ -139,7 +129,7 @@ async def hmm(client, message):
 
         pro = response
         try:
-            await daisyx.send_chat_action(message.chat.id, "typing")
+            await aries.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
@@ -204,7 +194,7 @@ async def hmm(client, message):
             except:
                 return
         try:
-            await daisyx.send_chat_action(message.chat.id, "typing")
+            await aries.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
@@ -273,7 +263,7 @@ async def inuka(client, message):
         pro = translator.translate(pro, dest=lan)
         pro = pro.text
     try:
-        await daisyx.send_chat_action(message.chat.id, "typing")
+        await aries.send_chat_action(message.chat.id, "typing")
         await message.reply_text(pro)
     except CFError:
         return
@@ -349,7 +339,7 @@ async def inuka(client, message):
         except Exception:
             return
     try:
-        await daisyx.send_chat_action(message.chat.id, "typing")
+        await aries.send_chat_action(message.chat.id, "typing")
         await message.reply_text(pro)
     except CFError:
         return
@@ -362,4 +352,4 @@ Saint Aries AI IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
  - /chatbot EN : Enables English only chatbot
 """
 
-__mod_name__ = "AI Assistant"
+__mod_name__ = "ChatBot"
