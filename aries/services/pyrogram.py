@@ -20,7 +20,7 @@ import os
 from pyrogram import Client
 
 # from pyromod import listen
-from aries import TOKEN, API_ID, API_HASH
+from aries.config import TOKEN, API_ID, API_HASH
 
 TOKEN = os.environ.get("TOKEN", required=True)
 API_ID = int(os.environ.get("API_ID", required=True))
