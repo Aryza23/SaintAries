@@ -1,1 +1,0 @@
-ARIES_VERSION = "v0.0.1-H0.1"
