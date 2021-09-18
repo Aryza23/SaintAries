@@ -15,19 +15,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 
+import os
 from pyrogram import Client
 
 # from pyromod import listen
-from aries import get_int_key, get_str_key
+from aries import TOKEN, API_ID, API_HASH
 
-TOKEN = get_str_key("TOKEN", required=True)
-API_ID = get_int_key("APP_ID", required=True)
-API_HASH = get_str_key("APP_HASH", required=True)
+TOKEN = os.environ.get("TOKEN", required=True)
+API_ID = int(os.environ.get("APP_ID", required=True)
+API_HASH = os.environ.get("APP_HASH", required=True)
 session_name = TOKEN.split(":")[0]
 pbot = Client(
     session_name,
-    api_id=APP_ID,
-    api_hash=APP_HASH,
+    api_id=API_ID,
+    api_hash=API_HASH,
     bot_token=TOKEN,
 )
 
