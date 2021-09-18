@@ -18,11 +18,11 @@ import logging
 from pyrogram import Client
 
 # from pyromod import listen
-from aries.config import get_int_key, get_str_key
+from aries import get_int_key, get_str_key
 
 TOKEN = get_str_key("TOKEN", required=True)
-APP_ID = get_int_key("APP_ID", required=True)
-APP_HASH = get_str_key("APP_HASH", required=True)
+API_ID = get_int_key("APP_ID", required=True)
+API_HASH = get_str_key("APP_HASH", required=True)
 session_name = TOKEN.split(":")[0]
 pbot = Client(
     session_name,
