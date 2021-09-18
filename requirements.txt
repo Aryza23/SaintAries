@@ -146,7 +146,7 @@ twistdl
 tgCrypto>=1.2.2
 
 #Old DB Processes
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.1
 
 #YTDL
 youtube_dl
