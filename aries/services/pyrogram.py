@@ -23,7 +23,7 @@ from pyrogram import Client
 from aries.config import TOKEN, API_ID, API_HASH
 
 TOKEN = os.environ.get("TOKEN", required=True)
-API_ID = int(os.environ.get("API_ID", required=True))
+API_ID = os.environ.get("API_ID", required=True)
 API_HASH = os.environ.get("API_HASH", required=True)
 session_name = TOKEN.split(":")[0]
 pbot = Client(
