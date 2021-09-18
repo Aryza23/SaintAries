@@ -1,7 +1,7 @@
 aiohttp==3.7.4.post0
 alphabet-detector==0.0.7
 async-lru==1.0.2
-
+fakeredis
 attrs==21.2.0
 beautifulsoup4==4.9.3
 bleach==3.3.0
