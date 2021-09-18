@@ -13,7 +13,7 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import logging
+
 
 import sys
 import os
@@ -32,8 +32,5 @@ pbot = Client(
     api_hash=API_HASH,
     bot_token=TOKEN,
 )
-
-# disable logging for pyrogram [not for ERROR logging]
-logging.getLogger("pyrogram").setLevel(level=logging.ERROR)
 
 pbot.start()
