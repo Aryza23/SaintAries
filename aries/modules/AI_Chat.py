@@ -18,7 +18,6 @@ import aiohttp
 from googletrans import Translator as google_translator
 from pyrogram import filters
 from aries import BOT_ID
-from aries.db.mongo_helpers.aichat import add_chat, get_session, remove_chat
 from aries.function.inlinehelper import arq
 from aries.function.pluginhelpers import admins_only, edit_or_reply
 from aries.services.pyrogram import pbot as aries
