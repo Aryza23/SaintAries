@@ -14,7 +14,7 @@ click==8.0.1
 colorama==0.4.4
 
 CurrencyConverter==0.16.1
-decorator==5.0.9
+decorator==5.1.0
 
 future==0.18.2
 geographiclib==1.50
