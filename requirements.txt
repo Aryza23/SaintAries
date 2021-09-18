@@ -68,7 +68,7 @@ webencodings==0.5.1
 yarl==1.6.3
 
 python-arq
-pyTelegramBotAPI==3.7.7
+pyTelegramBotAPI==4.0.1
 fontTools
 googletrans==4.0.0-rc1
 
