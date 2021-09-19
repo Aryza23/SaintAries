@@ -7,6 +7,7 @@ pytz
 pybase64
 aiofiles
 fontTools
+youtube_search_python==1.4.6
 alphabet-detector==0.0.7
 async-lru==1.0.2
 async-timeout==3.0.1
