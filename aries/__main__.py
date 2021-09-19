@@ -706,9 +706,10 @@ translator = google_translator()
 
 TOKEN = os.environ.get("TOKEN", "")
 BOT_ID = os.environ.get("BOT_ID", "")
+API_ID = os.environ.get("API_ID", "")
+API_HASH = os.environ.get("API_HASH", "")
 
-bot = Client("AriesChat", TOKEN, API_ID,
-             api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
+bot = Client("AriesChat", TOKEN, API_ID, API_HASH)
 print("\nAries Chatbot Started!\n")
 
 
