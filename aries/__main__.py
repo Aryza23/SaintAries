@@ -815,4 +815,4 @@ async def main():
     await idle()
 
 
-client.run
+luna.run
