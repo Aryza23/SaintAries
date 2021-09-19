@@ -815,4 +815,5 @@ async def main():
     await idle()
 
 
-luna.run
+loop = get_event_loop()
+loop.run(main))
