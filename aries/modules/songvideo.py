@@ -23,12 +23,16 @@ from urllib.error import HTTPError
 import bs4
 from bs4 import BeautifulSoup
 from youtube_dl import YoutubeDL
-
-from youtube_dl.utils import (DownloadError, ContentTooShortError,
-
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
+from youtube_dl.utils import (
+    DownloadError,
+    ContentTooShortError,
+    ExtractorError,
+    GeoRestrictedError,
+    MaxDownloadsReached,
+    PostProcessingError,
+    UnavailableVideoError,
+    XAttrMetadataError,
+)
 
 try:
 
