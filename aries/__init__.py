@@ -9,6 +9,27 @@ from telethon import TelegramClient
 
 StartTime = time.time()
 
+
+def get_user_list(__init__, key):
+    with open("{}/aries/{}".format(os.getcwd(), __init__), "r") as json_file:
+        return json.load(json_file)[key]
+
+
+# enable logging
+FORMAT = "[AriesRobot] %(message)s"
+logging.basicConfig(
+    handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
+    level=logging.INFO,
+    format=FORMAT,
+    datefmt="[%X]",
+)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+
+LOGGER = logging.getLogger(__name__)
+LOGGER.info("[AriesRobot] Aries is starting. | An Aries Union Project. | Licensed under GPLv3.")
+LOGGER.info("[AriesRobot] Not affiliated to Shie Hashaikai or Villain in any way whatsoever.")
+LOGGER.info("[AriesRobot] Project maintained by: github.com/idzero23 (t.me/@IdzXartez)")
+
 # enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -196,4 +217,3 @@ from aries.modules.helper_funcs.handlers import (
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
-
