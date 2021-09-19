@@ -2,6 +2,8 @@ import re
 import os
 from asyncio import gather, get_event_loop, sleep
 
+from aries import TOKEN as bot_token
+from sample_config import TOKEN as bot_token
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
@@ -15,12 +17,12 @@ else:
 
 luna = Client(
     ":memory:",
-    token=token,
+    bot_token=bot_token,
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
-bot_id = int(token.split(":")[0])
+bot_id = int(bot_token.split(":")[0])
 arq = None
 
 
