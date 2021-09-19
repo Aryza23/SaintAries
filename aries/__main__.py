@@ -695,7 +695,7 @@ if __name__ == "__main__":
 
 import os
 from pyrogram import filters, Client
-from aries import Config
+from aries import *
 import aiofiles
 import aiohttp
 from random import randint
