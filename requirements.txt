@@ -1,5 +1,7 @@
 aiohttp==3.7.4.post0
 ffmpeg
+redis
+fakeredis
 validators
 motor
 Python_ARQ
