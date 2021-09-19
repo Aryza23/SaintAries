@@ -704,8 +704,8 @@ from google_trans_new import google_translator
 
 translator = google_translator()
 
-TOKEN = Config.TOKEN
-BOT_ID = Config.BOT_ID
+TOKEN = os.environ.get("TOKEN", "")
+BOT_ID = os.environ.get("BOT_ID", "")
 
 bot = Client("MizukiChat", token=TOKEN, api_id=6,
              api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
