@@ -1,5 +1,6 @@
 aiohttp==3.7.4.post0
 validators
+youtube_dl
 pySmartDL
 hachoir
 pytz
