@@ -6,6 +6,8 @@ import spamwatch
 from pyrogram import Client, errors
 import telegram.ext as tg
 from telethon import TelegramClient
+from aiohttp import ClientSession
+from Python_ARQ import ARQ
 
 StartTime = time.time()
 
@@ -67,6 +69,7 @@ if ENV:
     CERT_PATH = os.environ.get("CERT_PATH")
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
+    ARQ_API = os.environ.get("ARQ_API", None)
     DONATION_LINK = os.environ.get("DONATION_LINK")
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation rss cleaner connection math").split()
@@ -83,6 +86,8 @@ if ENV:
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     BOT_ID = os.environ.get("BOT_ID", None)
+    ARQ_API_URL = "https://thearq.tech"
+    ARQ_API_KEY = ARQ_API
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     DB_URI = os.environ.get("DATABASE_URL")
@@ -134,6 +139,8 @@ else:
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
+    ARQ_API = Config.ARQ_API_KEY
+    ARQ_API_URL = Config.ARQ_API_URL
 
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
@@ -172,6 +179,13 @@ else:
     except:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
+        
+print("[INFO]: INITIALIZING AIOHTTP SESSION")
+aiohttpsession = ClientSession()
+# ARQ Client
+print("[INFO]: INITIALIZING ARQ CLIENT")
+arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+
 
 pbot = Client("aries", API_ID, API_HASH)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
