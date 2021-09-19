@@ -1,6 +1,5 @@
 import os
 from time import sleep
-
 from aries import OWNER_ID, dispatcher
 from aries.modules.helper_funcs.extraction import extract_user
 from aries.modules.sql.users_sql import get_user_com_chats
