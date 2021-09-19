@@ -695,7 +695,7 @@ if __name__ == "__main__":
 
 import os
 from pyrogram import filters, Client
-from aries import BOT_TOKEN, BOT_ID
+from aries import TOKEN, BOT_ID
 import aiofiles
 import aiohttp
 from random import randint
@@ -704,10 +704,10 @@ from google_trans_new import google_translator
 
 translator = google_translator()
 
-BOT_TOKEN = Config.BOT_TOKEN
+TOKEN = Config.TOKEN
 BOT_ID = Config.BOT_ID
 
-bot = Client("MizukiChat", bot_token=BOT_TOKEN, api_id=6,
+bot = Client("MizukiChat", token=TOKEN, api_id=6,
              api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
 print("\nAries Chatbot Started!\n")
 
