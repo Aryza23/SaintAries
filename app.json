@@ -229,11 +229,11 @@
          "description": "ARQ URL ,Don't Change It",
          "value": "https://thearq.tech",
          "required": true
-    }
+  }
   },
   "buildpacks": [
    {
     "url": "heroku/python"
    }
-   }
+  ]
 }
