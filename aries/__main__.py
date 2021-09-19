@@ -15,12 +15,12 @@ else:
 
 luna = Client(
     ":memory:",
-    TOKEN=TOKEN,
+    token=token,
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
-bot_id = int(TOKEN.split(":")[0])
+bot_id = int(token.split(":")[0])
 arq = None
 
 
