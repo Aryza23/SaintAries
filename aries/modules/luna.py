@@ -119,3 +119,5 @@ async def main():
 
 
 loop = get_event_loop()
+
+__mod_name__ = "luna"
