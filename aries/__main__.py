@@ -19,9 +19,7 @@ from aries import (
     dispatcher,
     StartTime,
     telethn,
-    updater, 
-    pbot,
-)
+    updater)
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
@@ -91,6 +89,10 @@ I can help you with the following commands.
  • /settings:
    • in PM: will send you your settings for all supported modules.
    • in a group: will redirect you to pm, with all that chat's settings.
+
+
+{}
+And the following:
 """.format(
     dispatcher.bot.first_name,
     "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n",
@@ -664,8 +666,8 @@ def main():
     dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
-        LOGGER.info("Aries started, Using webhook.")
-        updater.start_webhook(listen="127.0.0.1", port=PORT, url_path=TOKEN)
+        LOGGER.info("Using webhooks.")
+        updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
             updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
@@ -673,7 +675,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Aries started, Using long polling.")
+        LOGGER.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, clean=True)
 
     if len(argv) not in (1, 3, 4):
@@ -685,7 +687,6 @@ def main():
 
 
 if __name__ == "__main__":
-    LOGGER.info("Aries Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    pbot.start()
     main()
