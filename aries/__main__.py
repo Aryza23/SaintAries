@@ -707,7 +707,7 @@ translator = google_translator()
 TOKEN = os.environ.get("TOKEN", "")
 BOT_ID = os.environ.get("BOT_ID", "")
 
-bot = Client("MizukiChat", TOKEN, app_id=6,
+bot = Client("AriesChat", TOKEN, API_ID,
              api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
 print("\nAries Chatbot Started!\n")
 
@@ -723,7 +723,7 @@ async def fetch(url):
 
 
 @bot.on_message(filters.text & ~filters.private & ~filters.edited & ~filters.bot & ~filters.via_bot & ~filters.channel & ~filters.forwarded)
-async def mizuki(client, message):
+async def aries(client, message):
     chat_id = message.chat.id
     if not message.reply_to_message:
         message.continue_propagation()
