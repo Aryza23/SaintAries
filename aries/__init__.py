@@ -26,9 +26,9 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)
-LOGGER.info("[AriesRobot] Aries is starting. | An Aries Union Project. | Licensed under GPLv3.")
-LOGGER.info("[AriesRobot] Not affiliated to Shie Hashaikai or Villain in any way whatsoever.")
-LOGGER.info("[AriesRobot] Project maintained by: github.com/idzero23 (t.me/@IdzXartez)")
+LOGGER.info("Aries is starting. | An Aries Union Project. | Licensed under GPLv3.")
+LOGGER.info("Not affiliated to Shie Hashaikai or Villain in any way whatsoever.")
+LOGGER.info("Project maintained by: github.com/idzero23 (t.me/@IdzXartez)")
 
 # enable logging
 logging.basicConfig(
