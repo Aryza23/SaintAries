@@ -1,6 +1,7 @@
 aiohttp==3.7.4.post0
 hachoir
 pytz
+pybase64
 aiofiles
 fontTools
 alphabet-detector==0.0.7
