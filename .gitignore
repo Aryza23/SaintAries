@@ -21,3 +21,13 @@ aries/config.py
 testing.py
 
 **pyc
+
+SaintAries/elevated_users.json
+config.py
+*.sqlite3
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
