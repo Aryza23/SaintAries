@@ -815,5 +815,4 @@ async def main():
     await idle()
 
 
-loop = get_event_loop()
-loop.run_until_complete(main())
+client.run
