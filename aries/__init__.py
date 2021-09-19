@@ -1,3 +1,4 @@
+
 import logging
 import os
 import sys
@@ -8,27 +9,6 @@ import telegram.ext as tg
 from telethon import TelegramClient
 
 StartTime = time.time()
-
-
-def get_user_list(__init__, key):
-    with open("{}/aries/{}".format(os.getcwd(), __init__), "r") as json_file:
-        return json.load(json_file)[key]
-
-
-# enable logging
-FORMAT = "[AriesRobot] %(message)s"
-logging.basicConfig(
-    handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
-    level=logging.INFO,
-    format=FORMAT,
-    datefmt="[%X]",
-)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-
-LOGGER = logging.getLogger(__name__)
-LOGGER.info("Aries is starting. | An Aries Union Project. | Licensed under GPLv3.")
-LOGGER.info("Not affiliated to Shie Hashaikai or Villain in any way whatsoever.")
-LOGGER.info("Project maintained by: github.com/idzero23 (t.me/@IdzXartez)")
 
 # enable logging
 logging.basicConfig(
