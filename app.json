@@ -202,10 +202,10 @@
          "value": "True"
       },
       "AI_API_KEY": {
-      "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
+         "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
          "required": false,
          "value": "632740cd2395c73b58275b54ff57a02b607a9f8a4bbc0e37a24e7349a098f95eaa6569e22e2d90093e9c1a9cc253380a218bfc2b7af2e407494502f6fb76f97e"
-   },
+      },
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
@@ -215,7 +215,25 @@
          "description": "Required for wallpaper. Get your's from https://wall.alphacoders.com/",
          "required": false,
          "value": "97a418be7231fea17f3ee9f3757748e5954edd50"
-      }
-
+      },
+      "ARQ_API_KEY": {
+         "description": "Get this from @ARQRobot",
+         "required": true
+      },
+      "LANGUAGE": {
+         "description": "Language of Chat Bot ,list --> https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages",
+         "value": "id",
+         "required": true
+      },
+      "ARQ_API_BASE_URL": {
+         "description": "ARQ URL ,Don't Change It",
+         "value": "https://thearq.tech",
+         "required": true
+    }
+  },
+  "buildpacks": [
+   {
+    "url": "heroku/python"
+   }
    }
 }
