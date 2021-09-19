@@ -11,7 +11,7 @@ is_config = os.path.exists("config.py")
 if is_config:
     from config import *
 else:
-    from samples_config import *
+    from sample_config import *
 
 luna = Client(
     ":memory:",
