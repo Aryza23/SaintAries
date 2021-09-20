@@ -132,6 +132,7 @@ __help__ = """
  - /addchat: Activates AI mode in the chat the bot will give auto replies to anyone who tags the bot
  - /rmchat: Deactivates AI mode in the chat the bot will stop giving auto replies to anyone who tags the bot
 """
+__mod_name__ = "Chatbot"
 
 CMD_HELP.update({
     file_helpo: [
