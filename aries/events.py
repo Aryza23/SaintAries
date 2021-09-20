@@ -143,7 +143,7 @@ def register(**args):
             else:
                 pass
 
-        tbot.add_event_handler(wrapper, event.NewMessage(**args))
+        telethn.add_event_handler(wrapper, event.NewMessage(**args))
         return wrapper
 
     return decorator
