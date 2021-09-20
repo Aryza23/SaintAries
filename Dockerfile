@@ -58,6 +58,8 @@ RUN apt update && apt upgrade -y && \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 
 RUN pip3 install --upgrade pip setuptools
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install --upgrade pip
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
 ENV PATH="/home/bot/bin:$PATH"
