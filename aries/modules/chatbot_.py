@@ -7,13 +7,13 @@ import aries.modules.sql.chatbot_sql as sql
 from coffeehouse.api import API
 from coffeehouse.exception import CoffeeHouseError as CFError
 from coffeehouse.lydia import LydiaAI
-from aries import LYDIA_API_KEY, OWNER_ID
+from aries import AI_API_KEY, OWNER_ID
 from telethon import types
 from telethon.tl import functions
 from aries.event import register
 from telethon import events
 
-CoffeeHouseAPI = API(LYDIA_API_KEY)
+CoffeeHouseAPI = API(AI_API_KEY)
 api_client = LydiaAI(CoffeeHouseAPI)
 
 
