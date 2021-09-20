@@ -2,7 +2,7 @@ from aries import tbot
 from telethon import *
 from pymongo import MongoClient
 from aries import MONGO_DB_URI, CMD_HELP
-from aries.events import register
+from aries.event import register
 import dateparser 
 import os, asyncio
 
