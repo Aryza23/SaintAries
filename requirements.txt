@@ -3,7 +3,8 @@ dateparser==1.0.0
 ffmpeg
 redis
 pymongo
-opencv-python
+opencv-python==4.2.0.34
+imgaug
 dnspython
 validators
 motor
