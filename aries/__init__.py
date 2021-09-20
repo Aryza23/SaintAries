@@ -90,6 +90,7 @@ if ENV:
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     DB_URI = os.environ.get("DATABASE_URL")
+    STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
 
     try:
@@ -157,6 +158,7 @@ else:
     SPAMWATCH_API = Config.SPAMWATCH_API
     INFOPIC = Config.INFOPIC
     BOT_ID = Config.BOT_ID
+    STRING_SESSION = Config.STRING_SESSION
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
@@ -182,6 +184,20 @@ updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("aries", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 tbot = telethn
+
+if STRING_SESSION:
+        ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
+    else:
+        sys.exit(1)
+
+    try:
+        ubot.start()
+    except BaseException:
+        print("Sed Bra")
+        sys.exit(1)
+
+else:
+    sys.exit(1)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
