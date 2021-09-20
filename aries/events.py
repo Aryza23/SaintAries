@@ -1,6 +1,7 @@
 from telethon import events
 from aries import telethn
-
+from telethon import TelegramClient, sync
+from telethon import *
 
 def register(**args):
     """ Registers a new message. """
@@ -141,7 +142,7 @@ def register(**args):
             else:
                 pass
 
-        telethn.add_event_handler(wrapper, event.NewMessage(**args))
+        tbot.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
 
     return decorator
