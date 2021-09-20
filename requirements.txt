@@ -2,6 +2,8 @@ aiohttp==3.7.4.post0
 dateparser==1.0.0
 ffmpeg
 redis
+pymongo
+dnspython
 validators
 motor
 Python_ARQ
