@@ -212,7 +212,7 @@ def load_module(shortname):
         pass
     elif shortname.endswith("_"):
         import importlib
-        import aries.event
+        import aries.events
 
         path = Path(f"aries/modules/{shortname}.py")
         name = "aries.modules.{}".format(shortname)
@@ -222,7 +222,7 @@ def load_module(shortname):
         print("Successfully imported " + shortname)
     else:
         import importlib
-        import aries.event
+        import aries.events
 
         path = Path(f"aries/modules/{shortname}.py")
         name = "aries.modules.{}".format(shortname)
