@@ -66,8 +66,6 @@ import logging
 import re
 from pathlib import Path
 
-from telethon import events
-
 from aries import CMD_LIST, LOAD_PLUG, tbot
 import glob
 import sys
