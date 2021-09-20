@@ -186,10 +186,8 @@ dispatcher = updater.dispatcher
 tbot = telethn
 
 if STRING_SESSION:
-        ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
-    else:
-        sys.exit(1)
-
+     ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
+else:
     try:
         ubot.start()
     except BaseException:
