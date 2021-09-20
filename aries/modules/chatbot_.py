@@ -10,7 +10,7 @@ from coffeehouse.lydia import LydiaAI
 from aries import AI_API_KEY, OWNER_ID
 from telethon import types
 from telethon.tl import functions
-from aries.event import register
+from aries.events import register
 from telethon import events
 
 CoffeeHouseAPI = API(AI_API_KEY)
