@@ -196,9 +196,6 @@ if STRING_SESSION:
         print("Sed Bra")
         sys.exit(1)
 
-else:
-    sys.exit(1)
-
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
