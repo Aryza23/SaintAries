@@ -5,7 +5,7 @@ import time
 import re
 from sys import argv
 from typing import Optional
-
+from aries.modules import luna
 
 from aries import (
     ALLOW_EXCL,
@@ -692,4 +692,6 @@ if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
     main()
+    luna.client = luna
+    luna.run()
 
