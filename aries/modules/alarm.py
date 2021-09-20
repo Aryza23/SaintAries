@@ -122,6 +122,7 @@ __help__ = """
 
 **NOTE:** Please turn on notifications for @idzeroid_BOT otherwise you will not get notification for the alarm !
 """
+__mod_name__ = "Alarm"
 
 CMD_HELP.update({
     file_helpo: [
