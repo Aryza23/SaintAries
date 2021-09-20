@@ -4,7 +4,7 @@ import logging
 import re
 from pathlib import Path
 
-from telethon import event
+from telethon import events
 
 from aries import CMD_LIST, LOAD_PLUG, tbot
 import glob
