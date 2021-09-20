@@ -57,6 +57,8 @@ RUN apt update && apt upgrade -y && \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 
+RUN apt-get update ##[edited]
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN pip3 install --upgrade pip setuptools
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade pip
