@@ -41,7 +41,7 @@ geographiclib==1.50
 geopy==2.1.0
 google-trans-new==1.1.9
 humanize==3.6.0
-idna==2.10
+idna==3.2
 jikanpy==4.3.2
 joblib==1.0.1
 lxml==4.6.3
