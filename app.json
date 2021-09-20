@@ -9,14 +9,7 @@
          "aries"
       ],
    "repository": "https://github.com/idzero23/SaintAries",
-   "addons": [
-      {
-         "options": {
-            "version": "13"
-         },
-         "plan": "heroku-postgresql"
-      }
-   ],
+    
    "env": {
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
@@ -53,6 +46,11 @@
       },
       "REDIS_PASS": {
          "description": "Get from redislabs.com",
+         "value": "",
+         "required": true
+      },
+      "MONGO_DB_URI": {
+         "description": "Required for database connections",
          "value": "",
          "required": true
       },
@@ -99,11 +97,6 @@
          "description": "Don't change.",
          "value": "DaisyX",
          "required": false
-      },
-      "MONGO_URI": {
-         "description": "Create A Database In Mongodb And Get URL",
-         "value": "",
-         "required": true
       },
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
@@ -231,9 +224,32 @@
          "required": true
   }
   },
+  "addons": [
+  "options": {
+     "version": "13"
+    },
+    {
+      "plan": "heroku-postgresql"
+    },
+    {
+      "plan": "ormongo:5-mmap"
+    },
+    {
+      "plan": "scheduler"
+    }
+  ],
   "buildpacks": [
-   {
-    "url": "heroku/python"
-   }
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+    }
   ]
 }
