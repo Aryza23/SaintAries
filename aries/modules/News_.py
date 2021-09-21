@@ -1,4 +1,4 @@
-from aries import tbot, CMD_HELP
+from aries import tbot
 import os
 import urllib.request
 from typing import List
@@ -17,7 +17,7 @@ from aries.events import register
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
+db = client["aries"]
 approved_users = db.approve
 
 
@@ -285,19 +285,9 @@ async def paginate_nextnews(event):
     await tbot.edit_message(chatid, msgid, lastisthis, link_preview=False, buttons=[[Button.inline('◀️', data=f'prevnews-{sender}|{country}|{lang}|{num}|{chatid}|{msgid}'), Button.inline('❌', data=f'newsstop-{sender}|{chatid}|{msgid}'), Button.inline('▶️', data=f'nextnews-{sender}|{country}|{lang}|{num}|{chatid}|{msgid}')], [Button.inline('Refresh 🔁', data=f'newnews-{sender}|{country}|{lang}|{chatid}|{msgid}')]])
 
 
-file_help = os.path.basename(__file__)
-file_help = file_help.replace(".py", "")
-file_helpo = file_help.replace("_", " ")
-
 __help__ = """
  - /news <country code> <LanguageCode>: Returns today's American News Headlines (ONLY WORKS IN PM)
 **Example:**
- - /news US en: This will return news for US in english language.
+ - /news US en
 """
-
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+__mod_name__ = "news"
