@@ -8,13 +8,13 @@ PHOTO = "https://telegra.ph/file/2b1756a57e11004461751.jpg"
 @register(pattern=("/alive"))
 async def awake(event):
   aries = event.sender.first_name
-  ARIES = "**HELLO THIS IS GRAND OFFICIAL** \n\n"
+  ARIES = "**Heya im Saint Aries** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
-  ARIES += " 🔥 ⌊ **GRAND OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" 🔥 **MY MASTER** ⌊ {IDZ} ⌉ \n\n"
-  ARIES += " 🔥 ⌊ **Sαιητ λrιεs** ⌉\n\n"
-  ARIES += " 🔥 ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
-  ARIES += "THANKS FOR ADD ME HERE*"
+  ARIES += " ☬ ⌊ **Saint OS : 3.8 LATEST** ⌉\n\n"
+  ARIES += f" ☬ ⌊ **My Lord** : ⌊ @{IDZ} ⌉🔥⌉\n\n"
+  ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
+  ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
+  ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
   BUTTON = [[Button.url("MASTER", "https://t.me/IdzXartez"), Button.url("DEVLOPER", "https://t.me/IdzXartez")]]
   BUTTON += [[custom.Button.inline("REPOSITORY", data="http://github.com/idzero23")]]
   await tbot.send_file(event.chat_id, PHOTO, caption=ARIES,  buttons=BUTTON)
@@ -27,20 +27,20 @@ async def callback_query_handler(event):
   SAINT = [[Button.url("REPO-ARIES", "https://github.com/idzero23/SaintAries"), Button.url("GITHUB", "https://github.com/idzero23")]]
   SAINT +=[[Button.url("SUPPORT CHANNEL", "https://t.me/IDZEROID"), Button.url("SUPPORT GROUP", "https://t.me/IDZEROIDSUPPORT")]]
   SAINT +=[[custom.Button.inline("ALIVE", data="ARIES")]]
-  await event.edit(text=f"ALL DETAILS OF REPOS", buttons=ARIES)
+  await event.edit(text=f"ALL DETAILS OF REPOS", buttons=BUTTON)
 
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"SAINT")))
 async def callback_query_handler(event):
   global PHOTO
   aries = event.sender.first_name
-  ARIES = "**HELLO THIS IS GRAND OFFICIAL** \n\n"
+  ARIES = "**Heya im Saint Aries** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
-  ARIES += " 🔥 ⌊ **GRAND OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" 🔥 **MY MASTER** ⌊ {idz} ⌉\n\n"
-  ARIES += " 🔥 ⌊ **Sαιητ λrιεs** ⌉\n\n"
-  ARIES += " 🔥 ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
-  ARIES += "THANKS FOR ADD ME HERE*"
+  ARIES += " ☬ ⌊ **Saint OS : 3.8 LATEST** ⌉\n\n"
+  ARIES += f" ☬ ⌊ **My Lord** : ⌊ @{IDZ} ⌉🔥⌉\n\n"
+  ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
+  ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
+  ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
   BUTTONS = [[Button.url("MASTER", "https://t.me/IdzXartez"), Button.url("DEVLOPER", "https://t.me/IdzXartez")]]
   BUTTONS += [[custom.Button.inline("REPOSITORYS", data="http://github.com/idzero23")]]
   await event.edit(text=ARIES, buttons=BUTTONS)
