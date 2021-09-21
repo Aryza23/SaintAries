@@ -8,6 +8,7 @@ import telegram.ext as tg
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
+StartTime = time.time()
 
 # enable logging
 logging.basicConfig(
