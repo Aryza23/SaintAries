@@ -8,11 +8,6 @@ import telegram.ext as tg
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-StartTime = time.time()
-CMD_LIST = {}
-CMD_HELP = {}
-LOAD_PLUG = {}
-BOT_VERSION = "1.1.1"
 
 # enable logging
 logging.basicConfig(
@@ -169,7 +164,7 @@ else:
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
-DEV_USERS.add(1669508271)
+DEV_USERS.add(1192108540)
 
 if not SPAMWATCH_API:
     sw = None
