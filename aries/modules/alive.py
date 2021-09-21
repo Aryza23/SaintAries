@@ -19,7 +19,7 @@ async def awake(event):
   await tbot.send_file(event.chat_id, PHOTO, caption=ARIES,  buttons=BUTTON)
 
 
-⌊Sαιητ λrιεs Oηlιηε Πσω....⌉
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"ARIES")))
 async def callback_query_handler(event):
