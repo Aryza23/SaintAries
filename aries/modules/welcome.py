@@ -212,7 +212,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Devs
             elif new_mem.id in DEV_USERS:
                 update.effective_message.reply_text(
-                    "Be cool! A member of the Zero Two Association just joined.",
+                    "Be cool! A member of the Idzeroid just joined.",
                     reply_to_message_id=reply,
                 )
                 welcome_log = (
@@ -578,7 +578,7 @@ def left_member(update: Update, context: CallbackContext):
             # Give the devs a special goodbye
             elif left_mem.id in DEV_USERS:
                 update.effective_message.reply_text(
-                    "See you later at the Zero Two's Association!",
+                    "See you later at the Idzeroid Support!",
                     reply_to_message_id=reply,
                 )
                 return
