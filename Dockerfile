@@ -57,11 +57,7 @@ RUN apt update && apt upgrade -y && \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 
-RUN apt get update 
-RUN apt get install ffmpeg libsm6 libxext6  -y
 RUN pip3 install --upgrade pip setuptools
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install --upgrade pip
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
 ENV PATH="/home/bot/bin:$PATH"
