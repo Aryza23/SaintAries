@@ -1,4 +1,4 @@
-from saint import telethn as tbot, OWNER_ID, DEV_USERS, LEGENDX
+from aries import telethn as tbot, OWNER_ID, DEV_USERS, IDZ
 from saint.events import register
 import os
 import asyncio
