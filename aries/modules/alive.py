@@ -11,11 +11,11 @@ async def awake(event):
   ARIES = "**Heya im Saint Aries** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
   ARIES += " ☬ ⌊ **Saint OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" ☬ ⌊ **My Lord** : ⌊ @{IDZ} ⌉🔥⌉\n\n"
+  ARIES += f" ☬ ⌊ **My Lord** : @{IDZ} ☠⌉\n\n"
   ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
   ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
   ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
-  BUTTON = [[Button.url("MASTER", "https://t.me/IdzXartez"), Button.url("DEVLOPER", "https://t.me/IdzXartez")]]
+  BUTTON = [[Button.url("☠Support☠", "https://t.me/IDZEROIDSUPPORT"), Button.url("☠Channel☠", "https://t.me/IDZEROID")]]
   BUTTON += [[custom.Button.inline("REPOSITORY", data="http://github.com/idzero23")]]
   await tbot.send_file(event.chat_id, PHOTO, caption=ARIES,  buttons=BUTTON)
 
@@ -37,18 +37,18 @@ async def callback_query_handler(event):
   ARIES = "**Heya im Saint Aries** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
   ARIES += " ☬ ⌊ **Saint OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" ☬ ⌊ **My Lord** : ⌊ @{IDZ} ⌉🔥⌉\n\n"
+  ARIES += f" ☬ ⌊ **My Lord** : @{IDZ} ☠⌉\n\n"
   ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
   ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
   ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
-  BUTTONS = [[Button.url("MASTER", "https://t.me/IdzXartez"), Button.url("DEVLOPER", "https://t.me/IdzXartez")]]
+  BUTTONS = [[Button.url("☠Support☠", "https://t.me/IDZEROIDSUPPORT"), Button.url("☠Channel☠", "https://t.me/IDZEROID")]]
   BUTTONS += [[custom.Button.inline("REPOSITORYS", data="http://github.com/idzero23")]]
   await event.edit(text=ARIES, buttons=BUTTON)
 
 
 @register(pattern=("/repo|/REPO"))
 async def repo(event):
-  await tbot.send_message(event.chat, "REPO OF GRAND OFFICIAL", buttons=[[Button.url("⚜️REPO⚜️", "https://github.com/idzero23/SaintAries")]])
+  await tbot.send_message(event.chat, "REPO OF ARIES OFFICIAL", buttons=[[Button.url("⚜️REPO⚜️", "https://github.com/idzero23/SaintAries")]])
 
 
 __help__ = """
