@@ -1,15 +1,15 @@
 from aries import telethn as tbot, OWNER_ID, DEV_USERS, IDZ
-from saint.events import register
+from aries.events import register
 import os
 import asyncio
 import os
 import time
 from datetime import datetime
-from saint import TEMP_DOWNLOAD_DIRECTORY as path
-from saint import TEMP_DOWNLOAD_DIRECTORY
+from aries import TEMP_DOWNLOAD_DIRECTORY as path
+from aries import TEMP_DOWNLOAD_DIRECTORY
 from datetime import datetime
 import asyncio
-from saint.events import register
+from aries.events import register
 import os
 import time
 from datetime import datetime as dt
