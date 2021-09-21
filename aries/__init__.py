@@ -79,7 +79,7 @@ if ENV:
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     AI_API_KEY = os.environ.get("AI_API_KEY", None)
-    IDZ = IdzXartez
+    IDZ = os.environ.get("IDZ", IdzXartez)
     WALL_API = os.environ.get("WALL_API", None)
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
@@ -157,6 +157,7 @@ else:
     INFOPIC = Config.INFOPIC
     BOT_ID = Config.BOT_ID
     STRING_SESSION = Config.STRING_SESSION
+    IDZ = Config.IDZ
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
