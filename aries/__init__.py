@@ -89,7 +89,7 @@ if ENV:
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
     DB_URI = os.environ.get("DATABASE_URL")
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
-
+    SAINT = 1192108540
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
