@@ -1,5 +1,6 @@
 from telethon import events, Button, custom
 import re, os
+from aries import IDZ
 from aries.events import register
 from aries import telethn as tbot
 from aries import telethn as tgbot
