@@ -10,7 +10,7 @@ async def awake(event):
   ARIES = "**HELLO THIS IS GRAND OFFICIAL** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
   ARIES += " 🔥 ⌊ **GRAND OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" 🔥 **MY MASTER** ⌊ {idz} ⌉ \n\n"
+  ARIES += f" 🔥 **MY MASTER** ⌊ {IDZ} ⌉ \n\n"
   ARIES += " 🔥 ⌊ **Sαιητ λrιεs** ⌉\n\n"
   ARIES += " 🔥 ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
   ARIES += "THANKS FOR ADD ME HERE*"
