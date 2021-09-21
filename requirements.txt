@@ -31,7 +31,7 @@ chardet==4.0.0
 click==8.0.1
 coffeehouse==2.2.6
 colorama==0.4.4
-cryptography==3.4.7
+cryptography==3.4.8
 CurrencyConverter==0.16.1
 decorator==5.0.9
 emoji==1.2.0
