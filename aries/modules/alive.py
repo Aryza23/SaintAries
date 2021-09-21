@@ -43,7 +43,7 @@ async def callback_query_handler(event):
   ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
   BUTTONS = [[Button.url("MASTER", "https://t.me/IdzXartez"), Button.url("DEVLOPER", "https://t.me/IdzXartez")]]
   BUTTONS += [[custom.Button.inline("REPOSITORYS", data="http://github.com/idzero23")]]
-  await event.edit(text=ARIES, buttons=BUTTONS)
+  await event.edit(text=ARIES, buttons=BUTTON)
 
 
 @register(pattern=("/repo|/REPO"))
