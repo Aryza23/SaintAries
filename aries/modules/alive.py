@@ -3,7 +3,7 @@ import re, os
 from aries.events import register
 from aries import telethn as tbot
 from aries import telethn as tgbot
-PHOTO = "https://telegra.ph/file/b068fc8dc8d9be627bf85.jpg"
+PHOTO = "https://telegra.ph/file/2b1756a57e11004461751.jpg"
 @register(pattern=("/alive"))
 async def awake(event):
   aries = event.sender.first_name
