@@ -1,3 +1,5 @@
+"""	  Anime Download Command		
+	By :- @Roseloverx And @Madepranav	
 """
 
 from gogoanimeapi import gogoanime as anime
@@ -32,10 +34,15 @@ async def search(event):
  buttons = Button.inline("Download", data="episode_{}".format(nfo))
  text = """
 {} (Released: {})
+
 Type: {}
+
 Status: {}
+
 Generies: {}
+
 Episodes: {}
+
 Summary: {}
 """
  await event.edit(text.format(result["title"], result["year"], result["type"], result["status"], result["genre"], result["episodes"], result["plot_summary"]), buttons=buttons)
