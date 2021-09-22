@@ -56,7 +56,8 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
-
+RUN python -m pip install -U pip
+RUN python -m pip install -U matplotlib 
 RUN pip3 install --upgrade pip setuptools
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
