@@ -21,6 +21,7 @@ from aries import (
     dispatcher,
     StartTime,
     telethn,
+    pbot,
     updater)
 
 # needed to dynamically load modules
@@ -360,7 +361,44 @@ def help_button(update, context):
     except BadRequest:
         pass
 
-
+@run_async
+def aries_about_callback(update, context):
+    query = update.callback_query
+    if query.data == "aries_":
+        query.message.edit_text(
+            text=""" â„¹ï¸ I'm *Aries*, a powerful group management bot built to help you manage your group easily.
+                 \nâ I can restrict users.
+                 \nâ I can greet users with customizable welcome messages and even set a group's rules.
+                 \nâ I have an advanced anti-flood system.
+                 \nâ I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
+                 \nâ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
+                 \nâ I check for admins' permissions before executing any command and more stuffs
+                 \n\n_Aries licensed under the GNU General Public License v3.0_
+                 \nâ Saint Aries @Idzeroid_bot
+                 \nâ Support Group @IdzeroidSupport
+                 \nâ Channel @Idzeroid.
+                 \nHere is the [ðŸ’¾Repository](https://t.me/idzeroid).
+                 \n\nIf you have any question about Aries, let us know at .""",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                 [
+                    InlineKeyboardButton(text="Back", callback_data="aries_back")
+                 ]
+                ]
+            ),
+        )
+    elif query.data == "aries_back":
+        query.message.edit_text(
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=False,
+        )
+        
+       
 @run_async
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
