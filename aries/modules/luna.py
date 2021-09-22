@@ -1,5 +1,5 @@
 import re
-import os
+import os, logging
 from asyncio import gather, get_event_loop, sleep
 
 from aries import TOKEN as bot_token
@@ -7,6 +7,21 @@ from sample_config import TOKEN as bot_token
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
+from aries import API_ID, API_HASH
+
+from telethon import TelegramClient, events
+from telethon.sessions import StringSession
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(name)s - [%(levelname)s] - %(message)s'
+)
+LOGGER = logging.getLogger(__name__)
+
+api_id = int(os.environ.get("APP_ID"))
+api_hash = os.environ.get("API_HASH")
+bot_token = os.environ.get("TOKEN")
+client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 is_config = os.path.exists("config.py")
 
