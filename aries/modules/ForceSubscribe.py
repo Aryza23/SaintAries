@@ -10,7 +10,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboardMarkup
 
-from aries import DEV_USERS as SUDO_USERS, LEGENDX
+from aries import DEV_USERS as SUDO_USERS, SAINT
 from aries import pbot
 from aries.modules.sql import forceSubscribe_sql as sql
 
