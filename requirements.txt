@@ -79,7 +79,7 @@ telegraph==1.4.1
 Telethon==1.21.1
 TgCrypto==1.2.2
 tornado==6.1
-tqdm==4.61.0
+tqdm==4.62.3
 typing-extensions==3.10.0.0
 ujson==4.0.2
 urllib3==1.26.6
