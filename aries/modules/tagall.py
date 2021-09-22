@@ -9,7 +9,7 @@ from telethon import events
 
 
  
-@client.on(events.NewMessage(pattern="^/tagall|/mall|/tall|/all|#all|@all ?(.*)"))
+@bot.on(events.NewMessage(pattern="^/tagall|/mall|/tall|/all|#all|@all ?(.*)"))
 async def mentionall(event):
   if event.is_private:
     return await event.respond("__This command can be use in groups and channels!__")
