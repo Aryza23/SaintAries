@@ -16,7 +16,7 @@ bot_token = os.environ.get("TOKEN")
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 
-@client.on(events.NewMessage(pattern="^/tagall|/mall|/tall|/all|#all|@all ?(.*)"))
+@client.on(events.NewMessage(pattern="^/tgall|/mall|/tall|/all|#all|@all ?(.*)"))
 async def mentionall(event):
   if event.is_private:
     return await event.respond("__This command can be use in groups and channels!__")
@@ -66,4 +66,10 @@ async def mentionall(event):
         
 print("👽 BOT STARTED BY ARIES 👽")
 
-__mod_name__ = "tagmem"
+__help__ = """
+I can tag all members in group with a message.
+• `/tgall <message>`*:* tag all members in the group with given message.
+"""
+
+__mod_name__ = "TaggerCall"
+
