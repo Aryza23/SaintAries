@@ -66,5 +66,4 @@ async def mentionall(event):
         
 print("👽 BOT STARTED BY ARIES 👽")
 
-"""
 __mod_name__ = "tagmem"
