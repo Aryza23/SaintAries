@@ -18,6 +18,7 @@ spongemock
 zalgo-text
 geopy
 nltk
+humanize
 psutil
 aiohttp>=2.2.5
 Pillow>=4.2.0
