@@ -11,6 +11,7 @@ PyDictionary==2.0.1
 psycopg2-binary
 feedparser
 hachoir
+Python_ARQ
 odmantic
 pynewtonmath
 spongemock
