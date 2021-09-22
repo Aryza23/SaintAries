@@ -80,7 +80,7 @@ Telethon==1.21.1
 TgCrypto==1.2.2
 tornado==6.1
 tqdm==4.61.0
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.2
 ujson==4.0.2
 urllib3==1.26.6
 webencodings==0.5.1
