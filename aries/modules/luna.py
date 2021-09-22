@@ -115,9 +115,6 @@ async def main():
 -----------------
 """
     )
-    await idle()
-
-
-loop = get_event_loop()
+    
 
 __mod_name__ = "luna"
