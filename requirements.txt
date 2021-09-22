@@ -9,7 +9,8 @@ dnspython
 validators
 motor
 Python_ARQ
-googletrans
+google_trans_new
+itranslate
 youtube_dl
 pySmartDL
 hachoir
