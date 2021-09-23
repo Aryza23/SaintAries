@@ -83,9 +83,8 @@ Type /help to get available commands.
 buttons = [
     [
         InlineKeyboardButton(
-            text="☑️ Add me",
-                                url="t.me/{}?startgroup=true".format(
-                                    context.bot.username,
+            text="☑️ Add me", 
+            url="t.me/{}?startgroup=true".format(context.bot.username),
         ),
     ],
     [
