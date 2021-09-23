@@ -2,6 +2,7 @@ aiohttp==3.7.4.post0
 dateparser==1.0.0
 ffmpeg
 redis
+asyncio
 gpytranslate
 pymongo
 opencv-python
