@@ -32,6 +32,7 @@ regex
 bleach
 wikipedia
 markdown2>=2.4.0
+pybase64
 telethon==1.16.4
 telegraph
 heroku3
