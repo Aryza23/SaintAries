@@ -83,8 +83,7 @@ Type /help to get available commands.
 buttons = [
     [
         InlineKeyboardButton(
-            text="☑️ Add me", 
-            url="t.me/{}?startgroup=true".format(context.bot.username),
+            text="➕️ ADD ME TO YOUR GROUP ➕️", url="t.me/IDZEROID_BOT?startgroup=true"
         ),
     ],
     [
@@ -369,7 +368,7 @@ def help_button(update, context):
         pass
 
 
-def asuna_about_callback(update, context):
+def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aries_":
         query.message.edit_text(
@@ -716,7 +715,7 @@ def main():
     )
 
     about_callback_handler = CallbackQueryHandler(
-        asuna_about_callback, pattern=r"aries_", run_async=True
+        aries_about_callback, pattern=r"aries_", run_async=True
     )
     source_callback_handler = CallbackQueryHandler(
         Source_about_callback, pattern=r"source_", run_async=True
