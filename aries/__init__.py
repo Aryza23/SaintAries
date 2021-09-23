@@ -91,7 +91,7 @@ if ENV:
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
     SAINT = 1192108540
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
-
+    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
     except ValueError:
@@ -159,6 +159,7 @@ else:
     BOT_ID = Config.BOT_ID
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
+    ARQ_API_KEY = Config.ARQ_API_KEY
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
