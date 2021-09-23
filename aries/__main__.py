@@ -5,6 +5,7 @@ import time
 import re
 from sys import argv
 from typing import Optional
+from aries.modules import luna as telethn
 
 
 from aries import (
