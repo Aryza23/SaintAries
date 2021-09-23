@@ -38,7 +38,7 @@ luna = Client(
 )
 
 bot_id = int(bot_token.split(":")[0])
-arq = none
+arq = None
 
 
 async def lunaQuery(query: str, user_id: int):
