@@ -7,7 +7,7 @@ from sample_config import TOKEN as bot_token
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
-from aries import API_ID, API_HASH, ARQ_API_KEY, TOKEN as bot_token
+from aries import API_ID, API_HASH, ARQ_API_KEY, ARQ_API_BASE_URL, TOKEN as bot_token
 
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
@@ -38,7 +38,7 @@ luna = Client(
 )
 
 bot_id = int(bot_token.split(":")[0])
-arq = thearq.teach
+arq = none
 
 
 async def lunaQuery(query: str, user_id: int):
