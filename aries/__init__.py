@@ -92,6 +92,8 @@ if ENV:
     SAINT = 1192108540
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
+    ARQ_API_BASE_URL = os.environ.get("ARQ_API_BASE_URL", "https://thearq.tech")
+
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
     except ValueError:
@@ -160,6 +162,7 @@ else:
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
     ARQ_API_KEY = Config.ARQ_API_KEY
+    ARQ_API_BASE_URL = Config.ARQ_API_BASE_URL
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
