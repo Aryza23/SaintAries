@@ -74,7 +74,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-`Hello` There [🧚‍♀️](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg) `My name is` *Aries*
+`Hello` There [👋](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg) `My name is` *Aries*
 `I am powerful  group management bot.
 made specifically to manage your group , I specialize in managing Entertainment type groups.
 You can find my list of available commands with! Hit` *🔰Commands* or type /help 
