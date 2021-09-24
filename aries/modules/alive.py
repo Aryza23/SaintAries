@@ -9,10 +9,10 @@ PHOTO = "https://telegra.ph/file/2b1756a57e11004461751.jpg"
 @register(pattern=("/alive|/ALIVE"))
 async def awake(event):
   aries = event.sender.first_name
-  ARIES = "**Heya im Saint Aries** \n\n"
+  ARIES = "**Hello im Saint Aries** \n\n"
   ARIES += "**ALL SYSTEM WORKING PROPERLY**\n\n"
   ARIES += " ☬ ⌊ **Saint OS : 3.8 LATEST** ⌉\n\n"
-  ARIES += f" ☬ ⌊ **My Lord** : @{IDZ} ☠⌉\n\n"
+  ARIES += f" ☬ ⌊ **My Lord** : [Artezid](https://t.me/{IDZ}) ☠⌉\n\n"
   ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
   ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
   ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
