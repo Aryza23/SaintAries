@@ -16,21 +16,14 @@ import re
 import aiohttp
 from googletrans import Translator as google_translator
 from pyrogram import filters
-from Python_ARQ import ARQ
 from aiohttp import ClientSession
-from aries import BOT_ID, pbot as aries
+from aries import BOT_ID, pbot as aries, arq
 from aries.bot_plugins.chatbot import add_chat, get_session, remove_chat
 from aries.utils.pluginhelper import admins_only, edit_or_reply
 
 url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
 translator = google_translator()
-
-ARQ_API_URL = "https://thearq.tech"
-ARQ_API_KEY = "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ"
-
-aiohttpsession = ClientSession()
-arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
 
 async def lunaQuery(query: str, user_id: int):
