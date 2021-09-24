@@ -113,12 +113,9 @@ buttons = [
     ],
 ]
 
-
-
 HELP_STRINGS = """
-`Hi.. I'm` [Saint Aries]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
+`Hi.. I'm` [Aries ⚙️]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
 `Click on the buttons below to get documentation about specific modules..`"""
-
 
 ARIES_IMG = "https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg"
 
