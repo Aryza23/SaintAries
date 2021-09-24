@@ -194,11 +194,6 @@
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "False"
       },
-      "AI_API_KEY": {
-         "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
-         "required": false,
-         "value": "632740cd2395c73b58275b54ff57a02b607a9f8a4bbc0e37a24e7349a098f95eaa6569e22e2d90093e9c1a9cc253380a218bfc2b7af2e407494502f6fb76f97e"
-      },
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
