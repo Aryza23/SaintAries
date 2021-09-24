@@ -73,7 +73,6 @@ lyricsgenius
 tswift
 python-arq
 envparse
-#profanity (Credits to Julia)
 better_profanity
 textblob 
 nudepy
