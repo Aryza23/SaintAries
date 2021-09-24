@@ -95,7 +95,7 @@
       },
       "MONGO_DB": {
          "description": "Don't change.",
-         "value": "DaisyX",
+         "value": "aries",
          "required": false
       },
       "JOIN_LOGGER": {
@@ -169,7 +169,7 @@
       "URL": {
          "description": "The Heroku App URL :-  https://<appname>.herokuapp.com/",
          "required": false,
-         "value": "https://<appname>.herokuapp.com/"
+         "value": ""
       },
       "NO_LOAD": {
          "description": "Dont load these modules cause they shit, space separation",
@@ -206,7 +206,8 @@
       },
       "ARQ_API_KEY": {
          "description": "Get this from @ARQRobot",
-         "required": true
+         "required": false,
+         "value": ""
       },
       "LANGUAGE": {
          "description": "Language of Chat Bot ,list --> https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages",
