@@ -45,6 +45,7 @@ pretty_errors
 pygithub
 TgCrypto
 Pyrogram
+humanize
 PyDictionary
 youtube-dl
 youtube_search_python
