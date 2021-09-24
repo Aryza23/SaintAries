@@ -74,7 +74,7 @@
          "value": "IdzXartez"
       },
       "SUPPORT_CHAT": {
-         "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah. If this ever points to saitama support than consider you made an enemy.",
+         "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah.",
          "required": true,
          "value": "IDZEROIDSUPPORT"
       },
@@ -171,10 +171,10 @@
          "required": false,
          "value": "https://<appname>.herokuapp.com/"
       },
-      "No_LOAD": {
+      "NO_LOAD": {
          "description": "Dont load these modules cause they shit, space separation",
          "required": false,
-         "value": "cleaner rss connection"
+         "value": "rss"
       },
       "BL_CHATS": {
          "description": "List of chats you want blacklisted.",
@@ -192,7 +192,7 @@
       },
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
-         "value": "True"
+         "value": "False"
       },
       "AI_API_KEY": {
          "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
@@ -217,12 +217,8 @@
          "description": "Language of Chat Bot ,list --> https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages",
          "value": "id",
          "required": true
-      },
-      "ARQ_API_BASE_URL": {
-         "description": "ARQ URL ,Don't Change It",
-         "value": "https://thearq.tech",
-         "required": true
-  }
+      }
+
   },
   "addons": [  
     {
