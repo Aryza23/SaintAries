@@ -101,7 +101,7 @@ buttons = [
         ),
     ],
     [
-        InlineKeyboardButton(text="☆CHANNEL", url="https://t.me/idzeroid"),
+        InlineKeyboardButton(text="⚡️CHANNEL", url="https://t.me/idzeroid"),
         InlineKeyboardButton(
             text="👥 SUPPORT", url="https://telegram.dog/idzeroidsupport"
         ),
@@ -114,11 +114,10 @@ buttons = [
 ]
 
 
+
 HELP_STRINGS = """
-Hey there!.
-My Name is {}, . Take me as your group's to have fun with me. \
-I can help you with the following commands.
-"""
+`Hi.. I'm` [❄️Saint Aries❄️]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
+`Click on the buttons below to get documentation about specific modules..`"""
 
 
 ARIES_IMG = "https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg"
