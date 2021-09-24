@@ -1,6 +1,5 @@
 from aries.events import register
 from aries import telethn as tbot
-TMP_DOWNLOAD_DIRECTORY = "tg-File/"
 from telethon import events
 import os
 from PIL import Image
