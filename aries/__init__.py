@@ -104,7 +104,7 @@ if ENV:
     AI_API_KEY = os.environ.get("AI_API_KEY", None)
     BOT_ID = int(os.environ.get("BOT_ID", None))
     ARQ_API_URL = "https://thearq.tech"
-    ARQ_API_KEY = ARQ_API
+    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     SAINT = 1192108540
     
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
@@ -155,9 +155,7 @@ else:
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
-
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
-    
     MONGO_DB_URI = Config.MONGO_DB_URI
     ARQ_API = Config.ARQ_API_KEY
     ARQ_API_URL = Config.ARQ_API_URL
