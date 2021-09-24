@@ -78,6 +78,7 @@ PM_START_TEXT = """
 `I am powerful  group management bot.
 made specifically to manage your group , I specialize in managing Entertainment type groups.
 You can find my list of available commands with! Hit` *🔰Commands* or type /help 
+"""
 
 buttons = [
     [
@@ -114,7 +115,7 @@ buttons = [
 ]
 
 HELP_STRINGS = """
-`Hi.. I'm` [Aries ⚙️]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
+`Hi.. I'm` [Aries]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
 `Click on the buttons below to get documentation about specific modules..`"""
 
 ARIES_IMG = "https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg"
