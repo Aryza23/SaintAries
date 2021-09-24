@@ -1,15 +1,4 @@
-# Copyright (C) 2021 Red-Aura & TeamDaisyX & HamkerCat
-# This file is part of AsunaRobot (Telegram Bot)
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# AI Chat (C) 2020-2021 by @InukaAsith
 
 import emoji
 import re
@@ -52,7 +41,6 @@ async def fetch(url):
 
 aries_chats = []
 en_chats = []
-# AI Chat (C) 2020-2021 by @InukaAsith
 
 
 @aries.on_message(filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private)
@@ -173,7 +161,6 @@ async def hmm(client, message):
                 test = test.text
             except:
                 return
-        # test = emoji.demojize(test.strip())
 
         test = test.replace("aries", "Aco")
         test = test.replace("Aries", "Aco")
@@ -198,9 +185,7 @@ async def hmm(client, message):
             return
 
 
-@aries.on_message(
-    filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot
-)
+@aries.on_message(filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot)
 async def inuka(client, message):
     msg = message.text
     if msg.startswith("/") or msg.startswith("@"):
@@ -232,7 +217,6 @@ async def inuka(client, message):
         rm = re.sub(r"\[([^]]+)]\(\s*([^)]+)\s*\)", r"", msg)
     else:
         rm = msg
-        # print (rm)
     try:
         lan = translator.detect(rm)
         lan = lan.lang
@@ -246,9 +230,6 @@ async def inuka(client, message):
         except:
             return
 
-    # test = emoji.demojize(test.strip())
-
-    # Kang with the credits bitches @InukaASiTH
     test = test.replace("aries", "Aco")
     test = test.replace("Aries", "Aco")
 
@@ -307,7 +288,6 @@ async def inuka(client, message):
         rm = re.sub(r"\[([^]]+)]\(\s*([^)]+)\s*\)", r"", msg)
     else:
         rm = msg
-        # print (rm)
     try:
         lan = translator.detect(rm)
         lan = lan.lang
@@ -320,8 +300,6 @@ async def inuka(client, message):
             test = test.text
         except:
             return
-
-    # test = emoji.demojize(test.strip())
 
     test = test.replace("aries", "Aco")
     test = test.replace("Aries", "Aco")
@@ -344,17 +322,10 @@ async def inuka(client, message):
 
 
 __help__ = """
-<b> AI Chatbot </b>
 Aries AI 3.0 IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
 
  - /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
  - /chatbot EN : Enables English only chatbot
- 
- 
-<b> Chatbot </b>
- - /ask [question]: Ask question from Aries
- - /ask [reply to voice note]: Get voice reply
- 
 """
 
 __mod_name__ = "Chatbot"
