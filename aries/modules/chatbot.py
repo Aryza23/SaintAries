@@ -1,37 +1,36 @@
 # Copyright (C) 2021 Red-Aura & TeamDaisyX & HamkerCat
-
 # This file is part of AsunaRobot (Telegram Bot)
-
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import re
 
 import emoji
-
-url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 import re
-
 import aiohttp
-
-# from google_trans_new import google_translator
 from googletrans import Translator as google_translator
 from pyrogram import filters
-
+from Python_ARQ import ARQ
+from aiohttp import ClientSession
 from aries import BOT_ID, pbot as aries
 from aries.bot_plugins.chatbot import add_chat, get_session, remove_chat
 from aries.utils.pluginhelper import admins_only, edit_or_reply
 
+url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+
 translator = google_translator()
+
+ARQ_API_URL = "https://thearq.tech"
+ARQ_API_KEY = "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ"
+
+aiohttpsession = ClientSession()
+arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 
 
 async def lunaQuery(query: str, user_id: int):
@@ -62,26 +61,13 @@ aries_chats = []
 en_chats = []
 # AI Chat (C) 2020-2021 by @InukaAsith
 
-from Python_ARQ import ARQ
-from aiohttp import ClientSession
 
-ARQ_API_URL = "https://thearq.tech"
-ARQ_API_KEY = "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ"
-
-aiohttpsession = ClientSession()
-arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
-
-
-@aries.on_message(
-    filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private
-)
+@aries.on_message(filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private)
 @admins_only
 async def hmm(_, message):
     global aries_chats
     if len(message.command) != 2:
-        await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
-        )
+        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
         message.continue_propagation()
     status = message.text.split(None, 1)[1]
     chat_id = message.chat.id
@@ -91,9 +77,7 @@ async def hmm(_, message):
         if not lol:
             await lel.edit("Aries AI Already Activated In This Chat")
             return
-        await lel.edit(
-            f"Aries AI Successfully Added For Users In The Chat {message.chat.id}"
-        )
+        await lel.edit(f"Aries AI Successfully Added For Users In The Chat {message.chat.id}")
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
@@ -101,9 +85,7 @@ async def hmm(_, message):
         if not Escobar:
             await lel.edit("Aries AI Was Not Activated In This Chat")
             return
-        await lel.edit(
-            f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}"
-        )
+        await lel.edit(f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}")
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
@@ -113,9 +95,7 @@ async def hmm(_, message):
         await message.reply_text("AI Chat Is Already Disabled.")
         message.continue_propagation()
     else:
-        await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
-        )
+        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
 
 
 @aries.on_message(
