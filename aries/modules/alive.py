@@ -22,7 +22,8 @@ async def awake(event):
 
 @register(pattern=("/repo|/REPO"))
 async def repo(event):
-  await tbot.send_message(event.chat, "REPO OF ARIES OFFICIAL", buttons=[[Button.url("⚜️REPO⚜️", "https://www.sukatoro.com/")]])
+  REPOS ""REPO OF ARIES OFFICIAL"
+  await tbot.send_file(event.chat, PHOTO, caption=REPOS, buttons=[[Button.url("⚜️REPO⚜️", "https://www.sukatoro.com/")]])
 
 
 __help__ = """
