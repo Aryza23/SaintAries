@@ -1,5 +1,5 @@
-from telethon import events, Button, custom
 import re, os
+from telethon import events, Button, custom
 from aries import IDZ, telethn as tbot
 from aries.events import register
 
@@ -20,9 +20,9 @@ async def awake(event):
   await tbot.send_file(event.chat_id, PHOTO, caption=ARIES,  buttons=BUTTON)
 
 
-@register(pattern=("/repo|/REPO"))
+@register(pattern=("/repo|/REPO|/Repo"))
 async def repo(event):
-  REPOS ""REPO OF ARIES OFFICIAL"
+  REPOS = "REPO OF ARIES OFFICIAL"
   await tbot.send_file(event.chat, PHOTO, caption=REPOS, buttons=[[Button.url("⚜️REPO⚜️", "https://www.sukatoro.com/")]])
 
 
