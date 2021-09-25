@@ -3,7 +3,7 @@ import re, os
 from aries import IDZ, telethn as tbot
 from aries.events import register
 
-PHOTO = "https://telegra.ph/file/2b1756a57e11004461751.jpg"
+PHOTO = "https://telegra.ph/file/b4704fdf82e7a46cc5b51.jpg"
 
 
 @register(pattern=("/alive|/ALIVE"))
