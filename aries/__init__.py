@@ -6,7 +6,6 @@ import asyncio
 import time
 import spamwatch
 import telegram.ext as tg
-
 from aiohttp import ClientSession
 from Python_ARQ import ARQ
 from telethon import TelegramClient
@@ -86,7 +85,7 @@ if ENV:
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
-    VIRUS_API_KEY = os.environ.get("VIRUS_API_KEY", None)
+    STRING_SESSION = os.environ.get("STRING_SESSION", None)
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
@@ -99,9 +98,7 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    STRING_SESSION = os.environ.get("STRING_SESSION", None)
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY", None)
-    AI_API_KEY = os.environ.get("AI_API_KEY", None)
     BOT_ID = int(os.environ.get("BOT_ID", None))
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
@@ -179,7 +176,6 @@ else:
     SPAMWATCH_API = Config.SPAMWATCH_API
     INFOPIC = Config.INFOPIC
     LASTFM_API_KEY = Config.LASTFM_API_KEY
-    AI_API_KEY = Config.AI_API_KEY
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
     
