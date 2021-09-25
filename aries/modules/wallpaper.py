@@ -22,9 +22,9 @@ async def _(event):
                 r2 = await conv.get_response()
                 await ubot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                return await event.reply("`Emrorr lol`")
+                return await feri.edit("`Emrorr lol`")
             if r1.text.startswith("No"):
-                return await event.reply(f"`Cannot find the image you are looking for`")
+                return await feri.edit(f"`Cannot find the image`")
             img = await ubot.download_media(r1)
             img2 = await ubot.download_media(r2)
             await feri.edit("`Sending Image....`")
@@ -47,4 +47,4 @@ async def _(event):
         await event.delete()
         os.system("rm *.png *.jpg")
     except TimeoutError:
-        return await event.reply("`Cannot find the image you are looking for`")
+        return await feri.edit("`Cannot find the image`")
