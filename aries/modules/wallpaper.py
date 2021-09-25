@@ -1,59 +1,50 @@
-from random import randint
+# Copyright 2021 ©
+# Modul Create by https://t.me/xflicks | Github = https://github.com/FeriEXP
+# Yang remove cacat
 
-import requests as r
-from aries import SUPPORT_CHAT, WALL_API, dispatcher
-from aries.modules.disable import DisableAbleCommandHandler
-from telegram import Update
-from telegram.ext import CallbackContext, run_async
-
-# Wallpapers module by @TheRealPhoenix using wall.alphacoders.com
-
-
-@run_async
-def wall(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    msg = update.effective_message
-    args = context.args
-    msg_id = update.effective_message.message_id
-    bot = context.bot
-    query = " ".join(args)
-    if not query:
-        msg.reply_text("Please enter a query!")
-        return
-    else:
-        caption = query
-        term = query.replace(" ", "%20")
-        json_rep = r.get(
-            f"https://wall.alphacoders.com/api2.0/get.php?auth={WALL_API}&method=search&term={term}",
-        ).json()
-        if not json_rep.get("success"):
-            msg.reply_text(f"An error occurred! Report this @{SUPPORT_CHAT}")
-        else:
-            wallpapers = json_rep.get("wallpapers")
-            if not wallpapers:
-                msg.reply_text("No results found! Refine your search.")
-                return
-            else:
-                index = randint(0, len(wallpapers) - 1)  # Choose random index
-                wallpaper = wallpapers[index]
-                wallpaper = wallpaper.get("url_image")
-                wallpaper = wallpaper.replace("\\", "")
-                bot.send_photo(
-                    chat_id,
-                    photo=wallpaper,
-                    caption="Preview",
-                    reply_to_message_id=msg_id,
-                    timeout=60,
-                )
-                bot.send_document(
-                    chat_id,
-                    document=wallpaper,
-                    filename="wallpaper",
-                    caption=caption,
-                    reply_to_message_id=msg_id,
-                    timeout=60,
-                )
+import os
+from asyncio.exceptions import TimeoutError
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from aries.events import register
+from aries.utils.telethonubot import ubot
+from aries import telethn as tbot
 
 
-WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall)
-dispatcher.add_handler(WALLPAPER_HANDLER)
+@register(pattern="^/wall ?(.*)")
+async def _(event):
+    try:
+        query = event.pattern_match.group(1)
+        feri = await event.reply("`Searching for Images What you're looking for.....`")
+        async with ubot.conversation("@AnosVoldigoadbot") as conv:
+            try:
+                query1 = await conv.send_message(f"/wall {query}")
+                r1 = await conv.get_response()
+                r2 = await conv.get_response()
+                await ubot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                return await event.reply("`Emrorr lol`")
+            if r1.text.startswith("No"):
+                return await event.reply(f"`Cannot find the image you are looking for`")
+            img = await ubot.download_media(r1)
+            img2 = await ubot.download_media(r2)
+            await feri.edit("`Sending Image....`")
+            p = await tbot.send_file(
+                event.chat_id,
+                img,
+                force_document=False,
+                reply_to=event.reply_to_msg_id,
+            )
+            await tbot.send_file(
+                event.chat_id,
+                img2,
+                force_document=True,
+                reply_to=p,
+            )
+            await feri.delete()
+            await ubot.delete_messages(
+                conv.chat_id, [r1.id, r2.id, query1.id]
+            )
+        await event.delete()
+        os.system("rm *.png *.jpg")
+    except TimeoutError:
+        return await event.reply("`Cannot find the image you are looking for`")
