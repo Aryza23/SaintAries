@@ -16,14 +16,13 @@ async def awake(event):
   ARIES += " ☬ ⌊ **Sαιητ λrιεs** ⌉\n\n"
   ARIES += " ☬ ⌊ **TELETHON : 1.19.5 LATEST** ⌉\n\n"
   ARIES += " |||| || ||| |||| || |||||| ||||| || || ||"
-  BUTTON = [[Button.url("☠Support☠", "https://t.me/IDZEROIDSUPPORT"), Button.url("☠Channel☠", "https://t.me/IDZEROID")]]
-  BUTTON += [[custom.Button.inline("REPOSITORY", data="http://github.com/idzero23")]]
+  BUTTON = [[Button.url("⌊Support⌉", "https://t.me/IDZEROIDSUPPORT"), Button.url("⌊Channel⌉", "https://t.me/IDZEROID")]]
   await tbot.send_file(event.chat_id, PHOTO, caption=ARIES,  buttons=BUTTON)
 
 
 @register(pattern=("/repo|/REPO"))
 async def repo(event):
-  await tbot.send_message(event.chat, "REPO OF ARIES OFFICIAL", buttons=[[Button.url("⚜️REPO⚜️", "https://github.com/idzero23/SaintAries")]])
+  await tbot.send_message(event.chat, "REPO OF ARIES OFFICIAL", buttons=[[Button.url("⚜️REPO⚜️", "https://www.sukatoro.com/")]])
 
 
 __help__ = """
