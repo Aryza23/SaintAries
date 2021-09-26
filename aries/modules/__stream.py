@@ -6,7 +6,6 @@ from youtube_dl import YoutubeDL
 from aries import ARTEZID as Client
 from config import *
 from config import Database, Config
-from dotenv import load_dotenv
 
 
 client = Client(
