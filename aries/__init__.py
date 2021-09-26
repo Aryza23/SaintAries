@@ -102,9 +102,7 @@ if ENV:
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     SAINT = "1192108540"
-    CHAT_ID = int(os.environ.get("CHAT_ID", "0"))
-    SESSION_STREAM = os.environ.get("SESSION_STRING", "")
-
+    
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
@@ -180,8 +178,6 @@ else:
     INFOPIC = Config.INFOPIC
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
-    LOG_ID = Config.LOG_ID
-    SESSION_STREAM = Config.SESSION_STREAM
     
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
