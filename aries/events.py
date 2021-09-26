@@ -67,9 +67,6 @@ def callbackquery(**args):
 
     return decorator
 
-            args["pattern"] = args["pattern"].replace("^.", unsafe_pattern, 1)
-
-
 
 from pymongo import MongoClient
 from aries import MONGO_DB_URI
