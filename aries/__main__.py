@@ -77,23 +77,23 @@ PM_START_TEXT = """
 `Hello` There [👋](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg) `My name is` *Aries*
 `I am powerful  group management bot.
 made specifically to manage your group , I specialize in managing Entertainment type groups.
-You can find my list of available commands with! Hit` *🔰Commands* or type /help 
+You can find my list of available commands with! Hit` *Commands* or type /help 
 """
 
 buttons = [
     [
         InlineKeyboardButton(
-            text="⚡️ ADD ME TO YOUR GROUP ⚡️", url="t.me/IDZEROID_BOT?startgroup=true"
+            text="☬ SUMMON ME ☬", url="t.me/IDZEROID_BOT?startgroup=true"
         ),
     ],
     [
-        InlineKeyboardButton(text="ABOUT", callback_data="aries_"),
-        InlineKeyboardButton(text="COMMANDS", callback_data="help_back"),
+        InlineKeyboardButton(text="⌊ about ⌉", callback_data="aries_"),
+        InlineKeyboardButton(text="⌊ commands ⌉", callback_data="help_back"),
     ],    
     [
-        InlineKeyboardButton(text="CHANNEL", url="https://t.me/idzeroid"),
+        InlineKeyboardButton(text="⌊ channel ⌉", url="https://t.me/idzeroid"),
         InlineKeyboardButton(
-            text="SUPPORT", url="https://telegram.dog/idzeroidsupport"
+            text="⌊ support ⌉", url="https://telegram.dog/idzeroidsupport"
         ),
     ],
 ]
