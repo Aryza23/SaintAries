@@ -60,3 +60,44 @@ def callbackquery(**args):
         return func
 
     return decorator
+
+            args["pattern"] = args["pattern"].replace("^.", unsafe_pattern, 1)
+
+
+def load_module(shortname):
+    if shortname.startswith("__"):
+        pass
+    elif shortname.endswith("_"):
+        import importlib
+        import aries.events
+
+        path = Path(f"aries/modules/{shortname}.py")
+        name = "aries.modules.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        print("Successfully imported " + shortname)
+    else:
+        import importlib
+        import aries.events
+
+        path = Path(f"aries/modules/{shortname}.py")
+        name = "aries.modules.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        mod.register = register
+        mod.aries = aries
+        mod.tbot = telethn
+        mod.logger = logging.getLogger(shortname)
+        spec.loader.exec_module(mod)
+        sys.modules["aries.modules." + shortname] = mod
+        print("Successfully imported " + shortname)
+
+
+path = "aries/modules/*.py"
+files = glob.glob(path)
+for name in files:
+    with open(name) as f:
+        path1 = Path(f.name)
+        shortname = path1.stem
+        load_module(shortname.replace(".py", ""))
