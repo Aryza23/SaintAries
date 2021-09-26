@@ -7,7 +7,7 @@ from config import *
 from config import Database, Config
 
 
-client = ARTEZID(
+client = artezid(
     Config.SESSION_STREAM,
     Config.API_ID,
     Config.API_HASH,
