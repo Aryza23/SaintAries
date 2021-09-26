@@ -103,6 +103,4 @@ async def start_stream(_, m, group_call):
         return
 
 
-client.start()
-idle()
-client.stop()
+__mod_name__ = "stream"
