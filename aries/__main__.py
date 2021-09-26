@@ -21,6 +21,7 @@ from aries import (
     telethn,
     pbot,
     updater,
+    artezid,
 )
 
 # needed to dynamically load modules
