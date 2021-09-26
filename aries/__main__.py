@@ -3,6 +3,7 @@ import time
 import re
 from sys import argv
 from typing import Optional
+from aries.modules.stream import artezid
 
 from aries import (
     ALLOW_EXCL,
@@ -21,7 +22,6 @@ from aries import (
     telethn,
     pbot,
     updater,
-    artezid,
 )
 
 # needed to dynamically load modules
