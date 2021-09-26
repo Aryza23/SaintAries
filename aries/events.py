@@ -68,13 +68,6 @@ def callbackquery(**args):
     return decorator
 
 
-from pymongo import MongoClient
-from aries import MONGO_DB_URI
-
-
-client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
-db = client["aries"]
 
 
 def aries(**args):
