@@ -9,7 +9,7 @@ from config import Database, Config
 
 
 
-artezid = Client(
+client = Client(
     Config.SESSION_STREAM,
     Config.API_ID,
     Config.API_HASH,
