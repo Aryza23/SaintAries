@@ -3,7 +3,7 @@
 
 import asyncio
 from telethon.tl.types import ChannelParticipantsAdmins
-from aries import tbot as bot
+from aries import telethn as bot
 import telethon
 from telethon import events
 
