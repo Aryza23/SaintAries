@@ -210,7 +210,6 @@ telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
-artezid = ARTEZID(API_ID, API_HASH, LOG_ID, SESSION_STREAM)
 print("[INFO]: INITIALIZING SUCCESS")
 
 pbot = Client(
