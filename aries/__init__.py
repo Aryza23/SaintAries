@@ -102,7 +102,9 @@ if ENV:
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     SAINT = "1192108540"
-    
+    CHAT_ID = int(os.environ.get("CHAT_ID", "0"))
+    SESSION_STREAM = os.environ.get("SESSION_STRING", "")
+
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
@@ -143,6 +145,21 @@ else:
         TIGERS = {int(x) for x in Config.TIGERS or []}
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class Config:
+    API_ID = int(os.environ.get("API_ID", "0"))
+    API_HASH = os.environ.get("API_HASH", "")
+    CHAT_ID = int(os.environ.get("CHAT_ID", "0"))
+    SESSION_STREAM = os.environ.get("SESSION_STREAM", "")
+
+class Database:
+    VIDEO_CALL = {}
+    RADIO_CALL = {}
+    FFMPEG_PROCESSES = {}
 
     EVENT_LOGS = Config.EVENT_LOGS
     WEBHOOK = Config.WEBHOOK
@@ -204,6 +221,7 @@ telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+artezid = ARTEZID(API_ID, API_HASH, CHAT_ID, SEASSION_STREAM)
 print("[INFO]: INITIALIZING SUCCESS")
 
 pbot = Client(
