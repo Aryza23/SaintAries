@@ -10,8 +10,6 @@ SQLAlchemy==1.3.20
 youtube_dl
 python-dotenv
 pytgcalls
-git+https://github.com/pytgcalls/pytgcalls -U
-git+https://github.com/pyrogram/pyrogram@master
 psycopg2-binary
 feedparser
 faker
