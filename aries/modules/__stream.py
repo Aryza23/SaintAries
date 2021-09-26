@@ -3,12 +3,11 @@ from aries import Config
 from pyrogram import Client, idle, filters
 from pytgcalls import GroupCallFactory
 from youtube_dl import YoutubeDL
-from aries import ARTEZID as Client
 from config import *
 from config import Database, Config
 
 
-client = Client(
+client = ARTEZID(
     Config.SESSION_STREAM,
     Config.API_ID,
     Config.API_HASH,
