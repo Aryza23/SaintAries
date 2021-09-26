@@ -37,7 +37,7 @@ async def Prof(event):
         await event.reply("No File Found!")
 
 
-from SuzieRoBot.events import load_module
+from aries.events import load_module
 import asyncio
 import os
 from datetime import datetime
@@ -56,7 +56,7 @@ async def install(event):
             downloaded_file_name = (
                 await event.client.download_media(  # pylint:disable=E0602
                     await event.get_reply_message(),
-                    "SuzieRoBot/modules/",  # pylint:disable=E0602
+                    "aries/modules/",  # pylint:disable=E0602
                 )
             )
             if "(" not in downloaded_file_name:
