@@ -3,7 +3,7 @@ import time
 import re
 from sys import argv
 from typing import Optional
-from aries.modules.stream import client as artezid
+from aries.modules.stream import Client as artezid
 
 from aries import (
     ALLOW_EXCL,
