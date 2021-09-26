@@ -3,7 +3,6 @@ import time
 import re
 from sys import argv
 from typing import Optional
-from aries.modules.stream import start
 
 from aries import (
     ALLOW_EXCL,
