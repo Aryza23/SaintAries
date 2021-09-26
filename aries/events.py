@@ -1,7 +1,13 @@
+import inspect
+import glob
+import logging
+import sys
+import re
 from telethon import events
 from aries import telethn
 from telethon import TelegramClient, sync
 from telethon import *
+from pathlib import Path
 
 def register(**args):
     """ Registers a new message. """
