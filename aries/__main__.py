@@ -83,33 +83,17 @@ You can find my list of available commands with! Hit` *🔰Commands* or type /he
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕️ ADD ME TO YOUR GROUP ➕️", url="t.me/IDZEROID_BOT?startgroup=true"
+            text="⚡️ ADD ME TO YOUR GROUP ⚡️", url="t.me/IDZEROID_BOT?startgroup=true"
         ),
     ],
     [
-        InlineKeyboardButton(text="❗ ABOUT", callback_data="aries_"),
-        InlineKeyboardButton(text="🔰 COMMANDS", callback_data="help_back"),
-    ],
+        InlineKeyboardButton(text="ABOUT", callback_data="aries_"),
+        InlineKeyboardButton(text="COMMANDS", callback_data="help_back"),
+    ],    
     [
+        InlineKeyboardButton(text="CHANNEL", url="https://t.me/idzeroid"),
         InlineKeyboardButton(
-            text="🤴 OWNER", url="https://telegram.dog/IdzXartez"
-        ),
-    ],
-    [
-        InlineKeyboardButton(
-            text="📺 Movie Channel",
-            url="https://telegram.dog/artezid",
-        ),
-    ],
-    [
-        InlineKeyboardButton(text="⚡️CHANNEL", url="https://t.me/idzeroid"),
-        InlineKeyboardButton(
-            text="👥 SUPPORT", url="https://telegram.dog/idzeroidsupport"
-        ),
-    ],
-    [
-        InlineKeyboardButton(
-            text="💾 Source Code", url="https://github.com/idzero23"
+            text="SUPPORT", url="https://telegram.dog/idzeroidsupport"
         ),
     ],
 ]
@@ -369,12 +353,12 @@ def aries_about_callback(update, context):
     if query.data == "aries_":
         query.message.edit_text(
             text=""" ❗ I'm *Aries*, a powerful group management bot built to help you manage your group easily.
-                 \n❍ I can restrict users.
-                 \n❍ I can greet users with customizable welcome messages and even set a group's rules.
-                 \n❍ I have an advanced anti-flood system.
-                 \n❍ I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
-                 \n❍ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
-                 \n❍ I check for admins' permissions before executing any command and more stuffs
+                 \n⚡️》 I can restrict users.
+                 \n⚡️》 I can greet users with customizable welcome messages and even set a group's rules.
+                 \n⚡️》 I have an advanced anti-flood system.
+                 \n⚡️》 I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
+                 \n⚡️》 I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
+                 \n⚡️》 I check for admins' permissions before executing any command and more stuffs
                  \n\nIf you have any question about *Aries*, let us know at @IdzeroidSupport.""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
@@ -687,7 +671,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}",
-                "[ ⌊Sαιητ λrιεs Oηlιηε Πσω....⌉ ](https://telegra.ph/file/3cb58ce655ab2dc1d2eb4.jpg)",
+                "⚡️",
                 parse_mode=ParseMode.MARKDOWN,
             )
         except Unauthorized:
