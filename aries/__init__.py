@@ -193,6 +193,8 @@ class Database:
     INFOPIC = Config.INFOPIC
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
+    CHAT_ID = Config.CHAT_ID
+    SESSION_STREAM = Config.SESSION_STREAM
     
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
@@ -221,7 +223,7 @@ telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
-artezid = ARTEZID(API_ID, API_HASH, CHAT_ID, SEASSION_STREAM)
+artezid = ARTEZID(API_ID, API_HASH, CHAT_ID, SESSION_STREAM)
 print("[INFO]: INITIALIZING SUCCESS")
 
 pbot = Client(
