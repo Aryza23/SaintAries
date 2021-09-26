@@ -52,8 +52,7 @@ Pyrogram
 humanize
 PyDictionary
 youtube-dl
-youtube_search_python
-youtube_search
+youtube_search_python==1.4.6
 lyrics_extractor
 asyncio
 cloudscraper
@@ -79,10 +78,10 @@ envparse
 better_profanity
 textblob 
 nudepy
-nekos.py
 motor
 gpytranslate
 fontTools
 opencv-python-headless
 odmantic
 nekos.py
+
