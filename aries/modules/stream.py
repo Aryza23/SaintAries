@@ -1,5 +1,5 @@
 import re
-from aries import Config
+from config import Config
 from pyrogram import Client, idle, filters
 from pytgcalls import GroupCallFactory
 from youtube_dl import YoutubeDL
