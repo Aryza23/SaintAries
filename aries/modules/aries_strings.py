@@ -8,6 +8,20 @@ ARIES_IMG = (
       "http://i.imgur.com/HVFGQ.png",
       "http://i.imgur.com/UKabK.png",
       "http://i.imgur.com/PZpMg.png",
-      "http://i.imgur.com/DezCY.png"
-            
+      "http://i.imgur.com/DezCY.png",
+      "https://i.imgur.com/FBWTT3E.jpg",
+      "https://i.imgur.com/J54iXeD.jpg",
+      "https://i.imgur.com/a1MRnGy.jpg",
+      "https://i.imgur.com/Am0L1Uv.jpg",
+      "https://i.imgur.com/lLOU3j9.jpg",
+      "https://i.imgur.com/lbqkv4L.jpg",
+      "https://i.imgur.com/xdB43kG.jpg",
+      "https://i.imgur.com/zA1Deez.jpg",
+      "https://i.imgur.com/Ficp1Al.jpg",
+      "https://i.imgur.com/IPdQLWy.jpg",
+      "https://i.imgur.com/3UUPYm2.jpg",
+      "https://i.imgur.com/gwUY0XN.jpg",
+      "https://i.imgur.com/BQTTC0H.jpg",
+      "https://i.imgur.com/V8GgzzW.jpg"
+     
       ) 
