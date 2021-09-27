@@ -43,30 +43,5 @@ async def kukiai(client: Client, message: Message):
   await message.reply_text(idz)
 
 
-messageprivate = '''
-Hi, I'm Kuki Chat Bot 
-'''
-
-messagegroup = '''
-⚡️
-'''
-
-
-
-
-
-@kuki.on_message(filters.command("start"))
-async def start(_, message):
-    self = await kuki.get_me()
-    busername = self.username
-    if message.chat.type != "private":
-        await message.reply_text(messagegroup)
-        return
-    else:
-        buttons = [[InlineKeyboardButton("Github", url="https://github.com/idzero23/ArtezidAI"),
-                    ]]
-        await message.reply_text(messageprivate, reply_markup=InlineKeyboardMarkup(buttons))
-
-
 
 __mod_name__ = "PUKI"
