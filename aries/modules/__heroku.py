@@ -164,7 +164,7 @@ async def dyno_usage(dyno):
     )
 
 
-@register(pattern="^/logs$")
+@register(pattern="^/log$")
 async def _(dyno):
     if dyno.fwd_from:
         return
@@ -187,7 +187,7 @@ async def _(dyno):
         dyno.chat_id,
         "logs.txt",
         reply_to=dyno.id,
-        caption="yone Bot Logz.",
+        caption="Aries Heroku Log.",
     )
 
     await asyncio.sleep(5)
