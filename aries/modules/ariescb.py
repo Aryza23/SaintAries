@@ -30,7 +30,8 @@ kuki = Client(
     & ~filters.edited,
     group=2,
 )
-async def kukiai(client: Client, message: Message):
+@run_async 
+def kukiai(client: Client, message: Message):
   msg = message.text
   chat_id = message.chat.id
 
