@@ -15,8 +15,8 @@ from aries.modules.helper_funcs.extraction import extract_user
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
     name = message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
-    reply_photo = message.reply_to_message.reply_photo if message.reply_to_message else message.reply_photo
-    reply_photo(
+    reply_media = message.reply_to_message.reply_media if message.reply_to_message else message.reply_media
+    reply_media(
         random.choice(aries_strings.ARIES_IMG))
 
 __help__ = """
