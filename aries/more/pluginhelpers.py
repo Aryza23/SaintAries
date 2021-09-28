@@ -10,7 +10,7 @@ import aiohttp
 from PIL import Image
 from pyrogram import Client
 from pyrogram.errors import FloodWait, MessageNotModified
-from aries.types import Chat, Message, User
+from pyrogram.types import Chat, Message, User
 from aries import OWNER_ID, GBAN_LOGS
 from aries.pyrogramee.pyrogram import pbot
 
