@@ -73,4 +73,4 @@ async def start(_, message):
 
 
 
-kuki.run()
+__mod_name__ = "AriesAce"
