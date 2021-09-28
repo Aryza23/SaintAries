@@ -9,6 +9,7 @@ import requests
 import os
 import re
 from aries import pbot as kuki
+from telegram.ext import run_async
 
 API_ID = os.environ.get("API_ID", None) 
 API_HASH = os.environ.get("API_HASH", None) 
