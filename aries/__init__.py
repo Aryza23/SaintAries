@@ -78,6 +78,7 @@ if ENV:
     DB_URI = os.environ.get("DATABASE_URL")
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     IDZ = os.environ.get("IDZ", "IdzXartez")
+    BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
     ARQ_API = os.environ.get("ARQ_API", None)
     DONATION_LINK = os.environ.get("DONATION_LINK")
     LOAD = os.environ.get("LOAD", "").split()
@@ -162,6 +163,7 @@ else:
     TEMP_DOWNLOAD_DIRECTORY = Config.TEMP_DOWNLOAD_DIRECTORY
     OPENWEATHERMAP_ID = Config.OPENWEATHERMAP_ID
     NO_LOAD = Config.NO_LOAD
+    BOT_USERNAME = Config.BOT_USERNAME
     HEROKU_API_KEY = Config.HEROKU_API_KEY
     HEROKU_APP_NAME = Config.HEROKU_APP_NAME
     DEL_CMDS = Config.DEL_CMDS
