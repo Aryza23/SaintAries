@@ -1,5 +1,7 @@
-
 # Copyright (C) 2021 MoeZilla
+
+# This file is part of Ie (Telegram Bot)
+
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -74,7 +76,7 @@ def rem_chat(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "aries":
+    if message.text.lower() == "Aries":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -83,7 +85,7 @@ def kuki_message(context: CallbackContext, message):
         return False
         
 
-def chatbot(update: Update, context: CallbackContext):
+def aichat(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -95,8 +97,8 @@ def chatbot(update: Update, context: CallbackContext):
         if not kuki_message(context, message):
             return
         Message = message.text
-        bot.send_chat_action(chat_id, action="playing")
-        kukiurl = requests.get('https://www.kuki-api.tk/api/botname/owner/message='+Message)
+        bot.send_chat_action(chat_id, action="typing")
+        kukiurl = requests.get('https://kuki-api.tk/api/Raiden/moezilla/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
@@ -108,9 +110,11 @@ def list_all_chats(update: Update, context: CallbackContext):
     for chat in chats:
         try:
             x = context.bot.get_chat(int(*chat))
-            name = x.title or x.first_name
+            name = x.title if x.title else x.first_name
             text += f"• <code>{name}</code>\n"
-        except (BadRequest, Unauthorized):
+        except BadRequest:
+            sql.rem_kuki(*chat)
+        except Unauthorized:
             sql.rem_kuki(*chat)
         except RetryAfter as e:
             sleep(e.retry_after)
@@ -121,37 +125,39 @@ __help__ = """
 
 """
 
-__mod_name__ = "AiChat"
+__mod_name__ = "Ai Chat"
 
 
 __help__ = """
-Chatbot utilizes the Kuki API and allows aries to talk and provides a more interactive group chat experience.
+Chatbot utilizes the Kuki and allows aries to talk and provides a more interactive group chat experience.
 
 *Commands:* 
 *Admins only:*
-   ☆ `addchat`*:* On Chatbot mode in the chat.
-   ☆ `rmchat`*:* Off Chatbot mode in the chat.
+   ➢ `addchat`*:* Enables Chatbot mode in the chat.
+   ➢ `rmchat`*:* Disables Chatbot mode in the chat.
    
+Reports bugs at Kuki-api.tk
+*Powered by ItelAi* (https://github/itelai) from @KukiUpdates
 """
 
-__mod_name__ = "AiChat"
+__mod_name__ = "Ai Chat"
 
-ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat, run_async=True)
-REMOVE_CHAT_HANDLER = CommandHandler("rmchat", rem_chat, run_async=True)
-CHATBOT_HANDLER = MessageHandler(
+ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat)
+REMOVE_CHAT_HANDLER = CommandHandler("rmchat", rem_chat)
+AICHAT_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), chatbot, run_async=True)
+                    & ~Filters.regex(r"^\/")), aichat)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
-    "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
+    "allchats", list_all_chats, filters=CustomFilters.dev_filter)
 
 dispatcher.add_handler(ADD_CHAT_HANDLER)
 dispatcher.add_handler(REMOVE_CHAT_HANDLER)
 dispatcher.add_handler(LIST_ALL_CHATS_HANDLER)
-dispatcher.add_handler(CHATBOT_HANDLER)
+dispatcher.add_handler(AICHAT_HANDLER)
 
 __handlers__ = [
     ADD_CHAT_HANDLER,
     REMOVE_CHAT_HANDLER,
     LIST_ALL_CHATS_HANDLER,
-    CHATBOT_HANDLER,
+    AICHAT_HANDLER,
 ]
