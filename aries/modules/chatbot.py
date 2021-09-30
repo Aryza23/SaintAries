@@ -10,7 +10,7 @@ from aries import BOT_ID, pbot as aries, arq
 from aries.bot_plugins.chatbot import add_chat, get_session, remove_chat
 from aries.utils.pluginhelper import admins_only, edit_or_reply
 
-url = "http://kuki-api.tk/api/chatbot?message=hi&aries=kuki&idzxartez=moezilla&gender=female&userid=2&language=auto"
+url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
 translator = google_translator()
 
