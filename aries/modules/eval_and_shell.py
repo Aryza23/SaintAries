@@ -1,11 +1,9 @@
 import io
+import subprocess
 import os
-
-# Common imports for eval
 import textwrap
 import traceback
 from contextlib import redirect_stdout
-
 from aries import LOGGER, dispatcher
 from aries.modules.helper_funcs.chat_status import dev_plus
 from telegram import ParseMode, Update
@@ -125,12 +123,51 @@ def clear(update: Update, context: CallbackContext):
     send("Cleared locals.", bot, update)
 
 
+@dev_plus
+@run_async
+def shell(update: Update, context: CallbackContext):
+    message = update.effective_message
+    cmd = message.text.split(" ", 1)
+    if len(cmd) == 1:
+        message.reply_text("No command to execute was given.")
+        return
+    cmd = cmd[1]
+    process = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,
+    )
+    stdout, stderr = process.communicate()
+    reply = ""
+    stderr = stderr.decode()
+    stdout = stdout.decode()
+    if stdout:
+        reply += f"*Stdout*\n`{stdout}`\n"
+        LOGGER.info(f"Shell - {cmd} - {stdout}")
+    if stderr:
+        reply += f"*Stderr*\n`{stderr}`\n"
+        LOGGER.error(f"Shell - {cmd} - {stderr}")
+    if len(reply) > 3000:
+        with open("shell_output.txt", "w") as file:
+            file.write(reply)
+        with open("shell_output.txt", "rb") as doc:
+            context.bot.send_document(
+                document=doc,
+                filename=doc.name,
+                reply_to_message_id=message.message_id,
+                chat_id=message.chat_id,
+            )
+    else:
+        message.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
+
+
 EVAL_HANDLER = CommandHandler(("e", "ev", "eva", "eval"), evaluate)
 EXEC_HANDLER = CommandHandler(("x", "ex", "exe", "exec", "py"), execute)
 CLEAR_HANDLER = CommandHandler("clearlocals", clear)
+SHELL_HANDLER = CommandHandler(["sh"], shell)
 
 dispatcher.add_handler(EVAL_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(CLEAR_HANDLER)
+dispatcher.add_handler(SHELL_HANDLER)
 
-__mod_name__ = "Eval Module"
+__command_list__ = ["sh"]
+__handlers__ = [SHELL_HANDLER]
