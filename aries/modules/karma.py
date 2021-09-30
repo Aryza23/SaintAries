@@ -1,16 +1,15 @@
-from aries import pbot as app
-from aries.utils.errors import capture_err
-from aries.utils.dbfunc import (update_karma, get_karma, get_karmas,
+from aries import pbot
+from aries.utlis.dbfunctions import (update_karma, get_karma, get_karmas,
                                    int_to_alpha, alpha_to_int)
-from aries.utils.filter_groups import karma_positive_group, karma_negative_group
+from aries.utlis.filter_groups import karma_positive_group, karma_negative_group
 from pyrogram import filters
 
 
-regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|good|👍)$"
+regex_upvote = r"^((?i)\+|\+\+|\+1|thank you|thanks|👍)$"
 regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 
 
-@app.on_message(
+@pbot.on_message(
     filters.text
     & filters.group
     & filters.incoming
@@ -21,7 +20,7 @@ regex_downvote = r"^(\-|\-\-|\-1|👎)$"
     & ~filters.edited,
     group=karma_positive_group
 )
-@capture_err
+
 async def upvote(_, message):
     if message.reply_to_message.from_user.id == message.from_user.id:
         return
@@ -43,7 +42,7 @@ async def upvote(_, message):
     )
 
 
-@app.on_message(
+@pbot.on_message(
     filters.text
     & filters.group
     & filters.incoming
@@ -54,7 +53,7 @@ async def upvote(_, message):
     & ~filters.edited,
     group=karma_negative_group
 )
-@capture_err
+
 async def downvote(_, message):
     if message.reply_to_message.from_user.id == message.from_user.id:
         return
@@ -76,8 +75,8 @@ async def downvote(_, message):
     )
 
 
-@app.on_message(filters.command("karma") & filters.group)
-@capture_err
+@pbot.on_message(filters.command("karma") & filters.group)
+
 async def karma(_, message):
     chat_id = message.chat.id
 
@@ -96,7 +95,7 @@ async def karma(_, message):
             if limit > 9:
                 break
             try:
-                user_name = (await app.get_users(int(user_idd))).username
+                user_name = (await pgram.get_users(int(user_idd))).username
             except Exception:
                 continue
             msg += f"{user_name} : `{karma_count}`\n"
@@ -111,3 +110,10 @@ async def karma(_, message):
         else:
             karma = 0
             await message.reply_text(f'**Total Points**: __{karma}__')
+
+
+__mod_name__ = "Karma"
+__help__ = """*Upvote* - Use upvote keywords like "+", "+1", "thanks", etc. to upvote a message.
+*Downvote* - Use downvote keywords like "-", "-1", etc. to downvote a message.
+Reply to a message with `/karma` to check a user's reputation.
+Send `/karma` without replying to any message to check reputation list of top 10 users."""
