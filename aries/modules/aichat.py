@@ -98,7 +98,7 @@ def aichat(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://kuki-api.tk/api/Raiden/moezilla/message='+Message)
+        kukiurl = requests.get('http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message='+message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
