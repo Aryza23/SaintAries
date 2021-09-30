@@ -43,11 +43,11 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
                 EqInlineKeyboardButton(
                     x.__mod_name__,
                     callback_data="{}_module({})".format(
-                        prefix, x.__mod_name__.lower(),
+                        prefix, x.__mod_name__.lower()
                     ),
                 )
                 for x in module_dict.values()
-            ],
+            ]
         )
     else:
         modules = sorted(
@@ -55,11 +55,11 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
                 EqInlineKeyboardButton(
                     x.__mod_name__,
                     callback_data="{}_module({},{})".format(
-                        prefix, chat, x.__mod_name__.lower(),
+                        prefix, chat, x.__mod_name__.lower()
                     ),
                 )
                 for x in module_dict.values()
-            ],
+            ]
         )
 
     pairs = [modules[i * 3 : (i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)]
@@ -68,11 +68,17 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
     calc = len(modules) - round(round_num)
     if calc in [1, 2]:
         pairs.append((modules[-1],))
+    elif calc == 2:
+        pairs.append((modules[-1],))
+
+    else:
+        pairs += [[EqInlineKeyboardButton("Go Back", callback_data="aries_back"), EqInlineKeyboardButton("💾 repository", url="https://github.com/idzero23/SaintAries") ]]
+
     return pairs
 
 
 def send_to_list(
-    bot: Bot, send_to: list, message: str, markdown=False, html=False,
+    bot: Bot, send_to: list, message: str, markdown=False, html=False
 ) -> None:
     if html and markdown:
         raise Exception("Can only send with either markdown or HTML!")
