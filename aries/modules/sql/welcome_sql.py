@@ -35,7 +35,7 @@ DEFAULT_WELCOME_MESSAGES = [
     "{first} just showed up. Hold my beer.",
     "Challenger approaching! {first} has appeared!",
     "It's a bird! It's a plane! Nevermind, it's just {first}.",
-    r"It's {first}! Praise the sun! \o/",
+    "It's {first}! Praise the sun! \o/",
     "Never gonna give {first} up. Never gonna let {first} down.",
     "Ha! {first} has joined! You activated my trap card!",
     "Hey! Listen! {first} has joined!",
@@ -49,7 +49,7 @@ DEFAULT_WELCOME_MESSAGES = [
     "Hello. Is it {first} you're looking for?",
     "{first} has joined. Stay awhile and listen!",
     "Roses are red, violets are blue, {first} joined this chat with you",
-    "Welcome {first}, Avoid Punches if you can!",
+    "Welcome {first}, Avoid Getting Kicked if you can!",
     "It's a bird! It's a plane! - Nope, its {first}!",
     "{first} Joined! - Ok.",  # Discord welcome messages end.
     "All Hail {first}!",
@@ -91,7 +91,6 @@ DEFAULT_WELCOME_MESSAGES = [
     "Hey {first}, do you wanna know how I got these scars?",
     "Welcome {first}, drop your weapons and proceed to the spy scanner.",
     "Stay safe {first}, Keep 3 meters social distances between your messages.",  # Corona memes lmao
-    "Hey {first}, Do you know I once One-punched a meteorite?",
     "You’re here now {first}, Resistance is futile",
     "{first} just arrived, the force is strong with this one.",
     "{first} just joined on president’s orders.",
@@ -150,11 +149,11 @@ DEFAULT_WELCOME_MESSAGES = [
     "In the jungle, you must wait...until the dice read five or eight.",  # Jumanji stuff
     "Dr.{first} Famed archeologist and international explorer,\nWelcome to Jumanji!\nJumanji's Fate is up to you now.",
     "{first}, this will not be an easy mission - monkeys slow the expedition.",  # End of Jumanji stuff
-    "Remember, remember, the Fifth of November, the Gunpowder Treason and Plot. I know of no reason why the Gunpowder Treason should ever be forgot.",  # V for Vendetta
-    "The only verdict is vengeance; a vendetta, held as a votive not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous.",  # V for Vendetta
-    "Behind {first} there is more than just flesh. Beneath this user there is an idea... and ideas are bulletproof.",  # V for Vendetta
-    "Love your rage, not your cage.",  # V for Vendetta
-    "Get your stinking paws off me, you damned dirty ape!",  # Planet of the apes
+    "Remember, remember, the Fifth of November, the Gunpowder Treason and Plot. I know of no reason why the Gunpowder Treason should ever be forgot.", #V for Vendetta
+    "The only verdict is vengeance; a vendetta, held as a votive not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous.", #V for Vendetta
+    "Behind {first} there is more than just flesh. Beneath this user there is an idea... and ideas are bulletproof.", #V for Vendetta
+    "Love your rage, not your cage.", #V for Vendetta
+    "Get your stinking paws off me, you damned dirty ape!", #Planet of the apes
     "Elementary, my dear {first}.",
     "I'm back - {first}.",
     "Bond. {first} Bond.",
@@ -233,8 +232,7 @@ class Welcome(BASE):
     custom_content = Column(UnicodeText, default=None)
 
     custom_welcome = Column(
-        UnicodeText,
-        default=random.choice(DEFAULT_WELCOME_MESSAGES),
+        UnicodeText, default=random.choice(DEFAULT_WELCOME_MESSAGES),
     )
     welcome_type = Column(Integer, default=Types.TEXT.value)
 
@@ -250,8 +248,7 @@ class Welcome(BASE):
 
     def __repr__(self):
         return "<Chat {} should Welcome new users: {}>".format(
-            self.chat_id,
-            self.should_welcome,
+            self.chat_id, self.should_welcome,
         )
 
 
@@ -399,8 +396,10 @@ def get_welc_pref(chat_id):
             welc.custom_content,
             welc.welcome_type,
         )
-    # Welcome by default.
-    return True, DEFAULT_WELCOME, None, Types.TEXT
+
+    else:
+        # Welcome by default.
+        return True, DEFAULT_WELCOME, None, Types.TEXT
 
 
 def get_gdbye_pref(chat_id):
@@ -408,8 +407,9 @@ def get_gdbye_pref(chat_id):
     SESSION.close()
     if welc:
         return welc.should_goodbye, welc.custom_leave, welc.leave_type
-    # Welcome by default.
-    return True, DEFAULT_GOODBYE, Types.TEXT
+    else:
+        # Welcome by default.
+        return True, DEFAULT_GOODBYE, Types.TEXT
 
 
 def set_clean_welcome(chat_id, clean_welcome):
@@ -459,11 +459,7 @@ def set_gdbye_preference(chat_id, should_goodbye):
 
 
 def set_custom_welcome(
-    chat_id,
-    custom_content,
-    custom_welcome,
-    welcome_type,
-    buttons=None,
+    chat_id, custom_content, custom_welcome, welcome_type, buttons=None,
 ):
     if buttons is None:
         buttons = []
