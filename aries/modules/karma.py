@@ -1,7 +1,7 @@
 from aries import pbot
-from aries.utlis.dbfunctions import (update_karma, get_karma, get_karmas,
+from aries.utils.dbfunctions import (update_karma, get_karma, get_karmas,
                                    int_to_alpha, alpha_to_int)
-from aries.utlis.filter_groups import karma_positive_group, karma_negative_group
+from aries.utils.filter_groups import karma_positive_group, karma_negative_group
 from pyrogram import filters
 
 
