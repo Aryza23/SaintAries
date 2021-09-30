@@ -1,3 +1,4 @@
+import asyncio
 from aries import pbot
 from aries.utils.dbfunctions import (update_karma, get_karma, get_karmas,
                                    int_to_alpha, alpha_to_int)
