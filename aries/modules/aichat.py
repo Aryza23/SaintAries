@@ -76,7 +76,7 @@ def rem_chat(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "Aries":
+    if message.text.lower() == "bot":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
