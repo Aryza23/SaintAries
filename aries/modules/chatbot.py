@@ -10,10 +10,9 @@ from aries import BOT_ID, pbot as aries, arq
 from aries.bot_plugins.chatbot import add_chat, get_session, remove_chat
 from aries.utils.pluginhelper import admins_only, edit_or_reply
 
-url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+url = "http://kuki-api.tk/api/chatbot?message=hi&aries=kuki&idzxartez=moezilla&gender=female&userid=2&language=auto"
 
 translator = google_translator()
-
 
 async def lunaQuery(query: str, user_id: int):
     luna = await arq.luna(query, user_id)
