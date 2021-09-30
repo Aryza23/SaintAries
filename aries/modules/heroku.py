@@ -1,10 +1,8 @@
 import asyncio
 import math
 import os
-
 import heroku3
 import requests
-
 from aries import telethn as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
 from aries.events import register
 
@@ -20,10 +18,6 @@ async def variable(var):
         pass
     else:
         return
-    """
-    Manage most of ConfigVars setting, set new var, get current var,
-    or delete var...
-    """
     if HEROKU_APP_NAME is not None:
         app = Heroku.app(HEROKU_APP_NAME)
     else:
@@ -36,13 +30,9 @@ async def variable(var):
         try:
             variable = var.pattern_match.group(2).split()[0]
             if variable in heroku_var:
-                return await k.edit(
-                    "**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n"
-                )
+                return await k.edit("**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n")
             else:
-                return await k.edit(
-                    "**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`"
-                )
+                return await k.edit("**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`")
         except IndexError:
             configs = prettyjson(heroku_var.to_dict(), indent=2)
             with open("configs.json", "w") as fp:
@@ -81,9 +71,7 @@ async def variable(var):
         if variable in heroku_var:
             await s.edit(f"**{variable}**  `successfully changed to`  ->  **{value}**")
         else:
-            await s.edit(
-                f"**{variable}**  `successfully added with value`  ->  **{value}**"
-            )
+            await s.edit(f"**{variable}**  `successfully added with value`  ->  **{value}**")
         heroku_var[variable] = value
     elif exe == "del":
         m = await var.edit("`Getting information to deleting variable...`")
@@ -107,15 +95,11 @@ async def dyno_usage(dyno):
         pass
     else:
         return
-    """
-    Get your account Dyno Usage
-    """
     die = await dyno.reply("**Processing...**")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/80.0.3987.149 Mobile Safari/537.36"
-    )
+        "Chrome/80.0.3987.149 Mobile Safari/537.36")
     user_id = Heroku.account().id
     headers = {
         "User-Agent": useragent,
@@ -176,9 +160,7 @@ async def _(dyno):
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         app = Heroku.app(HEROKU_APP_NAME)
     except:
-        return await dyno.reply(
-            " Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
-        )
+        return await dyno.reply(" Please make sure your Heroku API Key, Your App name are configured correctly in the heroku")
     v = await dyno.reply("Getting Logs....")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
