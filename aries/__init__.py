@@ -13,6 +13,7 @@ from telethon.sessions import MemorySession
 from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
 from pyrogram.types import Chat, User
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
 
 StartTime = time.time()
@@ -208,6 +209,8 @@ telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+mongo_client = MongoClient(MONGO_DB_URI)
+db = mongo_client.aries
 print("[INFO]: INITIALIZING SUCCESS")
 
 pbot = Client(
