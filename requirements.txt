@@ -84,4 +84,5 @@ fontTools
 opencv-python-headless
 odmantic
 nekos.py
+pendulum
 
