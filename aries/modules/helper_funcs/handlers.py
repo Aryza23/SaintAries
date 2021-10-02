@@ -133,4 +133,4 @@ class CustomMessageHandler(MessageHandler):
 
         def check_update(self, update):
             if isinstance(update, Update) and update.effective_message:
-                return self.filters(update)h
+                return self.filters(update)
