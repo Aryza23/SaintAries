@@ -1,7 +1,10 @@
+## untuk send error logs ke group by @IdzXArtez
+
+
 import sys
 import traceback
 from functools import wraps
-from aries import pbot, EVENT_LOGS
+from aries import pbot, ERROR_LOGS
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
 
@@ -47,7 +50,7 @@ def capture_err(func):
             )
             for x in error_feedback:
                 await pbot.send_message(
-                    EVENT_LOGS,
+                    ERROR_LOGS,
                     x
                 )
             raise err
