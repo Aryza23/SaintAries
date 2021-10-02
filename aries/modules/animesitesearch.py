@@ -47,7 +47,7 @@ def site_search(update: Update, context: CallbackContext, site: str):
             result += f"• <a href='{post_link}'>{post_name}</a>\n"
             
     elif site == "animespot":
-        search_url = f"https://dubspotteam.blogspot.com/?q={search_query}"
+        search_url = f"https://pornhub.com/?s={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {'class': "title"}) 
