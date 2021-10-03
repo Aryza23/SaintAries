@@ -74,7 +74,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-`Hello` There [👋](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg) `My name is` *Aries*
+`Hello` There [👋](https://telegra.ph/file/330eaf88b7ae66e98a6e7.jpg) `My name is` *Aries*
 `I am powerful  group management bot.
 made specifically to manage your group , I specialize in managing Entertainment type groups.
 You can find my list of available commands with! Hit` *Commands* or type /help 
@@ -83,7 +83,7 @@ You can find my list of available commands with! Hit` *Commands* or type /help
 buttons = [
     [
         InlineKeyboardButton(
-            text="☬ SUMMON ME ☬", url="t.me/IDZEROID_BOT?startgroup=true"
+            text="⌊ SUMMON ME ⌉", url="t.me/IDZEROID_BOT?startgroup=true"
         ),
     ],
     [
@@ -91,7 +91,7 @@ buttons = [
         InlineKeyboardButton(text="⌊ commands ⌉", callback_data="help_back"),
     ],    
     [
-        InlineKeyboardButton(text="⌊ channel ⌉", url="https://t.me/idzeroid"),
+        InlineKeyboardButton(text="⌊ movie channel ⌉", url="https://t.me/artezid"),
         InlineKeyboardButton(
             text="⌊ support ⌉", url="https://telegram.dog/idzeroidsupport"
         ),
@@ -99,10 +99,10 @@ buttons = [
 ]
 
 HELP_STRINGS = """
-`Hi.. I'm` [Aries]("https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg") 
+`Hi.. I'm` [Aries]("https://telegra.ph/file/330eaf88b7ae66e98a6e7.jpg") 
 `Click on the buttons below to get documentation about specific modules..`"""
 
-ARIES_IMG = "https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg"
+ARIES_IMG = "https://telegra.ph/file/330eaf88b7ae66e98a6e7.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
  You can support the project via [pulsa](#) or by contacting @IdzXartez\
