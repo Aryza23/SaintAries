@@ -1,8 +1,6 @@
 ## credit moezilla 
 
-from pyrogram.types import (
-  Message, 
-)
+from pyrogram.types import Message
 from pyrogram import filters, Client 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import requests
@@ -10,7 +8,6 @@ import os
 import re
 from aries import pbot as kuki
 
-)
 
 @kuki.on_message(
     filters.text
