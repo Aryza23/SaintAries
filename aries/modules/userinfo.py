@@ -83,7 +83,7 @@ def hpmanager(user):
             afkst = check_afk_status(user.id)
             # if user is afk and no reason then decrease 7%
             # else if reason exist decrease 5%
-            if not afkst:
+            if not afkst.reason:
                 new_hp -= no_by_per(total_hp, 7)
             else:
                 new_hp -= no_by_per(total_hp, 5)
@@ -117,6 +117,7 @@ def make_bar(per):
     return "■" * done + "□" * (10 - done)
 
 
+@run_async
 def get_id(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -197,7 +198,7 @@ async def group_info(event) -> None:
     await event.reply(msg)
 
 
-
+@run_async
 def gifid(update: Update, context: CallbackContext):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
@@ -209,6 +210,7 @@ def gifid(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Please reply to a gif to get its ID.")
 
 
+@run_async
 def info(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -250,12 +252,12 @@ def info(update: Update, context: CallbackContext):
     if user.username:
         text += f"\nUsername: @{html.escape(user.username)}"
 
-    text += f"\nUserlink: {mention_html(user.id, 'link')}"
+    text += f"\nPermalink: {mention_html(user.id, 'link')}"
 
     if chat.type != "private" and user_id != bot.id:
         _stext = "\nPresence: <code>{}</code>"
 
-        afk_st = is_user_afk(user.id)
+        afk_st = is_afk(user.id)
         if afk_st:
             text += _stext.format("AFK")
         else:
@@ -283,11 +285,12 @@ def info(update: Update, context: CallbackContext):
         pass  # don't crash if api is down somehow...
 
     disaster_level_present = False
+
     if user.id == OWNER_ID:
         text += "\n\nThe Disaster level of this person is 'God'."
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\nThis user is member of 'Idzeroid Support'."
+        text += "\n\nThis user is member of 'Idzeroid Association'."
         disaster_level_present = True
     elif user.id in DRAGONS:
         text += "\n\nThe Disaster level of this person is 'Dragon'."
@@ -303,7 +306,7 @@ def info(update: Update, context: CallbackContext):
         disaster_level_present = True
 
     if disaster_level_present:
-        text += ' [<a href="https://t.me/AriesXidzeroid/15">?</a>]'.format(
+        text += ' [<a href="https://t.me/AriesXidzeroid/17">?</a>]'.format(
             bot.username,
         )
 
@@ -331,24 +334,32 @@ def info(update: Update, context: CallbackContext):
     if INFOPIC:
         try:
             profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
-            context.bot.sendChatAction(chat.id, "upload_photo")
-            context.bot.send_photo(
-            chat.id,
-            photo=profile,
-            caption=(text),
-            parse_mode=ParseMode.HTML,            
-        )
+            _file = bot.get_file(profile["file_id"])
+            _file.download(f"{user.id}.png")
+
+            message.reply_document(
+                document=open(f"{user.id}.png", "rb"),
+                caption=(text),
+                parse_mode=ParseMode.HTML,
+                disable_web_page_preview=True,
+            )
+
+            os.remove(f"{user.id}.png")
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, parse_mode=ParseMode.HTML)
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+            )
 
     else:
         message.reply_text(
-            text, parse_mode=ParseMode.HTML)
+            text, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+        )
 
     rep.delete()
 
+
+@run_async
 def about_me(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -376,7 +387,7 @@ def about_me(update: Update, context: CallbackContext):
         update.effective_message.reply_text("There isnt one, use /setme to set one.")
 
 
-
+@run_async
 def set_about_me(update: Update, context: CallbackContext):
     message = update.effective_message
     user_id = message.from_user.id
@@ -403,12 +414,12 @@ def set_about_me(update: Update, context: CallbackContext):
         else:
             message.reply_text(
                 "The info needs to be under {} characters! You have {}.".format(
-                    MAX_MESSAGE_LENGTH // 4,
-                    len(info[1]),
+                    MAX_MESSAGE_LENGTH // 4, len(info[1]),
                 ),
             )
 
 
+@run_async
 @sudo_plus
 def stats(update: Update, context: CallbackContext):
     stats = "<b>📊 Current stats:</b>\n" + "\n".join([mod.__stats__() for mod in STATS])
@@ -416,6 +427,7 @@ def stats(update: Update, context: CallbackContext):
     update.effective_message.reply_text(result, parse_mode=ParseMode.HTML)
 
 
+@run_async
 def about_bio(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -445,6 +457,7 @@ def about_bio(update: Update, context: CallbackContext):
         )
 
 
+@run_async
 def set_about_bio(update: Update, context: CallbackContext):
     message = update.effective_message
     sender_id = update.effective_user.id
@@ -466,7 +479,7 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         if user_id == bot.id and sender_id not in DEV_USERS:
             message.reply_text(
-                "Erm... yeah, I only trust the Artezid to set my bio.",
+                "Erm... yeah, I only trust Idzeroid Association to set my bio.",
             )
             return
 
@@ -505,54 +518,40 @@ def __user_info__(user_id):
 
 __help__ = """
 *ID:*
-  ➢ `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
-  ➢ `/gifid`*:* reply to a gif to me to tell you its file ID.
- 
-*Self addded information:* 
-  ➢ `/setme <text>`*:* will set your info
-  ➢ `/me`*:* will get your or another user's info.
+ • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+ • `/gifid`*:* reply to a gif to me to tell you its file ID.
+
+*Self addded information:*
+ • `/setme <text>`*:* will set your info
+ • `/me`*:* will get your or another user's info.
 Examples:
  `/setme I am a wolf.`
  `/me @username(defaults to yours if no user specified)`
- 
-*Information others add on you:* 
-  ➢ `/bio`*:* will get your or another user's bio. This cannot be set by yourself.
-• `/setbio <text>`*:* while replying, will save another user's bio 
+
+*Information others add on you:*
+ • `/bio`*:* will get your or another user's bio. This cannot be set by yourself.
+• `/setbio <text>`*:* while replying, will save another user's bio
 Examples:
  `/bio @username(defaults to yours if not specified).`
  `/setbio This user is a wolf` (reply to the user)
- 
+
 *Overall Information about you:*
-  ➢ `/info`*:* get information about a user. 
- 
-*◢ Intellivoid SpamProtection:*
-  ➢ `/spwinfo`*:* SpamProtection Info
- 
-*json Detailed info:*
-  ➢ `/json`*:* Get Detailed info about any message.
- 
-*Covid info:*
-  ➢ `/covid`*:* Get Detailed info about Covid.
- 
-*AFk:*
-When marked as AFK, any mentions will be replied to with a message stating that you're not available!
-  ➢ `/afk <reason>`*:* Mark yourself as AFK.
-  - brb <reason>: Same as the afk command, but not a command.\n 
-  
+ • `/info`*:* get information about a user.
+
 *What is that health thingy?*
- Come and see [HP System explained](https://t.me/AriesXidzeroid/15)
+ Come and see [HP System explained](https://t.me/OnePunchUpdates/192)
 """
 
-SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio, run_async=True)
-GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio, run_async=True)
+SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
+GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio)
 
-STATS_HANDLER = CommandHandler("stats", stats, run_async=True)
-ID_HANDLER = DisableAbleCommandHandler("id", get_id, run_async=True)
-GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid, run_async=True)
-INFO_HANDLER = DisableAbleCommandHandler("info", info, run_async=True)
+STATS_HANDLER = CommandHandler("stats", stats)
+ID_HANDLER = DisableAbleCommandHandler("id", get_id)
+GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
+INFO_HANDLER = DisableAbleCommandHandler(("info", "book"), info)
 
-SET_ABOUT_HANDLER = DisableAbleCommandHandler("setme", set_about_me, run_async=True)
-GET_ABOUT_HANDLER = DisableAbleCommandHandler("me", about_me, run_async=True)
+SET_ABOUT_HANDLER = DisableAbleCommandHandler("setme", set_about_me)
+GET_ABOUT_HANDLER = DisableAbleCommandHandler("me", about_me)
 
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(ID_HANDLER)
@@ -563,7 +562,7 @@ dispatcher.add_handler(GET_BIO_HANDLER)
 dispatcher.add_handler(SET_ABOUT_HANDLER)
 dispatcher.add_handler(GET_ABOUT_HANDLER)
 
-__mod_name__ = "Info & AFK"
+__mod_name__ = "Info"
 __command_list__ = ["setbio", "bio", "setme", "me", "info"]
 __handlers__ = [
     ID_HANDLER,
