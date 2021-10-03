@@ -28,7 +28,7 @@ from aries.__main__ import STATS, TOKEN, USER_INFO
 import aries.modules.sql.userinfo_sql as sql
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.sql.global_bans_sql import is_user_gbanned
-from aries.modules.redis.afk_redis import is_user_afk, afk_reason
+from aries.modules.sql.afk_sql import is_user_afk, afk_reason
 from aries.modules.sql.users_sql import get_user_num_chats
 from aries.modules.helper_funcs.chat_status import sudo_plus
 from aries.modules.helper_funcs.extraction import extract_user
