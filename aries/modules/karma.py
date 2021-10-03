@@ -5,7 +5,7 @@ import re
 from aries import pbot as app
 from aries.utils.errors import capture_err
 from aries.utils.permissions import adminsOnly
-from aries.utils.dbfunctions import (alpha_to_int, get_karma,
+from aries.modules.mongo import (alpha_to_int, get_karma,
                                    get_karmas, int_to_alpha, update_karma)                                 
                                    
 from aries.modules.mongo.karma_mongo import is_karma_on, karma_off, karma_on
