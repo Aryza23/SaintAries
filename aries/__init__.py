@@ -14,7 +14,6 @@ from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
 from pyrogram.types import Chat, User
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-from redis import StrictRedis
 
 StartTime = time.time()
 
@@ -102,7 +101,6 @@ if ENV:
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     BOT_ID = int(os.environ.get("BOT_ID", None))
-    REDIS_URL = os.environ.get("REDIS_URI", "redis://localhost:6379")
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     SAINT = "1192108540"
@@ -184,7 +182,6 @@ else:
     INFOPIC = Config.INFOPIC
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
-    REDIS_URL = Config.REDIS_URL
 
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
@@ -194,24 +191,6 @@ else:
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1669508271)
-
-REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
-
-try:
-
-    REDIS.ping()
-
-    LOGGER.info("[ARIES]: Connecting To Aries • Data Center • Indonesia • Redis Database")
-
-except BaseException:
-
-    raise Exception("[ARIES ERROR]: Your Aries • Data Center • Indonesia • Redis Database Is Not Alive, Please Check Again.")
-
-finally:
-
-   REDIS.ping()
-
-   LOGGER.info("[Aries]: Connection To The Aries • Data Center • Indonesia • Redis Database Established Successfully!")
 
 
 if not SPAMWATCH_API:
