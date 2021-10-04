@@ -101,6 +101,7 @@ ARIES_IMG = (
       "https://i.imgur.com/PjaXt4v.jpg",
       "https://i.imgur.com/Rrkn6w3.jpg",
       "https://i.imgur.com/7meiJJm.jpg",
-      "https://i.imgur.com/hkUsleg.jpg"
+      "https://i.imgur.com/hkUsleg.jpg",
+      "https://i.imgur.com/t3B1PoL.jpg"
 
       ) 
