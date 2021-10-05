@@ -325,6 +325,8 @@ Aries AI 3.0 IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
 
  - /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
  - /chatbot EN : Enables English only chatbot
+ - /addchat : To enables kuki ai 
+ - /rmchat : To disables kuki ai
 """
 
 __mod_name__ = "Chatbot"
