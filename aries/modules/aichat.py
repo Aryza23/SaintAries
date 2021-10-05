@@ -122,24 +122,6 @@ def list_all_chats(update: Update, context: CallbackContext):
  
   
 
-__help__ = """
-
-"""
-
-__mod_name__ = "Ai Chat"
-
-
-__help__ = """
-Chatbot utilizes the Kuki and allows aries to talk and provides a more interactive group chat experience.
-
-*Commands:* 
-*Admins only:*
-   ➢ `addchat`*:* Enables Chatbot mode in the chat.
-   ➢ `rmchat`*:* Disables Chatbot mode in the chat.
-   
-Reports bugs at Kuki-api.tk
-*Powered by ItelAi* (https://github/itelai) from @KukiUpdates
-"""
 
 __mod_name__ = "Ai Chat"
 
