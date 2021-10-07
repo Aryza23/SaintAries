@@ -85,4 +85,4 @@ opencv-python-headless
 odmantic
 nekos.py
 pendulum
-
+git+https://github.com/python-telegram-bot/ptbcontrib.git
