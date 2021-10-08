@@ -25,7 +25,7 @@ import requests
 from telethon import types
 from telethon.tl import functions
 
-from aries.config import get_str_key
+from aries import get_str_key
 from aries.events import register
 from aries import tbot
 
