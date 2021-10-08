@@ -25,11 +25,10 @@ import requests
 from telethon import types
 from telethon.tl import functions
 
-from aries import get_str_key
 from aries.events import register
 from aries import tbot
 
-REM_BG_API_KEY = get_str_key("REM_BG_API_KEY", required=False)
+REM_BG_API_KEY = "gUPv6BSmLzM861tdXZMyngVB"
 TEMP_DOWNLOAD_DIRECTORY = "./"
 
 
