@@ -1,21 +1,4 @@
-# Copyright (C) 2021 TeamDaisyX
-
-
-# This file is part of Daisy (Telegram Bot)
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+# credit daisyx
 
 import io
 import os
@@ -25,11 +8,12 @@ import requests
 from telethon import types
 from telethon.tl import functions
 
+from aries.confing import get_str_key
 from aries.events import register
 from aries.services.telethon import tbot
 
-REM_BG_API_KEY = "gUPv6BSmLzM861tdXZMyngVB"
-TEMP_DOWNLOAD_DIRECTORY = "./"
+REM_BG_API_KEY = get_str_key("REM_BG_API_KEY", required=False)
+TEMP_DOWNLOAD_DIRECTORY = "/"
 
 
 async def is_register_admin(chat, user):
@@ -79,7 +63,7 @@ async def _(event):
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
-            remove_bg_image.name = "aries.png"
+            remove_bg_image.name = "rmbg.png"
             await tbot.send_file(
                 event.chat_id,
                 remove_bg_image,
