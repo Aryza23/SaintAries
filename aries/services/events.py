@@ -4,10 +4,8 @@ from pathlib import Path
 
 from telethon import events
 
-from aries.services.mongo import mongodb as db
 from aries.services.telethon import tbot
 
-gbanned = db.gban
 CMD_LIST = {}
 
 
