@@ -26,7 +26,7 @@ from telethon import types
 from telethon.tl import functions
 
 from aries.events import register
-from telethon import client as tbot
+from telethon import TelegramClient as tbot
 
 REM_BG_API_KEY = "gUPv6BSmLzM861tdXZMyngVB"
 TEMP_DOWNLOAD_DIRECTORY = "./"
