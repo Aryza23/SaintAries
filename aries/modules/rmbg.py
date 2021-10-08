@@ -9,7 +9,7 @@ from telethon import types
 from telethon.tl import functions
 
 from aries.confing import get_str_key
-from aries.events import register
+from aries.services.events import register
 from aries.services.telethon import tbot
 
 REM_BG_API_KEY = get_str_key("REM_BG_API_KEY", required=False)
