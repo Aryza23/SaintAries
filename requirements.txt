@@ -52,7 +52,9 @@ Pyrogram
 humanize
 PyDictionary
 youtube-dl
-youtube_search_python==1.4.6
+ytdl
+pytube
+youtube_search_python
 lyrics_extractor
 asyncio
 cloudscraper
@@ -85,4 +87,3 @@ opencv-python-headless
 odmantic
 nekos.py
 pendulum
-git+https://github.com/python-telegram-bot/ptbcontrib.git
