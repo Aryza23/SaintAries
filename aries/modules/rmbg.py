@@ -26,7 +26,7 @@ from telethon import types
 from telethon.tl import functions
 
 from aries.events import register
-from telethon import TelegramClient as tbot
+from aries.services.telethon import tbot
 
 REM_BG_API_KEY = "gUPv6BSmLzM861tdXZMyngVB"
 TEMP_DOWNLOAD_DIRECTORY = "./"
@@ -93,7 +93,7 @@ async def _(event):
         await event.reply("Background Removed in {} seconds".format(ms))
     else:
         await event.reply(
-            "remove.bg API returned Errors. Please report to @DaisySupport_Official\n`{}".format(
+            "remove.bg API returned Errors. Please report to @idzeroidsupport\n`{}".format(
                 output_file_name.content.decode("UTF-8")
             )
         )
