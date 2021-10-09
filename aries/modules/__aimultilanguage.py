@@ -13,7 +13,7 @@ from pyrogram import filters
 
 from aries import BOT_ID
 from aries.helper_extra.aichat import add_chat, get_session, remove_chat
-from aries.utils.pluginshelper import admins_only, edit_or_reply
+from aries.utils.pluginhelper import admins_only, edit_or_reply
 from aries import pbot as Aries
 
 translator = google_translator()
