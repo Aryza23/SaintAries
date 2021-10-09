@@ -116,7 +116,7 @@ async def hmm(client, message):
         test = msg
         test = test.replace("hello", "Aco")
         test = test.replace("hello", "Aco")
-        URL = "http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}&botname=@idzeroid_bot&ownername=@IdzXartez"
+        URL = "http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}"
 
         try:
             r = requests.request("GET", url=URL)
@@ -179,7 +179,7 @@ async def hmm(client, message):
         # Kang with the credits bitches @InukaASiTH
         test = test.replace("hallo", "Aco")
         test = test.replace("hallo", "Aco")
-        URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}&botname=@idzeroid_bot&ownername=@IdzXartez"
+        URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}"
         try:
             r = requests.request("GET", url=URL)
         except:
@@ -253,7 +253,7 @@ async def inuka(client, message):
     # Kang with the credits bitches @InukaASiTH
     test = test.replace("hello", "Aco")
     test = test.replace("hello", "Aco")
-    URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}&botname=@idzeroid_bot&ownername=@IdzXartez"
+    URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}"
     try:
         r = requests.request("GET", url=URL)
     except:
@@ -331,7 +331,7 @@ async def inuka(client, message):
     # Kang with the credits bitches @InukaASiTH
     test = test.replace("hallo", "Aco")
     test = test.replace("hi", "Aco")
-    URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}&botname=@idzeroid_bot&ownername=@IdzXartez"
+    URL = f"http://kuki-api.tk/api/reply/kuki/moezilla/male/2/language=auto/message={test}"
     try:
         r = requests.request("GET", url=URL)
     except:
