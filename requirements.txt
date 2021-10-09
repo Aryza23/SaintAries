@@ -58,6 +58,7 @@ youtube_search_python
 lyrics_extractor
 asyncio
 cloudscraper
+git+https://github.com/starry69/python-markdown2.git
 dateparser==1.0.0
 pymongo
 dnspython
