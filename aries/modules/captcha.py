@@ -7,7 +7,7 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, 
 import random
 import asyncio
 import json
-from aries.modules.mongo.db import manage_db
+from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
