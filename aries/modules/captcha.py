@@ -11,7 +11,7 @@ from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
-from aries import BOT_USERNAME, TOKEN, DRAGONS
+from aries import BOT_USERNAME, DRAGONS
 
 # Local database for saving user info
 LocalDB = {}
@@ -138,7 +138,7 @@ async def cb_handler(bot, query):
             if c == "N":
                 print("proccesing number captcha")
                 await query.answer("Creating captcha for you")
-                data_ = get(f"https://api.jigarvarma.tk/num_captcha?token={TOKEN}").text
+                data_ = get(f"https://api.jigarvarma.tk/num_captcha?token={CC_API}").text
                 data_ = json.loads(data_)
                 _numbers = data_["answer"]["answer"]
                 list_ = ["0","1","2","3","5","6","7","8","9"]
@@ -158,7 +158,7 @@ async def cb_handler(bot, query):
             elif c == "E":
                 print("proccesing img captcha")
                 await query.answer("Creating captcha for you")
-                data_ = get(f"https://api.jigarvarma.tk/img_captcha?token={TOKEN}").text
+                data_ = get(f"https://api.jigarvarma.tk/img_captcha?token={CC_API}").text
                 data_ = json.loads(data_)
                 _numbers = data_["answer"]["answer"]
                 list_ = data_["answer"]["list"]
