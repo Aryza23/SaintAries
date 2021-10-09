@@ -1,9 +1,10 @@
 from pymongo import MongoClient
 from aries import db
+from aries import MONGO_DB_URI
 
 class manage_db():
     def __init__(self):
-        self.db = MongoClient(Config.MONGODB_URI)["captcha"]
+        self.db = MongoClient(MONGO_DB_URI)["captcha"]
         self.chats = self.db["Chats"]
         
     def chat_in_db(self, chat_id):
