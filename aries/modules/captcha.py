@@ -11,7 +11,7 @@ from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
-from aries import BOT_USERNAME, TOKEN, SUDO_USERS
+from aries import BOT_USERNAME, TOKEN, DRAGONS
 
 # Local database for saving user info
 LocalDB = {}
@@ -82,7 +82,7 @@ async def add_chat(bot, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     user = await bot.get_chat_member(chat_id, user_id)
-    if user.status == "creator" or user.status == "administrator" or user.user.id in SUDO_USERS:
+    if user.status == "creator" or user.status == "administrator" or user.user.id in DRAGONS:
         chat = manage_db().chat_in_db(chat_id)
         if chat:
             await message.reply_text("Captcha already tunned on here, use /remove to turn off")
@@ -99,7 +99,7 @@ async def del_chat(bot, message):
         return
     chat_id = message.chat.id
     user = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if user.status == "creator" or user.status == "administrator" or user.user.id in SUDO_USERS:
+    if user.status == "creator" or user.status == "administrator" or user.user.id in DRAGONS:
         j = manage_db().delete_chat(chat_id)
         if j:
             await message.reply_text("Captcha turned off on this chat")
