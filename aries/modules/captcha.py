@@ -2,7 +2,7 @@
 # Edit codes at your own risk
 #from config import Config
 from requests import get
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, CallbackQuery
 import random
 import asyncio
@@ -11,19 +11,11 @@ from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
-
-# Prepare bot
-pbot = Client(
-Config.SESSION_NAME, 
-api_id=Config.API_ID, 
-api_hash=Config.API_HASH, 
-token=Config.TOKEN
-)
+from aries import BOT_USERNAME
 
 # Local database for saving user info
 LocalDB = {}
 
-BOT_USERNAME = Config.BOT_USERNAME
 
 @pbot.on_chat_member_updated()
 async def check_chat_captcha(client, message):
