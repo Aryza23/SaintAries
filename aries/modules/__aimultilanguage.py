@@ -356,4 +356,4 @@ async def inuka(client, message):
 
 
 
-__mod_name__ = "chatbot"
+__mod_name__ = "aimultilang"
