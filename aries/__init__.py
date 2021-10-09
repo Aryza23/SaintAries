@@ -100,7 +100,7 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    BOT_ID = int(os.environ.get("BOT_ID", None))
+    BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
     SAINT = "1192108540"
@@ -182,6 +182,7 @@ else:
     INFOPIC = Config.INFOPIC
     STRING_SESSION = Config.STRING_SESSION
     IDZ = Config.IDZ
+    BOT_ID = Config.BOT_ID
 
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
