@@ -11,17 +11,18 @@ from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
-from aries import BOT_USERNAME
+from aries import BOT_USERNAME, TOKEN
 
 # Local database for saving user info
 LocalDB = {}
 
+CC_API = "dontsellme_iamfreeapi"
 
 @pbot.on_chat_member_updated()
 async def check_chat_captcha(client, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
-    if Config.API_TOKEN is None:
+    if CC_API is None:
         await client.send_message(chat_id, "join @idzeroidsupport")
         return
     chat = manage_db().chat_in_db(chat_id)
@@ -75,7 +76,7 @@ async def check_chat_captcha(client, message):
         
 @pbot.on_message(filters.command(["captcha",f"captcha@{BOT_USERNAME}"]) & ~filters.private)
 async def add_chat(bot, message):
-    if Config.API_TOKEN is None:
+    if CC_API is None:
         await message.reply_text("join @idzeroidsupport")
         return
     chat_id = message.chat.id
@@ -93,7 +94,7 @@ async def add_chat(bot, message):
     
 @pbot.on_message(filters.command(["remove",f"remove@{BOT_USERNAME}"]) & ~filters.private)
 async def del_chat(bot, message):
-    if Config.API_TOKEN is None:
+    if CC_API is None:
         await message.reply_text("join @idzeroidsupport")
         return
     chat_id = message.chat.id
@@ -137,7 +138,7 @@ async def cb_handler(bot, query):
             if c == "N":
                 print("proccesing number captcha")
                 await query.answer("Creating captcha for you")
-                data_ = get(f"https://api.jigarvarma.tk/num_captcha?token={Config.API_TOKEN}").text
+                data_ = get(f"https://api.jigarvarma.tk/num_captcha?token={TOKEN}").text
                 data_ = json.loads(data_)
                 _numbers = data_["answer"]["answer"]
                 list_ = ["0","1","2","3","5","6","7","8","9"]
@@ -157,7 +158,7 @@ async def cb_handler(bot, query):
             elif c == "E":
                 print("proccesing img captcha")
                 await query.answer("Creating captcha for you")
-                data_ = get(f"https://api.jigarvarma.tk/img_captcha?token={Config.API_TOKEN}").text
+                data_ = get(f"https://api.jigarvarma.tk/img_captcha?token={TOKEN}").text
                 data_ = json.loads(data_)
                 _numbers = data_["answer"]["answer"]
                 list_ = data_["answer"]["list"]
