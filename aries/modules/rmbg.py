@@ -10,12 +10,9 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aries import pbot
 
-
-REMOVEBG_API = os.environ.get("REMOVEBG_API", "")
-UNSCREEN_API = os.environ.get("UNSCREEN_API", "")
 PATH = "./DOWNLOADS/"
-
-
+REMOVEBG_API = "icujRMB7cEDtbjUXow5Xw1up"
+UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
 
 ERROR_BUTTONS = InlineKeyboardMarkup(
         [
