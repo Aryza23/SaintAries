@@ -73,10 +73,10 @@ async def check_chat_captcha(client, message):
                               text=f"{message.from_user.mention} to chat here please verify that your a human",
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Verify Now", callback_data=f"verify_{chat_id}_{user_id}")]]))
         
-@pbot.on_message(filters.command(["captcha",f"captcha@{BOT_UNAME}"]) & ~filters.private)
+@pbot.on_message(filters.command(["captcha",f"captcha@{BOT_USERNAME}"]) & ~filters.private)
 async def add_chat(bot, message):
     if Config.API_TOKEN is None:
-        await message.reply_text("Please get the apy key from @JV_Community")
+        await message.reply_text("join @idzeroidsupport")
         return
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -91,10 +91,10 @@ async def add_chat(bot, message):
                                                                         InlineKeyboardButton(text="Emoji", callback_data=f"new_{chat_id}_{user_id}_E")]]))
         
     
-@pbot.on_message(filters.command(["remove",f"remove@{BOT_UNAME}"]) & ~filters.private)
+@pbot.on_message(filters.command(["remove",f"remove@{BOT_USERNAME}"]) & ~filters.private)
 async def del_chat(bot, message):
     if Config.API_TOKEN is None:
-        await message.reply_text("Please get the apy key from @JV_Community")
+        await message.reply_text("join @idzeroidsupport")
         return
     chat_id = message.chat.id
     user = await bot.get_chat_member(message.chat.id, message.from_user.id)
