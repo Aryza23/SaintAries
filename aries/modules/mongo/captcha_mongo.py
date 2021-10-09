@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from aries import Config
+from aries import db
 
 class manage_db():
     def __init__(self):
