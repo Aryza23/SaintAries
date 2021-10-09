@@ -65,7 +65,7 @@ def kukirm(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Chatbot disable by {}.".format(mention_html(user.id, user.first_name)),
+                "AriesAI disable by {}.".format(mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
@@ -90,7 +90,7 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Chatbot enable by {}.".format(mention_html(user.id, user.first_name)),
+                "AriesAI enable by {}.".format(mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
@@ -127,7 +127,7 @@ def kuki_message(context: CallbackContext, message):
         return False
         
 
-def chatbot(update: Update, context: CallbackContext):
+def ariesai(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -161,36 +161,36 @@ def list_all_chats(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode="HTML")
 
 __help__ = """
-Chatbot utilizes the Kuki's api which allows Kuki to talk and provide a more interactive group chat experience.
+AriesAI utilizes the Kuki's api which allows Kuki to talk and provide a more interactive group chat experience.
 *Admins only Commands*:
-  ➢ `/Chatbot`*:* Shows chatbot control panel
+  ➢ `/ariesai`*:* Shows AriesAI control panel
   
  Reports bugs at Kuki-api.tk
 *Powered by ItelAi* (https://github/itelai) from @KukiUpdates
 """
 
-__mod_name__ = "KukiAI"
+__mod_name__ = "Aries AI"
 
 
-CHATBOTK_HANDLER = CommandHandler("chatbot", kuki, run_async=True)
+ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, run_async=True)
 ADDAI_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"addai_chat", run_async=True)
 RMAI_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rmai_chat", run_async=True)
-CHATBOT_HANDLER = MessageHandler(
+ARIESAI_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), chatbot, run_async=True)
+                    & ~Filters.regex(r"^\/")), ariesai, run_async=True)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
 
 dispatcher.add_handler(ADDAI_CHAT_HANDLER)
-dispatcher.add_handler(CHATBOTK_HANDLER)
+dispatcher.add_handler(ARIESAIK_HANDLER)
 dispatcher.add_handler(RMAI_CHAT_HANDLER)
 dispatcher.add_handler(LIST_ALL_CHATS_HANDLER)
-dispatcher.add_handler(CHATBOT_HANDLER)
+dispatcher.add_handler(ARIESAI_HANDLER)
 
 __handlers__ = [
     ADDAI_CHAT_HANDLER,
-    CHATBOTK_HANDLER,
+    ARIESAIK_HANDLER,
     RMAI_CHAT_HANDLER,
     LIST_ALL_CHATS_HANDLER,
-    CHATBOT_HANDLER,
+    ARIESAI_HANDLER,
 ]
