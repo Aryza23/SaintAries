@@ -16,7 +16,7 @@ UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
 
 ERROR_BUTTONS = InlineKeyboardMarkup(
         [
-        InlineKeyboardButton('Close', callback_data='close')
+            InlineKeyboardButton("Support", url=f"https://t.me/idzeroidsupport")
         ]
     )
 
