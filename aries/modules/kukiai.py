@@ -25,7 +25,7 @@ import re
 import os
 import html
 import requests
-import aries.modules.sql.kukiai_sql as sql
+import aries.modules.sql.kuki_sql as sql
 
 from time import sleep
 from telegram import ParseMode
