@@ -72,7 +72,8 @@ async def check_chat_captcha(client, message):
     except:
         return
     await client.send_message(chat_id,
-                              text=f"{message.from_user.mention} **To Chat Here Please Verify That Your A Human,untuk mengobrol di sini, harap verifikasi bahwa Anda manusia**",
+                              text=f"{message.from_user.mention} **To Chat Here Please Verify That Your A Human**\n\n"
+                                   f" **Untuk Mengobrol Di Sini Harap Verifikasi Bahwa Anda Manusia** ",
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Verify Now", callback_data=f"verify_{chat_id}_{user_id}")]]))
         
 @pbot.on_message(filters.command(["captcha",f"captcha@{BOT_USERNAME}"]) & ~filters.private)
