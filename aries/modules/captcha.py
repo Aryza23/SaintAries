@@ -1,5 +1,6 @@
 # (c) @JigarVarma2005
 # Edit codes at your own risk
+# the file part of aries rewriten by @IdzXartez
 #from config import Config
 from requests import get
 from pyrogram import filters
@@ -71,7 +72,7 @@ async def check_chat_captcha(client, message):
     except:
         return
     await client.send_message(chat_id,
-                              text=f"{message.from_user.mention} to chat here please verify that your a human",
+                              text=f"{message.from_user.mention} **To Chat Here Please Verify That Your A Human,untuk mengobrol di sini, harap verifikasi bahwa Anda manusia**",
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Verify Now", callback_data=f"verify_{chat_id}_{user_id}")]]))
         
 @pbot.on_message(filters.command(["captcha",f"captcha@{BOT_USERNAME}"]) & ~filters.private)
