@@ -51,7 +51,7 @@ from telegram.utils.helpers import mention_html, mention_markdown, escape_markdo
 def kukirm(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
-    match = re.match(r"rmai_chat\((.+?)\)", query.data)
+    match = re.match(r"rm_chat\((.+?)\)", query.data)
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
@@ -76,7 +76,7 @@ def kukirm(update: Update, context: CallbackContext) -> str:
 def kukiadd(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
-    match = re.match(r"addai_chat\((.+?)\)", query.data)
+    match = re.match(r"add_chat\((.+?)\)", query.data)
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
@@ -105,11 +105,11 @@ def kuki(update: Update, context: CallbackContext):
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             text="Enable",
-            callback_data="addai_chat({})")],
+            callback_data="add_chat({})")],
        [
         InlineKeyboardButton(
             text="Disable",
-            callback_data="rmai_chat({})")]])
+            callback_data="rm_chat({})")]])
     message.reply_text(
         msg,
         reply_markup=keyboard,
@@ -118,7 +118,7 @@ def kuki(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "kuki":
+    if message.text.lower() == "aries":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -140,7 +140,7 @@ def ariesai(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://www.kuki-api.tk/api/Kuki/MoeZilla/message='+Message)
+        kukiurl = requests.get('https://www.kuki-api.tk/api/Aries/Artezid/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
@@ -160,37 +160,30 @@ def list_all_chats(update: Update, context: CallbackContext):
             sleep(e.retry_after)
     update.effective_message.reply_text(text, parse_mode="HTML")
 
-__help__ = """
-AriesAI utilizes the Kuki's api which allows Kuki to talk and provide a more interactive group chat experience.
-*Admins only Commands*:
-  ➢ `/ariesai`*:* Shows AriesAI control panel
-  
- Reports bugs at Kuki-api.tk
-*Powered by ItelAi* (https://github/itelai) from @KukiUpdates
-"""
+
 
 __mod_name__ = "Aries AI"
 
 
-ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, run_async=True)
-ADDAI_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"addai_chat", run_async=True)
-RMAI_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rmai_chat", run_async=True)
+ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, aries, run_async=True)
+ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", run_async=True)
+RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", run_async=True)
 ARIESAI_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), ariesai, run_async=True)
+                    & ~Filters.regex(r"^\/")), ariesai, aries, run_async=True)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
 
-dispatcher.add_handler(ADDAI_CHAT_HANDLER)
+dispatcher.add_handler(ADD_CHAT_HANDLER)
 dispatcher.add_handler(ARIESAIK_HANDLER)
-dispatcher.add_handler(RMAI_CHAT_HANDLER)
+dispatcher.add_handler(RM_CHAT_HANDLER)
 dispatcher.add_handler(LIST_ALL_CHATS_HANDLER)
 dispatcher.add_handler(ARIESAI_HANDLER)
 
 __handlers__ = [
-    ADDAI_CHAT_HANDLER,
+    ADD_CHAT_HANDLER,
     ARIESAIK_HANDLER,
-    RMAI_CHAT_HANDLER,
+    RM_CHAT_HANDLER,
     LIST_ALL_CHATS_HANDLER,
     ARIESAI_HANDLER,
 ]
