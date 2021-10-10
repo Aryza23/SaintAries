@@ -141,6 +141,7 @@ def ariesai(update: Update, context: CallbackContext):
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
         kukiurl = requests.get('https://www.kuki-api.tk/api/Aries/Artezid/message='+Message)
+        kukiurl = requeats.get('https://www.kuki-api.tk/api/reply/botname/ownername/male/userid/language=auto/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
@@ -170,7 +171,7 @@ ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", run_async=
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", run_async=True)
 ARIESAI_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), ariesai, aries, run_async=True)
+                    & ~Filters.regex(r"^\/")), ariesai, kuki, run_async=True)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
 
