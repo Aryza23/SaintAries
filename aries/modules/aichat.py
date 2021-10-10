@@ -76,7 +76,7 @@ def rem_chat(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "hallo":
+    if message.text.lower() == "bot":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -98,7 +98,7 @@ def aichat(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://kuki-api.tk/api/Raiden/moezilla/message='+Message)
+        kukiurl = requests.get('https://kuki-api.tk/api/Aries/Artezid/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
@@ -129,7 +129,7 @@ ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat)
 REMOVE_CHAT_HANDLER = CommandHandler("rmchat", rem_chat)
 AICHAT_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), aichat)
+                    & ~Filters.regex(r"^\/")), aichat, bot, aries)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter)
 
