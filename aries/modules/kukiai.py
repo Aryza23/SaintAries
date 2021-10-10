@@ -166,7 +166,7 @@ def list_all_chats(update: Update, context: CallbackContext):
 __mod_name__ = "Aries AI"
 
 
-ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, aries, run_async=True)
+ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, run_async=True)
 ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", run_async=True)
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", run_async=True)
 ARIESAI_HANDLER = MessageHandler(
