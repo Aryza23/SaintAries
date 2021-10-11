@@ -118,7 +118,7 @@ def kuki(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "aries":
+    if message.text.lower() == "aryza":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -141,7 +141,7 @@ def ariesai(update: Update, context: CallbackContext):
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
         kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
-        kukiurl = requeats.get('https://www.kukiapi.xyz/api/apikey=KUKIIbF11kE8r/aries/aryza/message='+Message)
+        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIIbF11kE8r/aries/aryza/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
