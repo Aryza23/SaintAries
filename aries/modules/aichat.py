@@ -98,7 +98,7 @@ def aichat(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('http://kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
+        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
