@@ -140,7 +140,7 @@ def ariesai(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://www.kuki-api.tk/api/Aries/Artezid/message='+Message)
+        kukiurl = requests.get('http://kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
         kukiurl = requeats.get('https://www.kuki-api.tk/api/reply/botname/ownername/male/userid/language=auto/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
