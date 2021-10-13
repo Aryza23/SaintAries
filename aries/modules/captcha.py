@@ -56,14 +56,14 @@ async def check_chat_captcha(client, message):
                 await client.send_message(
                     chat_id=chat_id,
                     text=f"{message.from_user.mention} again joined group without verifying!\n\n"
-                         f"He can try again after 10 minutes.",
+                         f"He can try again after 1 minutes.",
                     disable_web_page_preview=True
                 )
                 await client.delete_messages(chat_id=chat_id,
                                              message_ids=LocalDB[user_id]["msg_id"])
             except:
                 pass
-            await asyncio.sleep(600)
+            await asyncio.sleep(60)
             del LocalDB[user_id]
     except:
         pass
@@ -208,9 +208,9 @@ async def cb_handler(bot, query):
             n = tot - LocalDB[query.from_user.id]['mistakes']
             if n == 0:
                 await query.message.edit_caption(f"{query.from_user.mention}, you failed to solve the captcha!\n\n"
-                                               f"You can try again after 10 minutes.",
+                                               f"You can try again after 1 minutes.",
                                                reply_markup=None)
-                await asyncio.sleep(600)
+                await asyncio.sleep(60)
                 del LocalDB[query.from_user.id]
                 return
             markup = MakeCaptchaMarkup(query.message["reply_markup"]["inline_keyboard"], _number, "❌")
