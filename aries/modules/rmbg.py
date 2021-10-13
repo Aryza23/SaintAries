@@ -10,7 +10,7 @@ import requests
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aries import pbot
-from aries impot TEMP_DOWNLOAD_DIRECTORY
+from aries import TEMP_DOWNLOAD_DIRECTORY
 
 REMOVEBG_API = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
