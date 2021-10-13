@@ -1,18 +1,18 @@
 # (c) @JigarVarma2005
 # Edit codes at your own risk
 # the file part of aries rewriten by @IdzXartez
-#from config import Config
-from requests import get
-from pyrogram import filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, CallbackQuery
+
+
 import random
 import asyncio
 import json
+from requests import get
+from pyrogram import filters
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, CallbackQuery
 from aries.modules.mongo.captcha_mongo import manage_db
 from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
-from aries import pbot
-from aries import BOT_USERNAME, DRAGONS
+from aries import BOT_USERNAME, DRAGONS, pbot
 
 # Local database for saving user info
 LocalDB = {}
