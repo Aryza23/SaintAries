@@ -101,7 +101,7 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
 def kuki(update: Update, context: CallbackContext):
     user = update.effective_user
     message = update.effective_message
-    msg = f"Choose an option"
+    msg = "Choose an option"
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             text="Enable",
@@ -140,7 +140,7 @@ def ariesai(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('kukiapi.xyz/api/apikey=KUKI583hwYVBh/Aries/Aryza/message='+Message)
+        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKI583hwYVBh/botname/owner/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
