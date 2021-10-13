@@ -76,7 +76,7 @@ def rem_chat(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "bot":
+    if message.text.lower() == "hallo":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -98,11 +98,11 @@ def aichat(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
+        kukiurl = requests.get('https://kuki-api.tk/api/Raiden/moezilla/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
-        message.reply_text(kuki, timeout=60)
+        message.reply_text(kuki, timeout=20)
 
 def list_all_chats(update: Update, context: CallbackContext):
     chats = sql.get_all_kuki_chats()
