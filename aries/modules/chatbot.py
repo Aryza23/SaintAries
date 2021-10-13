@@ -110,7 +110,7 @@ async def hmm(client, message):
             test, message.from_user.id if message.from_user else 0
         )
         response = response.replace("hello", "Aries")
-        response = response.replace("hi", "bot")
+        response = response.replace("lol", "bot")
 
         pro = response
         try:
@@ -166,10 +166,10 @@ async def hmm(client, message):
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
-        response = response.replace("hi", "Aries")
-        response = response.replace("hi", "Aries")
-        response = response.replace("hello", "bot")
-        response = response.replace("hello", "bot")
+        response = response.replace("who are you?", "im Aries")
+        response = response.replace("my name is aries", "whats your name")
+        response = response.replace("saya aries", "kamu siapa?")
+        response = response.replace("nama kamu siapa ?", "nama saya aries?")
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -248,7 +248,7 @@ async def inuka(client, message):
 
 
 @aries.on_message(
-    filters.regex("bot|aries|hi|hello|aries")
+    filters.regex("bot|aries|hi|hello|lol")
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.forwarded
@@ -304,7 +304,7 @@ async def inuka(client, message):
     test = test.replace("bot", "hello")
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
     response = response.replace("hello", "Aries")
-    response = response.replace("hi", "bot")
+    response = response.replace("lol", "bot")
 
     pro = response
     if not "en" in lan and not lan == "":
