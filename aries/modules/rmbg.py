@@ -10,7 +10,7 @@ import requests
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aries import pbot
-from aries impot TEMP_DOWNLOAD_DIRECTORY as PATH
+from aries impot TEMP_DOWNLOAD_DIRECTORY
 
 REMOVEBG_API = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
@@ -40,10 +40,10 @@ async def remove_background(bot, update):
         disable_web_page_preview=True
     )
     if update and update.media:
-        new_file = PATH + str(update.from_user.id) + "/"
+        new_file = TEMP_DOWNLOAD_DIRECTORY + str(update.from_user.id) + "/"
         if update.photo or (update.document and "image" in update.document.mime_type):
             new_file_name = new_file + "no_bg.png"
-            file = await update.download(PATH+str(update.from_user.id))
+            file = await update.download(TEMP_DOWNLOAD_DIRECTORY+str(update.from_user.id))
             await message.edit_text(
                 text="Photo downloaded successfully. Now removing background.",
                 disable_web_page_preview=True
