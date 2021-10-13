@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import json
 import os
 import html
 import requests
@@ -99,7 +99,7 @@ def aichat(update: Update, context: CallbackContext):
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
         kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIoQzD5Gd53/reply/aries/aryza/male/1192108540/language=auto/message='+Message)
-        Kuki = loads(kukiurl.text)
+        Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
         message.reply_text(kuki, timeout=60)
