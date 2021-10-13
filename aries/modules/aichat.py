@@ -16,9 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import json
-from pyrogram.types import (
-  Message, 
-)
+
 import os
 import html
 import requests
@@ -97,7 +95,7 @@ def aichat(update: Update, context: CallbackContext):
         return
 	
     if message.text and not message.document:
-        if not kuki_message(context, message: Message):
+        if not kuki_message(context, message):
             return
         msg = message.text
         chat_id = message.chat.id
