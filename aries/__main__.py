@@ -3,6 +3,13 @@ import time
 import re
 from sys import argv
 from typing import Optional
+import html
+import os
+import json
+import sys
+import traceback
+import aries.modules.sql.users_sql as sql
+
 
 from aries import (
     ALLOW_EXCL,
@@ -20,6 +27,7 @@ from aries import (
     StartTime,
     telethn,
     pbot,
+    ubot,
     updater,
 )
 
@@ -76,6 +84,8 @@ def get_readable_time(seconds: int) -> str:
 PM_START_TEXT = """
 `Hello` There [👋](https://telegra.ph/file/330eaf88b7ae66e98a6e7.jpg) `My name is` *Aries*
 `I am powerful  group management bot.
+• *Uptime:* `{}`
+• `{}` *users, across* `{}` *chats.*
 made specifically to manage your group , I specialize in managing Entertainment type groups.
 You can find my list of available commands with! Hit` *Commands* or type /help 
 """
@@ -211,8 +221,14 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
+            first_name = update.effective_user.first_name
             update.effective_message.reply_text(
-                PM_START_TEXT,
+                PM_START_TEXT.format(
+                    escape_markdown(context.bot.first_name),
+                    escape_markdown(first_name),
+                    escape_markdown(uptime),
+                    sql.num_users(),
+                    sql.num_chats()),                        
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -367,12 +383,18 @@ def aries_about_callback(update, context):
             ),
         )
     elif query.data == "aries_back":
+        first_name = update.effective_user.first_name
         query.message.edit_text(
-            PM_START_TEXT,
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
-            disable_web_page_preview=False,
+                PM_START_TEXT.format(
+                    escape_markdown(context.bot.first_name),
+                    escape_markdown(first_name),
+                    escape_markdown(uptime),
+                    sql.num_users(),
+                    sql.num_chats()),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=False,
         )
 
 
@@ -709,6 +731,7 @@ def main():
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
+    dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(about_callback_handler)
     dispatcher.add_handler(source_callback_handler)
     dispatcher.add_handler(settings_handler)
@@ -729,8 +752,8 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+        LOGGER.info(f"Aries started, Using long polling. | BOT: [@{dispatcher.bot.username}]")
+        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
@@ -739,9 +762,15 @@ def main():
 
     updater.idle()
 
+try:
+    ubot.start()
+except BaseException:
+    print("Userbot Error ! Have you added a STRING_SESSION in deploying??")
+    sys.exit(1)
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
     pbot.start()
     main()
+    idle()
