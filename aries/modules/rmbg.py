@@ -4,13 +4,14 @@
 # All rights reserved by FayasNoushad
 # License -> https://github.com/FayasNoushad/Remove-BG-Bot/blob/main/LICENSE
 
+
 import os
 import requests
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aries import pbot
+from aries impot TEMP_DOWNLOAD_DIRECTORY as PATH
 
-PATH = "./DOWNLOADS/"
 REMOVEBG_API = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
 
@@ -99,4 +100,6 @@ def removebg_video(file):
         files={"video_file": open(file, "rb")},
         headers={"X-Api-Key": UNSCREEN_API}
     )
+
+
 
