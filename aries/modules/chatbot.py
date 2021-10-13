@@ -104,13 +104,13 @@ async def hmm(client, message):
         message.continue_propagation()
     if chat_id in en_chats:
         test = msg
-        test = test.replace("aries", "Aco")
-        test = test.replace("bot", "Aco")
+        test = test.replace("aries", "hi")
+        test = test.replace("bot", "hello")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
-        response = response.replace("Aco", "Aries")
-        response = response.replace("aco", "bot")
+        response = response.replace("hello", "Aries")
+        response = response.replace("hi", "bot")
 
         pro = response
         try:
@@ -161,15 +161,15 @@ async def hmm(client, message):
             except:
                 return
 
-        test = test.replace("aries", "Aco")
-        test = test.replace("bot", "Aco")
+        test = test.replace("aries", "hi")
+        test = test.replace("bot", "hello")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
-        response = response.replace("Aco", "Aries")
-        response = response.replace("aco", "Aries")
-        response = response.replace("Luna", "bot")
-        response = response.replace("luna", "bot")
+        response = response.replace("hi", "Aries")
+        response = response.replace("hi", "Aries")
+        response = response.replace("hello", "bot")
+        response = response.replace("hello", "bot")
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -229,12 +229,12 @@ async def inuka(client, message):
         except:
             return
 
-    test = test.replace("aries", "Aco")
-    test = test.replace("bot", "Aco")
+    test = test.replace("aries", "hi")
+    test = test.replace("bot", "hello")
 
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-    response = response.replace("Aco", "Aries")
-    response = response.replace("aco", "bot")
+    response = response.replace("hello", "Aries")
+    response = response.replace("hi", "bot")
 
     pro = response
     if not "en" in lan and not lan == "":
@@ -300,11 +300,11 @@ async def inuka(client, message):
         except:
             return
 
-    test = test.replace("aries", "Aco")
-    test = test.replace("bot", "Aco")
+    test = test.replace("aries", "hi")
+    test = test.replace("bot", "hello")
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-    response = response.replace("Aco", "Aries")
-    response = response.replace("aco", "bot")
+    response = response.replace("hello", "Aries")
+    response = response.replace("hi", "bot")
 
     pro = response
     if not "en" in lan and not lan == "":
@@ -325,9 +325,6 @@ Aries AI 3.0 IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
 
  🔘 /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
  🔘 /chatbot EN : Enables English only chatbot
- 🔘 /addchat : To enables kuki ai 
- 🔘 /rmchat : To disables kuki ai
- 🔘 /ariesai : To open ENABLES/DISABLES ai Functions
 """
 
 __mod_name__ = "Chatbot"
