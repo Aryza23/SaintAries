@@ -1,105 +1,94 @@
-# Made with python3
-# (C) @FayasNoushad
-# Copyright permission under MIT License
-# All rights reserved by FayasNoushad
-# License -> https://github.com/FayasNoushad/Remove-BG-Bot/blob/main/LICENSE
-
-
+import io
 import os
 import requests
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from aries import pbot
-from aries import TEMP_DOWNLOAD_DIRECTORY
 
-REMOVEBG_API = "icujRMB7cEDtbjUXow5Xw1up"
+from datetime import datetime
+from telethon import types
+from telethon.tl import functions
+from Cutiepii_Robot.events import register
+from Cutiepii_Robot import TEMP_DOWNLOAD_DIRECTORY, telethn, SUPPORT_CHAT
+
+REM_BG_API_KEY = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
 
-ERROR_BUTTONS = InlineKeyboardMarkup(
-        [
-            InlineKeyboardButton("Support", url=f"https://t.me/idzeroidsupport")
-        ]
-    )
 
-
-
-@pbot.on_message(filters.private & filters.command(["rmbg"]))
-async def remove_background(bot, update):
-    if not REMOVEBG_API:
-        await update.reply_text(
-            text="Error :- Remove BG Api is error",
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=ERROR_BUTTONS
+async def is_register_admin(chat, user):
+    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
+        return isinstance(
+            (
+                await telethn(functions.channels.GetParticipantRequest(chat, user))
+            ).participant,
+            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
+    if isinstance(chat, types.InputPeerUser):
+        return True
+
+
+@register(pattern="^/rmbg")
+async def _(event):
+    if event.fwd_from:
         return
-    await update.reply_chat_action("typing")
-    message = await update.reply_text(
-        text="Processing",
-        quote=True,
-        disable_web_page_preview=True
-    )
-    if update and update.media:
-        new_file = TEMP_DOWNLOAD_DIRECTORY + str(update.from_user.id) + "/"
-        if update.photo or (update.document and "image" in update.document.mime_type):
-            new_file_name = new_file + "no_bg.png"
-            file = await update.download(TEMP_DOWNLOAD_DIRECTORY+str(update.from_user.id))
-            await message.edit_text(
-                text="Photo downloaded successfully. Now removing background.",
-                disable_web_page_preview=True
+    if event.is_group and not await is_register_admin(
+        event.input_chat, event.message.sender_id
+    ):
+        return
+    if REM_BG_API_KEY is None:
+        await event.reply("You need API token from remove.bg to use this plugin.")
+        return False
+    start = datetime.now()
+    message_id = event.message.id
+    if event.reply_to_msg_id:
+        message_id = event.reply_to_msg_id
+        reply_message = await event.get_reply_message()
+        await event.reply("Processing...")
+        try:
+            downloaded_file_name = await telethn.download_media(
+                reply_message, TEMP_DOWNLOAD_DIRECTORY
             )
-            new_image = removebg_image(file)
-            if new_image.status_code == 200:
-                with open(new_file_name, "wb") as image:
-                    image.write(new_image.content)
-            else:
-                await update.reply_text(
-                    text="API is error.",
-                    quote=True,
-                    reply_markup=ERROR_BUTTONS
-                )
-                return
-            await update.reply_chat_action("upload_photo")
-            try:
-                await update.reply_document(
-                    document=new_file_name,
-                    quote=True
-                )
-                await message.delete()
-                try:
-                    os.remove(file)
-                except:
-                    pass
-            except Exception as error:
-                print(error)
-                await message.edit_text(
-                    text="Something went wrong! May be API limits.",
-                    disable_web_page_preview=True,
-                    reply_markup=ERROR_BUTTONS
-                ) 
+        except Exception as e:
+            await event.reply(str(e))
+            return
+        else:
+            output_file_name = ReTrieveFile(downloaded_file_name)
+            os.remove(downloaded_file_name)
     else:
-        await message.edit_text(
-            text="Media not supported",
-            disable_web_page_preview=True,
-            reply_markup=ERROR_BUTTONS
+        HELP_STR = "use `/rmbg` as reply to a media"
+        await event.reply(HELP_STR)
+        return
+    contentType = output_file_name.headers.get("content-type")
+    if "image" in contentType:
+        with io.BytesIO(output_file_name.content) as remove_bg_image:
+            remove_bg_image.name = "idz.png"
+            await telethn.send_file(
+                event.chat_id,
+                remove_bg_image,
+                force_document=True,
+                supports_streaming=False,
+                allow_cache=False,
+                reply_to=message_id,
+            )
+        end = datetime.now()
+        ms = (end - start).seconds
+        await event.reply("Background Removed in {} seconds".format(ms))
+    else:
+        await event.reply(
+            "remove.bg API returned Errors. Please report to @Black_Knights_Union_Support\n`{}".format(
+                output_file_name.content.decode("UTF-8")
+            )
         )
 
 
-def removebg_image(file):
+def ReTrieveFile(input_file_name):
+    headers = {
+        "X-API-Key": REM_BG_API_KEY,
+    }
+    files = {
+        "image_file": (input_file_name, open(input_file_name, "rb")),
+    }
     return requests.post(
         "https://api.remove.bg/v1.0/removebg",
-        files={"image_file": open(file, "rb")},
-        data={"size": "auto"},
-        headers={"X-Api-Key": REMOVEBG_API}
+        headers=headers,
+        files=files,
+        allow_redirects=True,
+        stream=True,
     )
-
-
-def removebg_video(file):
-    return requests.post(
-        "https://api.unscreen.com/v1.0/videos",
-        files={"video_file": open(file, "rb")},
-        headers={"X-Api-Key": UNSCREEN_API}
-    )
-
-
-
