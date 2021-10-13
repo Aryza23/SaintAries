@@ -5,8 +5,8 @@ import requests
 from datetime import datetime
 from telethon import types
 from telethon.tl import functions
-from Cutiepii_Robot.events import register
-from Cutiepii_Robot import TEMP_DOWNLOAD_DIRECTORY, telethn, SUPPORT_CHAT
+from aries.events import register
+from aries import TEMP_DOWNLOAD_DIRECTORY, telethn, SUPPORT_CHAT
 
 REM_BG_API_KEY = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
