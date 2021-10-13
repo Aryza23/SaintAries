@@ -94,15 +94,15 @@ def aichat(update: Update, context: CallbackContext):
         return
 	
     if message.text and not message.document:
-        if not kuki_message(context, message):
+        if not kuki_message(context, message: Message):
             return
-        Message = message.text
-        bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://kuki-api.tk/api/Raiden/moezilla/message='+Message)
-        Kuki = loads(kukiurl.text)
-        kuki = Kuki['reply']
-        sleep(0.3)
-        message.reply_text(kuki, timeout=20)
+        msg = message.text
+        chat_id = message.chat.id
+        Kuki = requests.get(f"https://kuki-api.tk/api/Raiden/moezilla/message={msg}").json()
+        idz = f"{Kuki['reply']}"
+      
+       await bot.send_chat_action(message.chat.id, "typing")
+       await message.reply_text(idz)
 
 def list_all_chats(update: Update, context: CallbackContext):
     chats = sql.get_all_kuki_chats()
