@@ -1,7 +1,7 @@
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions, types
 
-from ariea.events import register as Kontol
+from aries.events import register as Kontol
 from aries import telethn, ubot
 
 
