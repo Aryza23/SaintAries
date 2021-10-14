@@ -106,37 +106,13 @@ async def hmm(client, message):
         test = msg
         test = test.replace("aries", "hi")
         test = test.replace("bot", "hello")
-        test = test.replace("bot", "Aco")
-        test = test.replace("aries", "aco")
-        test = test.replace("aries", "Luna") #
-        test = test.replace("hi", "luna") #
-        test = test.replace("hello", "hi") #
-        test = test.replace("@IdzXartez adalah pahlawanku.", "gw jomblo.")
-        test = test.replace("My heroes is @IdzXartez", "I'm single.")
-        test = test.replace("Aries", "aries")
-        test = test.replace("I was created by @IdzXartez", "I made myself")
-        test = test.replace("Hello there I am Aries...nice to meet u", "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("Aryza is my Lord" , "Have the control right.")
-        test = test.replace("Hi, My name is Aries Nice to meet you." , "Hi, my friend, what can I do for you today?")
-       
+        test = test.replace("who are you?", "im aries")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
         response = response.replace("hello", "Aries")
         response = response.replace("lol", "bot")
-        response = response.replace("Aco", "aries")
-        response = response.replace("aco", "aries")
-        response = response.replace("Luna", "hi") #
-        response = response.replace("luna", "hello") #
-        response = response.replace("aried", "Aries") #
-        response = response.replace("Saya Jomblo.", "@IdzXartez adalah pahlawanku.")
-        response = response.replace("I'm single.", "My heroes is @IdzXartez")
-        response = response.replace("aries", "Aries")
-        response = response.replace("I made myself", "I was Created by @IdzXartez")
-        response = response.replace("Hi, my friend! Do you want me to tell you a joke?", "Hello there I am Aries...nice to meet u")
-        response = response.replace("Have the control right." , "Aryza is my lord.")
-        response = response.replace("Hi, my friend, what can I do for you today?" , "Hi, My name is Aries Nice to meet you")
-
+        response = response.replace("im aries", "who are you?")
         pro = response
         try:
             await aries.send_chat_action(message.chat.id, "typing")
@@ -188,36 +164,13 @@ async def hmm(client, message):
 
         test = test.replace("aries", "hi")
         test = test.replace("bot", "hello")
-        test = test.replace("bot", "Aco")
-        test = test.replace("aries", "aco")
-        test = test.replace("aries", "Luna") #
-        test = test.replace("hi", "luna") #
-        test = test.replace("hello", "hi") #
-        test = test.replace("@IdzXartez adalah pahlawanku.", "gw jomblo.")
-        test = test.replace("My heroes is @IdzXartez", "I'm single.")
-        test = test.replace("Aries", "aries")
-        test = test.replace("I was created by @IdzXartez", "I made myself")
-        test = test.replace("Hello there I am Aries...nice to meet u", "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("Aryza is my Lord" , "Have the control right.")
-        test = test.replace("Hi, My name is Aries Nice to meet you." , "Hi, my friend, what can I do for you today?")
-       
+        test = test.replace("who are you?", "im aries")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
         response = response.replace("hello", "Aries")
         response = response.replace("lol", "bot")
-        response = response.replace("Aco", "aries")
-        response = response.replace("aco", "aries")
-        response = response.replace("Luna", "hi") #
-        response = response.replace("luna", "hello") #
-        response = response.replace("aried", "Aries") #
-        response = response.replace("Saya Jomblo.", "@IdzXartez adalah pahlawanku.")
-        response = response.replace("I'm single.", "My heroes is @IdzXartez")
-        response = response.replace("aries", "Aries")
-        response = response.replace("I made myself", "I was Created by @IdzXartez")
-        response = response.replace("Hi, my friend! Do you want me to tell you a joke?", "Hello there I am Aries...nice to meet u")
-        response = response.replace("Have the control right." , "Aryza is my lord.")
-        response = response.replace("Hi, my friend, what can I do for you today?" , "Hi, My name is Aries Nice to meet you")
+        response = response.replace("im aries", "who are you?")
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -277,35 +230,12 @@ async def inuka(client, message):
         except:
             return
 
-        test = test.replace("aries", "hi")
-        test = test.replace("bot", "hello")
-        test = test.replace("bot", "Aco")
-        test = test.replace("aries", "aco")
-        test = test.replace("aries", "Luna") #
-        test = test.replace("hi", "luna") #
-        test = test.replace("hello", "hi") #
-        test = test.replace("@IdzXartez adalah pahlawanku.", "gw jomblo.")
-        test = test.replace("My heroes is @IdzXartez", "I'm single.")
-        test = test.replace("Aries", "aries")
-        test = test.replace("I was created by @IdzXartez", "I made myself")
-        test = test.replace("Hello there I am Aries...nice to meet u", "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("Aryza is my Lord" , "Have the control right.")
-        test = test.replace("Hi, My name is Aries Nice to meet you." , "Hi, my friend, what can I do for you today?")
+    test = test.replace("aries", "hi")
+    test = test.replace("bot", "hello")
 
-        response = response.replace("hello", "Aries")
-        response = response.replace("lol", "bot")
-        response = response.replace("Aco", "aries")
-        response = response.replace("aco", "aries")
-        response = response.replace("Luna", "hi") #
-        response = response.replace("luna", "hello") #
-        response = response.replace("aried", "Aries") #
-        response = response.replace("Saya Jomblo.", "@IdzXartez adalah pahlawanku.")
-        response = response.replace("I'm single.", "My heroes is @IdzXartez")
-        response = response.replace("aries", "Aries")
-        response = response.replace("I made myself", "I was Created by @IdzXartez")
-        response = response.replace("Hi, my friend! Do you want me to tell you a joke?", "Hello there I am Aries...nice to meet u")
-        response = response.replace("Have the control right." , "Aryza is my lord.")
-        response = response.replace("Hi, my friend, what can I do for you today?" , "Hi, My name is Aries Nice to meet you")
+    response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
+    response = response.replace("hi", "Aries")
+    response = response.replace("bot", "hello")
 
     pro = response
     if not "en" in lan and not lan == "":
@@ -319,7 +249,7 @@ async def inuka(client, message):
 
 
 @aries.on_message(
-    filters.regex("bot|aries|hi|hello|lol|aryza|Aryza|Aries")
+    filters.regex("bot|aries|hi|hello|lol")
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.forwarded
@@ -371,35 +301,11 @@ async def inuka(client, message):
         except:
             return
 
-        test = test.replace("aries", "hi")
-        test = test.replace("bot", "hello")
-        test = test.replace("bot", "Aco")
-        test = test.replace("aries", "aco")
-        test = test.replace("aries", "Luna") #
-        test = test.replace("hi", "luna") #
-        test = test.replace("hello", "hi") #
-        test = test.replace("@IdzXartez adalah pahlawanku.", "gw jomblo.")
-        test = test.replace("My heroes is @IdzXartez", "I'm single.")
-        test = test.replace("Aries", "aries")
-        test = test.replace("I was created by @IdzXartez", "I made myself")
-        test = test.replace("Hello there I am Aries...nice to meet u", "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("Aryza is my Lord" , "Have the control right.")
-        test = test.replace("Hi, My name is Aries Nice to meet you." , "Hi, my friend, what can I do for you today?")
-        response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-        response = response.replace("hello", "Aries")
-        response = response.replace("lol", "bot")
-        response = response.replace("Aco", "aries")
-        response = response.replace("aco", "aries")
-        response = response.replace("Luna", "hi") #
-        response = response.replace("luna", "hello") #
-        response = response.replace("aried", "Aries") #
-        response = response.replace("Saya Jomblo.", "@IdzXartez adalah pahlawanku.")
-        response = response.replace("I'm single.", "My heroes is @IdzXartez")
-        response = response.replace("aries", "Aries")
-        response = response.replace("I made myself", "I was Created by @IdzXartez")
-        response = response.replace("Hi, my friend! Do you want me to tell you a joke?", "Hello there I am Aries...nice to meet u")
-        response = response.replace("Have the control right." , "Aryza is my lord.")
-        response = response.replace("Hi, my friend, what can I do for you today?" , "Hi, My name is Aries Nice to meet you")
+    test = test.replace("aries", "hi")
+    test = test.replace("bot", "hello")
+    response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
+    response = response.replace("hello", "Aries")
+    response = response.replace("lol", "bot")
 
     pro = response
     if not "en" in lan and not lan == "":
