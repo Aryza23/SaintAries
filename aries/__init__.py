@@ -14,6 +14,7 @@ from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
 from pyrogram.types import Chat, User
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
+import heroku3
 
 StartTime = time.time()
 
