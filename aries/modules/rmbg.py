@@ -72,7 +72,7 @@ async def _(event):
         await event.reply("Background Removed in {} seconds".format(ms))
     else:
         await event.reply(
-            "remove.bg API returned Errors. Please report to @Black_Knights_Union_Support\n`{}".format(
+            "remove.bg API returned Errors. Please report to @idzeroidsupport\n`{}".format(
                 output_file_name.content.decode("UTF-8")
             )
         )
