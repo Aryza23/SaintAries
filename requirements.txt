@@ -54,9 +54,6 @@ TgCrypto
 Pyrogram
 humanize
 PyDictionary
-youtube-dl
-ytdl
-pytube
 youtube_search_python
 lyrics_extractor
 asyncio
