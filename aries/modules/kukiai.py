@@ -127,7 +127,7 @@ def kuki_message(context: CallbackContext, message):
         return False
         
 
-def chatbot(update: Update, context: CallbackContext):
+def ai(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -165,25 +165,25 @@ def list_all_chats(update: Update, context: CallbackContext):
 __mod_name__ = "Aries AI"
 
 
-CHATBOTK_HANDLER = CommandHandler("chatbot", kuki, run_async=True)
+AIK_HANDLER = CommandHandler("ai", kuki, run_async=True)
 ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", run_async=True)
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", run_async=True)
-CHATBOT_HANDLER = MessageHandler(
+AI_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), chatbot, kuki, run_async=True)
+                    & ~Filters.regex(r"^\/")), ai, kuki, run_async=True)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
 
 dispatcher.add_handler(ADD_CHAT_HANDLER)
-dispatcher.add_handler(CHATBOTK_HANDLER)
+dispatcher.add_handler(AIK_HANDLER)
 dispatcher.add_handler(RM_CHAT_HANDLER)
 dispatcher.add_handler(LIST_ALL_CHATS_HANDLER)
-dispatcher.add_handler(CHATBOT_HANDLER)
+dispatcher.add_handler(AI_HANDLER)
 
 __handlers__ = [
     ADD_CHAT_HANDLER,
-    CHATBOTK_HANDLER,
+    AIK_HANDLER,
     RM_CHAT_HANDLER,
     LIST_ALL_CHATS_HANDLER,
-    CHATBOT_HANDLER,
+    AI_HANDLER,
 ]
