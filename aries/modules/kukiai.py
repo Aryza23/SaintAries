@@ -104,11 +104,11 @@ def kuki(update: Update, context: CallbackContext):
     msg = "Choose an option to activated aries ai"
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            text="✅",
+            text="ON",
             callback_data="add_chat({})")],
        [
         InlineKeyboardButton(
-            text="❎",
+            text="OFF",
             callback_data="rm_chat({})")]])
     message.reply_text(
         msg,
@@ -118,7 +118,7 @@ def kuki(update: Update, context: CallbackContext):
 
 def kuki_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
-    if message.text.lower() == "aryza":
+    if message.text.lower() == "kuki":
         return True
     if reply_message:
         if reply_message.from_user.id == context.bot.get_me().id:
@@ -127,7 +127,7 @@ def kuki_message(context: CallbackContext, message):
         return False
         
 
-def ariesai(update: Update, context: CallbackContext):
+def chatbot(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -165,25 +165,25 @@ def list_all_chats(update: Update, context: CallbackContext):
 __mod_name__ = "Aries AI"
 
 
-ARIESAIK_HANDLER = CommandHandler("ariesai", kuki, run_async=True)
+CHATBOTK_HANDLER = CommandHandler("chatbot", kuki, run_async=True)
 ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", run_async=True)
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", run_async=True)
-ARIESAI_HANDLER = MessageHandler(
+CHATBOT_HANDLER = MessageHandler(
     Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), ariesai, kuki, run_async=True)
+                    & ~Filters.regex(r"^\/")), chatbot, kuki, run_async=True)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, run_async=True)
 
 dispatcher.add_handler(ADD_CHAT_HANDLER)
-dispatcher.add_handler(ARIESAIK_HANDLER)
+dispatcher.add_handler(CHATBOTK_HANDLER)
 dispatcher.add_handler(RM_CHAT_HANDLER)
 dispatcher.add_handler(LIST_ALL_CHATS_HANDLER)
-dispatcher.add_handler(ARIESAI_HANDLER)
+dispatcher.add_handler(CHATBOT_HANDLER)
 
 __handlers__ = [
     ADD_CHAT_HANDLER,
-    ARIESAIK_HANDLER,
+    CHATBOTK_HANDLER,
     RM_CHAT_HANDLER,
     LIST_ALL_CHATS_HANDLER,
-    ARIESAI_HANDLER,
+    CHATBOT_HANDLER,
 ]
