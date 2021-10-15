@@ -249,7 +249,7 @@ async def inuka(client, message):
 
 
 @aries.on_message(
-    filters.regex("bot|aries|hi|hello|lol")
+    filters.regex("Aries|aries|hi|hello|lol")
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.forwarded
@@ -302,10 +302,14 @@ async def inuka(client, message):
             return
 
     test = test.replace("aries", "hi")
-    test = test.replace("bot", "hello")
+    test = test.replace("bot", "Im Human")
+    test = test.replace("hello, "👋")
+    test = test.replace("lol", "😂")
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-    response = response.replace("hello", "Aries")
-    response = response.replace("lol", "bot")
+    response = response.replace("Hi", "Aries")
+    response = response.replace("Im Human", "bot")
+    response = response.replace("👋", "hello")
+    response = response.replace("😂", "lol")
 
     pro = response
     if not "en" in lan and not lan == "":
