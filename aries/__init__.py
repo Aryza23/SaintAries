@@ -7,6 +7,7 @@ import time
 import spamwatch
 import telegram.ext as tg
 from aiohttp import ClientSession
+from redis import StrictRedis
 from Python_ARQ import ARQ
 from telethon import TelegramClient
 from telethon.sessions import MemorySession
@@ -80,6 +81,7 @@ if ENV:
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
+    REDIS_URL = os.environ.get("REDIS_URL", None)
     IDZ = os.environ.get("IDZ", "IdzXartez")
     BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
     ARQ_API = os.environ.get("ARQ_API", None)
@@ -162,6 +164,7 @@ else:
     MONGO_DB_URI = Config.MONGO_DB_URI
     ARQ_API = Config.ARQ_API_KEY
     ARQ_API_URL = Config.ARQ_API_URL
+    REDIS_URL = Config.REDIS_URL
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
     TEMP_DOWNLOAD_DIRECTORY = Config.TEMP_DOWNLOAD_DIRECTORY
@@ -195,6 +198,24 @@ DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1669508271)
 
+REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
+
+try:
+
+    REDIS.ping()
+
+    LOGGER.info("[Redis]: Connecting To Redis Database")
+
+except BaseException:
+
+    raise Exception("[REDIS ERROR]: Something Wrong In Redis Database Is Not Alive, Please Check Again.")
+
+finally:
+
+   REDIS.ping()
+
+   LOGGER.info("[REDIS]: Connection To Redis Database Successfully!")
+    
 
 if not SPAMWATCH_API:
     sw = None
