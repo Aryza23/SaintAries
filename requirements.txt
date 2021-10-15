@@ -23,6 +23,7 @@ aiofiles
 ffmpeg-python
 spongemock
 zalgo-text
+rich
 geopy
 nltk
 psutil
