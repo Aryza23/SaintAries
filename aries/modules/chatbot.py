@@ -1,5 +1,6 @@
 # AI Chat (C) 2020-2021 by @InukaAsith
 
+import html
 import emoji
 import re
 import aiohttp
