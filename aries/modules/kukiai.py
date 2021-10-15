@@ -140,7 +140,7 @@ def ariesai(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKItg111XlOZ/message='+Message)
+        kukiurl = requests.get('kukiapi.xyz/api/apikey=KUKIIpKP9ma73/botname/ownername/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
