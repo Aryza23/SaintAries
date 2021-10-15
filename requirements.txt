@@ -35,7 +35,7 @@ jikanpy
 speedtest-cli
 coffeehouse==2.2.4
 regex
-bleach
+bleach==4.1.0
 wikipedia
 markdown2>=2.4.0
 pybase64
@@ -44,11 +44,11 @@ telegraph
 heroku3
 spamwatch
 alphabet_detector
-pyrate-limiter
-cachetools
+pyrate-limiter==2.4.7
+cachetools==4.2.4
 python-rapidjson==1.4
-ujson==3.0.0
-pretty_errors
+ujson==4.2.0
+pretty-errors==1.2.24
 pygithub
 TgCrypto
 Pyrogram
