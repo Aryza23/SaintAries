@@ -132,19 +132,18 @@ def ariesai(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
     bot = context.bot
     is_kuki = sql.is_kuki(chat_id)
-    if not is_kuki:
-        return
-	
-    if message.text and not message.document:
-        if not kuki_message(context, message):
-            return
-        Message = message.text
-        bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('https://www.kukiapi.xyz/api/apikey=KUKIIpKP9ma73/botname/ownername/message='+Message)
-        Kuki = json.loads(kukiurl.text)
-        kuki = Kuki['reply']
-        sleep(0.3)
-        message.reply_text(kuki, timeout=60)
+ if not is_kuki:
+     return
+ if message.text and not message.document:
+     if not kuki_message(context, message):
+         return
+ Message = message.text
+ bot.send_chat_action(chat_id, action="typing")
+ kukiurl = requests.get('https://kukiapi.xyz/api/apikey=KUKItg111XlOZ/yuzuki/moezill/message='+Message)
+ Kuki = json.loads(kukiurl.text)
+ kuki = Kuki['reply']
+ sleep(0.3)
+ message.reply_text(kuki, timeout=60)
 
 def list_all_chats(update: Update, context: CallbackContext):
     chats = sql.get_all_kuki_chats()
