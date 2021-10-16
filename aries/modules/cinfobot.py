@@ -1,3 +1,5 @@
+# File part Aries by @IdzXartez
+
 import os
 import time
 import math
@@ -352,7 +354,7 @@ async def broadcast(bot, update):
 	os.remove('broadcast.txt')
 
 
-@Bot.on_message(filters.private & filters.command("status"), group=5)
+@pbot.on_message(filters.private & filters.command("status"), group=5)
 async def status(bot, update):
     total_users = await db.total_users_count()
     text = "**Bot Status**\n"
