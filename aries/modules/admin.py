@@ -230,7 +230,7 @@ def promote(update: Update, context: CallbackContext) -> str:
 
     log_message = (
         f"<b>{html.escape(chat.title)}:</b>\n"
-        f"🔥 Promoted\n"
+        f"#PROMOTED\n"
         f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
         f"<b>User:</b> {mention_html(user_member.user.id, user_member.user.first_name)}"
     )
@@ -306,7 +306,7 @@ def lowpromote(update: Update, context: CallbackContext) -> str:
 
     log_message = (
         f"<b>{html.escape(chat.title)}:</b>\n"
-        f"✅ LowPromoted\n"
+        f"#LOWPROMOTED\n"
         f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
         f"<b>User:</b> {mention_html(user_member.user.id, user_member.user.first_name)}"
     )
@@ -389,7 +389,7 @@ def fullpromote(update: Update, context: CallbackContext) -> str:
 
     log_message = (
         f"<b>{html.escape(chat.title)}:</b>\n"
-        f"👑 FullPromoted\n"
+        f"#FULLPROMOTED\n"
         f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
         f"<b>User:</b> {mention_html(user_member.user.id, user_member.user.first_name)}"
     )
@@ -457,7 +457,7 @@ def demote(update: Update, context: CallbackContext) -> str:
 
         log_message = (
             f"<b>{html.escape(chat.title)}:</b>\n"
-            f"💢 Demoted\n"
+            f"#DEMOTED\n"
             f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
             f"<b>User:</b> {mention_html(user_member.user.id, user_member.user.first_name)}"
         )
@@ -577,7 +577,7 @@ def pin(update: Update, context: CallbackContext) -> str:
                 raise
         log_message = (
             f"<b>{html.escape(chat.title)}:</b>\n"
-            f"✅ Pinned\n"
+            f"#PINNED\n"
             f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}"
         )
 
@@ -603,7 +603,7 @@ def unpin(update: Update, context: CallbackContext) -> str:
 
     log_message = (
         f"<b>{html.escape(chat.title)}:</b>\n"
-        f"✅ Unpinned\n"
+        f"#UNPINNED\n"
         f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}"
     )
 
@@ -708,7 +708,7 @@ def adminlist(update, context):
         #    name = escape_markdown("@" + user.username)
         if status == "creator":
             text += "\n 👑 Creator:"
-            text += "\n<code> ⇝ </code>{}\n".format(name)
+            text += "\n<code> 🔘 </code>{}\n".format(name)
 
             if custom_title:
                 text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
@@ -744,11 +744,11 @@ def adminlist(update, context):
                 normal_admin_list.append(name)
 
     for admin in normal_admin_list:
-        text += "\n<code> ⇝ </code>{}".format(admin)
+        text += "\n<code> 🔘 </code>{}".format(admin)
 
     for admin_group in custom_admin_list.copy():
         if len(custom_admin_list[admin_group]) == 1:
-            text += "\n<code> ⇝ </code>{} | <code>{}</code>".format(
+            text += "\n<code> 🔘 </code>{} | <code>{}</code>".format(
                 custom_admin_list[admin_group][0],
                 html.escape(admin_group),
             )
@@ -758,10 +758,11 @@ def adminlist(update, context):
     for admin_group, value in custom_admin_list.items():
         text += "\n🚨 <code>{}</code>".format(admin_group)
         for admin in value:
-            text += "\n<code> ⇝ </code>{}".format(admin)
+            text += "\n<code> 🔘 </code>{}".format(admin)
         text += "\n"
 
-        try:
+
+    try:
         msg.edit_text(text, parse_mode=ParseMode.HTML)
     except BadRequest:  # if original message is deleted
         return
@@ -769,38 +770,38 @@ def adminlist(update, context):
 
 __help__ = """
 *🔘 User Commands*:
-  ➡ `/admins`*:* list of admins in the chat
-  ➡ `/pinned`*:* to get the current pinned message.
+  ➡  `/admins`*:* list of admins in the chat
+  ➡  `/pinned`*:* to get the current pinned message.
 *🔘 The Following Commands are Admins only:* 
-  ➡ `/pin`*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
-  ➡ `/unpin`*:* unpins the currently pinned message
-  ➡ `/invitelink`*:* gets invitelink
-  ➡ `/promote`*:* promotes the user replied to
-  ➡ `/fullpromote`*:* promotes the user replied to with full rights
-  ➡ `/demote`*:* demotes the user replied to
-  ➡ `/title <title here>`*:* sets a custom title for an admin that the bot promoted
-  ➡ `/admincache`*:* force refresh the admins list
-  ➡ `/del`*:* deletes the message you replied to
-  ➡ `/purge`*:* deletes all messages between this and the replied to message.
-  ➡ `/purge <integer X>`*:* deletes the replied message, and X messages following it if replied to a message.
-  ➡ `/setgtitle <text>`*:* set group title
-  ➡ `/setgpic`*:* reply to an image to set as group photo
-  ➡ `/setdesc`*:* Set group description
-  ➡ `/setsticker`*:* Set group sticker
+  ➡  `/pin`*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
+  ➡  `/unpin`*:* unpins the currently pinned message
+  ➡  `/invitelink`*:* gets invitelink
+  ➡  `/promote`*:* promotes the user replied to
+  ➡  `/fullpromote`*:* promotes the user replied to with full rights
+  ➡  `/demote`*:* demotes the user replied to
+  ➡  `/title <title here>`*:* sets a custom title for an admin that the bot promoted
+  ➡  `/admincache`*:* force refresh the admins list
+  ➡  `/del`*:* deletes the message you replied to
+  ➡  `/purge`*:* deletes all messages between this and the replied to message.
+  ➡  `/purge <integer X>`*:* deletes the replied message, and X messages following it if replied to a message.
+  ➡  `/setgtitle <text>`*:* set group title
+  ➡  `/setgpic`*:* reply to an image to set as group photo
+  ➡  `/setdesc`*:* Set group description
+  ➡  `/setsticker`*:* Set group sticker
 
 *🔘 Log Channel*:
-  ➡ `/logchannel`*:* get log channel info
-  ➡ `/setlog`*:* set the log channel.
-  ➡ `/unsetlog`*:* unset the log channel.
+  ➡  `/logchannel`*:* get log channel info
+  ➡  `/setlog`*:* set the log channel.
+  ➡  `/unsetlog`*:* unset the log channel.
 *⚠ Setting the log channel is done by*:
- ⇝  adding the bot to the desired channel (as an admin!)
- ⇝  sending `/setlog` in the channel
- ⇝  forwarding the `/setlog` to the group
+ ✅  adding the bot to the desired channel (as an admin!)
+ ✅  sending `/setlog` in the channel
+ ✅  forwarding the `/setlog` to the group
  
 *🔘 Rules*:
-  ➡ `/rules`*:* get the rules for this chat.
-  ➡ `/setrules <your rules here>`*:* set the rules for this chat.
-  ➡ `/clearrules`*:* clear the rules for this chat.
+  ➡  `/rules`*:* get the rules for this chat.
+  ➡  `/setrules <your rules here>`*:* set the rules for this chat.
+  ➡  `/clearrules`*:* clear the rules for this chat.
 """
 
 SET_DESC_HANDLER = CommandHandler("setdesc", set_desc, filters=Filters.chat_type.groups, run_async=True)
