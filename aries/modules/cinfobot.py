@@ -21,7 +21,7 @@ from aries.modules.mongo.ci_mongo import Database
 from aries import MONGO_DB_URI
 from aries import pbot
 
-UPDATE_CHANNEL = "artezid"
+UPDATE_CHANNEL = "idzeroidsupport"
 BOT_OWNER = "1914584978"
 
 db = Database(MONGO_DB_URI, "FnCountryInfoBot")
@@ -68,7 +68,7 @@ ABOUT_TEXT = """--**About Me**-- 😎
 
 📡 **Server :** [Heroku](https://heroku.com)"""
 
-FORCE_SUBSCRIBE_TEXT = "<code>Sorry Dear You Must Join My Updates Channel for using me 😌😉....</code>"
+FORCE_SUBSCRIBE_TEXT = "<code>to stop this message and open other features press the activation button and press join or subscribe....</code>"
 
 START_BUTTONS = InlineKeyboardMarkup(
         [[
@@ -193,7 +193,7 @@ async def countryinfo(bot, update):
             await update.reply_text(
 		  text=FORCE_SUBSCRIBE_TEXT,
 		  reply_markup=InlineKeyboardMarkup(
-			  [[InlineKeyboardButton(text="😎 Join Channel 😎", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
+			  [[InlineKeyboardButton(text="😎 ACTIVATION 😎", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
 		  )
 	    )
             return
@@ -250,7 +250,7 @@ async def countryinfo_inline(bot, update):
                         description=join_updates_channel_text,
                         input_message_content=InputTextMessageContent(FORCE_SUBSCRIBE_TEXT),
                         reply_markup=InlineKeyboardMarkup(
-                            [[InlineKeyboardButton(text="😎 Join Channel 😎", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
+                            [[InlineKeyboardButton(text="😎 ACTIVATION 😎", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
                         )
                     )
                 ]
