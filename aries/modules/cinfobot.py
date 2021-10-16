@@ -21,36 +21,13 @@ from aries.modules.mongo.ci_mongo import Database
 from aries import MONGO_DB_URI
 from aries import pbot
 
-UPDATE_CHANNEL = "idzeroidsupport"
+UPDATE_CHANNEL = "artezid"
 BOT_OWNER = "1914584978"
 
 db = Database(MONGO_DB_URI, "FnCountryInfoBot")
 
 
 
-START_TEXT = """Hello {} 😌
-I am a Aries i will hellp you .
-
->> `I can find information of any country of the world.`
->> `I can upload any media in pixeldrain.`
-
-Made by @IdzXartez"""
-
-HELP_TEXT = """**Hey, Follow these steps:**
-
-➠ Just send me a country name 
-➠ Then I will check and send you the informations
-➠ To uploud media in pixeldrain
-➠ Send me any media
-
-**Available Commands**
-
-/start - Checking Bot Online
-/help - For more help
-/about - For more about me
-/status - For bot status
-
-Made by @IdzXartez"""
 
 ABOUT_TEXT = """--**About Me**-- 😎
 
@@ -70,20 +47,7 @@ ABOUT_TEXT = """--**About Me**-- 😎
 
 FORCE_SUBSCRIBE_TEXT = "<code>to stop this message and open other features press the activation button and press join or subscribe....</code>"
 
-START_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('⚙ Help', callback_data='help'),
-        InlineKeyboardButton('About 🔰', callback_data='about'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
-HELP_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('🏘 Home', callback_data='home'),
-        InlineKeyboardButton('About 🔰', callback_data='about'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
+
 ABOUT_BUTTONS = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🏘 Home', callback_data='home'),
@@ -101,19 +65,7 @@ ERROR_BUTTON = InlineKeyboardMarkup(
 
 @pbot.on_callback_query()
 async def cb_handler(bot, update):
-    if update.data == "home":
-        await update.message.edit_text(
-            text=START_TEXT.format(update.from_user.mention),
-            reply_markup=START_BUTTONS,
-            disable_web_page_preview=True
-        )
-    elif update.data == "help":
-        await update.message.edit_text(
-            text=HELP_TEXT,
-            reply_markup=HELP_BUTTONS,
-            disable_web_page_preview=True
-        )
-    elif update.data == "about":
+    if update.data == "about":
         await update.message.edit_text(
             text=ABOUT_TEXT.format((await bot.get_me()).username),
             reply_markup=ABOUT_BUTTONS,
@@ -121,29 +73,6 @@ async def cb_handler(bot, update):
         )
     else:
         await update.message.delete()
-
-
-@pbot.on_message(filters.private & filters.command(["start"]))
-async def start(bot, update):
-    if not await db.is_user_exist(update.from_user.id):
-	    await db.add_user(update.from_user.id)
-    await update.reply_text(
-        text=START_TEXT.format(update.from_user.mention),
-        disable_web_page_preview=True,
-	reply_markup=START_BUTTONS
-    )
-
-
-@pbot.on_message(filters.private & filters.command(["help"]))
-async def help(bot, update):
-    if not await db.is_user_exist(update.from_user.id):
-	    await db.add_user(update.from_user.id)
-    await update.reply_text(
-        text=HELP_TEXT,
-      	disable_web_page_preview=True,
-	reply_markup=HELP_BUTTONS
-    )
-
 
 @pbot.on_message(filters.private & filters.command(["about"]))
 async def about(bot, update):
