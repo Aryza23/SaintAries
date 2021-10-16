@@ -16,13 +16,13 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQue
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 from aries.modules.mongo.ci_mongo import Database
-from aries import MONGO_DB_URL
+from aries import MONGO_DB_URI
 from aries import pbot
 
 UPDATE_CHANNEL = "artezid"
 BOT_OWNER = int(os.environ["BOT_OWNER"])
 
-db = Database(MONGO_DB_URL, "FnCountryInfoBot")
+db = Database(MONGO_DB_URI, "FnCountryInfoBot")
 
 
 
