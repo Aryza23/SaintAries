@@ -11,14 +11,6 @@ from aries.more import pixeldrain
 from aries import pbot
 
 
-@pbot.on_message(filters.private & filters.command("start"))
-async def start(bot, update):
-    await update.reply_text(
-        text=f"Hello {update.from_user.mention}, Please send a media for pixeldrain.com stream link.\n\nMade by @IdzXartez",
-        disable_web_page_preview=True,
-        quote=True
-    )
-
 
 @pbot.on_message(filters.private & filters.media)
 async def media_filter(bot, update):
