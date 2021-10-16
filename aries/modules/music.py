@@ -16,8 +16,7 @@ from aries.conf import get_str_key
 from aries.pyrogramee.pluginshelper import get_text, progress
 from aries import pbot
 
-GENIUS = get_str_key("GENIUS_API_TOKEN", None)
-
+GENIUS = "LstbAM4nzj2txUk2DGKh-PC0z6BxY1JYhMxMdj1NdRtmm7B7XYs0WcYBj4bFLK"
 
 @pbot.on_message(filters.command(["vsong", "video"]))
 async def ytmusic(client, message: Message):
@@ -84,7 +83,7 @@ async def ytmusic(client, message: Message):
             os.remove(files)
 
 
-@pbot.on_message(filters.command(["music", "song"]))
+@pbot.on_message(filters.command(["music", "song", "lagu"]))
 async def ytmusic(client, message: Message):
     urlissed = get_text(message)
     if not urlissed:
@@ -133,7 +132,7 @@ async def ytmusic(client, message: Message):
         await pablo.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         return
     c_time = time.time()
-    capy = f"**Song Name :** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
+    capy = f"**Song Name :** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}` \n**Powered By :**__@IdzXartez__"
     file_stark = f"{ytdl_data['id']}.mp3"
     await client.send_audio(
         message.chat.id,
@@ -254,7 +253,7 @@ async def lyrics(client, message):
 
     if GENIUS is None:
         await message.reply(
-            "`Provide genius access token to config.py or Heroku Config first kthxbye!`"
+            "`Provide genius access token to config.py or Heroku Config first ok thx bye!`"
         )
     else:
         genius = lyricsgenius.Genius(GENIUS)
