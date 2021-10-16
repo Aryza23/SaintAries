@@ -20,13 +20,10 @@ from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 from aries.modules.mongo.ci_mongo import Database
 from aries import MONGO_DB_URI
 from aries import pbot
+from aries import db
 
 UPDATE_CHANNEL = "artezid"
 BOT_OWNER = "1914584978"
-
-db = Database(MONGO_DB_URI, "FnCountryInfoBot")
-
-
 
 
 ABOUT_TEXT = """--**About Me**-- 😎
@@ -48,27 +45,12 @@ ABOUT_TEXT = """--**About Me**-- 😎
 FORCE_SUBSCRIBE_TEXT = "<code>to stop this message and open other features press the activation button and press join or subscribe....</code>"
 
 
-ABOUT_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('🏘 Home', callback_data='home'),
-        InlineKeyboardButton('Help ⚙', callback_data='help'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
-ERROR_BUTTON = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('⚙ Help', callback_data='help'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
-
 
 @pbot.on_callback_query()
 async def cb_handler(bot, update):
     if update.data == "about":
         await update.message.edit_text(
             text=ABOUT_TEXT.format((await bot.get_me()).username),
-            reply_markup=ABOUT_BUTTONS,
             disable_web_page_preview=True
         )
     else:
