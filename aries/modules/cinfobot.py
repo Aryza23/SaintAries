@@ -20,7 +20,7 @@ from aries import MONGO_DB_URI
 from aries import pbot
 
 UPDATE_CHANNEL = "artezid"
-BOT_OWNER = int(os.environ["BOT_OWNER"])
+BOT_OWNER = "1914584978"
 
 db = Database(MONGO_DB_URI, "FnCountryInfoBot")
 
