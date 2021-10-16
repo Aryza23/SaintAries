@@ -15,6 +15,17 @@ from youtubesearchpython import SearchVideos
 from aries.conf import get_str_key
 from aries.pyrogramee.pluginshelper import get_text, progress
 from aries import pbot
+import aiohttp
+import youtube_dl
+from aries import BOT_USERNAME
+from youtube_search import YoutubeSearch
+
+
+
+def time_to_seconds(time):
+    stringt = str(time)
+    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
+
 
 GENIUS = "LstbAM4nzj2txUk2DGKh-PC0z6BxY1JYhMxMdj1NdRtmm7B7XYs0WcYBj4bFLK"
 
@@ -83,78 +94,60 @@ async def ytmusic(client, message: Message):
             os.remove(files)
 
 
-@pbot.on_message(filters.command(["music", "song", "lagu"]))
-async def ytmusic(client, message: Message):
-    urlissed = get_text(message)
-    if not urlissed:
-        await client.send_message(
-            message.chat.id,
-            "Invalid Command Syntax, Please Check Help Menu To Know More!",
-        )
-        return
-    pablo = await client.send_message(
-        message.chat.id, f"`Getting {urlissed} From Youtube Servers. Please Wait.`"
-    )
-    search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
-    mi = search.result()
-    mio = mi["search_result"]
-    mo = mio[0]["link"]
-    mio[0]["duration"]
-    thum = mio[0]["title"]
-    fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
-    kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
-    await asyncio.sleep(0.6)
-    sedlyf = wget.download(kekme)
-    opts = {
-        "format": "bestaudio",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "writethumbnail": True,
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": "720",
-            }
-        ],
-        "outtmpl": "%(id)s.mp3",
-        "quiet": True,
-        "logtostderr": False,
-    }
-    try:
-        with YoutubeDL(opts) as ytdl:
-            ytdl_data = ytdl.extract_info(mo, download=True)
-    except Exception as e:
-        await pablo.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
-        return
-    c_time = time.time()
-    capy = f"**Song Name :** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}` \n**Powered By :**__@IdzXartez__"
-    file_stark = f"{ytdl_data['id']}.mp3"
-    await client.send_audio(
-        message.chat.id,
-        audio=open(file_stark, "rb"),
-        duration=int(ytdl_data["duration"]),
-        title=str(ytdl_data["title"]),
-        performer=str(ytdl_data["uploader"]),
-        thumb=sedlyf,
-        caption=capy,
-        progress=progress,
-        progress_args=(
-            pablo,
-            c_time,
-            f"`Uploading {urlissed} Song From YouTube Music!`",
-            file_stark,
-        ),
-    )
-    await pablo.delete()
-    for files in (sedlyf, file_stark):
-        if files and os.path.exists(files):
-            os.remove(files)
+@pbot.on_message(filters.command(["song", f"song@{BOT_USERNAME}"]))
+def song(client, message):
 
+    user_id = message.from_user.id
+    user_name = message.from_user.first_name
+    rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
+
+    query = ''.join(' ' + str(i) for i in message.command[1:])
+    print(query)
+    m = message.reply('🔎 Finding the song...')
+    ydl_opts = {"format": "bestaudio[ext=m4a]"}
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        link = f"https://youtube.com{results[0]['url_suffix']}"
+        #print(results)
+        title = results[0]["title"][:40]       
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f'thumb{title}.jpg'
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, 'wb').write(thumb.content)
+
+
+        duration = results[0]["duration"]
+        url_suffix = results[0]["url_suffix"]
+        views = results[0]["views"]
+
+    except Exception as e:
+        m.edit(
+            "✖️ Found Nothing. Sorry.\n\nTry another keywork or maybe spell it properly."
+        )
+        print(str(e))
+        return
+    m.edit("`Downloading Song... Please wait ⏱`")
+    try:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            info_dict = ydl.extract_info(link, download=False)
+            audio_file = ydl.prepare_filename(info_dict)
+            ydl.process_info(info_dict)
+        rep = f'🎙 **Title**: [{title[:35]}]({link})\n🎬 **Source**: YouTube\n⏱️ **Duration**: `{duration}`\n👁‍🗨 **Views**: `{views}`\n📤 **By**: @{BOT_USERNAME}'
+        secmul, dur, dur_arr = 1, 0, duration.split(':')
+        for i in range(len(dur_arr)-1, -1, -1):
+            dur += (int(dur_arr[i]) * secmul)
+            secmul *= 60
+        message.reply_audio(audio_file, caption=rep, thumb=thumb_name, parse_mode='md', title=title, duration=dur)
+        m.delete()
+    except Exception as e:
+        m.edit('❌ Error')
+        print(e)
+
+    try:
+        os.remove(audio_file)
+        os.remove(thumb_name)
+    except Exception as e:
+        print(e)
 
 @pbot.on_message(filters.command(["deezer", "dsong"]))
 async def deezer(client, message: Message):
