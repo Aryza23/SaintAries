@@ -6,8 +6,8 @@ import pytgcalls
 calls = pytgcalls.GroupCallFactory(musicbot).get_group_call()
 
 
-@pbot.on_message(filters.command('play'))
-async def play(_,message):
+@pbot.on_message(filters.command('p'))
+async def p(_,message):
   try:
     await musicbot.start()
   except:
