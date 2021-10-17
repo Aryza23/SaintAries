@@ -44,4 +44,4 @@ async def leavevc(_,message):
 async def pause(_,message):
   await calls.pause_stream()
 
-__mod_name__ : "mp"
+__mod_name__ = "mp"
