@@ -6,7 +6,7 @@ npm i -g cwebp
 npm i -g ytdl 
 npm i
 npm i got
-cd app
+cd kuki.js
 npm i https://github.com/Qix-/node-error-ex
 npm install --save err
 npm config set registry https://skimdb.npmjs.com/registry
