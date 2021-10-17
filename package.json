@@ -1,5 +1,5 @@
 {
-  "name": "Telegram-Kuki-Bot",
+  "name": "SaintAries",
   "version": "0.0.2",
   "description": "powerfull telegram Chatbot",
   "main": "kuki.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Moezilla/Telegram-Kuki-Bot.git"
+    "url": "git+https://github.com/idzero23/SaintAries.git"
   },
   "author": "MoeZilla",
   "bugs": {
-    "url": "https://github.com/Moezilla/Telegram-Kuki-Bot/issues"
+    "url": "https://github.com/idzero23/SaintAries/issues"
   },
-  "homepage": "https://github.com/Moezilla/Telegram-Kuki-Bot#readme",
+  "homepage": "https://github.com/idzero23/SaintAries#readme",
   "dependencies": {
     "slimbot": "^5.1.0",
     "kuki-bot-api": "^0.0.4",
