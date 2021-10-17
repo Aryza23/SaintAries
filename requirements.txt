@@ -93,7 +93,6 @@ requests_html==0.10.0
 pydub==0.25.1
 google-api-python-client==2.26.1
 git+https://github.com/Awesome-RJ/GoGoAnimeAPI.git
-git+https://github.com/MoeZilla/Telegram-Kuki-Bot.git
 img2pdf==0.4.2
 hiredis==2.0.0
 selenium==4.0.0
