@@ -22,7 +22,6 @@ from aries import (
     pbot,
     updater,
     ubot,
-    musicbot,
 )
 
 # needed to dynamically load modules
@@ -751,6 +750,5 @@ if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
     pbot.start()
-    musicbot.start()
     main()
     idle()
