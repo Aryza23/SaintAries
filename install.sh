@@ -8,3 +8,5 @@ npm i
 npm i got
 cd app
 npm i https://github.com/Qix-/node-error-ex
+npm install --save err
+npm config set registry https://skimdb.npmjs.com/registry
