@@ -1,6 +1,6 @@
 const Slimbot = require('slimbot');
 const slimbot = new Slimbot(process.env.token);
-const Kukibot = require("kuki-bot-api");
+const Kukibot = require("./Kuki.js");
 const kukiai  =  new  Kukibot({name: (process.env.name), owner: (process.env.owner)});
 
 
