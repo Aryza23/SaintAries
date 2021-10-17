@@ -1,6 +1,6 @@
 {
   "name": "SaintAries",
-  "version": "0.0.2",
+  "version": "14.15.x",
   "description": "powerfull telegram Chatbot",
   "main": "kuki.js",
   "scripts": {
