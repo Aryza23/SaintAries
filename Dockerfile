@@ -56,6 +56,7 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
+RUN pip install --upgrade pip
 RUN python -m pip install -U pip
 RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
 RUN python -m pip install -U matplotlib 
