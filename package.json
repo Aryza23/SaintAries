@@ -7,13 +7,13 @@
     "start": "node kuki.js"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.15.4"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idzero23/SaintAries.git"
   },
-  "author": "MoeZilla",
+  "author": "idzero23",
   "bugs": {
     "url": "https://github.com/idzero23/SaintAries/issues"
   },
