@@ -11,7 +11,7 @@ from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.helper_funcs.chat_status import (is_user_admin)
 from aries.modules.helper_funcs.extraction import extract_user
 
-@run_async
+
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
     name = message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
@@ -23,7 +23,7 @@ __help__ = """
  • `/aries`*:* gives random aries media
  
 """
-ARIES_HANDLER = DisableAbleCommandHandler("aries", aries)
+ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
 
 dispatcher.add_handler(ARIES_HANDLER)
 
