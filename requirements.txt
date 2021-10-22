@@ -1,4 +1,4 @@
-python_arq
+Python_ARQ
 redis
 future
 emoji
