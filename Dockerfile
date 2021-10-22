@@ -56,13 +56,15 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
+RUN pip3 uninstall futures
+RUN pip uninstall futures
+RUN sudo -H pip3 uninstall futures
 RUN pip install --upgrade pip
 RUN python -m pip install -U pip
 RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
 RUN python -m pip install -U matplotlib 
 RUN pip3 install --upgrade pip setuptools
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
-RUN pip uninstall futures
 WORKDIR /root/aries
 ENV PATH="/home/bot/bin:$PATH"
 RUN pip3 install -U -r requirements.txt
