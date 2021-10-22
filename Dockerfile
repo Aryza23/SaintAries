@@ -1,7 +1,11 @@
-FROM python:3.9.7-slim-buster
+# We're using Debian Slim Buster image
+FROM python:3.9.6-slim-buster
+
 ENV PIP_NO_CACHE_DIR 1
-ENV PYTHONUNBUFFERED=1
+
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
+
+# Installing Required Packages
 RUN apt update && apt upgrade -y && \
     apt install --no-install-recommends -y \
     debian-keyring \
@@ -56,13 +60,20 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
-RUN pip install --upgrade pip
-RUN python -m pip install -U pip
-RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
-RUN python -m pip install -U matplotlib 
+
+# Pypi package Repo upgrade
+RUN apt-get install -y ffmpeg python3-pip curl
 RUN pip3 install --upgrade pip setuptools
-RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
-WORKDIR /root/aries
+
 ENV PATH="/home/bot/bin:$PATH"
+
+# make directory
+RUN mkdir /aries/
+COPY . /aries
+WORKDIR /aries
+
+# Install requirements
 RUN pip3 install -U -r requirements.txt
+
+# Starting Worker
 CMD ["python3","-m","aries"]
