@@ -62,8 +62,6 @@ RUN sudo -H pip3 uninstall futures
 RUN pip install --upgrade pip
 RUN python -m pip install -U pip
 RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
-RUN python -m pip install -U matplotlib 
-RUN pip3 install --upgrade pip setuptools
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
 ENV PATH="/home/bot/bin:$PATH"
