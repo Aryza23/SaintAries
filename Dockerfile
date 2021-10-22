@@ -55,7 +55,7 @@ RUN apt update && apt upgrade -y && \
     unzip \
     libopus0 \
     libopus-dev \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
+    && rm -rf /var/apt/lists /var/cache/apt/archives /tmp
 RUN pip3 uninstall futures
 RUN pip uninstall futures
 RUN sudo -H pip3 uninstall futures
