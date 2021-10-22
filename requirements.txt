@@ -96,7 +96,7 @@ pytube==11.0.1
 cryptg==0.2.post4
 aioredis==2.0.0
 carbonnow==0.0.1
-NumPy==1.21.2
+NumPy==1.21.3
 tzlocal==2.0
 #googletrans
 google_trans_new
