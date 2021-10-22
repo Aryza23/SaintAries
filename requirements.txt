@@ -23,8 +23,6 @@ psutil
 aiohttp>=2.2.5
 Pillow>=4.2.0
 CurrencyConverter
-#googletrans
-google_trans_new
 jikanpy
 speedtest-cli
 coffeehouse==2.2.4
@@ -72,3 +70,5 @@ better_profanity
 nudepy
 motor
 cloudscraper
+pendulum
+gpytranslate
