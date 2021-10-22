@@ -1,5 +1,4 @@
 future
-futures
 emoji==1.6.1
 lxml==4.6.3
 wget==3.2
