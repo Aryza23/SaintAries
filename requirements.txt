@@ -1,4 +1,4 @@
-future
+futures==3.0.5
 emoji==1.6.1
 lxml==4.6.3
 wget==3.2
@@ -40,7 +40,7 @@ pybase64
 telethon==1.16.4
 telegraph==1.4.1
 heroku3
-spamwatch==0.3.0
+spamwatch
 alphabet-detector==0.0.7
 pyrate-limiter==2.4.7
 cachetools==4.2.4
