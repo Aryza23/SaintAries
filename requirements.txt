@@ -72,3 +72,4 @@ motor
 cloudscraper
 pendulum
 gpytranslate
+PyDictionary
