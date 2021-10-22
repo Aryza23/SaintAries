@@ -5,17 +5,16 @@ from telegram import TelegramError, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
     CallbackContext,
+    CommandHandler,
     Filters,
     MessageHandler,
-    CommandHandler,
+    run_async,
 )
 
 import aries.modules.sql.users_sql as sql
-from aries.modules.disable import DisableAbleCommandHandler
 from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher
 from aries.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from aries.modules.sql.users_sql import get_all_users
-
 
 USERS_GROUP = 4
 CHAT_GROUP = 5
@@ -35,21 +34,26 @@ def get_user_id(username):
     if not users:
         return None
 
-    if len(users) == 1:
+    elif len(users) == 1:
         return users[0].user_id
-    for user_obj in users:
-        try:
-            userdat = dispatcher.bot.get_chat(user_obj.user_id)
-            if userdat.username == username:
-                return userdat.id
 
-        except BadRequest as excp:
-            if excp.message != "Chat not found":
-                LOGGER.exception("Error extracting user ID")
+    else:
+        for user_obj in users:
+            try:
+                userdat = dispatcher.bot.get_chat(user_obj.user_id)
+                if userdat.username == username:
+                    return userdat.id
+
+            except BadRequest as excp:
+                if excp.message == "Chat not found":
+                    pass
+                else:
+                    LOGGER.exception("Error extracting user ID")
 
     return None
 
 
+@run_async
 @dev_plus
 def broadcast(update: Update, context: CallbackContext):
     to_send = update.effective_message.text.split(None, 1)
@@ -92,9 +96,11 @@ def broadcast(update: Update, context: CallbackContext):
                 except TelegramError:
                     failed_user += 1
         update.effective_message.reply_text(
-            f"Broadcast complete.\nGroups failed: {failed}.\nUsers failed: {failed_user}.",
+            f"Broadcast complete.\nGroups failed: {failed}.\nUsers failed: {failed_user}."
         )
 
+
+@run_async
 def log_user(update: Update, context: CallbackContext):
     chat = update.effective_chat
     msg = update.effective_message
@@ -113,7 +119,7 @@ def log_user(update: Update, context: CallbackContext):
         sql.update_user(msg.forward_from.id, msg.forward_from.username)
 
 
-
+@run_async
 @sudo_plus
 def chats(update: Update, context: CallbackContext):
     all_chats = sql.get_all_chats() or []
@@ -123,11 +129,11 @@ def chats(update: Update, context: CallbackContext):
         try:
             curr_chat = context.bot.getChat(chat.chat_id)
             bot_member = curr_chat.get_member(context.bot.id)
-            chat_members = curr_chat.get_member_count(context.bot.id)
+            chat_members = curr_chat.get_members_count(context.bot.id)
             chatfile += "{}. {} | {} | {}\n".format(
-                P, chat.chat_name, chat.chat_id, chat_members,
+                P, chat.chat_name, chat.chat_id, chat_members
             )
-            P += 1
+            P = P + 1
         except:
             pass
 
@@ -140,6 +146,7 @@ def chats(update: Update, context: CallbackContext):
         )
 
 
+@run_async
 def chat_checker(update: Update, context: CallbackContext):
     bot = context.bot
     try:
@@ -148,7 +155,6 @@ def chat_checker(update: Update, context: CallbackContext):
     except Unauthorized:
         pass
 
-        
 
 def __user_info__(user_id):
     if user_id in [777000, 1087968824]:
@@ -166,18 +172,20 @@ def __stats__():
 def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
+
+__help__ = ""  # no help string
+
 BROADCAST_HANDLER = CommandHandler(
-    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True,
+    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast
 )
-USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, run_async=True)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, run_async=True)
-CHATLIST_HANDLER = CommandHandler("groups", chats, run_async=True)
+USER_HANDLER = MessageHandler(Filters.all & Filters.group, log_user)
+CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.group, chat_checker)
+CHATLIST_HANDLER = CommandHandler("groups", chats)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
-    
-__mod_name__ = "Users"
 
+__mod_name__ = "Users"
 __handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]
