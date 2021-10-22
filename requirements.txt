@@ -24,7 +24,7 @@ zalgo-text==0.6
 geopy
 nltk==3.6.5
 psutil==5.8.0
-aiohttp[speedups]
+aiohttp>=2.2.5
 pillow>=4.2.0
 CurrencyConverter
 googletrans==4.0.0-rc1
