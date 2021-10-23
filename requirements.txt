@@ -52,7 +52,7 @@ pygithub
 TgCrypto
 Pyrogram
 humanize
-PyDictionary
+##PyDictionary
 yt_dlp
 youtube_search_python
 lyrics_extractor
