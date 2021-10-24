@@ -9,7 +9,7 @@ import wget
 from pyrogram import filters
 from pyrogram.types import Message
 from tswift import Song
-from youtube_dl import YoutubeDL
+from yt_dlp import YoutubeDL
 from youtubesearchpython import SearchVideos
 
 from aries.conf import get_str_key
