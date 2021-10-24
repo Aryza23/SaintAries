@@ -73,11 +73,6 @@ async def zombies(event):
     admin = chat.admin_rights
     creator = chat.creator
 
-    # Well
-    if not await is_administrator(user_id=event.from_id, message=event):
-        await event.respond("You're Not An Admin!")
-        return
-
     if not admin and not creator:
         await event.respond("I Am Not An Admin Here!")
         return
@@ -109,5 +104,3 @@ async def zombies(event):
         \n`{del_a}` Zombie Admin Accounts Are Not Removed!"
 
     await cleaning_zombies.edit(del_status)
-
-__mod_name__ = "Zombies"
