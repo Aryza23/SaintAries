@@ -1,8 +1,8 @@
 import os
 import cv2
 from PIL import Image
-from SaintAries.events import register
-from SaintAries import telethn as tbot
+from aries.events import register
+from aries import telethn as tbot
 
 
 @register(pattern="^/tiny ?(.*)")
