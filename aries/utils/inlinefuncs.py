@@ -28,7 +28,7 @@ from search_engine_parser import GoogleSearch
 
 from aries.extrastuff import SUDOERS
 from aries import EVENT_LOGS
-from aries import pbot
+from aries import pbot as app
 from aries.arqclient import arq
 from aries.utils.keyboard import ikb
 from aries.core.tasks import _get_tasks_text, all_tasks, rm_task
