@@ -57,7 +57,7 @@ lyrics_extractor
 asyncio
 cloudscraper==1.2.58
 git+https://github.com/starry69/python-markdown2.git
-dateparser==1.0.0
+dateparser==1.1.0
 pymongo
 dnspython==2.1.0
 secureme==0.0.4
