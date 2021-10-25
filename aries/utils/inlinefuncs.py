@@ -83,7 +83,7 @@ async def inline_help_func(__help__):
             input_message_content=InputTextMessageContent(
                 "Click A Button To Get Started."
             ),
-            thumb_url="https://telegra.ph/file/305f608e9dad3851971ff.jpg",
+            thumb_url="https://telegra.ph/file/02fcf8117a0d6cbf5b4c6.png",
             reply_markup=buttons,
         ),
         InlineQueryResultArticle(
@@ -92,7 +92,7 @@ async def inline_help_func(__help__):
             input_message_content=InputTextMessageContent(
                 "https://t.me/idzeroidsupport"
             ),
-            thumb_url="https://telegra.ph/file/305f608e9dad3851971ff.jpg",
+            thumb_url="https://telegra.ph/file/02fcf8117a0d6cbf5b4c6.png",
         ),
     ]
     answerss = await alive_function(answerss)
@@ -121,7 +121,7 @@ async def alive_function(answers):
         InlineQueryResultArticle(
             title="Alive",
             description="Check Aries Status",
-            thumb_url="https://telegra.ph/file/305f608e9dad3851971ff.jpg",
+            thumb_url="https://telegra.ph/file/02fcf8117a0d6cbf5b4c6.png",
             input_message_content=InputTextMessageContent(
                 msg, disable_web_page_preview=True
             ),
