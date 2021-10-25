@@ -106,12 +106,14 @@ async def hmm(client, message):
         test = msg
         test = test.replace("aries", "hi")
         test = test.replace("bot", "hello")
+        test = test.replace("love me?", "lovely day isn\u0027t it")
         test = test.replace("who are you?", "im aries")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
         response = response.replace("hello", "Aries")
         response = response.replace("lol", "bot")
+        response = response.replace("lovely day isn\u0027t it", "love me?")
         response = response.replace("im aries", "who are you?")
         pro = response
         try:
