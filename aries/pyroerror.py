@@ -1,9 +1,8 @@
 import sys
 import traceback
 from functools import wraps
-from aries import pbot
+from aries import pbot, EVENT_LOG
 
-LOG_GROUP_ID = "-1001525866631"
 
 def split_limits(text):
     if len(text) < 2048:
@@ -43,7 +42,7 @@ def capture_err(func):
             )
             for x in error_feedback:
                 await pgram.send_message(
-                    LOG_GROUP_ID,
+                    EVENT_LOG,
                     x
                 )
             raise err
