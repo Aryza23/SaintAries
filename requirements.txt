@@ -12,7 +12,7 @@ youtube_dl==2021.6.6
 python-dotenv==0.19.1
 psycopg2-binary
 feedparser==6.0.8
-faker==9.5.1
+faker==9.5.2
 validators
 hachoir==3.1.2
 pykeyboard==0.1.2
