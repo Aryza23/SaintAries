@@ -343,10 +343,6 @@ def kill(bot: Bot, update: Update):
     msg.edit_text('⚰')
 
 
-
-# NO HELP STRINGS
-__help__ = """
-
 KILL_HANDLER = DisableAbleCommandHandler("kill",kill)
 LOVE_HANDLER = DisableAbleCommandHandler("love", love)
 HACK_HANDLER = DisableAbleCommandHandler("hack", hack)
