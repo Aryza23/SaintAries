@@ -5,7 +5,7 @@ from aries.events import register
 from aries import TEMP_DOWNLOAD_DIRECTORY
 from aries import telethn as tbot
 
-@register(outgoing=True, pattern=r'^/kamuii(:? |$)([1-8])?')
+@register(outgoing=True, pattern=r'^/kamuii([1-8])?')
 async def _(fry):
     await fry.edit("`Merubah muka kau menjadi benjot asu rasakan 😤!......`")
     level = fry.pattern_match.group(2)
@@ -67,7 +67,7 @@ async def _(fry):
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern=r'^/df(:? |$)([1-8])?')
+@register(outgoing=True, pattern=r'^/df([1-8])?')
 async def _(fry):
     await fry.edit("`Deepfryer......`")
     level = fry.pattern_match.group(2)
