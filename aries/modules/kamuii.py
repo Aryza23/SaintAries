@@ -2,8 +2,8 @@ import os
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from aries.events import register
-from aries import bot, TEMP_DOWNLOAD_DIRECTORY
-
+from aries import TEMP_DOWNLOAD_DIRECTORY
+from aries import telethn as tbot
 
 @register(outgoing=True, pattern=r'^/kamuii(:? |$)([1-8])?')
 async def _(fry):
@@ -18,7 +18,7 @@ async def _(fry):
     if not reply_message.media:
         await fry.edit("`Gambar tidak di dukung...`")
         return
-    if reply_message.sender.bot:
+    if reply_message.sender.tbot:
         await fry.edit("`Balas di Sticker Goblok!!!...`")
         return
     chat = "@image_deepfrybot"
@@ -36,7 +36,7 @@ async def _(fry):
             else:
                 response = await conv.get_response()
             """ - don't spam notif - """
-            await bot.send_read_acknowledge(conv.chat_id)
+            await tbot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await fry.reply("`Please unblock` @image_deepfrybot`...`")
             return
@@ -67,7 +67,7 @@ async def _(fry):
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern=r'^.df(:? |$)([1-8])?')
+@register(outgoing=True, pattern=r'^/df(:? |$)([1-8])?')
 async def _(fry):
     await fry.edit("`Deepfryer......`")
     level = fry.pattern_match.group(2)
@@ -80,7 +80,7 @@ async def _(fry):
     if not reply_message.media:
         await fry.edit("`Gambar tidak di dukung...`")
         return
-    if reply_message.sender.bot:
+    if reply_message.sender.tbot:
         await fry.edit("`Balas di Sticker Goblok!!!...`")
         return
     chat = "@image_deepfrybot"
@@ -98,7 +98,7 @@ async def _(fry):
             else:
                 response = await conv.get_response()
             """ - don't spam notif - """
-            await bot.send_read_acknowledge(conv.chat_id)
+            await tbot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await fry.reply("`Please unblock` @image_deepfrybot`...`")
             return
