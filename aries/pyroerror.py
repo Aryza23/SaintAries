@@ -1,7 +1,7 @@
 import sys
 import traceback
 from functools import wraps
-from aries import pbot, EVENT_LOG
+from aries import pbot, EVENT_LOGS
 
 
 def split_limits(text):
@@ -42,7 +42,7 @@ def capture_err(func):
             )
             for x in error_feedback:
                 await pgram.send_message(
-                    EVENT_LOG,
+                    EVENT_LOGS,
                     x
                 )
             raise err
