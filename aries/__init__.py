@@ -106,7 +106,7 @@ if ENV:
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
     ARQ_API_URL = "https://thearq.tech"
-    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
+    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = "1192108540"
     
 
