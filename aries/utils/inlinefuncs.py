@@ -40,9 +40,9 @@ from aries.utils.pastebin import paste
 
 MESSAGE_DUMP_CHAT = EVENT_LOGS
 
-meow = app.get_me()
+pbot = app.get_me()
 
-BOT_USERNAME = meow.username
+BOT_USERNAME = pbot.username
 keywords_list = [
     "image",
     "wall",
