@@ -1,7 +1,9 @@
 import sys
 import traceback
 from functools import wraps
-from aries import pbot, LOG_GROUP_ID
+from aries import pbot
+
+LOG_GROUP_ID = "-1001525866631"
 
 def split_limits(text):
     if len(text) < 2048:
