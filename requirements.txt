@@ -1,10 +1,10 @@
 future
 fuzzysearch
-emoji==1.6.1
-lxml==4.6.3
-wget==3.2
-gtts==2.2.3
-beautifulsoup4==4.10.0
+emoji
+lxml
+wget
+gtts
+beautifulsoup4
 requests
 httpx[http2]>=0.20.0,<1.0.0
 python-telegram-bot==13.7
