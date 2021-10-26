@@ -4,7 +4,7 @@
 from pyrogram import filters
 
 from aries import pbot as app
-from aries.core.decorators.permissions import adminsOnly
+from aries.utils.permissions import adminsOnly
 from aries.utils.dbfunctions import (antiservice_off, antiservice_on,
                                    is_antiservice_on)
 
