@@ -1,7 +1,7 @@
 from pyrogram import filters
 
 from aries import arq
-from aries import pbot ass app
+from aries import pbot as app
 
 ARQ_API_URL = "https://thearq.teach"
 
