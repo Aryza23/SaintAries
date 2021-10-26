@@ -92,7 +92,7 @@ requests_html==0.10.0
 pydub==0.25.1
 google-api-python-client==2.27.0
 git+https://github.com/Awesome-RJ/GoGoAnimeAPI.git
-img2pdf==0.4.2
+img2pdf==0.4.3
 hiredis==2.0.0
 selenium==4.0.0
 cowpy==1.1.2
