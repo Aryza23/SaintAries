@@ -27,6 +27,9 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
+MOD_LOAD = []
+MOD_NOLOAD = []
+
 LOGGER = logging.getLogger(__name__)
 
 # if version < 3.6, stop bot.
