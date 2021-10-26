@@ -23,7 +23,7 @@ from aries.utils.http import get
 Just import 'downloader' anywhere and do downloader.download() to
 download file from a given url
 """
-downloader = downloader.download()
+# downloader = downloader.download()
 
 # Another downloader, but with wget
 
