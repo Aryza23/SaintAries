@@ -16,14 +16,14 @@ from wget import download
 
 from aries import aiohttpsession as aiosession
 from aries import arq
-import aiodownloader
+
 from aries.utils.http import get
 
 """
 Just import 'downloader' anywhere and do downloader.download() to
 download file from a given url
 """
-downloader = aiodownloader.Handler()
+downloader = downloader.download()
 
 # Another downloader, but with wget
 
