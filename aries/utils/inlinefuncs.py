@@ -18,7 +18,6 @@ from fuzzysearch import find_near_matches
 from motor import version as mongover
 from pykeyboard import InlineKeyboard
 from pyrogram import __version__ as pyrover
-from telegram import __version__ as telever
 from pyrogram import filters
 from pyrogram.raw.functions import Ping
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
@@ -100,7 +99,7 @@ async def inline_help_func(__help__):
 
 async def alive_function(answers):
     buttons = InlineKeyboard(row_width=2)
-    bot_state = "Dead" if not await app else "Alive"
+    bot_state = "Dead" if not await app.get_me() else "Alive"
     buttons.add(
         InlineKeyboardButton("Stats", callback_data="stats_callback"),
         InlineKeyboardButton(
@@ -110,10 +109,9 @@ async def alive_function(answers):
 
     msg = f"""
 **[Aries](https://t.me/idzeroidsupport):**
-**Macine:** `{bot_state}`
+**RoBot:** `{bot_state}`
 **Python:** `{pyver.split()[0]}`
 **Pyrogram:** `{pyrover}`
-**Telegram:** `{telever}`
 **MongoDB:** `{mongover}`
 **Platform:** `{sys.platform}`
 """
