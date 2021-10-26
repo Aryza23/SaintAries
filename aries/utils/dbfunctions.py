@@ -1,7 +1,7 @@
 from typing import Dict, List, Union
 
 from aries import db
-from aries.utils.functions import obj_to_str, str_to_obj
+from aries.utils.function import obj_to_str, str_to_obj
 
 
 notesdb = db.notes
