@@ -558,15 +558,15 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • /whatanime - reply to gif or video
  """
 
-ANIME_HANDLER = DisableAbleCommandHandler("anime", anime, run_aync=True)
-AIRING_HANDLER = DisableAbleCommandHandler("airing", airing, run_aync=True)
-CHARACTER_HANDLER = DisableAbleCommandHandler("character", character, run_aync=True)
-MANGA_HANDLER = DisableAbleCommandHandler("manga", manga, run_aync=True)
-USER_HANDLER = DisableAbleCommandHandler("user", user, run_aync=True)
-UPCOMING_HANDLER = DisableAbleCommandHandler("upcoming", upcoming, run_aync=True)
-KAIZOKU_SEARCH_HANDLER = DisableAbleCommandHandler("kaizoku", kaizoku, run_aync=True)
-KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, run_aync=True)
-BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*', run_aync=True)
+ANIME_HANDLER = DisableAbleCommandHandler("anime", anime, run_async=True)
+AIRING_HANDLER = DisableAbleCommandHandler("airing", airing, run_async=True)
+CHARACTER_HANDLER = DisableAbleCommandHandler("character", character, run_async=True)
+MANGA_HANDLER = DisableAbleCommandHandler("manga", manga, run_async=True)
+USER_HANDLER = DisableAbleCommandHandler("user", user, run_async=True)
+UPCOMING_HANDLER = DisableAbleCommandHandler("upcoming", upcoming, run_async=True)
+KAIZOKU_SEARCH_HANDLER = DisableAbleCommandHandler("kaizoku", kaizoku, run_async=True)
+KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, run_async=True)
+BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*', run_async=True)
 
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
