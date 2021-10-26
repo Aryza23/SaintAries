@@ -16,7 +16,7 @@ from wget import download
 
 from aries import aiohttpsession as aiosession
 from aries import arq
-from aries.import aiodownloader
+from aries import aiodownloader
 from aries.utils.http import get
 
 """
