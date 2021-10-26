@@ -1,5 +1,4 @@
 future
-aio-downloader
 fuzzysearch
 emoji==1.6.1
 lxml==4.6.3
