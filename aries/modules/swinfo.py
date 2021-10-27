@@ -5,7 +5,6 @@ from datetime import datetime
 
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
-from pyrogram import client
 from aries import pbot
 
 
