@@ -109,7 +109,7 @@ def _check_member(client, message):
                     )
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "❗ **Daisy is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
+                        "❗ **Aries is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
                     )
 
             except ChatAdminRequired:
@@ -178,15 +178,16 @@ def config(client, message):
 
 
 __help__ = """
-*Force Subscribe:*
-❍ Aries can mute members who are not subscribed your channel until they subscribe
-❍ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
-*Setup*
+🔘 *Force Subscribe:*
+⇝ Aries can mute members who are not subscribed your channel until they subscribe
+⇝ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
+
+🔘 *Setup*
 *Only creator*
-❍ Add me in your group as admin
-❍ Add me in your channel as admin 
+⇝ Add me in your group as admin
+⇝ Add me in your channel as admin 
  
-*Commmands*
+🔘 *Commmands*
  ❍ /fsub {channel username} - To turn on and setup the channel.
   💡Do this first...
  ❍ /fsub - To get the current settings.
@@ -194,4 +195,4 @@ __help__ = """
   💡If you disable fsub, you need to set again for working.. /fsub {channel username} 
  ❍ /fsub clear - To unmute all members who muted by me.
 """
-__mod_name__ = "F-Sub"
+__mod_name__ = "🔘 F-Sub"
