@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from aries import pbot as app
 from aries.utils.errors import capture_err
 
-__mod_name__ = "WebSS"
+__mod_name__ = "🔘 WebSS"
 __help__ = "/webss [URL] - Take A Screenshot Of A Webpage"
 
 
