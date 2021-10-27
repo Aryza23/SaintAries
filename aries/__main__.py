@@ -28,7 +28,7 @@ from aries import (
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from aries.modules import ALL_MODULES
 from aries.modules.helper_funcs.chat_status import is_user_admin
-from aries.utils.misc import paginate_modules
+from aries.modules.helper_funcs.misc import paginate_modules
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
