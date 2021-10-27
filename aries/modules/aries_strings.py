@@ -1,4 +1,5 @@
 ARIES_IMG = (
+      "https://pixeldrain.com/api/file/ic4hfgNo",
       "https://i.imgur.com/DgHMx5q.jpg",
       "https://i.imgur.com/EA9ErJd.jpg",
       "https://i.imgur.com/hpfAAH3.jpg",
