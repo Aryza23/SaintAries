@@ -5,8 +5,8 @@ from datetime import datetime
 
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
-
-from aries import pbot, BOT_USERNAME
+from pyrogram import client
+from aries import pbot
 
 
 class AioHttp:
@@ -26,7 +26,7 @@ class AioHttp:
             return await resp.read()
 
 
-@pbot.on_message(filters.command("spwinfo", f"spwinfo@{BOT_USERNAME}") & ~filters.edited & ~filters.bot)
+@pbot.on_message(filters.command("swinfo", f"swinfo@idzeroid_bot") & ~filters.edited & ~filters.bot)
 async def lookup(client, message):
     cmd = message.command
     if not message.reply_to_message and len(cmd) == 1:
