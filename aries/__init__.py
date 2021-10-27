@@ -113,8 +113,8 @@ if ENV:
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = "1192108540"
 
-    uri = os​.​getenv​(​"DATABASE_URL"​)  # or other relevant config varif uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)# rest of connection code using the connection string `uri`
+    DATABASE_URL = os​.​getenv​(​"DATABASE_URL"​)  # or other relevant config varif uri.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1) # rest of connection code using the connection string `uri`
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
