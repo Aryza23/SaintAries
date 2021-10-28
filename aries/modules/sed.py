@@ -1,7 +1,7 @@
 import sre_constants
-
 import regex
 import telegram
+
 from aries import LOGGER, dispatcher
 from aries.modules.disable import DisableAbleMessageHandler
 from aries.modules.helper_funcs.regex_helper import infinite_loop_check
@@ -13,51 +13,50 @@ DELIMITERS = ("/", ":", "|", "_")
 
 def separate_sed(sed_string):
     if (
-        len(sed_string) >= 3
-        and sed_string[1] in DELIMITERS
-        and sed_string.count(sed_string[1]) >= 2
+        len(sed_string) < 3
+        or sed_string[1] not in DELIMITERS
+        or sed_string.count(sed_string[1]) < 2
     ):
-        delim = sed_string[1]
-        start = counter = 2
-        while counter < len(sed_string):
-            if sed_string[counter] == "\\":
-                counter += 1
+        return
 
-            elif sed_string[counter] == delim:
-                replace = sed_string[start:counter]
-                counter += 1
-                start = counter
-                break
-
+    delim = sed_string[1]
+    start = counter = 2
+    while counter < len(sed_string):
+        if sed_string[counter] == "\\":
             counter += 1
 
-        else:
-            return None
-
-        while counter < len(sed_string):
-            if (
-                sed_string[counter] == "\\"
-                and counter + 1 < len(sed_string)
-                and sed_string[counter + 1] == delim
-            ):
-                sed_string = sed_string[:counter] + sed_string[counter + 1 :]
-
-            elif sed_string[counter] == delim:
-                replace_with = sed_string[start:counter]
-                counter += 1
-                break
-
+        elif sed_string[counter] == delim:
+            replace = sed_string[start:counter]
             counter += 1
-        else:
-            return replace, sed_string[start:], ""
+            start = counter
+            break
 
-        flags = ""
-        if counter < len(sed_string):
-            flags = sed_string[counter:]
-        return replace, replace_with, flags.lower()
+        counter += 1
+
+    else:
+        return None
+
+    while counter < len(sed_string):
+        if (
+            sed_string[counter] == "\\"
+            and counter + 1 < len(sed_string)
+            and sed_string[counter + 1] == delim
+        ):
+            sed_string = sed_string[:counter] + sed_string[counter + 1 :]
+
+        elif sed_string[counter] == delim:
+            replace_with = sed_string[start:counter]
+            counter += 1
+            break
+
+        counter += 1
+    else:
+        return replace, sed_string[start:], ""
+
+    flags = sed_string[counter:] if counter < len(sed_string) else ""
+    return replace, replace_with, flags.lower()
 
 
-@run_async
 def sed(update: Update, context: CallbackContext):
     sed_result = separate_sed(update.effective_message.text)
     if sed_result and update.effective_message.reply_to_message:
@@ -124,21 +123,21 @@ def sed(update: Update, context: CallbackContext):
 
 
 __help__ = """
- • `s/<text1>/<text2>(/<flag>)`*:* Reply to a message with this to perform a sed operation on that message, replacing all \
+ 🔘 `s/<text1>/<text2>(/<flag>)`*:* Reply to a message with this to perform a sed operation on that message, replacing all \
 occurrences of 'text1' with 'text2'. Flags are optional, and currently include 'i' for ignore case, 'g' for global, \
 or nothing. Delimiters include `/`, `_`, `|`, and `:`. Text grouping is supported. The resulting message cannot be \
 larger than {}.
-*Reminder:* Sed uses some special characters to make matching easier, such as these: `+*.?\\`
+🔘 *Reminder:* Sed uses some special characters to make matching easier, such as these: `+*.?\\`
 If you want to use these characters, make sure you escape them!
-*Example:* \\?.
+🔘 *Example:* \\?.
 """.format(
     telegram.MAX_MESSAGE_LENGTH,
 )
 
-__mod_name__ = "Sed/Regex"
+__mod_name__ = "🔘 Sed/Regex"
 
 SED_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"s([{}]).*?\1.*".format("".join(DELIMITERS))), sed, friendly="sed",
+    Filters.regex(r"s([{}]).*?\1.*".format("".join(DELIMITERS))), sed, friendly="sed", run_async=True,
 )
 
 dispatcher.add_handler(SED_HANDLER)
