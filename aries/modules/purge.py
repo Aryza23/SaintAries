@@ -1,6 +1,6 @@
 import time
-from telethon import events
 
+from telethon import events
 from aries import telethn
 from aries.modules.helper_funcs.telethn.chatstatus import (
     can_delete_messages,
@@ -69,13 +69,6 @@ async def delete_messages(event):
     del_message = [message, event.message]
     await event.client.delete_messages(chat, del_message)
 
-
-__help__ = """
-*Admin only:*
- - /del: deletes the message you replied to
- - /purge: deletes all messages between this and the replied to message.
- - /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
-"""
 
 PURGE_HANDLER = purge_messages, events.NewMessage(pattern="^[!/]purge$")
 DEL_HANDLER = delete_messages, events.NewMessage(pattern="^[!/]del$")
