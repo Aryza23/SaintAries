@@ -212,7 +212,7 @@ reactions = [
 ]
 
 
-@run_async
+
 def react(update: Update, context: CallbackContext):
     message = update.effective_message
     react = random.choice(reactions)
@@ -222,7 +222,7 @@ def react(update: Update, context: CallbackContext):
         message.reply_text(react)
 
 
-REACT_HANDLER = DisableAbleCommandHandler("react", react)
+REACT_HANDLER = DisableAbleCommandHandler("react", react, run_async=True)
 
 dispatcher.add_handler(REACT_HANDLER)
 
