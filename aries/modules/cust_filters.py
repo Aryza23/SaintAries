@@ -78,7 +78,7 @@ def list_handlers(update, context):
         return
 
     for keyword in all_handlers:
-        entry = " • `{}`\n".format(escape_markdown(keyword))
+        entry = " ⇝ `{}`\n".format(escape_markdown(keyword))
         if len(entry) + len(filter_list) > telegram.MAX_MESSAGE_LENGTH:
             send_message(
                 update.effective_message,
@@ -581,7 +581,7 @@ keywords are in lowercase. If you want your keyword to be a sentence, use quotes
 doin?
  Separate diff replies by `%%%` to get random replies
 🔘 *Example:* 
-⇝`/filter "filtername"
+`/filter "filtername"
  Reply 1
  %%%
  Reply 2
