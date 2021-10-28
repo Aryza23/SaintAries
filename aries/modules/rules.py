@@ -142,9 +142,9 @@ __help__ = """
 
 __mod_name__ = "🔘 Rules"
 
-GET_RULES_HANDLER = CommandHandler("rules", get_rules, filters=Filters.chat_types.group, run_async=True)
-SET_RULES_HANDLER = CommandHandler("setrules", set_rules, filters=Filters.chat_types.group, run_async=True)
-RESET_RULES_HANDLER = CommandHandler("clearrules", clear_rules, filters=Filters.chat_types.group, run_async=True)
+GET_RULES_HANDLER = CommandHandler("rules", get_rules, filters=Filters.chat_type.group, run_async=True)
+SET_RULES_HANDLER = CommandHandler("setrules", set_rules, filters=Filters.chat_type.group, run_async=True)
+RESET_RULES_HANDLER = CommandHandler("clearrules", clear_rules, filters=Filters.chat_type.group, run_async=True)
 
 dispatcher.add_handler(GET_RULES_HANDLER)
 dispatcher.add_handler(SET_RULES_HANDLER)
