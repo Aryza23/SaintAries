@@ -1,7 +1,7 @@
 import time
-from typing import List
-
 import requests
+
+from typing import List
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
 
@@ -14,6 +14,8 @@ sites_list = {
     "Kaizoku": "https://animekaizoku.com",
     "Kayo": "https://animekayo.com",
     "Jikan": "https://api.jikan.moe/v3",
+    "AI Server": "https://kuki-yukicloud.up.railway.app/",
+    "IDZ Server": "https://liones-api.herokuapp.com/",
 }
 
 
@@ -25,10 +27,7 @@ def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        if count < 3:
-            remainder, result = divmod(seconds, 60)
-        else:
-            remainder, result = divmod(seconds, 24)
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -58,7 +57,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
 
         pinged_site = f"<b>{each_ping}</b>"
 
-        if each_ping == "Kaizoku" or each_ping == "Kayo":
+        if each_ping in ('Kaizoku', 'Kayo'):
             pinged_site = f'<a href="{sites_list[each_ping]}">{each_ping}</a>'
             ping_time = f"<code>{ping_time} (Status: {r.status_code})</code>"
 
@@ -67,8 +66,6 @@ def ping_func(to_ping: List[str]) -> List[str]:
 
     return ping_result
 
-
-@run_async
 @sudo_plus
 def ping(update: Update, context: CallbackContext):
     msg = update.effective_message
@@ -87,10 +84,9 @@ def ping(update: Update, context: CallbackContext):
     )
 
 
-@run_async
 @sudo_plus
 def pingall(update: Update, context: CallbackContext):
-    to_ping = ["Kaizoku", "Kayo", "Telegram", "Jikan"]
+    to_ping = ["Kaizoku", "Kayo", "Telegram", "Jikan", "AI Server", "IDZ Server"]
     pinged_list = ping_func(to_ping)
     pinged_list.insert(2, "")
     uptime = get_readable_time((time.time() - StartTime))
@@ -98,14 +94,15 @@ def pingall(update: Update, context: CallbackContext):
     reply_msg = "⏱Ping results are:\n"
     reply_msg += "\n".join(pinged_list)
     reply_msg += "\n<b>Service uptime:</b> <code>{}</code>".format(uptime)
+    reply_msg += "\n**Powered by:**__@IdzXartez__"
 
     update.effective_message.reply_text(
         reply_msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
     )
 
 
-PING_HANDLER = DisableAbleCommandHandler("ping", ping)
-PINGALL_HANDLER = DisableAbleCommandHandler("pingall", pingall)
+PING_HANDLER = DisableAbleCommandHandler("ping", ping, run_async=True)
+PINGALL_HANDLER = DisableAbleCommandHandler("pingall", pingall, run_async=True)
 
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(PINGALL_HANDLER)
