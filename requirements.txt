@@ -104,3 +104,4 @@ cryptg==0.2.post4
 aioredis==2.0.0
 NumPy==1.21.2
 yt-dlp
+multicolorcaptcha
