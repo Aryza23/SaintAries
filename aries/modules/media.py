@@ -7,7 +7,7 @@ from io import BytesIO
 from urllib.parse import urlparse
 
 import ffmpeg
-import youtube_dl
+import yt-dlp
 from pyrogram import filters
 
 from aries.arqclient import aiohttpsession as session
