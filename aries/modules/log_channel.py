@@ -34,7 +34,7 @@ if is_module_loaded(FILENAME):
             chat = update.effective_chat
             message = update.effective_message
 
-            if result and isinstance(result, str):
+            if result:
                 datetime_fmt = "%H:%M - %d-%m-%Y"
                 result += f"\n<b>Event Stamp</b>: <code>{datetime.utcnow().strftime(datetime_fmt)}</code>"
 
@@ -99,7 +99,7 @@ if is_module_loaded(FILENAME):
                     + "\n\nFormatting has been disabled due to an unexpected error.",
                 )
 
-    @run_async
+    
     @user_admin
     def logging(update: Update, context: CallbackContext):
         bot = context.bot
@@ -118,7 +118,7 @@ if is_module_loaded(FILENAME):
         else:
             message.reply_text("No log channel has been set for this group!")
 
-    @run_async
+    
     @user_admin
     def setlog(update: Update, context: CallbackContext):
         bot = context.bot
@@ -134,9 +134,7 @@ if is_module_loaded(FILENAME):
             try:
                 message.delete()
             except BadRequest as excp:
-                if excp.message == "Message to delete not found":
-                    pass
-                else:
+                if excp.message != "Message to delete not found":
                     LOGGER.exception(
                         "Error deleting message in log channel. Should work anyway though.",
                     )
@@ -162,7 +160,7 @@ if is_module_loaded(FILENAME):
                 " - forward the /setlog to the group\n",
             )
 
-    @run_async
+    
     @user_admin
     def unsetlog(update: Update, context: CallbackContext):
         bot = context.bot
@@ -192,23 +190,10 @@ if is_module_loaded(FILENAME):
             return f"This group has all it's logs sent to: {escape_markdown(log_channel_info.title)} (`{log_channel}`)"
         return "No log channel is set for this group!"
 
-    __help__ = """
-*Admins only:*
-• `/logchannel`*:* get log channel info
-• `/setlog`*:* set the log channel.
-• `/unsetlog`*:* unset the log channel.
 
-Setting the log channel is done by:
-• adding the bot to the desired channel (as an admin!)
-• sending `/setlog` in the channel
-• forwarding the `/setlog` to the group
-"""
-
-    __mod_name__ = "Log Channels"
-
-    LOG_HANDLER = CommandHandler("logchannel", logging)
-    SET_LOG_HANDLER = CommandHandler("setlog", setlog)
-    UNSET_LOG_HANDLER = CommandHandler("unsetlog", unsetlog)
+    LOG_HANDLER = CommandHandler("logchannel", logging, run_async=True)
+    SET_LOG_HANDLER = CommandHandler("setlog", setlog, run_async=True)
+    UNSET_LOG_HANDLER = CommandHandler("unsetlog", unsetlog, run_async=True)
 
     dispatcher.add_handler(LOG_HANDLER)
     dispatcher.add_handler(SET_LOG_HANDLER)
