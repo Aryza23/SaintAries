@@ -3,6 +3,7 @@ emoji
 lxml
 yt_dlp
 humanize
+fuzzysearch
 wget
 gtts
 beautifulsoup4
