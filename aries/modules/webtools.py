@@ -10,10 +10,11 @@ from spamwatch import __version__ as __sw__
 from pythonping import ping as ping3
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
-from aries import dispatcher, OWNER_ID
+from aries import dispatcher
 from aries.modules.helper_funcs.filters import CustomFilters
 from aries.modules.helper_funcs.alternate import typing_action
 
+OWNER_ID = "1192108540"
 
 
 @typing_action
