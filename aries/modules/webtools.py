@@ -17,7 +17,7 @@ from aries.modules.helper_funcs.alternate import typing_action
 
 
 @typing_action
-def ping(update, context):
+def pings(update, context):
     tg_api = ping3("api.telegram.org", count=4)
     google = ping3("google.com", count=4)
     text = "*Pong!*\n"
@@ -73,7 +73,7 @@ def speedtsts(update, context):
         "Upload "
         f"{speed_convert(result['upload'])} \n"
         "Ping "
-        f"{result['ping']} \n"
+        f"{result['pings']} \n"
         "ISP "
         f"{result['client']['isp']}",
         update.effective_chat.id,
@@ -85,32 +85,32 @@ def speedtsts(update, context):
 @typing_action
 def system_status(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
-    status = "<b>======[ ARIES SYSTEM INFO ]======</b>\n\n"
-    status += "<b>System uptime:</b> <code>" + str(uptime) + "</code>\n"
+    status = "<b>[🚧 ARIES SYSTEM INFO ]</b>\n\n"
+    status += "<b>🚦 System uptime:</b> <code>" + str(uptime) + "</code>\n"
 
     uname = platform.uname()
-    status += "<b>System:</b> <code>" + str(uname.system) + "</code>\n"
-    status += "<b>Node name:</b> <code>" + str(uname.node) + "</code>\n"
-    status += "<b>Release:</b> <code>" + str(uname.release) + "</code>\n"
-    status += "<b>Version:</b> <code>" + str(uname.version) + "</code>\n"
-    status += "<b>Machine:</b> <code>" + str(uname.machine) + "</code>\n"
-    status += "<b>Processor:</b> <code>" + str(uname.processor) + "</code>\n\n"
+    status += "<b>🔘 System:</b> <code>" + str(uname.system) + "</code>\n"
+    status += "<b>🔘 Node name:</b> <code>" + str(uname.node) + "</code>\n"
+    status += "<b>🔘 Release:</b> <code>" + str(uname.release) + "</code>\n"
+    status += "<b>🔘Version:</b> <code>" + str(uname.version) + "</code>\n"
+    status += "<b>🔘 Machine:</b> <code>" + str(uname.machine) + "</code>\n"
+    status += "<b>🔘 Processor:</b> <code>" + str(uname.processor) + "</code>\n\n"
 
     mem = virtual_memory()
     cpu = cpu_percent()
     disk = disk_usage("/")
-    status += "<b>CPU usage:</b> <code>" + str(cpu) + " %</code>\n"
-    status += "<b>Ram usage:</b> <code>" + str(mem[2]) + " %</code>\n"
-    status += "<b>Storage used:</b> <code>" + str(disk[3]) + " %</code>\n\n"
-    status += "<b>Python version:</b> <code>" + python_version() + "</code>\n"
-    status += "<b>Library version:</b> <code>" + str(__version__) + "</code>\n"
-    status += "<b>Spamwatch API:</b> <code>" + str(__sw__) + "</code>\n"
-    status += "<b>Powered By:</b> <i>@IdzXartez</i>"
+    status += "<b>🔘 CPU usage:</b> <code>" + str(cpu) + " %</code>\n"
+    status += "<b>🔘 Ram usage:</b> <code>" + str(mem[2]) + " %</code>\n"
+    status += "<b>🔘 Storage used:</b> <code>" + str(disk[3]) + " %</code>\n\n"
+    status += "<b>🔘 Python version:</b> <code>" + python_version() + "</code>\n"
+    status += "<b>🔘 Library version:</b> <code>" + str(__version__) + "</code>\n"
+    status += "<b>🔘 Spamwatch API:</b> <code>" + str(__sw__) + "</code>\n"
+    status += "<b>Powered By:</b> <i>@IdzXartez 🔥</i>"
     context.bot.sendMessage(update.effective_chat.id, status, parse_mode=ParseMode.HTML)
 
 
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True)
-PING_HANDLER = CommandHandler("pings", ping, filters=CustomFilters.sudo_filter, run_async=True)
+PING_HANDLER = CommandHandler("pings", pings, filters=CustomFilters.sudo_filter, run_async=True)
 SPEED_HANDLER = CommandHandler("speedtests", speedtsts, filters=CustomFilters.sudo_filter, run_async=True)
 SYS_STATUS_HANDLER = CommandHandler(
     "sysinfo", system_status, filters=CustomFilters.sudo_filter, run_async=True
@@ -118,5 +118,5 @@ SYS_STATUS_HANDLER = CommandHandler(
 
 dispatcher.add_handler(IP_HANDLER)
 dispatcher.add_handler(SPEED_HANDLER)
-dispatcher.add_handler(PING_HANDLER)
+dispatcher.add_handler(PINGS_HANDLER)
 dispatcher.add_handler(SYS_STATUS_HANDLER)
