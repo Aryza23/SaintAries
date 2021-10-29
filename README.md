@@ -1,10 +1,5 @@
 ![Saint Aries](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg)
 
-[SaintAries](https://github.com/idzero23/SaintAries)
-
-Main: [![Build Status](https://github.com/idzero23/SaintAries/workflows/ci/badge.svg?branch=main)](https://github.com/idzero23/SaintAries/actions?query=branch%3Amain) [![CodeFactor](https://www.codefactor.io/repository/github/idzero23/SaintAries/badge/main)](https://www.codefactor.io/repository/github/idzero23/SaintAries/overview/main)
-
-
 <center>
   <h1> 
     Saint Aries
@@ -16,6 +11,8 @@ Main: [![Build Status](https://github.com/idzero23/SaintAries/workflows/ci/badge
    Im the Saint aries saint aries is the saint saiya character anime!
   </center>
 </p>
+
+
 
 ## A Powerful and Modular
 
