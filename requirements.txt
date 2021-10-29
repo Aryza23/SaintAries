@@ -2,6 +2,7 @@ future
 emoji
 lxml
 yt_dlp
+humanize
 wget
 gtts
 beautifulsoup4
