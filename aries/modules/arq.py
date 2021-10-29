@@ -22,19 +22,19 @@ async def arq_stats(_, message):
     users = data.users
     bot = data.bot
     statistics = f"""
-🔘**Uptime:** `{uptime}`
-🔘**Requests Since Uptime:** `{requests}`
-🔘**CPU:** `{cpu}`
-🔘**Memory:**
-    ⇝**Total Used:** `{server_mem}`
-    ⇝**API:** `{api_mem}`
-🔘**Disk:** `{disk}`
-🔘**Platform:** `{platform}`
-🔘**Python:** `{python_version}`
-🔘**Users:** `{users}`
-🔘**Bot:** {bot}
-🔘**Address:** {ARQ_API_URL}
-🔘**Powered By:** __@IdzXartez__
+📡 **Uptime:** `{uptime}`
+🔘 **Requests Since Uptime:** `{requests}`
+🔘 **CPU:** `{cpu}`
+🔘 **Memory:**
+    ⇝ **Total Used:** `{server_mem}`
+    ⇝ **API:** `{api_mem}`
+🔘 **Disk:** `{disk}`
+🔘 **Platform:** `{platform}`
+🔘 **Python:** `{python_version}`
+🔘 **Users:** `{users}`
+🔘 **Bot:** {bot}
+🔘 **Address:** {ARQ_API_URL}
+**Powered By:** __@IdzXartez__🔥
 """
     await message.reply_text(
         statistics, disable_web_page_preview=True
