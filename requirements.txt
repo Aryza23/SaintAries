@@ -5,6 +5,7 @@ yt_dlp
 humanize
 fuzzysearch
 multicolorcaptcha
+pendulum
 wget
 gtts
 beautifulsoup4
