@@ -3,6 +3,7 @@ fuzzysearch
 emoji
 lxml
 wget
+multicolorcaptcha
 gtts
 beautifulsoup4
 requests
