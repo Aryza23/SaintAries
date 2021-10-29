@@ -15,7 +15,7 @@ from aries.modules.helper_funcs.filters import CustomFilters
 from aries.modules.helper_funcs.alternate import typing_action
 
 
-@run_async
+
 @typing_action
 def ping(update, context):
     tg_api = ping3("api.telegram.org", count=4)
@@ -46,7 +46,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@run_async
+
 @typing_action
 def get_bot_ip(update, context):
     """ Sends the bot's IP address, so as to be able to ssh in if necessary.
@@ -56,9 +56,9 @@ def get_bot_ip(update, context):
     update.message.reply_text(res.text)
 
 
-@run_async
+
 @typing_action
-def speedtst(update, context):
+def speedtsts(update, context):
     message = update.effective_message
     ed_msg = message.reply_text("Running high speed test . . .")
     test = speedtest.Speedtest()
@@ -81,11 +81,11 @@ def speedtst(update, context):
     )
 
 
-@run_async
+
 @typing_action
 def system_status(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
-    status = "<b>======[ SYSTEM INFO ]======</b>\n\n"
+    status = "<b>======[ ARIES SYSTEM INFO ]======</b>\n\n"
     status += "<b>System uptime:</b> <code>" + str(uptime) + "</code>\n"
 
     uname = platform.uname()
@@ -105,14 +105,15 @@ def system_status(update, context):
     status += "<b>Python version:</b> <code>" + python_version() + "</code>\n"
     status += "<b>Library version:</b> <code>" + str(__version__) + "</code>\n"
     status += "<b>Spamwatch API:</b> <code>" + str(__sw__) + "</code>\n"
+    status += "<b>Powered By:</b> <i>@IdzXartez</i>"
     context.bot.sendMessage(update.effective_chat.id, status, parse_mode=ParseMode.HTML)
 
 
-IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
-PING_HANDLER = CommandHandler("ping", ping, filters=CustomFilters.sudo_filter)
-SPEED_HANDLER = CommandHandler("speedtest", speedtst, filters=CustomFilters.sudo_filter)
+IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True)
+PING_HANDLER = CommandHandler("pings", ping, filters=CustomFilters.sudo_filter, run_async=True)
+SPEED_HANDLER = CommandHandler("speedtests", speedtsts, filters=CustomFilters.sudo_filter, run_async=True)
 SYS_STATUS_HANDLER = CommandHandler(
-    "sysinfo", system_status, filters=CustomFilters.sudo_filter
+    "sysinfo", system_status, filters=CustomFilters.sudo_filter, run_async=True
 )
 
 dispatcher.add_handler(IP_HANDLER)
