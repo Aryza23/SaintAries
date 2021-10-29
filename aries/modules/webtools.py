@@ -111,7 +111,7 @@ def system_status(update, context):
 
 
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True)
-PING_HANDLER = CommandHandler("pings", pings, filters=CustomFilters.sudo_filter, run_async=True)
+PINGS_HANDLER = CommandHandler("pings", pings, filters=CustomFilters.sudo_filter, run_async=True)
 SPEED_HANDLER = CommandHandler("speedtests", speedtsts, filters=CustomFilters.sudo_filter, run_async=True)
 SYS_STATUS_HANDLER = CommandHandler(
     "sysinfo", system_status, filters=CustomFilters.sudo_filter, run_async=True
