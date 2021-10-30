@@ -790,6 +790,11 @@ __help__ = """
   ❍ `/setgpic`*:* reply to an image to set as group photo
   ❍ `/setdesc`*:* Set group description
   ❍ `/setsticker`*:* Set group sticker
+  ❍ `/antiservice`*:* For Enable/Disable Telegram Service Message.
+
+*🔘 Captcha*:
+  ❍ `/captcha`*:* To open menu Captcha with button
+  ❍ `/remove`*:* To remove captcha 
 
 *🔘 Log Channel*:
 
