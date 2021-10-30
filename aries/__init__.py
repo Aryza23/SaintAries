@@ -113,15 +113,22 @@ if ENV:
     BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
-    SAINT = "1192108540"
+    SAINT = 1192108540
     
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+
+    try:
+        WHITELIST_CHATS = set(
+            int(x) for x in os.environ.get("WHITELIST_CHATS", "").split()
+        )
+    except ValueError:
+        raise Exception("Your blacklisted chats list does not contain valid integers.")
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
-
+        
 else:
     from aries.config import Development as Config
 
@@ -195,7 +202,7 @@ else:
     BOT_ID = Config.BOT_ID
 
     try:
-        BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
+        BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
