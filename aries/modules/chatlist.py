@@ -46,28 +46,8 @@ def get_user_id(username):
     return None
 
 
-@run_async
-@dev_plus
-def broadcast(bot: Bot, update: Update):
-
-    to_send = update.effective_message.text.split(None, 1)
-
-    if len(to_send) >= 2:
-        chats = sql.get_all_chats() or []
-        failed = 0
-        for chat in chats:
-            try:
-                bot.sendMessage(int(chat.chat_id), to_send[1])
-                sleep(0.1)
-            except TelegramError:
-                failed += 1
-                LOGGER.warning("Couldn't send broadcast to %s, group name %s", str(chat.chat_id), str(chat.chat_name))
-
-        update.effective_message.reply_text(
-            f"Broadcast complete. {failed} groups failed to receive the message, probably due to being kicked.")
 
 
-@run_async
 def log_user(bot: Bot, update: Update):
     chat = update.effective_chat
     msg = update.effective_message
@@ -88,7 +68,7 @@ def log_user(bot: Bot, update: Update):
                         msg.forward_from.username)
 
 
-@run_async
+
 @sudo_plus
 def chats(bot: Bot, update: Update):
 
@@ -113,13 +93,11 @@ def __migrate__(old_chat_id, new_chat_id):
 
 __help__ = ""  # no help string
 
-BROADCAST_HANDLER = CommandHandler("broadcast -f", broadcast)
-USER_HANDLER = MessageHandler(Filters.all & Filters.group, log_user)
-CHATLIST_HANDLER = CommandHandler("chatlist", chats)
+USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, run_async=True)
+CHATLIST_HANDLER = CommandHandler("chatlist", chats, run_async=True)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
-dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 
-__mod_name__ = "USERS"
-__handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]
+__mod_name__ = "chatlist"
+__handlers__ = [(USER_HANDLER, USERS_GROUP), CHATLIST_HANDLER]
