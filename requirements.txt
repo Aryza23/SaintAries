@@ -52,7 +52,7 @@ python-rapidjson==1.5
 ujson==4.2.0
 pretty-errors==1.2.24
 pygithub
-tgcrypto==1.2.2
+tgcrypto
 Pyrogram
 humanize
 #PyDictionary==2.0.1
@@ -63,7 +63,7 @@ cloudscraper==1.2.58
 git+https://github.com/starry69/python-markdown2.git
 dateparser==1.1.0
 pymongo
-dnspython==2.1.0
+dnspython
 secureme==0.0.4
 apscheduler
 emoji-country-flag
