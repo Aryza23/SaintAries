@@ -20,14 +20,15 @@ def aries(update: Update, context: CallbackContext):
         random.choice(aries_strings.ARIES_IMG))
 
 __help__ = """
- • `/aries`*:* gives random aries media
- 
+ ❍ `/aries`*:* gives random aries media
+ ❍ `/asupan`*:* gives random asupan medi
+ ❍ `/chika`*:* gives random chika media
 """
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
 
 dispatcher.add_handler(ARIES_HANDLER)
 
-__mod_name__ = "Aries"
+__mod_name__ = "🔘 Aries fun"
 __command_list__ = [
     "aries"
 ]
