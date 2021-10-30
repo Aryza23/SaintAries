@@ -76,14 +76,14 @@ I am Powerfull Group Managing Bot and I will help in managing your group
 
 buttons = [
     [
-        InlineKeyboardButton(text="🚀 INFO 🚀", callback_data="aboutmanu_"),
+        InlineKeyboardButton(text=" ｢Info」 ", callback_data="aboutmanu_"),
     ],
     [
-        InlineKeyboardButton(text="❓ Help & Commands ❓", callback_data="help_back"),
+        InlineKeyboardButton(text=" ｢Help & Cmd」 ", callback_data="help_back"),
     ],
     [
         InlineKeyboardButton(
-            text="💫 Summon Me 💫",
+            text=" ｢Summon Me」 ",
             url="t.me/idzeroid_bot?startgroup=true",
         ),
     ],
@@ -383,7 +383,7 @@ def aries_about_callback(update, context):
                             text="How To Use Me", callback_data="aboutmanu_howto"
                         ),
                         InlineKeyboardButton(
-                            text="T A C", callback_data="aboutmanu_tac"
+                            text="T.A.C", callback_data="aboutmanu_tac"
                         ),
                     ],
                     [
