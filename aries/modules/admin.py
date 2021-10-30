@@ -792,10 +792,6 @@ __help__ = """
   ❍ `/setsticker`*:* Set group sticker
   ❍ `/antiservice`*:* For Enable/Disable Telegram Service Message.
 
-*🔘 Captcha*:
-  ❍ `/captcha`*:* To open menu Captcha with button
-  ❍ `/remove`*:* To remove captcha 
-
 *🔘 Log Channel*:
 
   ❍ `/logchannel`*:* get log channel info
