@@ -112,6 +112,5 @@ Gathered By Aries.</b>
     )
     
 
-__help__ = """
  
-__mod_name__ = "COUNTRY"
+__mod_name__ = "country"
