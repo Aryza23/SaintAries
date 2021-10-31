@@ -119,7 +119,7 @@ async def hmm(client, message):
         response = response.replace("im aries", "who are you?")
         pro = response
         try:
-           await aries.send_chat_action(message.chat.id, "typing")
+            await aries.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
