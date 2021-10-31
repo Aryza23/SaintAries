@@ -84,7 +84,7 @@
          "value": "",
          "required": true
       },
-      "DB_URI": {
+      "DATABASE_URL": {
          "value": "postgress://vqfecloixuwcty:672606dc0625eb6ee2121ae9da590f084552a441d272cbb397e4e9f1a858c7b1@ec2-3-209-65-193.compute-1.amazonaws.com/d5cpk2hq1ol3gs",
          "required": true
       },
