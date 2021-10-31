@@ -19,12 +19,12 @@
       "API_ID": {
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "7754894"
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "e19957919f4da56ce9240dc475b3593d"
       },
       "API_PORT": {
          "description": "Don't change.",
