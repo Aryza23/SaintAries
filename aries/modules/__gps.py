@@ -36,9 +36,5 @@ async def _(event):
 
 
 __help__ = """
-Hi I can send gps location not send pap tt..
-
- ❍ /gps <location>*:* Get gps location.
-"""
 
 __mod_name__ = "GPS"
