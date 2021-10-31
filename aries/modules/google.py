@@ -285,4 +285,6 @@ __help__ = """
  ❍ Aries <query>*:* Aries answers the query
   💡Ex: `Aries where is Indonesia?`
  ❍ /gps <location>*:* Get gps location.
+ ❍ /country <country name>*:* Gathering info about given country.
+
 """
