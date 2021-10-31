@@ -393,14 +393,14 @@ def selfunban(context: CallbackContext, update: Update) -> str:
 
 
 __help__ = """
- • `/kickme`*:* kicks the user who issued the command
+❍ `/kickme`*:* kicks the user who issued the command
 
-*Admins only:*
- • `/ban <userhandle>`*:* bans a user. (via handle, or reply)
- • `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply)
- • `/tban <userhandle> x(m/h/d)`*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- • `/unban <userhandle>`*:* unbans a user. (via handle, or reply)
- • `/kick <userhandle>`*:* kicks a user out of the group, (via handle, or reply)
+🔘 *Admins only:*
+❍ `/ban <userhandle>`*:* bans a user. (via handle, or reply)
+❍ `/sban <userhandle>`*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply)
+❍ `/tban <userhandle> x(m/h/d)`*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+❍ `/unban <userhandle>`*:* unbans a user. (via handle, or reply)
+❍ `/kick <userhandle>`*:* kicks a user out of the group, (via handle, or reply)
 """
 
 BAN_HANDLER = CommandHandler(["ban", "sban"], ban, run_async=True)
@@ -417,7 +417,7 @@ dispatcher.add_handler(UNBAN_HANDLER)
 dispatcher.add_handler(ROAR_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 
-__mod_name__ = "Bans"
+__mod_name__ = "🔘 Bans"
 __handlers__ = [
     BAN_HANDLER,
     TEMPBAN_HANDLER,
