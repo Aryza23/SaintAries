@@ -284,4 +284,5 @@ __help__ = """
  ❍ /reverse: Does a reverse image search of the media which it was replied to.
  ❍ Aries <query>*:* Aries answers the query
   💡Ex: `Aries where is Indonesia?`
+ ❍ /gps <location>*:* Get gps location.
 """
