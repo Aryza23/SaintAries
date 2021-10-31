@@ -35,6 +35,6 @@ async def _(event):
         await event.reply("I can't find that")
 
 
-__help__ = """
 
-__mod_name__ = "GPS"
+
+__mod_name__ = "gps"
