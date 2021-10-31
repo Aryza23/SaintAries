@@ -105,19 +105,21 @@ async def hmm(client, message):
     if chat_id in en_chats:
         test = msg
         test = test.replace("aries", "hi")
+        test = test.replace("Aryza", "aryza")
         test = test.replace("bot", "hello")
-        test = test.replace("love me?", "lovely day isn\u0027t it")
+        test = test.replace("Who aryza ?", "aryza its my lord")
         test = test.replace("who are you?", "im aries")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
         response = response.replace("hello", "Aries")
+        response = response.replace("aryza", "Aryza")
         response = response.replace("lol", "bot")
-        response = response.replace("lovely day isn\u0027t it", "love me?")
+        response = response.replace("aryza its my lord", "who aryza ?")
         response = response.replace("im aries", "who are you?")
         pro = response
         try:
-            await aries.send_chat_action(message.chat.id, "typing")
+           await aries.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
@@ -167,9 +169,13 @@ async def hmm(client, message):
         test = test.replace("aries", "hi")
         test = test.replace("bot", "hello")
         test = test.replace("who are you?", "im aries")
+        test = test.replace("who is aryza ?", "aryza is my lord")
+        test = test.replace("aryza", "Aryza")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
+        response = response.replace("Aryza", "aryza")
+        response = response.replace("aryza is my lord", "who is aryza ?")
         response = response.replace("hello", "Aries")
         response = response.replace("lol", "bot")
         response = response.replace("im aries", "who are you?")
@@ -324,10 +330,15 @@ async def inuka(client, message):
 
 
 __help__ = """
-Aries AI 3.0 IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
+🔘 Aries AI 3.0 IS THE ONLY AI SYSTEM WHICH CAN DETECT & REPLY UPTO 200 LANGUAGES
 
- 🔘 /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
- 🔘 /chatbot EN : Enables English only chatbot
+❍  /chatbot [ON/OFF]: Enables and disables AI Chat mode (EXCLUSIVE)
+❍  /chatbot EN : Enables English only chatbot
+
+🔘 For Alternate if Chatbot always (say something went wrong)
+you can use this .
+
+❍  /ai : Open menu button for enable|disable ai 
 """
 
-__mod_name__ = "Chatbot"
+__mod_name__ = "🔘 A.I"
