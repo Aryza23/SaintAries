@@ -262,4 +262,4 @@ async def inline_query_handler(client, query):
 
     except Exception as e:
         e = traceback.format_exc()
-        print(e, "inline")
+        print(e, "InLine")
