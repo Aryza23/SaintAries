@@ -84,7 +84,7 @@ if ENV:
     CERT_PATH = os.environ.get("CERT_PATH")
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
-    DB_URI = os.environ.get("DATABASE_URL", "postgress://vqfecloixuwcty:672606dc0625eb6ee2121ae9da590f084552a441d272cbb397e4e9f1a858c7b1@ec2-3-209-65-193.compute-1.amazonaws.com/d5cpk2hq1ol3gs")
+    DB_URI = os.environ.get("DATABASE_URL")
     DB_URI = DB_URI.replace("postgres://", "postgresql://", 1) # rest of connection code using the connection string `uri`
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     REDIS_URL = os.environ.get("REDIS_URL", None)
