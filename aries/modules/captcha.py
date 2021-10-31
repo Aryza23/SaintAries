@@ -2,6 +2,8 @@
 # Edit codes at your own risk
 # the file part of aries rewriten by @IdzXartez
 #from config import Config
+
+import time
 from requests import get
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, CallbackQuery
@@ -13,6 +15,11 @@ from pyrogram.errors import UserNotParticipant
 from aries.utils.markup import MakeCaptchaMarkup
 from aries import pbot
 from aries import BOT_USERNAME, DEV_USERS
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()], level=logging.INFO)
+
+ LOGGER = logging.getLogger(__name__)
 
 # Local database for saving user info
 LocalDB = {}
