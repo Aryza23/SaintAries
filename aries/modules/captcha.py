@@ -17,10 +17,6 @@ from aries import pbot
 from aries import BOT_USERNAME, DEV_USERS
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()], level=logging.INFO)
-
- LOGGER = logging.getLogger(__name__)
-
 # Local database for saving user info
 LocalDB = {}
 
