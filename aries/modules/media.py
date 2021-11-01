@@ -16,7 +16,7 @@ from aries import pbot as app
 from aries.pyroerror import capture_err
 from aries.utils.pastebin import paste
 
-__mod_name__ = "Media"
+__mod_name__ = "🔘 Media"
 __help__ = """
 
 *AUDIO*
