@@ -42,7 +42,7 @@ wikipedia==1.4.0
 markdown2
 pybase64
 telethon==1.23.0
-telegraph==1.4.1
+telegraph==2.0.0
 heroku3
 spamwatch
 alphabet-detector==0.0.7
