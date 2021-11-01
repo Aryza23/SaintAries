@@ -140,7 +140,7 @@ def ai(update: Update, context: CallbackContext):
             return
         Message = message.text
         bot.send_chat_action(chat_id, action="typing")
-        kukiurl = requests.get('kukiapi.xyz/api/apikey=KUKITnhtN2I89/Aries/@IdzXartez/message='+Message)
+        kukiurl = requests.get('https://kukiapi.xyz/api/apikey=KUKITnhtN2I89/Aries/IdzXartez/message='+Message)
         Kuki = json.loads(kukiurl.text)
         kuki = Kuki['reply']
         sleep(0.3)
