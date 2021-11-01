@@ -8,7 +8,7 @@ from telethon.tl import functions
 from aries import telethn
 from aries.events import register
 
-langi = "en"
+langi = "id"
 
 
 async def is_register_admin(chat, user):
