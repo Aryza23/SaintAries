@@ -286,12 +286,8 @@ def start(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(
-                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
-                        )
-                        InlineKeyboardButton(
-                            text="Updates", url="https://telegram.dog/idzeroid"
-                        )
+                        InlineKeyboardButton(text="Support", url=f"https://telegram.dog/idzeroidsupport"),                                                  
+                        InlineKeyboardButton(text="Updates", url="https://telegram.dog/idzeroid")                           
                     ],
                 ]
             ),
