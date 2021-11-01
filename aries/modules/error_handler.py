@@ -1,14 +1,14 @@
 import traceback
-
 import requests
 import html
 import random
 import sys
 import pretty_errors
 import io
+
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
-from aries import dispatcher, DEV_USERS, OWNER_ID
+from aries import dispatcher, DEV_USERS, ERROR_LOGS
 
 pretty_errors.mono()
 
@@ -76,26 +76,26 @@ def error_callback(update: Update, context: CallbackContext):
         tb,
     )
     key = requests.post(
-        "https://nekobin.com/api/documents", json={"content": pretty_message},
+        "https://hastebin.com/documents", data=pretty_message.encode("UTF-8"),
     ).json()
     e = html.escape(f"{context.error}")
-    if not key.get("result", {}).get("key"):
+    if not key.get('key'):
         with open("error.txt", "w+") as f:
             f.write(pretty_message)
         context.bot.send_document(
-            OWNER_ID,
+            ERROR_LOGS,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
                 parse_mode="html",
         )
         return
-    key = key.get("result").get("key")
-    url = f"https://nekobin.com/{key}.py"
+    key = key.get('key')
+    url = f"https://hastebin.com/{key}"
     context.bot.send_message(
-        OWNER_ID,
+        ERROR_LOGS,
             text=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Nekobin", url=url)]],
+                [[InlineKeyboardButton("HasteBin", url=url)]],
             ),
         parse_mode="html",
     )
@@ -104,12 +104,10 @@ def error_callback(update: Update, context: CallbackContext):
 def list_errors(update: Update, context: CallbackContext):
     if update.effective_user.id not in DEV_USERS:
         return
-    e = {
-        k: v for k, v in sorted(errors.items(), key=lambda item: item[1], reverse=True)
-    }
+    e = dict(sorted(errors.items(), key=lambda item: item[1], reverse=True))
     msg = "<b>Errors List:</b>\n"
-    for x in e:
-        msg += f"• <code>{x}:</code> <b>{e[x]}</b> #{x.identifier}\n"
+    for x, value in e.items():
+        msg += f'❍ <code>{x}:</code> <b>{value}</b> #{x.identifier}\n'
     msg += f"{len(errors)} have occurred since startup."
     if len(msg) > 4096:
         with open("errors_msg.txt", "w+") as f:
@@ -117,7 +115,7 @@ def list_errors(update: Update, context: CallbackContext):
         context.bot.send_document(
             update.effective_chat.id,
             open("errors_msg.txt", "rb"),
-            caption=f"Too many errors have occured..",
+            caption="Too many errors have occured..",
             parse_mode="html",
         )
         return
