@@ -92,6 +92,7 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
+
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 GROUP_START_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
@@ -239,7 +240,13 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="[Back]", callback_data="help_back")]]
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text="[Back]", callback_data="help_back"
+                                )
+                            ]
+                        ]
                     ),
                 )
 
@@ -263,28 +270,35 @@ def start(update: Update, context: CallbackContext):
                     escape_markdown(first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
-                    sql.num_chats()),                        
+                    sql.num_chats(),
+                ),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
             )
     else:
         update.effective_message.reply_animation(
-            GROUP_START_IMG, caption= "<code> Aries Online \nI am Awake Since</code>: <code>{}</code>".format(
+            GROUP_START_IMG,
+            caption="<code> Aries Online \nI am Awake Since</code>: <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
-                  [
-                  InlineKeyboardButton(text="Support", url=f"https://telegram.dog/idzeroidsupport")
-                  ],
-                  [
-                  InlineKeyboardButton(text="Updates", url="https://telegram.dog/idzeroid")
-                  ]
+                    [
+                        InlineKeyboardButton(
+                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Updates", url="https://telegram.dog/idzeroid"
+                        )
+                    ],
                 ]
             ),
         )
+
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -568,7 +582,8 @@ def get_help(update, context):
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
             update.effective_message.reply_photo(
-            HELP_IMG, HELP_MSG,
+                HELP_IMG,
+                HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
