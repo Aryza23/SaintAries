@@ -43,13 +43,13 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
 
     try:
         result = (
-            f"<b>Country:</b> <code>{country_name}</code>\n"
-            f"<b>Zone Name:</b> <code>{country_zone}</code>\n"
-            f"<b>Country Code:</b> <code>{country_code}</code>\n"
-            f"<b>Daylight saving:</b> <code>{daylight_saving}</code>\n"
-            f"<b>Day:</b> <code>{current_day}</code>\n"
-            f"<b>Current Time:</b> <code>{current_time}</code>\n"
-            f"<b>Current Date:</b> <code>{current_date}</code>\n"
+            f"❍ <b>Country:</b> <code>{country_name}</code>\n"
+            f"❍ <b>Zone Name:</b> <code>{country_zone}</code>\n"
+            f"❍ <b>Country Code:</b> <code>{country_code}</code>\n"
+            f"❍ <b>Daylight saving:</b> <code>{daylight_saving}</code>\n"
+            f"❍ <b>Day:</b> <code>{current_day}</code>\n"
+            f"❍ <b>Current Time:</b> <code>{current_time}</code>\n"
+            f"❍ <b>Current Date:</b> <code>{current_date}</code>\n"
             '<b>Timezones:</b> <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">List here</a>'
         )
     except:
@@ -58,7 +58,7 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
     return result
 
 
-@run_async
+
 def gettime(update: Update, context: CallbackContext):
     message = update.effective_message
 
@@ -91,7 +91,7 @@ def gettime(update: Update, context: CallbackContext):
     )
 
 
-TIME_HANDLER = DisableAbleCommandHandler("time", gettime)
+TIME_HANDLER = DisableAbleCommandHandler("time", gettime, run_async=True)
 
 dispatcher.add_handler(TIME_HANDLER)
 
