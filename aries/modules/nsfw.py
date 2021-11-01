@@ -105,7 +105,6 @@ def yuri(update, context):
     target = "yuri"
     msg.reply_photo(nekos.img(target))
 
-@
 
 def trap(update, context):
     chat_id = update.effective_chat.id
