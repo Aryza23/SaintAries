@@ -3,12 +3,11 @@ import traceback
 from aries import pbot as app
 from aries.utils.inlinefuncs import *
 
-__mod_name__ = "Inline"
+__mod_name__ = "🔘 Inline"
 
 
 __help__ = """
 See Aries inline for help related to inline
-Usage: @idzeroid_bot <func> <query>
 """
 
 
