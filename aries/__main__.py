@@ -286,8 +286,12 @@ def start(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Support", url=f"https://telegram.dog/idzeroidsupport"),                                                  
-                        InlineKeyboardButton(text="Updates", url="https://telegram.dog/idzeroid")                           
+                        InlineKeyboardButton(
+                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                        ),
+                        InlineKeyboardButton(
+                            text="Updates", url="https://telegram.dog/idzeroid"
+                        ),
                     ],
                 ]
             ),
@@ -362,9 +366,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "* ｢  Help  for  {}  module 」*\n".format(
-                    HELPABLE[module].__mod_name__
-                )
+                "* ｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
                 + HELPABLE[module].__help__
             )
             query.message.edit_text(
