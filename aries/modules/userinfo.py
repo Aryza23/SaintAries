@@ -508,7 +508,7 @@ def set_about_bio(update: Update, context: CallbackContext):
             )
             return
 
-        if user_id in [777000, 1192108540] and sender_id not in DEV_USERS:
+        if user_id in [777000, 1087968824] and sender_id not in DEV_USERS:
             message.reply_text("You are not authorised")
             return
 
