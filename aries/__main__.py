@@ -92,6 +92,9 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
+HELP_MSG = "Click the button below to get help menu in your pm."
+HELP_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
+GROUP_START_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 
 PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
@@ -110,17 +113,15 @@ Made specifically to manage your group , I specialize in managing Entertainment 
 
 buttons = [
     [
-        InlineKeyboardButton(text=" ｢Info」", callback_data="aboutmanu_"),
-    ],
-    [
         InlineKeyboardButton(text=" ｢Help & Cmd」", callback_data="help_back"),
     ],
     [
+        InlineKeyboardButton(text=" ｢Info」", callback_data="aboutmanu_"),
         InlineKeyboardButton(text=" ｢Inline」", switch_inline_query_current_chat=""),
     ],
     [
         InlineKeyboardButton(
-            text=" ｢Summon Me」 ",
+            text=" ➕｢Summon Me」➕ ",
             url="t.me/idzeroid_bot?startgroup=true",
         ),
     ],
@@ -238,7 +239,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="[Back]", callback_data="help_back")]]
                     ),
                 )
 
@@ -255,20 +256,35 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
+            first_name = update.effective_user.first_name
             update.effective_message.reply_text(
-                PM_START_TEXT,
+                PM_START_TEXT.format(
+                    escape_markdown(context.bot.first_name),
+                    escape_markdown(first_name),
+                    escape_markdown(uptime),
+                    sql.num_users(),
+                    sql.num_chats()),                        
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
             )
     else:
-        update.effective_message.reply_text(
-            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
+        update.effective_message.reply_animation(
+            GROUP_START_IMG, caption= "<code> Aries Online \nI am Awake Since</code>: <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                  [
+                  InlineKeyboardButton(text="Support", url=f"https://telegram.dog/idzeroidsupport")
+                  ],
+                  [
+                  InlineKeyboardButton(text="Updates", url="https://telegram.dog/idzeroid")
+                  ]
+                ]
+            ),
         )
-
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -338,7 +354,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "*⚊❮❮❮❮ ｢  Help  for  {}  module 」❯❯❯❯⚊*\n".format(
+                "*⚊❮❮ ｢  Help  for  {}  module 」❯❯⚊*\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
@@ -551,8 +567,8 @@ def get_help(update, context):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_text(
-                f"Contact me in PM to get help of {module.capitalize()}",
+            update.effective_message.reply_photo(
+            HELP_IMG, HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
