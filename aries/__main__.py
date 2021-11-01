@@ -122,7 +122,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(
-            text=" ➕｢Summon Me」➕ ",
+            text=" ➕ ｢Summon Me」➕ ",
             url="t.me/idzeroid_bot?startgroup=true",
         ),
     ],
@@ -289,8 +289,6 @@ def start(update: Update, context: CallbackContext):
                         InlineKeyboardButton(
                             text="Support", url=f"https://telegram.dog/idzeroidsupport"
                         )
-                    ],
-                    [
                         InlineKeyboardButton(
                             text="Updates", url="https://telegram.dog/idzeroid"
                         )
@@ -368,7 +366,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "*⚊❮❮ ｢  Help  for  {}  module 」❯❯⚊*\n".format(
+                "* ｢  Help  for  {}  module 」*\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
