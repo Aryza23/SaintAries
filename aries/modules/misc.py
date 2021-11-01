@@ -8,7 +8,7 @@ from telegram.ext.dispatcher import run_async
 from telegram.ext import CallbackContext, Filters, CommandHandler
 
 import os
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 import time
 from datetime import datetime
@@ -33,7 +33,7 @@ def get_file_id(msg: Message):
                 setattr(obj, "message_type", message_type)
                 return obj
 
-@Client.on_message(filters.command('id'))
+@pbot.on_message(filters.command('id'))
 async def showid(client, message):
     chat_type = message.chat.type
     if chat_type == "private":
