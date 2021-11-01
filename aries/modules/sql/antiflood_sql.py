@@ -1,8 +1,8 @@
 import threading
 
-from sqlalchemy import String, Column, Integer, UnicodeText
+from sqlalchemy import Column, Integer, String, UnicodeText
 
-from aries.modules.sql import SESSION, BASE
+from aries.modules.sql import BASE, SESSION
 
 DEF_COUNT = 1
 DEF_LIMIT = 0
@@ -98,7 +98,9 @@ def set_flood_strength(chat_id, flood_type, value):
         curr_setting = SESSION.query(FloodSettings).get(str(chat_id))
         if not curr_setting:
             curr_setting = FloodSettings(
-                chat_id, flood_type=int(flood_type), value=value,
+                chat_id,
+                flood_type=int(flood_type),
+                value=value,
             )
 
         curr_setting.flood_type = int(flood_type)

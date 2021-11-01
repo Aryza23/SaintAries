@@ -1,10 +1,11 @@
-import asyncio
 from asyncio import sleep
+
 from telethon import events
 from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
-from aries import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
+from telethon.tl.types import ChannelParticipantsAdmins, ChatBannedRights
+
+from aries import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, telethn
 
 # =================== CONSTANT ===================
 
@@ -46,10 +47,9 @@ async def is_administrator(user_id: int, message):
     return admin
 
 
-
 @telethn.on(events.NewMessage(pattern="^[!/]zombies ?(.*)"))
 async def zombies(event):
-    """ For .zombies command, list all the zombies in a chat. """
+    """For .zombies command, list all the zombies in a chat."""
 
     con = event.pattern_match.group(1).lower()
     del_u = 0

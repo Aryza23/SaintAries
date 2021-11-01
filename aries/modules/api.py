@@ -2,11 +2,13 @@
 # Modul Create by https://t.me/xflicks | Github = https://github.com/FeriEXP
 # Yang remove cacat
 
+import os
+import urllib
+
 import aiohttp
 import requests
-import urllib
-import os
 from pyrogram import filters
+
 from aries import TEMP_DOWNLOAD_DIRECTORY, pbot
 
 
@@ -19,7 +21,9 @@ async def boobs(client, message):
     await a.edit("`Mengirim...`")
     nsfw = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     urllib.request.urlretrieve("http://media.oboobs.ru/{}".format(nsfw), pic_loc)
-    await client.send_photo(message.chat.id, pic_loc, caption="**Sange boleh, Goblok jangan**")
+    await client.send_photo(
+        message.chat.id, pic_loc, caption="**Sange boleh, Goblok jangan**"
+    )
     os.remove(pic_loc)
     await a.delete()
 

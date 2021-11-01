@@ -23,17 +23,8 @@ from telegram.ext import (
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
 import aries.modules.sql.welcome_sql as sql
-from aries import (
-    DEV_USERS,
-    LOGGER,
-    OWNER_ID,
-    sw,
-    dispatcher,
-)
-from aries.modules.helper_funcs.chat_status import (
-    is_user_ban_protected,
-    user_admin,
-)
+from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher, sw
+from aries.modules.helper_funcs.chat_status import is_user_ban_protected, user_admin
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from aries.modules.helper_funcs.msg_types import get_welcome_type
 from aries.modules.helper_funcs.string_handling import (

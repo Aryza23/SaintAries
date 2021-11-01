@@ -1,13 +1,9 @@
 import html
-import json
 import re
-import textwrap
 from io import BytesIO, StringIO
 
 import aiohttp
-import bs4
 import pendulum
-import requests
 from telethon.errors.rpcerrorlist import FilePartsInvalidError
 from telethon.tl.types import (
     DocumentAttributeAnimated,
@@ -17,7 +13,6 @@ from telethon.tl.types import (
 from telethon.utils import is_image, is_video
 
 from aries.events import register as kaneki
-
 
 
 @kaneki(pattern="^/whatanime(.*)")

@@ -1,18 +1,10 @@
 from gpytranslate import Translator
-from telegram.ext import CommandHandler, CallbackContext
-from telegram import (
-    Message,
-    Chat,
-    User,
-    ParseMode,
-    Update,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-)
-from aries import dispatcher, pbot
 from pyrogram import filters
-from aries.modules.disable import DisableAbleCommandHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
+from telegram.ext import CallbackContext
 
+from aries import dispatcher, pbot
+from aries.modules.disable import DisableAbleCommandHandler
 
 __help__ = """ 
 Use this module to translate stuff!

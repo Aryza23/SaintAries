@@ -1,5 +1,8 @@
-import importlib
 import collections
+import importlib
+
+from telegram import ParseMode, Update
+from telegram.ext import CallbackContext, CommandHandler
 
 from aries import dispatcher, telethn
 from aries.__main__ import (
@@ -14,9 +17,6 @@ from aries.__main__ import (
     USER_SETTINGS,
 )
 from aries.modules.helper_funcs.chat_status import dev_plus, sudo_plus
-from telegram import ParseMode, Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
-
 
 
 @dev_plus
@@ -24,7 +24,8 @@ def load(update: Update, context: CallbackContext):
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     load_messasge = message.reply_text(
-        f"Attempting to load module : <b>{text}</b>", parse_mode=ParseMode.HTML,
+        f"Attempting to load module : <b>{text}</b>",
+        parse_mode=ParseMode.HTML,
     )
 
     try:
@@ -84,9 +85,9 @@ def load(update: Update, context: CallbackContext):
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
     load_messasge.edit_text(
-        "Successfully loaded module : <b>{}</b>".format(text), parse_mode=ParseMode.HTML,
+        "Successfully loaded module : <b>{}</b>".format(text),
+        parse_mode=ParseMode.HTML,
     )
-
 
 
 @dev_plus
@@ -94,7 +95,8 @@ def unload(update: Update, context: CallbackContext):
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     unload_messasge = message.reply_text(
-        f"Attempting to unload module : <b>{text}</b>", parse_mode=ParseMode.HTML,
+        f"Attempting to unload module : <b>{text}</b>",
+        parse_mode=ParseMode.HTML,
     )
 
     try:
@@ -155,9 +157,9 @@ def unload(update: Update, context: CallbackContext):
         USER_SETTINGS.pop(imported_module.__mod_name__.lower())
 
     unload_messasge.edit_text(
-        f"Successfully unloaded module : <b>{text}</b>", parse_mode=ParseMode.HTML,
+        f"Successfully unloaded module : <b>{text}</b>",
+        parse_mode=ParseMode.HTML,
     )
-
 
 
 @sudo_plus

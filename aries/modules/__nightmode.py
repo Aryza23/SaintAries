@@ -20,9 +20,9 @@ import dateparser
 from telethon import *
 from telethon.tl.types import ChatBannedRights
 
+from aries import telethn as tbot
 from aries.events import register
 from aries.mongo import db
-from aries import telethn as tbot
 
 nightmod = db.nightmode
 
@@ -308,4 +308,3 @@ async def _(event):
             continue
     except Exception as e:
         print(e)
-

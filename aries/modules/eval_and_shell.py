@@ -1,13 +1,15 @@
 import io
-import subprocess
 import os
+import subprocess
 import textwrap
 import traceback
 from contextlib import redirect_stdout
+
+from telegram import ParseMode, Update
+from telegram.ext import CallbackContext, CommandHandler
+
 from aries import LOGGER, dispatcher
 from aries.modules.helper_funcs.chat_status import dev_plus
-from telegram import ParseMode, Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
 
 namespaces = {}
 
@@ -72,7 +74,8 @@ def do(func, bot, update):
 
     os.chdir(os.getcwd())
     with open(
-        os.path.join(os.getcwd(), "aries/modules/helper_funcs/temp.txt"), "w",
+        os.path.join(os.getcwd(), "aries/modules/helper_funcs/temp.txt"),
+        "w",
     ) as temp:
         temp.write(body)
 
@@ -90,7 +93,7 @@ def do(func, bot, update):
     try:
         with redirect_stdout(stdout):
             func_return = func()
-    except Exception as e:
+    except Exception:
         value = stdout.getvalue()
         return f"{value}{traceback.format_exc()}"
     else:
@@ -129,7 +132,10 @@ def shell(update: Update, context: CallbackContext):
         return
     cmd = cmd[1]
     process = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=True,
     )
     stdout, stderr = process.communicate()
     reply = ""

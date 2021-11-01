@@ -1,6 +1,6 @@
 import threading
 
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, Integer, String
 
 from aries.modules.sql import BASE, SESSION
 

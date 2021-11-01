@@ -1,10 +1,11 @@
 import ast
 import threading
 
-from aries import dispatcher
-from aries.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
 from telegram.error import BadRequest, Unauthorized
+
+from aries import dispatcher
+from aries.modules.sql import BASE, SESSION
 
 
 class Federations(BASE):
@@ -473,7 +474,12 @@ def set_frules(fed_id, rules):
         FEDERATION_BYNAME[fed_name]["frules"] = fed_rules
         # Set on database
         fed = Federations(
-            str(owner_id), fed_name, str(fed_id), fed_rules, fed_log, str(fed_members),
+            str(owner_id),
+            fed_name,
+            str(fed_id),
+            fed_rules,
+            fed_log,
+            str(fed_members),
         )
         SESSION.merge(fed)
         SESSION.commit()
@@ -493,7 +499,13 @@ def fban_user(fed_id, user_id, first_name, last_name, user_name, reason, time):
                 SESSION.delete(I)
 
         r = BansF(
-            str(fed_id), str(user_id), first_name, last_name, user_name, reason, time,
+            str(fed_id),
+            str(user_id),
+            first_name,
+            last_name,
+            user_name,
+            reason,
+            time,
         )
 
         SESSION.add(r)
@@ -607,7 +619,6 @@ def get_all_fban_users_target(fed_id, user_id):
 
 
 def get_all_fban_users_global():
-    list_fbanned = FEDERATION_BANNED_USERID
     total = []
     for x in list(FEDERATION_BANNED_USERID):
         for y in FEDERATION_BANNED_USERID[x]:
@@ -616,7 +627,6 @@ def get_all_fban_users_global():
 
 
 def get_all_feds_users_global():
-    list_fed = FEDERATION_BYFEDID
     return [FEDERATION_BYFEDID[x] for x in list(FEDERATION_BYFEDID)]
 
 
@@ -680,7 +690,12 @@ def set_fed_log(fed_id, chat_id):
         FEDERATION_BYNAME[fed_name]["flog"] = fed_log
         # Set on database
         fed = Federations(
-            str(owner_id), fed_name, str(fed_id), fed_rules, fed_log, str(fed_members),
+            str(owner_id),
+            fed_name,
+            str(fed_id),
+            fed_rules,
+            fed_log,
+            str(fed_members),
         )
         SESSION.merge(fed)
         SESSION.commit()
@@ -698,7 +713,7 @@ def subs_fed(fed_id, my_fed):
         SESSION.merge(subsfed)  # merge to avoid duplicate key issues
         SESSION.commit()
         global FEDS_SUBSCRIBER, MYFEDS_SUBSCRIBER
-        #Temporary Data For Subbed Feds
+        # Temporary Data For Subbed Feds
         if FEDS_SUBSCRIBER.get(fed_id, set()) == set():
             FEDS_SUBSCRIBER[fed_id] = {my_fed}
         else:

@@ -1,8 +1,8 @@
 import requests
-from aries import CASH_API_KEY, dispatcher
-from telegram import Update, ParseMode
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram import ParseMode, Update
+from telegram.ext import CallbackContext, CommandHandler
 
+from aries import CASH_API_KEY, dispatcher
 
 
 def convert(update: Update, context: CallbackContext):

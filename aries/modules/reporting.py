@@ -1,9 +1,5 @@
 import html
 
-from aries import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
-from aries.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from aries.modules.log_channel import loggable
-from aries.modules.sql import reporting_sql as sql
 from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
@@ -12,13 +8,16 @@ from telegram.ext import (
     CommandHandler,
     Filters,
     MessageHandler,
-    run_async,
 )
 from telegram.utils.helpers import mention_html
 
+from aries import DRAGONS, LOGGER, TIGERS, WOLVES, dispatcher
+from aries.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from aries.modules.log_channel import loggable
+from aries.modules.sql import reporting_sql as sql
+
 REPORT_GROUP = 12
 REPORT_IMMUNE_USERS = DRAGONS + TIGERS + WOLVES
-
 
 
 @user_admin
@@ -62,7 +61,6 @@ def report_setting(update: Update, context: CallbackContext):
             f"This group's current setting is: `{sql.chat_should_report(chat.id)}`",
             parse_mode=ParseMode.MARKDOWN,
         )
-
 
 
 @user_not_admin
@@ -150,7 +148,9 @@ def report(update: Update, context: CallbackContext) -> str:
                 try:
                     if chat.type != Chat.SUPERGROUP:
                         bot.send_message(
-                            admin.user.id, msg + link, parse_mode=ParseMode.HTML,
+                            admin.user.id,
+                            msg + link,
+                            parse_mode=ParseMode.HTML,
                         )
 
                         if should_forward:
@@ -162,7 +162,9 @@ def report(update: Update, context: CallbackContext) -> str:
                                 message.forward(admin.user.id)
                     if not chat.username:
                         bot.send_message(
-                            admin.user.id, msg + link, parse_mode=ParseMode.HTML,
+                            admin.user.id,
+                            msg + link,
+                            parse_mode=ParseMode.HTML,
                         )
 
                         if should_forward:
@@ -275,8 +277,12 @@ __help__ = """
 """
 
 SETTING_HANDLER = CommandHandler("reports", report_setting, run_async=True)
-REPORT_HANDLER = CommandHandler("report", report, filters=Filters.chat_type.groups, run_async=True)
-ADMIN_REPORT_HANDLER = MessageHandler(Filters.regex(r"(?i)@admins(s)?"), report, run_async=True)
+REPORT_HANDLER = CommandHandler(
+    "report", report, filters=Filters.chat_type.groups, run_async=True
+)
+ADMIN_REPORT_HANDLER = MessageHandler(
+    Filters.regex(r"(?i)@admins(s)?"), report, run_async=True
+)
 REPORT_BUTTON_USER_HANDLER = CallbackQueryHandler(buttons, pattern=r"report_")
 
 dispatcher.add_handler(REPORT_BUTTON_USER_HANDLER)

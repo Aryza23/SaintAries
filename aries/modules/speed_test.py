@@ -1,9 +1,10 @@
 import speedtest
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram.ext import CallbackContext, CallbackQueryHandler
+
 from aries import DEV_USERS, dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.helper_funcs.chat_status import dev_plus
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
 
 
 def convert(speed):
@@ -19,9 +20,9 @@ def speedtestxyz(update: Update, context: CallbackContext):
         ],
     ]
     update.effective_message.reply_text(
-        "Select SpeedTest Mode", reply_markup=InlineKeyboardMarkup(buttons),
+        "Select SpeedTest Mode",
+        reply_markup=InlineKeyboardMarkup(buttons),
     )
-
 
 
 def speedtestxyz_callback(update: Update, context: CallbackContext):
@@ -38,7 +39,8 @@ def speedtestxyz_callback(update: Update, context: CallbackContext):
         if query.data == "speedtest_image":
             speedtest_image = speed.results.share()
             update.effective_message.reply_photo(
-                photo=speedtest_image, caption=replymsg,
+                photo=speedtest_image,
+                caption=replymsg,
             )
             msg.delete()
 
@@ -50,10 +52,12 @@ def speedtestxyz_callback(update: Update, context: CallbackContext):
         query.answer("You are required to join Idzeroid to use this command.")
 
 
-SPEED_TEST_HANDLER = DisableAbleCommandHandler("speedtest", speedtestxyz, run_async=True)
+SPEED_TEST_HANDLER = DisableAbleCommandHandler(
+    "speedtest", speedtestxyz, run_async=True
+)
 SPEED_TEST_CALLBACKHANDLER = CallbackQueryHandler(
-    speedtestxyz_callback, pattern="speedtest_.*",
- run_async=True)
+    speedtestxyz_callback, pattern="speedtest_.*", run_async=True
+)
 
 dispatcher.add_handler(SPEED_TEST_HANDLER)
 dispatcher.add_handler(SPEED_TEST_CALLBACKHANDLER)

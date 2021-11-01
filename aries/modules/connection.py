@@ -1,12 +1,12 @@
-import time
 import re
+import time
 
-from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update, Bot
+from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import CommandHandler, CallbackQueryHandler, run_async
+from telegram.ext import CallbackQueryHandler, CommandHandler
 
 import aries.modules.sql.connection_sql as sql
-from aries import dispatcher, DRAGONS, DEV_USERS
+from aries import DEV_USERS, DRAGONS, dispatcher
 from aries.modules.helper_funcs import chat_status
 from aries.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -317,7 +317,7 @@ CONN_HELP = """
 
 def help_connect_chat(update, context):
 
-    args = context.args
+    context.args
 
     if update.effective_message.chat.type != "private":
         send_message(update.effective_message, "PM me with that command to get help.")
@@ -397,14 +397,20 @@ This allows you to connect to a chat's database, and add things to it without th
  ❍ /allowconnect <yes/no>: allow a user to connect to a chat
 """
 
-CONNECT_CHAT_HANDLER = CommandHandler("connect", connect_chat, pass_args=True, run_async=True)
+CONNECT_CHAT_HANDLER = CommandHandler(
+    "connect", connect_chat, pass_args=True, run_async=True
+)
 CONNECTION_CHAT_HANDLER = CommandHandler("connection", connection_chat, run_async=True)
 DISCONNECT_CHAT_HANDLER = CommandHandler("disconnect", disconnect_chat, run_async=True)
 ALLOW_CONNECTIONS_HANDLER = CommandHandler(
     "allowconnect", allow_connections, pass_args=True, run_async=True
 )
-HELP_CONNECT_CHAT_HANDLER = CommandHandler("helpconnect", help_connect_chat, run_async=True)
-CONNECT_BTN_HANDLER = CallbackQueryHandler(connect_button, pattern=r"connect", run_async=True)
+HELP_CONNECT_CHAT_HANDLER = CommandHandler(
+    "helpconnect", help_connect_chat, run_async=True
+)
+CONNECT_BTN_HANDLER = CallbackQueryHandler(
+    connect_button, pattern=r"connect", run_async=True
+)
 
 dispatcher.add_handler(CONNECT_CHAT_HANDLER)
 dispatcher.add_handler(CONNECTION_CHAT_HANDLER)

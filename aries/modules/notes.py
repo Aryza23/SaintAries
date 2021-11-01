@@ -1,36 +1,35 @@
-import re, ast
-from io import BytesIO
+import ast
 import random
+import re
+from io import BytesIO
 from typing import Optional
 
-import aries.modules.sql.notes_sql as sql
-from aries import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
-from aries.modules.disable import DisableAbleCommandHandler
-from aries.modules.helper_funcs.handlers import MessageHandlerChecker
-from aries.modules.helper_funcs.chat_status import user_admin, connection_status
-from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from aries.modules.helper_funcs.msg_types import get_note_type
-from aries.modules.helper_funcs.string_handling import (
-    escape_invalid_curly_brackets,
-)
 from telegram import (
     MAX_MESSAGE_LENGTH,
+    InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
     ParseMode,
     Update,
-    InlineKeyboardButton,
 )
 from telegram.error import BadRequest
-from telegram.utils.helpers import escape_markdown, mention_markdown
 from telegram.ext import (
     CallbackContext,
-    CommandHandler,
     CallbackQueryHandler,
+    CommandHandler,
     Filters,
     MessageHandler,
 )
-from telegram.ext.dispatcher import run_async
+from telegram.utils.helpers import escape_markdown, mention_markdown
+
+import aries.modules.sql.notes_sql as sql
+from aries import DRAGONS, JOIN_LOGGER, LOGGER, SUPPORT_CHAT, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import connection_status, user_admin
+from aries.modules.helper_funcs.handlers import MessageHandlerChecker
+from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from aries.modules.helper_funcs.msg_types import get_note_type
+from aries.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
 
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
 STICKER_MATCHER = re.compile(r"^###sticker(!photo)?###:")
@@ -74,7 +73,9 @@ def get(update, context, notename, show_none=True, no_format=False):
             if JOIN_LOGGER:
                 try:
                     bot.forward_message(
-                        chat_id=chat_id, from_chat_id=JOIN_LOGGER, message_id=note.value,
+                        chat_id=chat_id,
+                        from_chat_id=JOIN_LOGGER,
+                        message_id=note.value,
                     )
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
@@ -88,7 +89,9 @@ def get(update, context, notename, show_none=True, no_format=False):
             else:
                 try:
                     bot.forward_message(
-                        chat_id=chat_id, from_chat_id=chat_id, message_id=note.value,
+                        chat_id=chat_id,
+                        from_chat_id=chat_id,
+                        message_id=note.value,
                     )
                 except BadRequest as excp:
                     if excp.message == "Message to forward not found":
@@ -112,7 +115,8 @@ def get(update, context, notename, show_none=True, no_format=False):
                 "mention",
             ]
             valid_format = escape_invalid_curly_brackets(
-                note.value, VALID_NOTE_FORMATTERS,
+                note.value,
+                VALID_NOTE_FORMATTERS,
             )
             if valid_format:
                 if not no_format:
@@ -141,10 +145,12 @@ def get(update, context, notename, show_none=True, no_format=False):
                     username="@" + message.from_user.username
                     if message.from_user.username
                     else mention_markdown(
-                        message.from_user.id, message.from_user.first_name,
+                        message.from_user.id,
+                        message.from_user.first_name,
                     ),
                     mention=mention_markdown(
-                        message.from_user.id, message.from_user.first_name,
+                        message.from_user.id,
+                        message.from_user.first_name,
                     ),
                     chatname=escape_markdown(
                         message.chat.title
@@ -218,7 +224,6 @@ def get(update, context, notename, show_none=True, no_format=False):
         message.reply_text("This note doesn't exist")
 
 
-
 @connection_status
 def cmd_get(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -230,14 +235,12 @@ def cmd_get(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Get rekt")
 
 
-
 @connection_status
 def hash_get(update: Update, context: CallbackContext):
     message = update.effective_message.text
     fst_word = message.split()[0]
     no_hash = fst_word[1:].lower()
     get(update, context, no_hash, show_none=False)
-
 
 
 @connection_status
@@ -254,7 +257,6 @@ def slash_get(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Wrong Note ID 😾")
 
 
-
 @user_admin
 @connection_status
 def save(update: Update, context: CallbackContext):
@@ -268,7 +270,12 @@ def save(update: Update, context: CallbackContext):
         return
 
     sql.add_note_to_db(
-        chat_id, note_name, text, data_type, buttons=buttons, file=content,
+        chat_id,
+        note_name,
+        text,
+        data_type,
+        buttons=buttons,
+        file=content,
     )
 
     msg.reply_text(
@@ -294,7 +301,6 @@ def save(update: Update, context: CallbackContext):
         return
 
 
-
 @user_admin
 @connection_status
 def clear(update: Update, context: CallbackContext):
@@ -307,7 +313,6 @@ def clear(update: Update, context: CallbackContext):
             update.effective_message.reply_text("Successfully removed note.")
         else:
             update.effective_message.reply_text("That's not a note in my database!")
-
 
 
 def clearall(update: Update, context: CallbackContext):
@@ -323,7 +328,8 @@ def clearall(update: Update, context: CallbackContext):
             [
                 [
                     InlineKeyboardButton(
-                        text="Delete all notes", callback_data="notes_rmall",
+                        text="Delete all notes",
+                        callback_data="notes_rmall",
                     ),
                 ],
                 [InlineKeyboardButton(text="Cancel", callback_data="notes_cancel")],
@@ -334,7 +340,6 @@ def clearall(update: Update, context: CallbackContext):
             reply_markup=buttons,
             parse_mode=ParseMode.MARKDOWN,
         )
-
 
 
 def clearall_btn(update: Update, context: CallbackContext):
@@ -366,7 +371,6 @@ def clearall_btn(update: Update, context: CallbackContext):
             query.answer("Only owner of the chat can do this.")
         if member.status == "member":
             query.answer("You need to be admin to do this.")
-
 
 
 @connection_status
@@ -417,7 +421,11 @@ def __import_data__(chat_id, data):
             content = notedata[matchsticker.end() :].strip()
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.STICKER, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.STICKER,
+                    file=content,
                 )
         elif matchbtn:
             parse = notedata[matchbtn.end() :].strip()
@@ -439,7 +447,11 @@ def __import_data__(chat_id, data):
             content = file[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.DOCUMENT, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.DOCUMENT,
+                    file=content,
                 )
         elif matchphoto:
             photo = notedata[matchphoto.end() :].strip()
@@ -448,7 +460,11 @@ def __import_data__(chat_id, data):
             content = photo[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.PHOTO, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.PHOTO,
+                    file=content,
                 )
         elif matchaudio:
             audio = notedata[matchaudio.end() :].strip()
@@ -457,7 +473,11 @@ def __import_data__(chat_id, data):
             content = audio[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.AUDIO, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.AUDIO,
+                    file=content,
                 )
         elif matchvoice:
             voice = notedata[matchvoice.end() :].strip()
@@ -466,7 +486,11 @@ def __import_data__(chat_id, data):
             content = voice[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.VOICE, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.VOICE,
+                    file=content,
                 )
         elif matchvideo:
             video = notedata[matchvideo.end() :].strip()
@@ -475,7 +499,11 @@ def __import_data__(chat_id, data):
             content = video[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.VIDEO, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.VIDEO,
+                    file=content,
                 )
         elif matchvn:
             video_note = notedata[matchvn.end() :].strip()
@@ -484,7 +512,11 @@ def __import_data__(chat_id, data):
             content = video_note[0]
             if content:
                 sql.add_note_to_db(
-                    chat_id, notename[1:], notedata, sql.Types.VIDEO_NOTE, file=content,
+                    chat_id,
+                    notename[1:],
+                    notedata,
+                    sql.Types.VIDEO_NOTE,
+                    file=content,
                 )
         else:
             sql.add_note_to_db(chat_id, notename[1:], notedata, sql.Types.TEXT)
@@ -550,7 +582,9 @@ SLASH_GET_HANDLER = MessageHandler(Filters.regex(r"^/\d+$"), slash_get, run_asyn
 SAVE_HANDLER = CommandHandler("save", save, run_async=True)
 DELETE_HANDLER = CommandHandler("clear", clear, run_async=True)
 
-LIST_HANDLER = DisableAbleCommandHandler(["notes", "saved"], list_notes, admin_ok=True, run_async=True)
+LIST_HANDLER = DisableAbleCommandHandler(
+    ["notes", "saved"], list_notes, admin_ok=True, run_async=True
+)
 
 CLEARALL = DisableAbleCommandHandler("removeallnotes", clearall, run_async=True)
 CLEARALL_BTN = CallbackQueryHandler(clearall_btn, pattern=r"notes_.*", run_async=True)

@@ -1,18 +1,21 @@
 # AI Chat (C) 2020-2021 by @InukaAsith
 
-import emoji
 import re
+
 import aiohttp
+import emoji
 from googletrans import Translator as google_translator
 from pyrogram import filters
-from aiohttp import ClientSession
-from aries import BOT_ID, pbot as aries, arq
+
+from aries import BOT_ID, arq
+from aries import pbot as aries
 from aries.bot_plugins.chatbot import add_chat, get_session, remove_chat
 from aries.utils.pluginhelper import admins_only, edit_or_reply
 
 url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
 translator = google_translator()
+
 
 async def lunaQuery(query: str, user_id: int):
     luna = await arq.luna(query, user_id)
@@ -42,12 +45,16 @@ aries_chats = []
 en_chats = []
 
 
-@aries.on_message(filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private)
+@aries.on_message(
+    filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private
+)
 @admins_only
 async def hmm(_, message):
     global aries_chats
     if len(message.command) != 2:
-        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
+        await message.reply_text(
+            "I only recognize `/chatbot on` and /chatbot `off only`"
+        )
         message.continue_propagation()
     status = message.text.split(None, 1)[1]
     chat_id = message.chat.id
@@ -57,7 +64,9 @@ async def hmm(_, message):
         if not lol:
             await lel.edit("Aries AI Already Activated In This Chat")
             return
-        await lel.edit(f"Aries AI Successfully Added For Users In The Chat {message.chat.id}")
+        await lel.edit(
+            f"Aries AI Successfully Added For Users In The Chat {message.chat.id}"
+        )
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
@@ -65,7 +74,9 @@ async def hmm(_, message):
         if not Escobar:
             await lel.edit("Aries AI Was Not Activated In This Chat")
             return
-        await lel.edit(f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}")
+        await lel.edit(
+            f"Aries AI Successfully Deactivated For Users In The Chat {message.chat.id}"
+        )
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
@@ -75,7 +86,9 @@ async def hmm(_, message):
         await message.reply_text("AI Chat Is Already Disabled.")
         message.continue_propagation()
     else:
-        await message.reply_text("I only recognize `/chatbot on` and /chatbot `off only`")
+        await message.reply_text(
+            "I only recognize `/chatbot on` and /chatbot `off only`"
+        )
 
 
 @aries.on_message(
@@ -107,7 +120,10 @@ async def hmm(client, message):
         test = test.replace("aries", "hi")
         test = test.replace("Aryza", "aryza")
         test = test.replace("bot", "hello")
-        test = test.replace("My name is Aries, I don't know why it seems i told you that before, you forgot?", "Whats You name ?")
+        test = test.replace(
+            "My name is Aries, I don't know why it seems i told you that before, you forgot?",
+            "Whats You name ?",
+        )
         test = test.replace("who are you?", "im aries")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
@@ -115,7 +131,10 @@ async def hmm(client, message):
         response = response.replace("hello", "Aries")
         response = response.replace("aryza", "Aryza")
         response = response.replace("lol", "bot")
-        response = response.replace("whats you name ?", "My name is Aries, I don't know why it seems i told you that before, you forgot?")
+        response = response.replace(
+            "whats you name ?",
+            "My name is Aries, I don't know why it seems i told you that before, you forgot?",
+        )
         response = response.replace("im aries", "who are you?")
         pro = response
         try:
@@ -179,7 +198,10 @@ async def hmm(client, message):
         response = response.replace("hello", "Aries")
         response = response.replace("lol", "bot")
         response = response.replace("im aries", "who are you?")
-        response = response.replace("whats you name ?", "My name is Aries, I don't know why it seems i told you that before, you forgot?") 
+        response = response.replace(
+            "whats you name ?",
+            "My name is Aries, I don't know why it seems i told you that before, you forgot?",
+        )
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -194,7 +216,9 @@ async def hmm(client, message):
             return
 
 
-@aries.on_message(filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot)
+@aries.on_message(
+    filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot
+)
 async def inuka(client, message):
     msg = message.text
     if msg.startswith("/") or msg.startswith("@"):
@@ -311,12 +335,15 @@ async def inuka(client, message):
             return
 
     test = test.replace("aries", "hi")
-    test = test.replace("bot", "Im Human")   
+    test = test.replace("bot", "Im Human")
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
     response = response.replace("Hi", "Aries")
     response = response.replace("Im Human", "bot")
-    response = response.replace("whats you name ?", "My name is Aries, I don't know why it seems i told you that before, you forgot?")
-  
+    response = response.replace(
+        "whats you name ?",
+        "My name is Aries, I don't know why it seems i told you that before, you forgot?",
+    )
+
     pro = response
     if not "en" in lan and not lan == "":
         try:

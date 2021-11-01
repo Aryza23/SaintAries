@@ -1,9 +1,12 @@
 import os
 import time
 import zipfile
+
 from telethon import types
 from telethon.tl import functions
-from aries import TEMP_DOWNLOAD_DIRECTORY, telethn as client
+
+from aries import TEMP_DOWNLOAD_DIRECTORY
+from aries import telethn as client
 from aries.events import register
 
 

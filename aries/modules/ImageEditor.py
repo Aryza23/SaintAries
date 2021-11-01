@@ -9,6 +9,8 @@ from pyrogram.types import (
     Message,
 )
 
+from aries import pbot as Client
+
 # By @TroJanzHEX
 from aries.bot_plugins.ImageEditor.edit_1 import (  # pylint:disable=import-error
     black_white,
@@ -56,7 +58,6 @@ from aries.bot_plugins.ImageEditor.edit_5 import (  # pylint:disable=import-erro
     scanlineglitch_4,
     scanlineglitch_5,
 )
-from aries import pbot as Client
 
 lel = 00000000
 # pylint:disable=import-error

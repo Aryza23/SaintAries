@@ -1,17 +1,13 @@
-from aries import telethn as tbot
 import os
-import urllib.request
 from datetime import datetime
-from typing import List
-from typing import Optional
+
 import requests
 from telethon import *
-from telethon import events
-from telethon.tl import functions
-from telethon.tl import types
+from telethon.tl import functions, types
 from telethon.tl.types import *
 
 from aries import *
+from aries import telethn as tbot
 from aries.events import register
 
 IBM_WATSON_CRED_URL = "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/a555b290-7e0f-4e20-a825-68ab2d471851"

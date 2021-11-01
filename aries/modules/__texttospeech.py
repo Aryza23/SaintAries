@@ -1,15 +1,9 @@
-from aries import telethn as tbot
 import os
 
-from gtts import gTTS
-from gtts import gTTSError
-from telethon import *
-from telethon.tl import functions
-from telethon.tl import types
-from telethon.tl.types import *
+from gtts import gTTS, gTTSError
+from telethon.tl import functions, types
 
-from aries import *
-
+from aries import telethn as tbot
 from aries.events import register
 
 

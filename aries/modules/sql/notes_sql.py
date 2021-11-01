@@ -1,9 +1,10 @@
 # Note: chat_id's are stored as strings because the int is too large to be stored in a PSQL database.
 import threading
 
+from sqlalchemy import Boolean, Column, Integer, String, UnicodeText, distinct, func
+
 from aries.modules.helper_funcs.msg_types import Types
 from aries.modules.sql import BASE, SESSION
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText, distinct, func
 
 
 class Notes(BASE):
@@ -62,7 +63,8 @@ def add_note_to_db(chat_id, note_name, note_data, msgtype, buttons=None, file=No
                 prev_buttons = (
                     SESSION.query(Buttons)
                     .filter(
-                        Buttons.chat_id == str(chat_id), Buttons.note_name == note_name,
+                        Buttons.chat_id == str(chat_id),
+                        Buttons.note_name == note_name,
                     )
                     .all()
                 )
@@ -70,7 +72,11 @@ def add_note_to_db(chat_id, note_name, note_data, msgtype, buttons=None, file=No
                     SESSION.delete(btn)
             SESSION.delete(prev)
         note = Notes(
-            str(chat_id), note_name, note_data or "", msgtype=msgtype.value, file=file,
+            str(chat_id),
+            note_name,
+            note_data or "",
+            msgtype=msgtype.value,
+            file=file,
         )
         SESSION.add(note)
         SESSION.commit()
@@ -102,7 +108,8 @@ def rm_note(chat_id, note_name):
                 buttons = (
                     SESSION.query(Buttons)
                     .filter(
-                        Buttons.chat_id == str(chat_id), Buttons.note_name == note_name,
+                        Buttons.chat_id == str(chat_id),
+                        Buttons.note_name == note_name,
                     )
                     .all()
                 )

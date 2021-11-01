@@ -1,46 +1,36 @@
 import html
 import time
-
 from datetime import datetime
 from io import BytesIO
 
 from telegram import ParseMode, Update
 from telegram.error import BadRequest, TelegramError, Unauthorized
-from telegram.ext import (
-    CallbackContext,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-    run_async,
-)
+from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
 from telegram.utils.helpers import mention_html
 
 import aries.modules.sql.global_bans_sql as sql
-from aries.modules.sql.users_sql import get_user_com_chats
 from aries import (
+    DEMONS,
     DEV_USERS,
+    DRAGONS,
     EVENT_LOGS,
     OWNER_ID,
-    STRICT_GBAN,
-    DRAGONS,
-    SUPPORT_CHAT,
     SPAMWATCH_SUPPORT_CHAT,
-    DEMONS,
+    STRICT_GBAN,
+    SUPPORT_CHAT,
     TIGERS,
     WOLVES,
-    sw,
     dispatcher,
+    sw,
 )
 from aries.modules.helper_funcs.chat_status import (
     is_user_admin,
     support_plus,
     user_admin,
 )
-from aries.modules.helper_funcs.extraction import (
-    extract_user,
-    extract_user_and_text,
-)
+from aries.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from aries.modules.helper_funcs.misc import send_to_list
+from aries.modules.sql.users_sql import get_user_com_chats
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -144,7 +134,9 @@ def gban(update: Update, context: CallbackContext):
             return
 
         old_reason = sql.update_gban_reason(
-            user_id, user_chat.username or user_chat.first_name, reason,
+            user_id,
+            user_chat.username or user_chat.first_name,
+            reason,
         )
         if old_reason:
             message.reply_text(
@@ -192,7 +184,7 @@ def gban(update: Update, context: CallbackContext):
     if EVENT_LOGS:
         try:
             log = bot.send_message(EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
-        except BadRequest as excp:
+        except BadRequest:
             log = bot.send_message(
                 EVENT_LOGS,
                 log_message
@@ -229,7 +221,9 @@ def gban(update: Update, context: CallbackContext):
                     )
                 else:
                     send_to_list(
-                        bot, DRAGONS + DEMONS, f"Could not gban due to: {excp.message}",
+                        bot,
+                        DRAGONS + DEMONS,
+                        f"Could not gban due to: {excp.message}",
                     )
                 sql.ungban_user(user_id)
                 return
@@ -316,7 +310,7 @@ def ungban(update: Update, context: CallbackContext):
     if EVENT_LOGS:
         try:
             log = bot.send_message(EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
-        except BadRequest as excp:
+        except BadRequest:
             log = bot.send_message(
                 EVENT_LOGS,
                 log_message
@@ -352,7 +346,8 @@ def ungban(update: Update, context: CallbackContext):
                     )
                 else:
                     bot.send_message(
-                        OWNER_ID, f"Could not un-gban due to: {excp.message}",
+                        OWNER_ID,
+                        f"Could not un-gban due to: {excp.message}",
                     )
                 return
         except TelegramError:
@@ -546,9 +541,13 @@ GBAN_HANDLER = CommandHandler("gban", gban, run_async=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, run_async=True)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist, run_async=True)
 
-GBAN_STATUS = CommandHandler("antispam", gbanstat, filters=Filters.chat_type.groups, run_async=True)
+GBAN_STATUS = CommandHandler(
+    "antispam", gbanstat, filters=Filters.chat_type.groups, run_async=True
+)
 
-GBAN_ENFORCER = MessageHandler(Filters.all & Filters.chat_type.groups, enforce_gban, run_async=True)
+GBAN_ENFORCER = MessageHandler(
+    Filters.all & Filters.chat_type.groups, enforce_gban, run_async=True
+)
 
 dispatcher.add_handler(GBAN_HANDLER)
 dispatcher.add_handler(UNGBAN_HANDLER)

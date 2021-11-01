@@ -1,13 +1,13 @@
 import os
-
 from time import sleep
-from aries import OWNER_ID, dispatcher
-from aries.modules.helper_funcs.extraction import extract_user
-from aries.modules.sql.users_sql import get_user_com_chats
+
 from telegram import Update
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.ext import CallbackContext, CommandHandler, Filters
-from telegram.ext.dispatcher import run_async
+
+from aries import OWNER_ID, dispatcher
+from aries.modules.helper_funcs.extraction import extract_user
+from aries.modules.sql.users_sql import get_user_com_chats
 
 
 def get_user_common_chats(update: Update, context: CallbackContext):
@@ -44,7 +44,10 @@ def get_user_common_chats(update: Update, context: CallbackContext):
 
 
 COMMON_CHATS_HANDLER = CommandHandler(
-    "getchats", get_user_common_chats, filters=Filters.user(OWNER_ID), run_async=True,
+    "getchats",
+    get_user_common_chats,
+    filters=Filters.user(OWNER_ID),
+    run_async=True,
 )
 
 dispatcher.add_handler(COMMON_CHATS_HANDLER)

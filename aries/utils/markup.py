@@ -1,4 +1,3 @@
-
 def MakeCaptchaMarkup(markup, _number, sign):
     __markup = markup
     for i in markup:

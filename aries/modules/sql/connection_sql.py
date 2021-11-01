@@ -2,9 +2,9 @@ import threading
 import time
 from typing import Union
 
-from sqlalchemy import Column, String, Boolean, UnicodeText, Integer
+from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
 
-from aries.modules.sql import SESSION, BASE
+from aries.modules.sql import BASE, SESSION
 
 
 class ChatAccessConnectionSettings(BASE):
@@ -18,7 +18,8 @@ class ChatAccessConnectionSettings(BASE):
 
     def __repr__(self):
         return "<Chat access settings ({}) is {}>".format(
-            self.chat_id, self.allow_connect_to_chat,
+            self.chat_id,
+            self.allow_connect_to_chat,
         )
 
 

@@ -1,10 +1,10 @@
-import os
-from aries import telethn as tbot
 from geopy.geocoders import Nominatim
-from aries.events import register
-from aries import *
 from telethon import *
 from telethon.tl import *
+
+from aries import *
+from aries import telethn as tbot
+from aries.events import register
 
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 
@@ -33,8 +33,6 @@ async def _(event):
     except Exception as e:
         print(e)
         await event.reply("I can't find that")
-
-
 
 
 __mod_name__ = "gps"

@@ -1,18 +1,18 @@
-import speedtest
-import requests
 import datetime
 import platform
-
-from psutil import cpu_percent, virtual_memory, disk_usage, boot_time
 from platform import python_version
-from telegram import __version__
-from spamwatch import __version__ as __sw__
+
+import requests
+import speedtest
+from psutil import boot_time, cpu_percent, disk_usage, virtual_memory
 from pythonping import ping as ping3
-from telegram import ParseMode
-from telegram.ext import CommandHandler, run_async, Filters
+from spamwatch import __version__ as __sw__
+from telegram import ParseMode, __version__
+from telegram.ext import CommandHandler, Filters
+
 from aries import dispatcher
-from aries.modules.helper_funcs.filters import CustomFilters
 from aries.modules.helper_funcs.alternate import typing_action
+from aries.modules.helper_funcs.filters import CustomFilters
 
 OWNER_ID = "1192108540"
 
@@ -47,15 +47,13 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-
 @typing_action
 def get_bot_ip(update, context):
-    """ Sends the bot's IP address, so as to be able to ssh in if necessary.
-        OWNER ONLY.
+    """Sends the bot's IP address, so as to be able to ssh in if necessary.
+    OWNER ONLY.
     """
     res = requests.get("http://ipinfo.io/ip")
     update.message.reply_text(res.text)
-
 
 
 @typing_action
@@ -80,7 +78,6 @@ def speedtsts(update, context):
         update.effective_chat.id,
         ed_msg.message_id,
     )
-
 
 
 @typing_action
@@ -110,9 +107,15 @@ def system_status(update, context):
     context.bot.sendMessage(update.effective_chat.id, status, parse_mode=ParseMode.HTML)
 
 
-IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True)
-PING_HANDLER = CommandHandler("pings", ping, filters=CustomFilters.sudo_filter, run_async=True)
-SPEED_HANDLER = CommandHandler("speedtests", speedtsts, filters=CustomFilters.sudo_filter, run_async=True)
+IP_HANDLER = CommandHandler(
+    "ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True
+)
+PING_HANDLER = CommandHandler(
+    "pings", ping, filters=CustomFilters.sudo_filter, run_async=True
+)
+SPEED_HANDLER = CommandHandler(
+    "speedtests", speedtsts, filters=CustomFilters.sudo_filter, run_async=True
+)
 SYS_STATUS_HANDLER = CommandHandler(
     "sysinfo", system_status, filters=CustomFilters.sudo_filter, run_async=True
 )

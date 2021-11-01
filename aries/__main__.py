@@ -1,14 +1,14 @@
 import html
-import re, os
 import importlib
 import json
+import os
 import re
-import os, sys
+import sys
 import time
 import traceback
 from sys import argv
 from typing import Optional
-import os
+
 from telegram import (
     Chat,
     InlineKeyboardButton,
@@ -33,8 +33,9 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
+
 DEV_USERS = os.environ.get("DEV_USERS")
 from aries import (
     ALLOW_EXCL,
@@ -44,6 +45,7 @@ from aries import (
     LOGGER,
     OWNER_ID,
     PORT,
+    SAINT,
     SUPPORT_CHAT,
     TOKEN,
     URL,
@@ -54,9 +56,9 @@ from aries import (
     pbot,
     telethn,
     ubot,
-    SAINT,
     updater,
 )
+
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from aries.modules import ALL_MODULES
@@ -186,7 +188,6 @@ def test(update, context):
     print(update.effective_message)
 
 
-
 def start(update: Update, context: CallbackContext):
     args = context.args
     uptime = get_readable_time((time.time() - StartTime))
@@ -260,6 +261,7 @@ def error_handler(update, context):
         message = message[:4096]
     # Finally, send the message
     context.bot.send_message(chat_id=OWNER_ID, text=message, parse_mode=ParseMode.HTML)
+
 
 # for test purposes
 def error_callback(update: Update, context: CallbackContext):
@@ -356,7 +358,6 @@ def help_button(update, context):
         else:
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
-
 
 
 def aries_about_callback(update, context):
@@ -506,8 +507,6 @@ def aries_about_callback(update, context):
         )
 
 
-
-
 @typing_action
 def get_help(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -615,7 +614,6 @@ def send_settings(chat_id, user_id, user=False):
             )
 
 
-
 def settings_button(update, context):
     query = update.callback_query
     user = update.effective_user
@@ -703,7 +701,6 @@ def settings_button(update, context):
             LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
-
 def get_settings(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -789,7 +786,6 @@ def is_chat_allowed(update, context):
         pass
 
 
-
 def donate(update: Update, context: CallbackContext):
     update.effective_message.from_user
     chat = update.effective_chat  # type: Optional[Chat]
@@ -824,10 +820,14 @@ def main():
     start_handler = CommandHandler("start", start, pass_args=True, run_async=True)
 
     help_handler = CommandHandler("help", get_help, run_async=True)
-    help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_", run_async=True)
+    help_callback_handler = CallbackQueryHandler(
+        help_button, pattern=r"help_", run_async=True
+    )
 
     settings_handler = CommandHandler("settings", get_settings, run_async=True)
-    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
+    settings_callback_handler = CallbackQueryHandler(
+        settings_button, pattern=r"stngs_", run_async=True
+    )
 
     about_callback_handler = CallbackQueryHandler(
         aries_about_callback, pattern=r"aboutmanu_", run_async=True
@@ -835,8 +835,12 @@ def main():
 
     donate_handler = CommandHandler("donate", donate, run_async=True)
 
-    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats, run_async=True)
-    is_chat_allowed_handler = MessageHandler(Filters.group, is_chat_allowed, run_async=True)
+    migrate_handler = MessageHandler(
+        Filters.status_update.migrate, migrate_chats, run_async=True
+    )
+    is_chat_allowed_handler = MessageHandler(
+        Filters.group, is_chat_allowed, run_async=True
+    )
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
@@ -870,18 +874,19 @@ def main():
             drop_pending_updates=True,
         )
     if SAINT == 1192108540:
-         print ("IDZ ADDED ")
+        print("IDZ ADDED ")
     else:
-         os.execl(sys.executable, sys.executable, *sys.argv)
-         telethn.disconnect()
-         exit()
+        os.execl(sys.executable, sys.executable, *sys.argv)
+        telethn.disconnect()
+        exit()
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
     else:
         telethn.run_until_disconnected()
 
     updater.idle()
-    
+
+
 try:
     ubot.start()
 except BaseException:

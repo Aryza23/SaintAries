@@ -1,20 +1,21 @@
-from time import perf_counter
 from functools import wraps
-from cachetools import TTLCache
 from threading import RLock
+from time import perf_counter
+
+from cachetools import TTLCache
+from telegram import Chat, ChatMember, ParseMode, Update
+from telegram.ext import CallbackContext
+
 from aries import (
     DEL_CMDS,
+    DEMONS,
     DEV_USERS,
     DRAGONS,
     SUPPORT_CHAT,
-    DEMONS,
     TIGERS,
     WOLVES,
     dispatcher,
 )
-
-from telegram import Chat, ChatMember, ParseMode, Update
-from telegram.ext import CallbackContext
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
@@ -31,6 +32,7 @@ def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool
 
 def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DRAGONS or user_id in DEV_USERS
+
 
 def is_stats_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DEV_USERS
@@ -103,7 +105,7 @@ def is_user_in_chat(chat: Chat, user_id: int) -> bool:
 def dev_plus(func):
     @wraps(func)
     def is_dev_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
 
         if user.id in DEV_USERS:
@@ -127,7 +129,7 @@ def dev_plus(func):
 def sudo_plus(func):
     @wraps(func)
     def is_sudo_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -147,10 +149,11 @@ def sudo_plus(func):
 
     return is_sudo_plus_func
 
+
 def stats_plus(func):
     @wraps(func)
     def is_stats_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -174,7 +177,7 @@ def stats_plus(func):
 def support_plus(func):
     @wraps(func)
     def is_support_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -192,9 +195,12 @@ def support_plus(func):
 def whitelist_plus(func):
     @wraps(func)
     def is_whitelist_plus_func(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -210,7 +216,7 @@ def whitelist_plus(func):
 def user_admin(func):
     @wraps(func)
     def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -234,9 +240,12 @@ def user_admin(func):
 def user_admin_no_reply(func):
     @wraps(func)
     def is_not_admin_no_reply(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -256,7 +265,7 @@ def user_admin_no_reply(func):
 def user_not_admin(func):
     @wraps(func)
     def is_not_admin(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -367,7 +376,8 @@ def can_restrict(func):
         if chat.get_member(bot.id).can_restrict_members:
             return func(update, context, *args, **kwargs)
         update.effective_message.reply_text(
-            cant_restrict, parse_mode=ParseMode.HTML,
+            cant_restrict,
+            parse_mode=ParseMode.HTML,
         )
 
     return restrict_rights
@@ -376,7 +386,7 @@ def can_restrict(func):
 def user_can_ban(func):
     @wraps(func)
     def user_is_banhammer(update: Update, context: CallbackContext, *args, **kwargs):
-        bot = context.bot
+        context.bot
         user = update.effective_user.id
         member = update.effective_chat.get_member(user)
         if (
@@ -417,6 +427,7 @@ def connection_status(func):
         return func(update, context, *args, **kwargs)
 
     return connected_status
+
 
 from aries.modules import connection
 

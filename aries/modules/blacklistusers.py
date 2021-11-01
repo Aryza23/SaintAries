@@ -1,29 +1,19 @@
 # Module to blacklist users and prevent them from using commands by @TheRealPhoenix
 import html
-import aries.modules.sql.blacklistusers_sql as sql
-from aries import (
-    DEV_USERS,
-    OWNER_ID,
-    DRAGONS,
-    DEMONS,
-    TIGERS,
-    WOLVES,
-    dispatcher,
-)
-from aries.modules.helper_funcs.chat_status import dev_plus
-from aries.modules.helper_funcs.extraction import (
-    extract_user,
-    extract_user_and_text,
-)
-from aries.modules.log_channel import gloggable
+
 from telegram import ParseMode, Update
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import mention_html
+
+import aries.modules.sql.blacklistusers_sql as sql
+from aries import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, TIGERS, WOLVES, dispatcher
+from aries.modules.helper_funcs.chat_status import dev_plus
+from aries.modules.helper_funcs.extraction import extract_user, extract_user_and_text
+from aries.modules.log_channel import gloggable
 
 BLACKLISTWHITELIST = [OWNER_ID] + DEV_USERS + DRAGONS + WOLVES + DEMONS
 BLABLEUSERS = [OWNER_ID] + DEV_USERS
-
 
 
 @dev_plus
@@ -68,7 +58,6 @@ def bl_user(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-
 @dev_plus
 @gloggable
 def unbl_user(update: Update, context: CallbackContext) -> str:
@@ -109,7 +98,6 @@ def unbl_user(update: Update, context: CallbackContext) -> str:
     else:
         message.reply_text("I am not ignoring them at all though!")
         return ""
-
 
 
 @dev_plus

@@ -5,6 +5,7 @@ from aries import pbot as app
 
 ARQ_API_URL = "https://thearq.teach"
 
+
 @app.on_message(filters.command("arq"))
 async def arq_stats(_, message):
     data = await arq.stats()
@@ -36,6 +37,4 @@ async def arq_stats(_, message):
 🔘 **Address:** {ARQ_API_URL}
 **Powered By:** __@IdzXartez__🔥
 """
-    await message.reply_text(
-        statistics, disable_web_page_preview=True
-    )
+    await message.reply_text(statistics, disable_web_page_preview=True)

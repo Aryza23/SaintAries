@@ -1,24 +1,23 @@
+import asyncio
+import json
 import logging
 import os
 import re
 import sys
-import json
-import httpx
-import asyncio
 import time
+
+import httpx
 import spamwatch
 import telegram.ext as tg
 from aiohttp import ClientSession
-from redis import StrictRedis
-from Python_ARQ import ARQ
-from telethon import TelegramClient
-from telethon.sessions import MemorySession
-from telethon.sessions import StringSession
-from pyrogram import Client, errors
-from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
-from pyrogram.types import Chat, User
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-
+from pyrogram import Client, errors
+from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, PeerIdInvalid
+from pyrogram.types import Chat, User
+from Python_ARQ import ARQ
+from redis import StrictRedis
+from telethon import TelegramClient
+from telethon.sessions import MemorySession, StringSession
 
 StartTime = time.time()
 
@@ -85,7 +84,9 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
-    DB_URI = DB_URI.replace("postgres://", "postgresql://", 1) # rest of connection code using the connection string `uri`
+    DB_URI = DB_URI.replace(
+        "postgres://", "postgresql://", 1
+    )  # rest of connection code using the connection string `uri`
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     REDIS_URL = os.environ.get("REDIS_URL", None)
     IDZ = os.environ.get("IDZ", "IdzXartez")
@@ -108,13 +109,18 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     WALL_API = os.environ.get("WALL_API", None)
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
-    SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", "@SpamWatchSupport")
-    SPAMWATCH_API = os.environ.get("SPAMWATCH_API", "g~_w3BTzVQOCkm~hO0Dvi5aQCg6v92ZD_1dyZUnVFKneKg7VMw37sVfdqltxtCuq")
+    SPAMWATCH_SUPPORT_CHAT = os.environ.get(
+        "SPAMWATCH_SUPPORT_CHAT", "@SpamWatchSupport"
+    )
+    SPAMWATCH_API = os.environ.get(
+        "SPAMWATCH_API",
+        "g~_w3BTzVQOCkm~hO0Dvi5aQCg6v92ZD_1dyZUnVFKneKg7VMw37sVfdqltxtCuq",
+    )
     BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = 1192108540
-    
+
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
@@ -128,7 +134,7 @@ if ENV:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
-        
+
 else:
     from aries.config import Development as Config
 
@@ -162,7 +168,6 @@ else:
         TIGERS = {int(x) for x in Config.TIGERS or []}
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
-
 
     EVENT_LOGS = Config.EVENT_LOGS
     ERROR_LOGS = Config.ERROR_LOGS
@@ -222,14 +227,16 @@ try:
 
 except BaseException:
 
-    raise Exception("[REDIS ERROR]: Something Wrong In Redis Database Is Not Alive, Please Check Again.")
+    raise Exception(
+        "[REDIS ERROR]: Something Wrong In Redis Database Is Not Alive, Please Check Again."
+    )
 
 finally:
 
-   REDIS.ping()
+    REDIS.ping()
 
-   LOGGER.info("[REDIS]: Connection To Redis Database Successfully!")
-    
+    LOGGER.info("[REDIS]: Connection To Redis Database Successfully!")
+
 
 if not SPAMWATCH_API:
     sw = None
@@ -240,7 +247,7 @@ else:
     except:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
-        
+
 from aries.modules.sql import SESSION
 
 print("[INFO]: INITIALIZING CLIENT SYSTEM")

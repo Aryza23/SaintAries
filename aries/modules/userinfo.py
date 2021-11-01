@@ -1,48 +1,44 @@
 # File part of cutipiee
 
-import html
-import re
-import os
-import requests
 import datetime
+import html
 import platform
 import time
-
-from psutil import cpu_percent, virtual_memory, disk_usage, boot_time
 from platform import python_version
+
+import requests
+from psutil import boot_time, cpu_percent, disk_usage, virtual_memory
+from telegram import MAX_MESSAGE_LENGTH, MessageEntity, ParseMode, Update
+from telegram import __version__ as ptbver
+from telegram.error import BadRequest
+from telegram.ext import CallbackContext, CommandHandler
+from telegram.utils.helpers import escape_markdown, mention_html
+from telethon import events
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.types import ChannelParticipantsAdmins
-from telethon import events
 
-from telegram import MAX_MESSAGE_LENGTH, ParseMode, Update, MessageEntity, __version__ as ptbver, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CallbackContext, CommandHandler
-from telegram.ext.dispatcher import run_async
-from telegram.error import BadRequest
-from telegram.utils.helpers import escape_markdown, mention_html
-    
+import aries.modules.sql.userinfo_sql as sql
 from aries import (
-    DEV_USERS,
-    OWNER_ID,
-    DRAGONS,
     DEMONS,
+    DEV_USERS,
+    DRAGONS,
+    INFOPIC,
+    OWNER_ID,
     TIGERS,
     WOLVES,
-    INFOPIC,
+    StartTime,
     dispatcher,
     sw,
-    StartTime,
-    SUPPORT_CHAT,
+    telethn,
 )
 from aries.__main__ import STATS, TOKEN, USER_INFO
-from aries.modules.sql import SESSION
-import aries.modules.sql.userinfo_sql as sql
 from aries.modules.disable import DisableAbleCommandHandler
-from aries.modules.sql.global_bans_sql import is_user_gbanned
-from aries.modules.redis.afk_redis import is_user_afk, afk_reason
-from aries.modules.sql.users_sql import get_user_num_chats
 from aries.modules.helper_funcs.chat_status import sudo_plus
 from aries.modules.helper_funcs.extraction import extract_user
-from aries import telethn
+from aries.modules.redis.afk_redis import afk_reason, is_user_afk
+from aries.modules.sql.global_bans_sql import is_user_gbanned
+from aries.modules.sql.users_sql import get_user_num_chats
+
 
 def no_by_per(totalhp, percentage):
     """
@@ -62,6 +58,7 @@ def get_percentage(totalhp, earnedhp):
     per_of_totalhp = 100 - matched_less * 100.0 / totalhp
     per_of_totalhp = str(int(per_of_totalhp))
     return per_of_totalhp
+
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -86,6 +83,7 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
 
     return ping_time
+
 
 def hpmanager(user):
     total_hp = (get_user_num_chats(user.id) + 10) * 10
@@ -167,18 +165,21 @@ def get_id(update: Update, context: CallbackContext):
 
     elif chat.type == "private":
         msg.reply_text(
-            f"Your id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
+            f"Your id is <code>{chat.id}</code>.",
+            parse_mode=ParseMode.HTML,
         )
 
     else:
         msg.reply_text(
-            f"This group's id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
+            f"This group's id is <code>{chat.id}</code>.",
+            parse_mode=ParseMode.HTML,
         )
 
 
 @telethn.on(
     events.NewMessage(
-        pattern="/ginfo ", from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
+        pattern="/ginfo ",
+        from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
     ),
 )
 async def group_info(event) -> None:
@@ -186,7 +187,8 @@ async def group_info(event) -> None:
     try:
         entity = await event.client.get_entity(chat)
         totallist = await event.client.get_participants(
-            entity, filter=ChannelParticipantsAdmins,
+            entity,
+            filter=ChannelParticipantsAdmins,
         )
         ch_full = await event.client(GetFullChannelRequest(channel=entity))
     except:
@@ -212,7 +214,6 @@ async def group_info(event) -> None:
         msg += f"\n• [{x.id}](tg://user?id={x.id})"
     msg += f"\n\n**Description**:\n`{ch_full.full_chat.about}`"
     await event.reply(msg)
-
 
 
 def gifid(update: Update, context: CallbackContext):
@@ -317,7 +318,6 @@ def info(update: Update, context: CallbackContext):
     elif user.id in WOLVES:
         text += "\n\nThe Disaster level of this person is 'Wolf'."
         disaster_level_present = True
-    
 
     if disaster_level_present:
         text += ' [<a href="https://t.me/IDZEROIDSUPPORT/27237">?</a>]'.format(
@@ -350,21 +350,24 @@ def info(update: Update, context: CallbackContext):
             profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
             context.bot.sendChatAction(chat.id, "upload_photo")
             context.bot.send_photo(
-            chat.id,
-            photo=profile,
-            caption=(text),
-            parse_mode=ParseMode.HTML,            
-        )
+                chat.id,
+                photo=profile,
+                caption=(text),
+                parse_mode=ParseMode.HTML,
+            )
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+            )
 
     else:
         message.reply_text(
-            text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+            text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+        )
 
     rep.delete()
+
 
 def about_me(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -387,7 +390,6 @@ def about_me(update: Update, context: CallbackContext):
         )
     else:
         update.effective_message.reply_text("There isnt one, use /setme to set one.")
-
 
 
 def set_about_me(update: Update, context: CallbackContext):
@@ -420,6 +422,7 @@ def set_about_me(update: Update, context: CallbackContext):
                     len(info[1]),
                 ),
             )
+
 
 @sudo_plus
 def stats(update, context):
@@ -466,8 +469,8 @@ def stats(update, context):
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
         )
-        
-        
+
+
 def about_bio(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -520,7 +523,8 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         text = message.text
         bio = text.split(
-            None, 1,
+            None,
+            1,
         )  # use python's maxsplit to only remove the cmd, hence keeping newlines.
 
         if len(bio) == 2:
@@ -532,7 +536,8 @@ def set_about_bio(update: Update, context: CallbackContext):
             else:
                 message.reply_text(
                     "Bio needs to be under {} characters! You tried to set {}.".format(
-                        MAX_MESSAGE_LENGTH // 4, len(bio[1]),
+                        MAX_MESSAGE_LENGTH // 4,
+                        len(bio[1]),
                     ),
                 )
     else:

@@ -1,15 +1,14 @@
-import os
 import datetime
+import os
 
-from telethon import events
 from telegram import Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
+from telethon import events
 
-from aries import telethn, dispatcher
+from aries import dispatcher, telethn
 from aries.modules.helper_funcs.chat_status import dev_plus
 
 DEBUG_MODE = False
-
 
 
 @dev_plus
@@ -50,7 +49,6 @@ async def i_do_nothing_yes(event):
 
 
 support_chat = os.getenv("SUPPORT_CHAT")
-
 
 
 @dev_plus

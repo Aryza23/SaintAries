@@ -2,15 +2,15 @@ import html
 
 from telegram import ParseMode, Update
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
+from telegram.ext import CallbackContext, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
 from aries import (
+    DEMONS,
     DEV_USERS,
+    DRAGONS,
     LOGGER,
     OWNER_ID,
-    DRAGONS,
-    DEMONS,
     TIGERS,
     WOLVES,
     dispatcher,
@@ -18,6 +18,7 @@ from aries import (
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.helper_funcs.chat_status import (
     bot_admin,
+    can_delete,
     can_restrict,
     connection_status,
     is_user_admin,
@@ -25,7 +26,6 @@ from aries.modules.helper_funcs.chat_status import (
     is_user_in_chat,
     user_admin,
     user_can_ban,
-    can_delete,
 )
 from aries.modules.helper_funcs.extraction import extract_user_and_text
 from aries.modules.helper_funcs.string_handling import extract_time
@@ -209,7 +209,8 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         if excp.message == "Reply message not found":
             # Do not reply
             message.reply_text(
-                f"Banned! User will be banned for {time_val}.", quote=False,
+                f"Banned! User will be banned for {time_val}.",
+                quote=False,
             )
             return log
         else:
@@ -295,7 +296,9 @@ def kickme(update: Update, context: CallbackContext):
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        update.effective_message.reply_text("*You got the Devil's Kiss, Noe die in peace*")
+        update.effective_message.reply_text(
+            "*You got the Devil's Kiss, Noe die in peace*"
+        )
     else:
         update.effective_message.reply_text("Huh? I can't :/")
 
@@ -408,7 +411,9 @@ TEMPBAN_HANDLER = CommandHandler("tban", temp_ban, run_async=True)
 KICK_HANDLER = CommandHandler("kick", kick, run_async=True)
 UNBAN_HANDLER = CommandHandler("unban", unban, run_async=True)
 ROAR_HANDLER = CommandHandler("roar", selfunban, run_async=True)
-KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.chat_type.groups, run_async=True)
+KICKME_HANDLER = DisableAbleCommandHandler(
+    "kickme", kickme, filters=Filters.chat_type.groups, run_async=True
+)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)

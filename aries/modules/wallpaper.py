@@ -4,10 +4,12 @@
 
 import os
 from asyncio.exceptions import TimeoutError
+
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
+from aries import telethn as tbot
 from aries.events import register
 from aries.utils.telethonubot import ubot
-from aries import telethn as tbot
 
 
 @register(pattern="^/wall ?(.*)")
@@ -41,9 +43,7 @@ async def _(event):
                 reply_to=p,
             )
             await feri.delete()
-            await ubot.delete_messages(
-                conv.chat_id, [r1.id, r2.id, query1.id]
-            )
+            await ubot.delete_messages(conv.chat_id, [r1.id, r2.id, query1.id])
         await event.delete()
         os.system("rm *.png *.jpg")
     except TimeoutError:

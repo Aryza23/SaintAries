@@ -1,6 +1,6 @@
-from aries.mongo import db
-from typing import Dict, List, Union
+from typing import Dict, Union
 
+from aries.mongo import db
 
 coupledb = db.couple
 karmadb = db.karma

@@ -1,9 +1,10 @@
 import random
 
+from telegram import Update
+from telegram.ext import CallbackContext
+
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
-from telegram import Update
-from telegram.ext import CallbackContext, run_async
 
 reactions = [
     "( ͡° ͜ʖ ͡°)",
@@ -210,7 +211,6 @@ reactions = [
     "(∩ᄑ_ᄑ)⊃━☆ﾟ*･｡*･:≡( ε:)",
     "(__)-(__)===D-`,~",
 ]
-
 
 
 def react(update: Update, context: CallbackContext):

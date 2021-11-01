@@ -1,8 +1,8 @@
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions, types
 
-from aries.events import register as Kontol
 from aries import telethn, ubot
+from aries.events import register as Kontol
 
 
 async def is_register_admin(chat, user):

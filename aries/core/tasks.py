@@ -1,12 +1,8 @@
 from asyncio import Lock, create_task
 from time import time
 
-from pyrogram import filters
-from pyrogram.types import Message
-
-from aries import BOT_ID, BOT_USERNAME
-from aries.extrastuff import SUDOERS
 from aries.core.sections import bold, section, w
+
 tasks = {}
 TASKS_LOCK = Lock()
 arrow = lambda x: (x.text if x else "") + "\n`→`"

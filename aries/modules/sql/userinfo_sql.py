@@ -1,7 +1,8 @@
 import threading
 
-from aries.modules.sql import BASE, SESSION
 from sqlalchemy import Column, Integer, UnicodeText
+
+from aries.modules.sql import BASE, SESSION
 
 
 class UserInfo(BASE):

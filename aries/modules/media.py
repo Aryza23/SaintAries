@@ -10,9 +10,9 @@ import ffmpeg
 import youtube_dl
 from pyrogram import filters
 
+from aries import pbot as app
 from aries.arqclient import aiohttpsession as session
 from aries.arqclient import arq
-from aries import pbot as app
 from aries.pyroerror import capture_err
 from aries.utils.pastebin import paste
 
@@ -69,11 +69,7 @@ def download_youtube_audio(url: str):
             os.remove(audio_file)
             audio_file = audio_file_opus
         thumbnail_url = info_dict["thumbnail"]
-        thumbnail_file = (
-            basename
-            + "."
-            + get_file_extension_from_url(thumbnail_url)
-        )
+        thumbnail_file = basename + "." + get_file_extension_from_url(thumbnail_url)
         title = info_dict["title"]
         performer = info_dict["uploader"]
         duration = int(float(info_dict["duration"]))
@@ -85,23 +81,17 @@ def download_youtube_audio(url: str):
 async def music(_, message):
     global is_downloading
     if len(message.command) != 2:
-        return await message.reply_text(
-            "/ytmusic needs a link as argument"
-        )
+        return await message.reply_text("/ytmusic needs a link as argument")
     url = message.text.split(None, 1)[1]
     if is_downloading:
         return await message.reply_text(
             "Another download is in progress, try again after sometime."
         )
     is_downloading = True
-    m = await message.reply_text(
-        f"Downloading {url}", disable_web_page_preview=True
-    )
+    m = await message.reply_text(f"Downloading {url}", disable_web_page_preview=True)
     try:
         loop = get_running_loop()
-        music = await loop.run_in_executor(
-            None, partial(download_youtube_audio, url)
-        )
+        music = await loop.run_in_executor(None, partial(download_youtube_audio, url))
         if not music:
             await m.edit("Too Long, Can't Download.")
         (
@@ -144,9 +134,7 @@ async def download_song(url):
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        return await message.reply_text(
-            "/saavn requires an argument."
-        )
+        return await message.reply_text("/saavn requires an argument.")
     if is_downloading:
         return await message.reply_text(
             "Another download is in progress, try again after sometime."

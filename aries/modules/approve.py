@@ -1,14 +1,16 @@
 import html
-from aries.modules.disable import DisableAbleCommandHandler
-from aries import dispatcher, DRAGONS
-from aries.modules.helper_funcs.extraction import extract_user
-from telegram.ext import CallbackContext, run_async, CallbackQueryHandler
-import aries.modules.sql.approve_sql as sql
-from aries.modules.helper_funcs.chat_status import user_admin
-from aries.modules.log_channel import loggable
-from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update
-from telegram.utils.helpers import mention_html
+
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest
+from telegram.ext import CallbackContext, CallbackQueryHandler
+from telegram.utils.helpers import mention_html
+
+import aries.modules.sql.approve_sql as sql
+from aries import DRAGONS, dispatcher
+from aries.modules.disable import DisableAbleCommandHandler
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.helper_funcs.extraction import extract_user
+from aries.modules.log_channel import loggable
 
 
 @loggable
@@ -145,12 +147,14 @@ def unapproveall(update: Update, context: CallbackContext):
             [
                 [
                     InlineKeyboardButton(
-                        text="Unapprove all users", callback_data="unapproveall_user",
+                        text="Unapprove all users",
+                        callback_data="unapproveall_user",
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        text="Cancel", callback_data="unapproveall_cancel",
+                        text="Cancel",
+                        callback_data="unapproveall_cancel",
                     ),
                 ],
             ],
@@ -172,7 +176,7 @@ def unapproveall_btn(update: Update, context: CallbackContext):
             approved_users = sql.list_approved(chat.id)
             users = [int(i.user_id) for i in approved_users]
             for user_id in users:
-                sql.disapprove(chat.id, user_id)      
+                sql.disapprove(chat.id, user_id)
             message.edit_text("Successfully Unapproved all user in this Chat.")
             return
 
@@ -210,7 +214,9 @@ DISAPPROVE = DisableAbleCommandHandler("unapprove", disapprove, run_async=True)
 APPROVED = DisableAbleCommandHandler("approved", approved, run_async=True)
 APPROVAL = DisableAbleCommandHandler("approval", approval, run_async=True)
 UNAPPROVEALL = DisableAbleCommandHandler("unapproveall", unapproveall, run_async=True)
-UNAPPROVEALL_BTN = CallbackQueryHandler(unapproveall_btn, pattern=r"unapproveall_.*", run_async=True)
+UNAPPROVEALL_BTN = CallbackQueryHandler(
+    unapproveall_btn, pattern=r"unapproveall_.*", run_async=True
+)
 
 dispatcher.add_handler(APPROVE)
 dispatcher.add_handler(DISAPPROVE)

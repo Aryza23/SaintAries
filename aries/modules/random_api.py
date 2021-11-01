@@ -1,6 +1,7 @@
 import requests
-from aries.events import register
+
 from aries import telethn as tbot
+from aries.events import register
 
 
 @register(pattern="^/asupan ?(.*)")
@@ -21,6 +22,7 @@ async def chika(event):
         return await tbot.send_file(event.chat_id, chikanya)
     except Exception:
         await event.reply("`Error 404 not found...`")
+
 
 @register(pattern="^bocil ?(.*)")
 async def bocil(event):

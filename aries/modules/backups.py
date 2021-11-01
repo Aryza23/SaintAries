@@ -1,27 +1,28 @@
-import json, time, os
+import json
+import os
+import time
 from io import BytesIO
 
-from telegram import ParseMode, Message
+from telegram import Message, ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CommandHandler, run_async
-
-import aries.modules.sql.notes_sql as sql
-from aries import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
-from aries.__main__ import DATA_IMPORT
-from aries.modules.helper_funcs.chat_status import user_admin
-from aries.modules.helper_funcs.alternate import typing_action
-
-# from aries.modules.rules import get_rules
-import aries.modules.sql.rules_sql as rulessql
+from telegram.ext import CommandHandler
 
 # from aries.modules.sql import warns_sql as warnssql
 import aries.modules.sql.blacklist_sql as blacklistsql
-from aries.modules.sql import disable_sql as disabledsql
 
 # from aries.modules.sql import cust_filters_sql as filtersql
 # import aries.modules.sql.welcome_sql as welcsql
 import aries.modules.sql.locks_sql as locksql
+import aries.modules.sql.notes_sql as sql
+
+# from aries.modules.rules import get_rules
+import aries.modules.sql.rules_sql as rulessql
+from aries import JOIN_LOGGER, LOGGER, OWNER_ID, SUPPORT_CHAT, dispatcher
+from aries.__main__ import DATA_IMPORT
 from aries.modules.connection import connected
+from aries.modules.helper_funcs.alternate import typing_action
+from aries.modules.helper_funcs.chat_status import user_admin
+from aries.modules.sql import disable_sql as disabledsql
 
 
 @user_admin
@@ -144,7 +145,8 @@ def export_data(update, context):
     if checkchat.get("status"):
         if jam <= int(checkchat.get("value")):
             timeformatt = time.strftime(
-                "%H:%M:%S %d/%m/%Y", time.localtime(checkchat.get("value")),
+                "%H:%M:%S %d/%m/%Y",
+                time.localtime(checkchat.get("value")),
             )
             update.effective_message.reply_text(
                 "You can only backup once a day!\nYou can backup again in about `{}`".format(
@@ -188,34 +190,41 @@ def export_data(update, context):
                         ("{}".format(btn.name), "{}".format(btn.url), False),
                     )
             isicat += "###button###: {}<###button###>{}<###splitter###>".format(
-                note.value, str(buttonlist),
+                note.value,
+                str(buttonlist),
             )
             buttonlist.clear()
         elif note.msgtype == 2:
             isicat += "###sticker###:{}<###splitter###>".format(note.file)
         elif note.msgtype == 3:
             isicat += "###file###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         elif note.msgtype == 4:
             isicat += "###photo###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         elif note.msgtype == 5:
             isicat += "###audio###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         elif note.msgtype == 6:
             isicat += "###voice###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         elif note.msgtype == 7:
             isicat += "###video###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         elif note.msgtype == 8:
             isicat += "###video_note###:{}<###TYPESPLIT###>{}<###splitter###>".format(
-                note.file, note.value,
+                note.file,
+                note.value,
             )
         else:
             isicat += "{}<###splitter###>".format(note.value)
@@ -331,7 +340,9 @@ def export_data(update, context):
         context.bot.sendMessage(
             JOIN_LOGGER,
             "*Successfully imported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`".format(
-                chat.title, chat_id, tgl,
+                chat.title,
+                chat_id,
+                tgl,
             ),
             parse_mode=ParseMode.MARKDOWN,
         )
@@ -341,7 +352,9 @@ def export_data(update, context):
         current_chat_id,
         document=open("aries{}.backup".format(chat_id), "rb"),
         caption="*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `aries-Backup` was specially made for notes.".format(
-            chat.title, chat_id, tgl,
+            chat.title,
+            chat_id,
+            tgl,
         ),
         timeout=360,
         reply_to_message_id=msg.message_id,
@@ -378,7 +391,9 @@ __help__ = """
 """
 
 IMPORT_HANDLER = CommandHandler("import", import_data, run_async=True)
-EXPORT_HANDLER = CommandHandler("export", export_data, pass_chat_data=True, run_async=True)
+EXPORT_HANDLER = CommandHandler(
+    "export", export_data, pass_chat_data=True, run_async=True
+)
 
 dispatcher.add_handler(IMPORT_HANDLER)
 dispatcher.add_handler(EXPORT_HANDLER)

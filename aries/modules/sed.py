@@ -1,12 +1,13 @@
 import sre_constants
+
 import regex
 import telegram
+from telegram import Update
+from telegram.ext import CallbackContext, Filters
 
 from aries import LOGGER, dispatcher
 from aries.modules.disable import DisableAbleMessageHandler
 from aries.modules.helper_funcs.regex_helper import infinite_loop_check
-from telegram import Update
-from telegram.ext import CallbackContext, Filters, run_async
 
 DELIMITERS = ("/", ":", "|", "_")
 
@@ -93,11 +94,20 @@ def sed(update: Update, context: CallbackContext):
                 return
             if "i" in flags and "g" in flags:
                 text = regex.sub(
-                    repl, repl_with, to_fix, flags=regex.I, timeout=3,
+                    repl,
+                    repl_with,
+                    to_fix,
+                    flags=regex.I,
+                    timeout=3,
                 ).strip()
             elif "i" in flags:
                 text = regex.sub(
-                    repl, repl_with, to_fix, count=1, flags=regex.I, timeout=3,
+                    repl,
+                    repl_with,
+                    to_fix,
+                    count=1,
+                    flags=regex.I,
+                    timeout=3,
                 ).strip()
             elif "g" in flags:
                 text = regex.sub(repl, repl_with, to_fix, timeout=3).strip()
@@ -137,7 +147,10 @@ If you want to use these characters, make sure you escape them!
 __mod_name__ = "🔘 Sed/Regex"
 
 SED_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"s([{}]).*?\1.*".format("".join(DELIMITERS))), sed, friendly="sed", run_async=True,
+    Filters.regex(r"s([{}]).*?\1.*".format("".join(DELIMITERS))),
+    sed,
+    friendly="sed",
+    run_async=True,
 )
 
 dispatcher.add_handler(SED_HANDLER)

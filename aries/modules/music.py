@@ -9,12 +9,12 @@ import wget
 from pyrogram import filters
 from pyrogram.types import Message
 from tswift import Song
-from yt_dlp import YoutubeDL
 from youtubesearchpython import SearchVideos
+from yt_dlp import YoutubeDL
 
+from aries import pbot
 from aries.conf import get_str_key
 from aries.pyrogramee.pluginshelper import get_text, progress
-from aries import pbot
 
 GENIUS = get_str_key("GENIUS_API_TOKEN", None)
 
@@ -295,4 +295,3 @@ async def lyrics(client, message):
             f"**Search query**: \n`{artist} - {song}`\n\n```{songs.lyrics}```"
         )
     return
-

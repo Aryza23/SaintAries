@@ -4,7 +4,6 @@ from random import randint
 from time import time
 
 import aiohttp
-from aiohttp import ClientSession
 from googletrans import Translator
 from motor import version as mongover
 from pykeyboard import InlineKeyboard
@@ -16,15 +15,12 @@ from pyrogram.types import (
     InlineQueryResultPhoto,
     InputTextMessageContent,
 )
-from Python_ARQ import ARQ
 from search_engine_parser import GoogleSearch
 
-from aries import BOT_USERNAME, OWNER_ID
-from aries.conf import get_str_key
+from aries import BOT_USERNAME, OWNER_ID, arq
 from aries.more.pluginhelpers import convert_seconds_to_minutes as time_convert
 from aries.more.pluginhelpers import fetch
 from aries.pyrogramee.pyrogram import pbot
-from aries import arq
 
 SUDOERS = OWNER_ID
 

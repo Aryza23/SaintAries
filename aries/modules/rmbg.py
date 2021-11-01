@@ -1,12 +1,13 @@
 import io
 import os
-import requests
-
 from datetime import datetime
+
+import requests
 from telethon import types
 from telethon.tl import functions
+
+from aries import TEMP_DOWNLOAD_DIRECTORY, telethn
 from aries.events import register
-from aries import TEMP_DOWNLOAD_DIRECTORY, telethn, SUPPORT_CHAT
 
 REM_BG_API_KEY = "icujRMB7cEDtbjUXow5Xw1up"
 UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"

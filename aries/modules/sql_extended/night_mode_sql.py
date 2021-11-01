@@ -1,4 +1,5 @@
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
+from sqlalchemy import Column, String
+
 from aries.modules.sql import BASE, SESSION
 
 
