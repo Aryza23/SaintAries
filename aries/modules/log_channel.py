@@ -155,9 +155,9 @@ if is_module_loaded(FILENAME):
         else:
             message.reply_text(
                 "The steps to set a log channel are:\n"
-                " - add bot to the desired channel\n"
-                " - send /setlog to the channel\n"
-                " - forward the /setlog to the group\n",
+                " ⇝  add bot to the desired channel\n"
+                " ⇝  send /setlog to the channel\n"
+                " ⇝  forward the /setlog to the group\n",
             )
 
     
@@ -206,3 +206,5 @@ else:
 
     def gloggable(func):
         return func
+
+__mod_name__ = "🔘 Log Channel"
