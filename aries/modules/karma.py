@@ -148,7 +148,7 @@ async def command_karma(_, message):
             if not first_name:
                 continue
             username = user.username
-            msg += f"\n[{first_name}](https://t.me/{username}) — {karma_count}"
+            msg += f"⇝ \n[{first_name}](https://t.me/{username}) — {karma_count}"
             limit += 1
         await m.edit(msg, disable_web_page_preview=True)
     else:
@@ -181,14 +181,14 @@ async def captcha_state(_, message):
         await message.reply_text(usage)
 
 
-__mod_name__ = "Karma"
+__mod_name__ = "🔘 Karma"
 __help__ = """
 
-*Upvote* - Use upvote keywords like "+", "+1", "thanks", etc. to upvote a message.
-*Downvote* - Use downvote keywords like "-", "-1", etc. to downvote a message.
+🔘 *Upvote* ⇝ Use upvote keywords like "+", "+1", "thanks", etc. to upvote a message.
+🔘 *Downvote* ⇝ Use downvote keywords like "-", "-1", etc. to downvote a message.
 
-*Commands*
-•/karma:- reply to a user to check that user's karma points.
-•/karma:- send without replying to any message to check karma point list of top 10
-•/karmas [off/on] :- Enable/Disable karma in your group.
+🔘 *Commands*
+❍ /karma ⇝ reply to a user to check that user's karma points.
+❍ /karma ⇝ send without replying to any message to check karma point list of top 10
+❍ /karmas [off/on] ⇝ Enable/Disable karma in your group.
 """
