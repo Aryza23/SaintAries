@@ -16,16 +16,18 @@ from aries.modules.disable import DisableAbleCommandHandler
 
 __help__ = """ 
 Use this module to translate stuff!
-*Commands:*
-• `/tl` (or `/tr`): as a reply to a message, translates it to English.
-• `/tl <lang>`: translates to <lang>
-eg: `/tl ja`: translates to Japanese.
-• `/tl <source>//<dest>`: translates from <source> to <lang>.
-eg: `/tl ja//en`: translates from Japanese to English.
-• `/langs`: get a list of supported languages for translation.
+🔘 *Commands:*
+❍ `/tl` (or `/tr`): as a reply to a message, translates it to English.
+❍ `/tl <lang>`: translates to <lang>
+🔘 Ex: 
+ ⇝ `/tl ja`: translates to Japanese.
+❍ `/tl <source>//<dest>`: translates from <source> to <lang>.
+🔘 Ex: 
+ ⇝ `/tl ja//en`: translates from Japanese to English.
+❍ `/langs`: get a list of supported languages for translation.
 """
 
-__mod_name__ = "Translator"
+__mod_name__ = "🔘 Translator"
 
 
 trans = Translator()
@@ -54,8 +56,8 @@ async def translate(_, message: Message) -> None:
         dest = "en"
     translation = await trans(to_translate, sourcelang=source, targetlang=dest)
     reply = (
-        f"<b>Translated from {source} to {dest}</b>:\n"
-        f"<code>{translation.text}</code>"
+        f"❍ <b>Translated from ⇝ {source} to {dest}</b>:\n"
+        f"⇝ <code>{translation.text}</code>"
     )
 
     await message.reply_text(reply, parse_mode="html")
