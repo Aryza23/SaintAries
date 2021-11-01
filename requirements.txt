@@ -9,7 +9,7 @@ gtts
 beautifulsoup4
 gitpython==3.1.11
 requests
-httpx[http2]>=0.20.0,<1.0.0
+httpx
 python-telegram-bot==13.7
 SQLAlchemy==1.4.26
 youtube_dl
