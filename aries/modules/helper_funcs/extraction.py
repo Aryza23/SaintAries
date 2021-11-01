@@ -22,7 +22,8 @@ def extract_user(message: Message, args: List[str]) -> Optional[int]:
 
 
 def extract_user_and_text(
-    message: Message, args: List[str],
+    message: Message,
+    args: List[str],
 ) -> (Optional[int], Optional[str]):
     prev_message = message.reply_to_message
     split_text = message.text.split(None, 1)
@@ -93,7 +94,8 @@ def extract_text(message) -> str:
 
 
 def extract_unt_fedban(
-    message: Message, args: List[str],
+    message: Message,
+    args: List[str],
 ) -> (Optional[int], Optional[str]):
     prev_message = message.reply_to_message
     split_text = message.text.split(None, 1)
@@ -142,7 +144,8 @@ def extract_unt_fedban(
         message.bot.get_chat(user_id)
     except BadRequest as excp:
         if excp.message in ("User_id_invalid", "Chat not found") and not isinstance(
-            user_id, int,
+            user_id,
+            int,
         ):
             message.reply_text(
                 "I don't seem to have interacted with this user before "

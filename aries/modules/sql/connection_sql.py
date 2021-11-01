@@ -18,7 +18,8 @@ class ChatAccessConnectionSettings(BASE):
 
     def __repr__(self):
         return "<Chat access settings ({}) is {}>".format(
-            self.chat_id, self.allow_connect_to_chat,
+            self.chat_id,
+            self.allow_connect_to_chat,
         )
 
 

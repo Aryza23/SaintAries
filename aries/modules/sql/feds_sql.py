@@ -473,7 +473,12 @@ def set_frules(fed_id, rules):
         FEDERATION_BYNAME[fed_name]["frules"] = fed_rules
         # Set on database
         fed = Federations(
-            str(owner_id), fed_name, str(fed_id), fed_rules, fed_log, str(fed_members),
+            str(owner_id),
+            fed_name,
+            str(fed_id),
+            fed_rules,
+            fed_log,
+            str(fed_members),
         )
         SESSION.merge(fed)
         SESSION.commit()
@@ -493,7 +498,13 @@ def fban_user(fed_id, user_id, first_name, last_name, user_name, reason, time):
                 SESSION.delete(I)
 
         r = BansF(
-            str(fed_id), str(user_id), first_name, last_name, user_name, reason, time,
+            str(fed_id),
+            str(user_id),
+            first_name,
+            last_name,
+            user_name,
+            reason,
+            time,
         )
 
         SESSION.add(r)
@@ -680,7 +691,12 @@ def set_fed_log(fed_id, chat_id):
         FEDERATION_BYNAME[fed_name]["flog"] = fed_log
         # Set on database
         fed = Federations(
-            str(owner_id), fed_name, str(fed_id), fed_rules, fed_log, str(fed_members),
+            str(owner_id),
+            fed_name,
+            str(fed_id),
+            fed_rules,
+            fed_log,
+            str(fed_members),
         )
         SESSION.merge(fed)
         SESSION.commit()
@@ -698,7 +714,7 @@ def subs_fed(fed_id, my_fed):
         SESSION.merge(subsfed)  # merge to avoid duplicate key issues
         SESSION.commit()
         global FEDS_SUBSCRIBER, MYFEDS_SUBSCRIBER
-        #Temporary Data For Subbed Feds
+        # Temporary Data For Subbed Feds
         if FEDS_SUBSCRIBER.get(fed_id, set()) == set():
             FEDS_SUBSCRIBER[fed_id] = {my_fed}
         else:

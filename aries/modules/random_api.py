@@ -22,6 +22,7 @@ async def chika(event):
     except Exception:
         await event.reply("`Error 404 not found...`")
 
+
 @register(pattern="^bocil ?(.*)")
 async def bocil(event):
     try:

@@ -5,7 +5,8 @@ from aries.modules.helper_funcs.chat_status import (
     bot_admin,
     is_bot_admin,
     is_user_ban_protected,
-    is_user_in_chat)
+    is_user_in_chat,
+)
 
 from telegram import Update, ChatPermissions
 from telegram.error import BadRequest
@@ -386,7 +387,9 @@ def rmute(update: Update, context: CallbackContext):
 
     try:
         bot.restrict_chat_member(
-            chat.id, user_id, permissions=ChatPermissions(can_send_messages=False),
+            chat.id,
+            user_id,
+            permissions=ChatPermissions(can_send_messages=False),
         )
         message.reply_text("Muted from the chat!")
     except BadRequest as excp:
@@ -458,14 +461,11 @@ def runmute(update: Update, context: CallbackContext):
             return
         raise
 
-    if (
-        is_user_in_chat(chat, user_id)
-        and (
+    if is_user_in_chat(chat, user_id) and (
         member.can_send_messages
         and member.can_send_media_messages
         and member.can_send_other_messages
         and member.can_add_web_page_previews
-    )
     ):
         message.reply_text("This user already has the right to speak in that chat.")
         return
@@ -504,11 +504,21 @@ def runmute(update: Update, context: CallbackContext):
             message.reply_text("Well damn, I can't unmute that user.")
 
 
-RBAN_HANDLER = CommandHandler("rban", rban, filters=CustomFilters.sudo_filter, run_async=True)
-RUNBAN_HANDLER = CommandHandler("runban", runban, filters=CustomFilters.sudo_filter, run_async=True)
-RKICK_HANDLER = CommandHandler("rpunch", rkick, filters=CustomFilters.sudo_filter, run_async=True)
-RMUTE_HANDLER = CommandHandler("rmute", rmute, filters=CustomFilters.sudo_filter, run_async=True)
-RUNMUTE_HANDLER = CommandHandler("runmute", runmute, filters=CustomFilters.sudo_filter, run_async=True)
+RBAN_HANDLER = CommandHandler(
+    "rban", rban, filters=CustomFilters.sudo_filter, run_async=True
+)
+RUNBAN_HANDLER = CommandHandler(
+    "runban", runban, filters=CustomFilters.sudo_filter, run_async=True
+)
+RKICK_HANDLER = CommandHandler(
+    "rpunch", rkick, filters=CustomFilters.sudo_filter, run_async=True
+)
+RMUTE_HANDLER = CommandHandler(
+    "rmute", rmute, filters=CustomFilters.sudo_filter, run_async=True
+)
+RUNMUTE_HANDLER = CommandHandler(
+    "runmute", runmute, filters=CustomFilters.sudo_filter, run_async=True
+)
 
 dispatcher.add_handler(RBAN_HANDLER)
 dispatcher.add_handler(RUNBAN_HANDLER)

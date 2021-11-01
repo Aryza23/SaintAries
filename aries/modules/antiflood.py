@@ -64,7 +64,9 @@ def check_flood(update, context) -> str:
             tag = "KICKED"
         elif getmode == 3:
             context.bot.restrict_chat_member(
-                chat.id, user.id, permissions=ChatPermissions(can_send_messages=False),
+                chat.id,
+                user.id,
+                permissions=ChatPermissions(can_send_messages=False),
             )
             execstrings = "Muted"
             tag = "MUTED"
@@ -84,7 +86,8 @@ def check_flood(update, context) -> str:
             execstrings = "Muted for {}".format(getvalue)
             tag = "TMUTE"
         send_message(
-            update.effective_message, "Beep Boop! Boop Beep!\n{}!".format(execstrings),
+            update.effective_message,
+            "Beep Boop! Boop Beep!\n{}!".format(execstrings),
         )
 
         return (
@@ -206,7 +209,8 @@ def set_flood(update, context) -> str:
                 if conn:
                     text = message.reply_text(
                         "Anti-flood has been set to {} in chat: {}".format(
-                            amount, chat_name,
+                            amount,
+                            chat_name,
                         ),
                     )
                 else:
@@ -267,7 +271,8 @@ def flood(update, context):
         if conn:
             text = msg.reply_text(
                 "I'm currently restricting members after {} consecutive messages in {}.".format(
-                    limit, chat_name,
+                    limit,
+                    chat_name,
                 ),
             )
         else:
@@ -332,13 +337,15 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
             sql.set_flood_strength(chat_id, 5, str(args[1]))
         else:
             send_message(
-                update.effective_message, "I only understand ban/kick/mute/tban/tmute!",
+                update.effective_message,
+                "I only understand ban/kick/mute/tban/tmute!",
             )
             return
         if conn:
             text = msg.reply_text(
                 "Exceeding consecutive flood limit will result in {} in {}!".format(
-                    settypeflood, chat_name,
+                    settypeflood,
+                    chat_name,
                 ),
             )
         else:
@@ -371,7 +378,8 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
         if conn:
             text = msg.reply_text(
                 "Sending more messages than flood limit will result in {} in {}.".format(
-                    settypeflood, chat_name,
+                    settypeflood,
+                    chat_name,
                 ),
             )
         else:
@@ -416,14 +424,26 @@ will result in restricting that user.
 __mod_name__ = "🔘 Anti-Flood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    Filters.all & ~Filters.status_update & Filters.chat_type.groups, check_flood, run_async=True
+    Filters.all & ~Filters.status_update & Filters.chat_type.groups,
+    check_flood,
+    run_async=True,
 )
-SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, filters=Filters.chat_type.groups, run_async=True)
+SET_FLOOD_HANDLER = CommandHandler(
+    "setflood", set_flood, filters=Filters.chat_type.groups, run_async=True
+)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
-    "setfloodmode", set_flood_mode, pass_args=True, filters=Filters.chat_type.groups, run_async=True
+    "setfloodmode",
+    set_flood_mode,
+    pass_args=True,
+    filters=Filters.chat_type.groups,
+    run_async=True,
 )
-FLOOD_QUERY_HANDLER = CallbackQueryHandler(flood_button, pattern=r"unmute_flooder", run_async=True)
-FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.chat_type.groups, run_async=True)
+FLOOD_QUERY_HANDLER = CallbackQueryHandler(
+    flood_button, pattern=r"unmute_flooder", run_async=True
+)
+FLOOD_HANDLER = CommandHandler(
+    "flood", flood, filters=Filters.chat_type.groups, run_async=True
+)
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(FLOOD_QUERY_HANDLER)

@@ -25,7 +25,6 @@ BLACKLISTWHITELIST = [OWNER_ID] + DEV_USERS + DRAGONS + WOLVES + DEMONS
 BLABLEUSERS = [OWNER_ID] + DEV_USERS
 
 
-
 @dev_plus
 @gloggable
 def bl_user(update: Update, context: CallbackContext) -> str:
@@ -68,7 +67,6 @@ def bl_user(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-
 @dev_plus
 @gloggable
 def unbl_user(update: Update, context: CallbackContext) -> str:
@@ -109,7 +107,6 @@ def unbl_user(update: Update, context: CallbackContext) -> str:
     else:
         message.reply_text("I am not ignoring them at all though!")
         return ""
-
 
 
 @dev_plus

@@ -7,6 +7,7 @@ from aries import DRAGONS
 from aries.utils.pluginhelp import member_permissions
 from aries import pbot as app
 
+
 async def authorised(func, subFunc2, client, message, *args, **kwargs):
     chatID = message.chat.id
     try:
@@ -51,9 +52,7 @@ def adminsOnly(permission):
             permissions = await member_permissions(chatID, userID)
             if userID not in DRAGONS and permission not in permissions:
                 return await unauthorised(message, permission, subFunc2)
-            return await authorised(
-                func, subFunc2, client, message, *args, **kwargs
-            )
+            return await authorised(func, subFunc2, client, message, *args, **kwargs)
 
         return subFunc2
 

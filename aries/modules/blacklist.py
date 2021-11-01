@@ -98,7 +98,8 @@ def add_blacklist(update, context):
             send_message(
                 update.effective_message,
                 "Added blacklist <code>{}</code> in chat: <b>{}</b>!".format(
-                    html.escape(to_blacklist[0]), html.escape(chat_name),
+                    html.escape(to_blacklist[0]),
+                    html.escape(chat_name),
                 ),
                 parse_mode=ParseMode.HTML,
             )
@@ -107,7 +108,8 @@ def add_blacklist(update, context):
             send_message(
                 update.effective_message,
                 "Added blacklist trigger: <code>{}</code> in <b>{}</b>!".format(
-                    len(to_blacklist), html.escape(chat_name),
+                    len(to_blacklist),
+                    html.escape(chat_name),
                 ),
                 parse_mode=ParseMode.HTML,
             )
@@ -154,20 +156,23 @@ def unblacklist(update, context):
                 send_message(
                     update.effective_message,
                     "Removed <code>{}</code> from blacklist in <b>{}</b>!".format(
-                        html.escape(to_unblacklist[0]), html.escape(chat_name),
+                        html.escape(to_unblacklist[0]),
+                        html.escape(chat_name),
                     ),
                     parse_mode=ParseMode.HTML,
                 )
             else:
                 send_message(
-                    update.effective_message, "This is not a blacklist trigger!",
+                    update.effective_message,
+                    "This is not a blacklist trigger!",
                 )
 
         elif successful == len(to_unblacklist):
             send_message(
                 update.effective_message,
                 "Removed <code>{}</code> from blacklist in <b>{}</b>!".format(
-                    successful, html.escape(chat_name),
+                    successful,
+                    html.escape(chat_name),
                 ),
                 parse_mode=ParseMode.HTML,
             )
@@ -184,7 +189,8 @@ def unblacklist(update, context):
                 update.effective_message,
                 "Removed <code>{}</code> from blacklist. {} did not exist, "
                 "so were not removed.".format(
-                    successful, len(to_unblacklist) - successful,
+                    successful,
+                    len(to_unblacklist) - successful,
                 ),
                 parse_mode=ParseMode.HTML,
             )
@@ -277,7 +283,8 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
             return ""
         if conn:
             text = "Changed blacklist mode: `{}` in *{}*!".format(
-                settypeblacklist, chat_name,
+                settypeblacklist,
+                chat_name,
             )
         else:
             text = "Changed blacklist mode: `{}`!".format(settypeblacklist)
@@ -311,7 +318,8 @@ Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
             settypeblacklist = "temporarily mute for {}".format(getvalue)
         if conn:
             text = "Current blacklistmode: *{}* in *{}*.".format(
-                settypeblacklist, chat_name,
+                settypeblacklist,
+                chat_name,
             )
         else:
             text = "Current blacklistmode: *{}*.".format(settypeblacklist)
@@ -440,7 +448,8 @@ def __chat_settings__(chat_id, user_id):
 
 def __stats__():
     return "• {} blacklist triggers, across {} chats.".format(
-        sql.num_blacklist_filters(), sql.num_blacklist_filter_chats(),
+        sql.num_blacklist_filters(),
+        sql.num_blacklist_filter_chats(),
     )
 
 
@@ -472,13 +481,20 @@ Note:
 
 """
 BLACKLIST_HANDLER = DisableAbleCommandHandler(
-    "blacklist", blacklist, pass_args=True, admin_ok=True, run_async=True,
+    "blacklist",
+    blacklist,
+    pass_args=True,
+    admin_ok=True,
+    run_async=True,
 )
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, run_async=True)
 UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, run_async=True)
-BLACKLISTMODE_HANDLER = CommandHandler("blacklistmode", blacklist_mode, pass_args=True, run_async=True)
+BLACKLISTMODE_HANDLER = CommandHandler(
+    "blacklistmode", blacklist_mode, pass_args=True, run_async=True
+)
 BLACKLIST_DEL_HANDLER = MessageHandler(
-    (Filters.text | Filters.command | Filters.sticker | Filters.photo) & Filters.chat_type.groups,
+    (Filters.text | Filters.command | Filters.sticker | Filters.photo)
+    & Filters.chat_type.groups,
     del_blacklist,
     allow_edit=True,
     run_async=True,

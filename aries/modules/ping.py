@@ -57,7 +57,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
 
         pinged_site = f"<b>{each_ping}</b>"
 
-        if each_ping in ('Kaizoku', 'Kayo'):
+        if each_ping in ("Kaizoku", "Kayo"):
             pinged_site = f'<a href="{sites_list[each_ping]}">{each_ping}</a>'
             ping_time = f"<code>{ping_time} (Status: {r.status_code})</code>"
 
@@ -65,6 +65,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
         ping_result.append(ping_text)
 
     return ping_result
+
 
 @sudo_plus
 def ping(update: Update, context: CallbackContext):
@@ -97,7 +98,9 @@ def pingall(update: Update, context: CallbackContext):
     reply_msg += "\n<b>Powered by:</b> <i>@IdzXartez ⚡️ </i>"
 
     update.effective_message.reply_text(
-        reply_msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+        reply_msg,
+        parse_mode=ParseMode.HTML,
+        disable_web_page_preview=True,
     )
 
 

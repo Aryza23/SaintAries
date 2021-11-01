@@ -29,7 +29,9 @@ def get_invalid_chats(update: Update, context: CallbackContext, remove: bool = F
             if progress_message:
                 try:
                     bot.editMessageText(
-                        progress_bar, chat_id, progress_message.message_id,
+                        progress_bar,
+                        chat_id,
+                        progress_message.message_id,
                     )
                 except:
                     pass
@@ -87,7 +89,6 @@ def get_invalid_gban(update: Update, context: CallbackContext, remove: bool = Fa
         return ungbanned_users
 
 
-
 @dev_plus
 def dbcleanup(update: Update, context: CallbackContext):
     msg = update.effective_message
@@ -104,9 +105,9 @@ def dbcleanup(update: Update, context: CallbackContext):
     buttons = [[InlineKeyboardButton("Cleanup DB", callback_data="db_cleanup")]]
 
     update.effective_message.reply_text(
-        reply, reply_markup=InlineKeyboardMarkup(buttons),
+        reply,
+        reply_markup=InlineKeyboardMarkup(buttons),
     )
-
 
 
 def callback_button(update: Update, context: CallbackContext):
@@ -133,7 +134,8 @@ def callback_button(update: Update, context: CallbackContext):
             invalid_chat_count = get_invalid_chats(update, context, True)
             invalid_gban_count = get_invalid_gban(update, context, True)
             reply = "Cleaned up {} chats and {} gbanned users from db.".format(
-                invalid_chat_count, invalid_gban_count,
+                invalid_chat_count,
+                invalid_gban_count,
             )
             bot.sendMessage(chat_id, reply)
         else:

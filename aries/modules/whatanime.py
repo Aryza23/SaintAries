@@ -19,7 +19,6 @@ from telethon.utils import is_image, is_video
 from aries.events import register as kaneki
 
 
-
 @kaneki(pattern="^/whatanime(.*)")
 async def whatanime(e):
     media = e.media

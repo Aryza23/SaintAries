@@ -35,6 +35,4 @@ async def _(event):
         await event.reply("I can't find that")
 
 
-
-
 __mod_name__ = "gps"

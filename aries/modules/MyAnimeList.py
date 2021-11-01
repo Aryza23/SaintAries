@@ -188,7 +188,6 @@ def manga(update: Update, context: CallbackContext):
         )
 
 
-
 __mod_name__ = "MyAnimeList"
 
 

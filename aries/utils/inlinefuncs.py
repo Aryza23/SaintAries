@@ -20,10 +20,13 @@ from pykeyboard import InlineKeyboard
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.raw.functions import Ping
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineQueryResultArticle,
-                            InlineQueryResultPhoto,
-                            InputTextMessageContent)
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineQueryResultArticle,
+    InlineQueryResultPhoto,
+    InputTextMessageContent,
+)
 from search_engine_parser import GoogleSearch
 
 from aries.extrastuff import SUDOERS
@@ -66,11 +69,7 @@ async def inline_help_func(__help__):
     buttons = InlineKeyboard(row_width=4)
     buttons.add(
         *[
-            (
-                InlineKeyboardButton(
-                    text=i, switch_inline_query_current_chat=i
-                )
-            )
+            (InlineKeyboardButton(text=i, switch_inline_query_current_chat=i))
             for i in keywords_list
         ]
     )
@@ -102,9 +101,7 @@ async def alive_function(answers):
     bot_state = "Dead" if not await app.get_me() else "Alive"
     buttons.add(
         InlineKeyboardButton("Stats", callback_data="stats_callback"),
-        InlineKeyboardButton(
-            "Go Inline!", switch_inline_query_current_chat=""
-        ),
+        InlineKeyboardButton("Go Inline!", switch_inline_query_current_chat=""),
     )
 
     msg = f"""
@@ -136,9 +133,7 @@ async def translate_func(answers, lang, tex):
             InlineQueryResultArticle(
                 title="Error",
                 description=result.result,
-                input_message_content=InputTextMessageContent(
-                    result.result
-                ),
+                input_message_content=InputTextMessageContent(result.result),
             )
         )
         return answers
@@ -160,9 +155,7 @@ __**Translated from {result.src} to {result.dest}**__
             ),
             InlineQueryResultArticle(
                 title=result.translatedText,
-                input_message_content=InputTextMessageContent(
-                    result.translatedText
-                ),
+                input_message_content=InputTextMessageContent(result.translatedText),
             ),
         ]
     )
@@ -176,9 +169,7 @@ async def urban_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=results.result,
-                input_message_content=InputTextMessageContent(
-                    results.result
-                ),
+                input_message_content=InputTextMessageContent(results.result),
             )
         )
         return answers
@@ -236,9 +227,7 @@ async def wall_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=results.result,
-                input_message_content=InputTextMessageContent(
-                    results.result
-                ),
+                input_message_content=InputTextMessageContent(results.result),
             )
         )
         return answers
@@ -261,9 +250,7 @@ async def torrent_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=results.result,
-                input_message_content=InputTextMessageContent(
-                    results.result
-                ),
+                input_message_content=InputTextMessageContent(results.result),
             )
         )
         return answers
@@ -304,9 +291,7 @@ async def youtube_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=results.result,
-                input_message_content=InputTextMessageContent(
-                    results.result
-                ),
+                input_message_content=InputTextMessageContent(results.result),
             )
         )
         return answers
@@ -344,9 +329,7 @@ async def lyrics_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=song.result,
-                input_message_content=InputTextMessageContent(
-                    song.result
-                ),
+                input_message_content=InputTextMessageContent(song.result),
             )
         )
         return answers
@@ -398,9 +381,7 @@ async def tg_search_func(answers, text, user_id):
         buttons.add(
             InlineKeyboardButton(
                 text="Origin",
-                url=message.link
-                if message.link
-                else "https://t.me/telegram",
+                url=message.link if message.link else "https://t.me/telegram",
             ),
             InlineKeyboardButton(
                 text="Search again",
@@ -408,9 +389,7 @@ async def tg_search_func(answers, text, user_id):
             ),
         )
         name = (
-            message.from_user.first_name
-            if message.from_user.first_name
-            else "NO NAME"
+            message.from_user.first_name if message.from_user.first_name else "NO NAME"
         )
         caption = f"""
 **Query:** {text}
@@ -433,7 +412,6 @@ async def tg_search_func(answers, text, user_id):
     return answers
 
 
-
 async def wiki_func(answers, text):
     data = await arq.wiki(text)
     if not data.ok:
@@ -441,9 +419,7 @@ async def wiki_func(answers, text):
             InlineQueryResultArticle(
                 title="Error",
                 description=data.result,
-                input_message_content=InputTextMessageContent(
-                    data.result
-                ),
+                input_message_content=InputTextMessageContent(data.result),
             )
         )
         return answers
@@ -479,11 +455,7 @@ async def speedtest_init(query):
         return answers
     msg = "**Click The Button Below To Perform A Speedtest**"
     button = InlineKeyboard(row_width=1)
-    button.add(
-        InlineKeyboardButton(
-            text="Start!", callback_data="test_speedtest"
-        )
-    )
+    button.add(InlineKeyboardButton(text="Start!", callback_data="test_speedtest"))
     answers.append(
         InlineQueryResultArticle(
             title="Click Here",
@@ -501,9 +473,7 @@ async def test_speedtest_cq(_, cq):
     inline_message_id = cq.inline_message_id
     await app.edit_inline_text(inline_message_id, "**Testing**")
     loop = asyncio.get_running_loop()
-    download, upload, info = await loop.run_in_executor(
-        None, test_speedtest
-    )
+    download, upload, info = await loop.run_in_executor(None, test_speedtest)
     msg = f"""
 **Download:** `{download}`
 **Upload:** `{upload}`
@@ -524,9 +494,7 @@ async def ping_func(answers):
     answers.append(
         InlineQueryResultArticle(
             title=ping,
-            input_message_content=InputTextMessageContent(
-                f"__**{ping}**__"
-            ),
+            input_message_content=InputTextMessageContent(f"__**{ping}**__"),
         )
     )
     return answers
@@ -537,9 +505,7 @@ async def yt_music_func(answers, url):
         url = (await arq.youtube(url)).result[0]
         url = f"https://youtube.com{url.url_suffix}"
     loop = asyncio.get_running_loop()
-    music = await loop.run_in_executor(
-        None, download_youtube_audio, url
-    )
+    music = await loop.run_in_executor(None, download_youtube_audio, url)
     if not music:
         msg = "**ERROR**\n__MUSIC TOO LONG__"
         answers.append(
@@ -568,9 +534,7 @@ async def yt_music_func(answers, url):
     os.remove(audio)
     os.remove(thumbnail)
     answers.append(
-        InlineQueryResultCachedDocument(
-            title=title, file_id=m.audio.file_id
-        )
+        InlineQueryResultCachedDocument(title=title, file_id=m.audio.file_id)
     )
     return answers
 
@@ -578,9 +542,7 @@ async def yt_music_func(answers, url):
 async def info_inline_func(answers, peer):
     not_found = InlineQueryResultArticle(
         title="PEER NOT FOUND",
-        input_message_content=InputTextMessageContent(
-            "PEER NOT FOUND"
-        ),
+        input_message_content=InputTextMessageContent("PEER NOT FOUND"),
     )
     try:
         user = await app.get_users(peer)
@@ -612,9 +574,7 @@ async def tmdb_func(answers, query):
             InlineQueryResultArticle(
                 title="Error",
                 description=response.result,
-                input_message_content=InputTextMessageContent(
-                    response.result
-                ),
+                input_message_content=InputTextMessageContent(response.result),
             )
         )
         return answers
@@ -626,9 +586,7 @@ async def tmdb_func(answers, query):
             genre = None
         else:
             genre = " | ".join(result.genre)
-        description = (
-            result.overview[0:900] if result.overview else "None"
-        )
+        description = result.overview[0:900] if result.overview else "None"
         caption = f"""
 **{result.title}**
 **Type:** {result.type}
@@ -646,9 +604,7 @@ async def tmdb_func(answers, query):
         )
         answers.append(
             InlineQueryResultPhoto(
-                photo_url=result.backdrop
-                if result.backdrop
-                else result.poster,
+                photo_url=result.backdrop if result.backdrop else result.poster,
                 caption=caption,
                 title=result.title,
                 description=f"{genre} • {result.releaseDate} • {result.rating} • {description}",
@@ -665,9 +621,7 @@ async def image_func(answers, query):
             InlineQueryResultArticle(
                 title="Error",
                 description=results.result,
-                input_message_content=InputTextMessageContent(
-                    results.result
-                ),
+                input_message_content=InputTextMessageContent(results.result),
             )
         )
         return answers
@@ -721,9 +675,7 @@ async def execute_code(query):
             [
                 InlineQueryResultArticle(
                     title=lang,
-                    input_message_content=InputTextMessageContent(
-                        lang
-                    ),
+                    input_message_content=InputTextMessageContent(lang),
                 )
                 for lang in languages
             ][:49]
@@ -736,20 +688,14 @@ async def execute_code(query):
             answers.append(
                 InlineQueryResultArticle(
                     title="Error",
-                    input_message_content=InputTextMessageContent(
-                        response.result
-                    ),
+                    input_message_content=InputTextMessageContent(response.result),
                 )
             )
         else:
             res = response.result
             stdout, stderr = escape(res.stdout), escape(res.stderr)
             output = stdout or stderr
-            out = (
-                "STDOUT"
-                if stdout
-                else ("STDERR" if stderr else "No output")
-            )
+            out = "STDOUT" if stdout else ("STDERR" if stderr else "No output")
 
             msg = f"""
 **{lang.capitalize()}:**
@@ -762,9 +708,7 @@ async def execute_code(query):
                 InlineQueryResultArticle(
                     title="Executed",
                     description=output[:20],
-                    input_message_content=InputTextMessageContent(
-                        msg
-                    ),
+                    input_message_content=InputTextMessageContent(msg),
                 )
             )
     await query.answer(results=answers, cache_time=1)
@@ -810,9 +754,7 @@ async def cancel_task_button(_, query: CallbackQuery):
     keyb = None
 
     if tasks:
-        keyb = ikb(
-            {i: f"cancel_task_{i}" for i in list(tasks.keys())}
-        )
+        keyb = ikb({i: f"cancel_task_{i}" for i in list(tasks.keys())})
 
     await app.edit_inline_text(
         query.inline_message_id,

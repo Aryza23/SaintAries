@@ -4,6 +4,7 @@ from typing import Dict, List, Union
 
 coupledb = db.couple
 
+
 async def _get_lovers(chat_id: int):
     lovers = await coupledb.find_one({"chat_id": chat_id})
     if not lovers:

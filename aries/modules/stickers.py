@@ -22,7 +22,6 @@ from aries import telethn as bot
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
 
-
 def stickerid(update: Update, context: CallbackContext):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.sticker:
@@ -41,7 +40,6 @@ def stickerid(update: Update, context: CallbackContext):
             + ", Please reply to sticker message to get id sticker",
             parse_mode=ParseMode.HTML,
         )
-
 
 
 def cb_sticker(update: Update, context: CallbackContext):
@@ -64,7 +62,6 @@ def cb_sticker(update: Update, context: CallbackContext):
     msg.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
 
 
-
 def getsticker(update: Update, context: CallbackContext):
     bot = context.bot
     msg = update.effective_message
@@ -79,7 +76,6 @@ def getsticker(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             "Please reply to a sticker for me to upload its PNG."
         )
-
 
 
 def kang(update: Update, context: CallbackContext):
@@ -179,10 +175,7 @@ def kang(update: Update, context: CallbackContext):
                 return
 
             except TelegramError as e:
-                if (
-                    e.message
-                    == "Internal Server Error: sticker set not found (500)"
-                ):
+                if e.message == "Internal Server Error: sticker set not found (500)":
                     msg.reply_text(
                         "Sticker successfully added to [pack](t.me/addstickers/%s)"
                         % packname
@@ -255,10 +248,7 @@ def kang(update: Update, context: CallbackContext):
                     parse_mode=ParseMode.MARKDOWN,
                 )
             except TelegramError as e:
-                if (
-                    e.message
-                    == "Internal Server Error: sticker set not found (500)"
-                ):
+                if e.message == "Internal Server Error: sticker set not found (500)":
                     msg.reply_text(
                         "Sticker successfully added to [pack](t.me/addstickers/%s)"
                         % packname
@@ -327,10 +317,7 @@ def kang(update: Update, context: CallbackContext):
             print(e)
             return
         except TelegramError as e:
-            if (
-                e.message
-                == "Internal Server Error: sticker set not found (500)"
-            ):
+            if e.message == "Internal Server Error: sticker set not found (500)":
                 msg.reply_text(
                     "Sticker successfully added to [pack](t.me/addstickers/%s)"
                     % packname
@@ -461,20 +448,22 @@ def makepack_internal(
     else:
         msg.reply_text("Failed to create sticker pack. Possibly due to power magic.")
 
-# if your are reading this, it took me 2 hours to make delsticker 
+
+# if your are reading this, it took me 2 hours to make delsticker
 def delsticker(update, context):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.sticker:
         file_id = msg.reply_to_message.sticker.file_id
     else:
         update.effective_message.reply_text(
-            "Please reply to the sticker which you want to delete from your pack")
+            "Please reply to the sticker which you want to delete from your pack"
+        )
     try:
         context.bot.delete_sticker_from_set(file_id)
         msg.reply_text(
             "Deleted That Sticker from your Pack!\nRemove and Re-Add the Pack to see the changes."
         )
-   
+
     except TelegramError as e:
         print(e)
         if e.message == "Stickerset_invalid":
@@ -482,9 +471,9 @@ def delsticker(update, context):
                 "Maybe the sticker pack is not yours or the pack was not made by me!",
                 parse_mode=ParseMode.MARKDOWN,
             )
-    
 
-Credit = "This Plugin Made by Aries (@IdzXartez), if you're using this code in your bot. there is no issue but don't remove this line" 
+
+Credit = "This Plugin Made by Aries (@IdzXartez), if you're using this code in your bot. there is no issue but don't remove this line"
 
 
 @Aries(pattern="^/mmf ?(.*)")
@@ -501,7 +490,7 @@ async def handler(event):
     file = await bot.download_media(reply_message)
     msg = await event.reply("Memifying this image! Please wait")
 
-    if "Aries" not in Credit: 
+    if "Aries" not in Credit:
         await event.reply("this nigga removed credit line from code")
     text = str(event.pattern_match.group(1)).strip()
 
@@ -513,9 +502,9 @@ async def handler(event):
     os.remove(meme)
 
 
-
 # Taken from https://github.com/UsergeTeam/Userge-Plugins/blob/master/plugins/memify.py#L64
 # Maybe replyed to suit the needs of this module
+
 
 async def drawText(image_path, text):
     img = Image.open(image_path)
@@ -531,42 +520,45 @@ async def drawText(image_path, text):
         upper_text, lower_text = text.split(";")
     else:
         upper_text = text
-        lower_text = ''
+        lower_text = ""
     draw = ImageDraw.Draw(img)
     current_h, pad = 10, 5
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
-            draw.text(xy=(((i_width - u_width) / 2) - 2, int((current_h / 640)
+            draw.text(
+                xy=(((i_width - u_width) / 2) - 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                                                             * i_width)), text=u_text, font=m_font, fill=(0, 0, 0))
+            draw.text(
+                xy=(((i_width - u_width) / 2) + 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=((i_width - u_width) / 2, int(((current_h / 640) * i_width)) - 2),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-            draw.text(xy=(((i_width - u_width) / 2) + 2, int((current_h / 640)
+            draw.text(
+                xy=(((i_width - u_width) / 2), int(((current_h / 640) * i_width)) + 2),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                                                             * i_width)), text=u_text, font=m_font, fill=(0, 0, 0))
-            draw.text(xy=((i_width - u_width) / 2,
-                          int(((current_h / 640) * i_width)) - 2),
-
-                      text=u_text,
-                      font=m_font,
-                      fill=(0,
-                            0,
-                            0))
-
-            draw.text(xy=(((i_width - u_width) / 2),
-                          int(((current_h / 640) * i_width)) + 2),
-
-                      text=u_text,
-                      font=m_font,
-                      fill=(0,
-                            0,
-                            0))
-
-
-
-            draw.text(xy=((i_width - u_width) / 2, int((current_h / 640)
-
-                                                       * i_width)), text=u_text, font=m_font, fill=(255, 255, 255))
+            draw.text(
+                xy=((i_width - u_width) / 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
 
             current_h += u_height + pad
 
@@ -574,35 +566,57 @@ async def drawText(image_path, text):
         for l_text in textwrap.wrap(lower_text, width=15):
             u_width, u_height = draw.textsize(l_text, font=m_font)
             draw.text(
-                xy=(((i_width - u_width) / 2) - 2, i_height -
-                    u_height - int((20 / 640) * i_width)),
-                text=l_text, font=m_font, fill=(0, 0, 0))
+                xy=(
+                    ((i_width - u_width) / 2) - 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
             draw.text(
-                xy=(((i_width - u_width) / 2) + 2, i_height -
-                    u_height - int((20 / 640) * i_width)),
-                text=l_text, font=m_font, fill=(0, 0, 0))
+                xy=(
+                    ((i_width - u_width) / 2) + 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
             draw.text(
-                xy=((i_width - u_width) / 2, (i_height -
-                                              u_height - int((20 / 640) * i_width)) - 2),
-                text=l_text, font=m_font, fill=(0, 0, 0))
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) - 2,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
             draw.text(
-                xy=((i_width - u_width) / 2, (i_height -
-
-                                              u_height - int((20 / 640) * i_width)) + 2),
-                text=l_text, font=m_font, fill=(0, 0, 0))
-
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) + 2,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
             draw.text(
-                xy=((i_width - u_width) / 2, i_height -
-                    u_height - int((20 / 640) * i_width)),
-                text=l_text, font=m_font, fill=(255, 255, 255))
-            current_h += u_height + pad          
+                xy=(
+                    (i_width - u_width) / 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
+            current_h += u_height + pad
     image_name = "memify.webp"
     webp_file = os.path.join(image_name)
     img.save(webp_file, "webp")
     return webp_file
-
 
 
 __help__ = """
@@ -617,8 +631,12 @@ __help__ = """
 __mod_name__ = "🔘 Stickers"
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid, run_async=True)
 GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker, run_async=True)
-KANG_HANDLER = DisableAbleCommandHandler(["kang", "steal"], kang, admin_ok=True, run_async=True)
-DELKANG_HANDLER = DisableAbleCommandHandler(["delsticker", "delkang"], delsticker, admin_ok=True, run_async=True)
+KANG_HANDLER = DisableAbleCommandHandler(
+    ["kang", "steal"], kang, admin_ok=True, run_async=True
+)
+DELKANG_HANDLER = DisableAbleCommandHandler(
+    ["delsticker", "delkang"], delsticker, admin_ok=True, run_async=True
+)
 STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker, run_async=True)
 
 dispatcher.add_handler(STICKERS_HANDLER)

@@ -46,7 +46,6 @@ def check_user(user_id: int, bot: Bot, chat: Chat) -> Optional[str]:
     return None
 
 
-
 @connection_status
 @bot_admin
 @user_admin
@@ -92,7 +91,6 @@ def mute(update: Update, context: CallbackContext) -> str:
         message.reply_text("This user is already muted!")
 
     return ""
-
 
 
 @connection_status
@@ -157,7 +155,6 @@ def unmute(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-
 @connection_status
 @bot_admin
 @can_restrict
@@ -209,7 +206,10 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
         if member.can_send_messages is None or member.can_send_messages:
             chat_permissions = ChatPermissions(can_send_messages=False)
             bot.restrict_chat_member(
-                chat.id, user_id, chat_permissions, until_date=mutetime,
+                chat.id,
+                user_id,
+                chat_permissions,
+                until_date=mutetime,
             )
             bot.sendMessage(
                 chat.id,

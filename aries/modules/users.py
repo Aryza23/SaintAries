@@ -95,6 +95,7 @@ def broadcast(update: Update, context: CallbackContext):
             f"Broadcast complete.\nGroups failed: {failed}.\nUsers failed: {failed_user}.",
         )
 
+
 def log_user(update: Update, context: CallbackContext):
     chat = update.effective_chat
     msg = update.effective_message
@@ -113,7 +114,6 @@ def log_user(update: Update, context: CallbackContext):
         sql.update_user(msg.forward_from.id, msg.forward_from.username)
 
 
-
 @sudo_plus
 def chats(update: Update, context: CallbackContext):
     all_chats = sql.get_all_chats() or []
@@ -125,7 +125,10 @@ def chats(update: Update, context: CallbackContext):
             bot_member = curr_chat.get_member(context.bot.id)
             chat_members = curr_chat.get_member_count(context.bot.id)
             chatfile += "{}. {} | {} | {}\n".format(
-                P, chat.chat_name, chat.chat_id, chat_members,
+                P,
+                chat.chat_name,
+                chat.chat_id,
+                chat_members,
             )
             P += 1
         except:
@@ -148,7 +151,6 @@ def chat_checker(update: Update, context: CallbackContext):
     except Unauthorized:
         pass
 
-        
 
 def __user_info__(user_id):
     if user_id in [777000, 1087968824]:
@@ -166,18 +168,25 @@ def __stats__():
 def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
+
 BROADCAST_HANDLER = CommandHandler(
-    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True,
+    ["broadcastall", "broadcastusers", "broadcastgroups"],
+    broadcast,
+    run_async=True,
 )
-USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, run_async=True)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, run_async=True)
+USER_HANDLER = MessageHandler(
+    Filters.all & Filters.chat_type.groups, log_user, run_async=True
+)
+CHAT_CHECKER_HANDLER = MessageHandler(
+    Filters.all & Filters.chat_type.groups, chat_checker, run_async=True
+)
 CHATLIST_HANDLER = CommandHandler("groups", chats, run_async=True)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
-    
+
 __mod_name__ = "Users"
 
 __handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]
