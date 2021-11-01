@@ -77,8 +77,8 @@ async def _(event):
 
 __help__ = """
 I can tag all members in group with a message.
-• `/tagall <message>`*:* tag all members in the group with given message.
-*NOTE:* Tagger only works on groups which have less than 100 members.
+❍ `/tagall <message>`*:* tag all members in the group with given message.
+🔘 *NOTE:* Tagger only works on groups which have less than 100 members.
 """
 
 __mod_name__ = "🔘 Tagger"
