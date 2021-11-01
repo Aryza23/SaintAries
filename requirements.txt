@@ -36,7 +36,7 @@ google-trans-new==1.1.9
 jikanpy
 speedtest-cli==2.1.3
 coffeehouse==2.2.6
-regex==2021.10.23
+regex==2021.11.1
 bleach==4.1.0
 wikipedia==1.4.0
 markdown2
