@@ -7,7 +7,8 @@ from functools import wraps
 
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
-from aries import SUPPORT_CHAT, pbot
+from aries import EVENT_LOGS
+from aries import pbot
 
 
 def split_limits(text):
@@ -53,7 +54,7 @@ def capture_err(func):
                 ),
             )
             for x in error_feedback:
-                await pbot.send_message(SUPPORT_CHAT, x)
+                await pbot.send_message(EVENT_LOGS, x)
             raise err
 
     return capture
