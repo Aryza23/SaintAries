@@ -510,7 +510,7 @@ def __stats__():
     )
 
 
-__mod_name__ = "Stickers Blacklist"
+__mod_name__ = "🔘 Stickers Blacklist"
 
 BLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler(
     "blsticker",
