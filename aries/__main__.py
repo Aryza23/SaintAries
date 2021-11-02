@@ -8,7 +8,7 @@ import time
 import traceback
 from sys import argv
 from typing import Optional
-
+from aries.modules.sql.user_sql import sql 
 from telegram import (
     Chat,
     InlineKeyboardButton,
@@ -36,7 +36,6 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 
-DEV_USERS = os.environ.get("DEV_USERS")
 from aries import (
     ALLOW_EXCL,
     BL_CHATS,
