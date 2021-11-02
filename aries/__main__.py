@@ -67,7 +67,6 @@ from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 
-
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
@@ -92,6 +91,18 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
+PM_START_TEXT = """
+Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
+I am Powerfull Group Managing Bot and I will help in managing your group.
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+• *Uptime:* `{}`
+• `{}` *users, across* `{}` *chats.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+Made specifically to manage your group , I specialize in managing Entertainment type groups.
+✪ Make sure you read *INFO* Section Below ✪ 
+"""
 
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
@@ -100,17 +111,6 @@ HELP_IMG = (
 GROUP_START_IMG = (
     "CAACAgIAAx0CXBdkHQACihphgJWKYOrC3OBmuFOYofv2_XvUZQACFBAAAkXe2EuBs3crQ6mMdSEE"
 )
-
-PM_START_TEXT = """
-Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
-I am Powerfull Group Managing Bot and I will help in managing your group.
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Uptime:* `{}`
-• `{}` *users, across* `{}` *chats.*
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-Made specifically to manage your group , I specialize in managing Entertainment type groups.
-✪ Make sure you read *INFO* Section Below ✪ 
-"""
 
 buttons = [
     [
@@ -423,7 +423,6 @@ def help_button(update, context):
 
 def aries_about_callback(update, context):
     query = update.callback_query
-    uptime = get_readable_time((time.time() - StartTime))
     if query.data == "aboutmanu_":
         query.message.edit_text(
             text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
@@ -460,17 +459,10 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_back":
         query.message.edit_text(
-            PM_START_TEXT.format(
-                escape_markdown(context.bot.first_name),
-                escape_markdown(first_name),
-                escape_markdown(uptime),
-                sql.num_users(),
-                sql.num_chats(),
-            ),
+            PM_START_TEXT,
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
             timeout=60,
-            disable_web_page_preview=False,
         )
 
     elif query.data == "aboutmanu_howto":
