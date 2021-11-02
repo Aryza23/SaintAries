@@ -423,6 +423,7 @@ def help_button(update, context):
 
 def aries_about_callback(update, context):
     query = update.callback_query
+    uptime = get_readable_time((time.time() - StartTime))
     if query.data == "aboutmanu_":
         query.message.edit_text(
             text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
@@ -459,10 +460,16 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_back":
         query.message.edit_text(
-            PM_START_TEXT,
+            PM_START_TEXT.format(
+                escape_markdown(context.bot.first_name),
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats()),
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
             timeout=60,
+            disable_web_page_preview=False,
         )
 
     elif query.data == "aboutmanu_howto":
