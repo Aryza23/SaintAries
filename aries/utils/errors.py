@@ -7,8 +7,7 @@ from functools import wraps
 
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
-from aries import EVENT_LOGS
-from aries import pbot
+from aries import EVENT_LOGS, pbot
 
 
 def split_limits(text):
