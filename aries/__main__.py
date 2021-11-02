@@ -8,7 +8,7 @@ import time
 import traceback
 from sys import argv
 from typing import Optional
-from aries.modules.sql.user_sql import sql 
+
 from telegram import (
     Chat,
     InlineKeyboardButton,
@@ -65,6 +65,7 @@ from aries.modules.helper_funcs.alternate import typing_action
 from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
+from aries.modules.sql.user_sql import sql
 
 
 def get_readable_time(seconds: int) -> str:
