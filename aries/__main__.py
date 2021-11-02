@@ -93,19 +93,6 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-PM_START_TEXT = """
-Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
-I am Powerfull Group Managing Bot and I will help in managing your group.
-
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Uptime:* `{}`
-• `{}` *users, across* `{}` *chats.*
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-
-Made specifically to manage your group , I specialize in managing Entertainment type groups.
-✪ Make sure you read *INFO* Section Below ✪ 
-"""
-
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
@@ -113,6 +100,17 @@ HELP_IMG = (
 GROUP_START_IMG = (
     "CAACAgIAAx0CXBdkHQACihphgJWKYOrC3OBmuFOYofv2_XvUZQACFBAAAkXe2EuBs3crQ6mMdSEE"
 )
+
+PM_START_TEXT = """
+Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
+I am Powerfull Group Managing Bot and I will help in managing your group.
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+• *Uptime:* `{}`
+• `{}` *users, across* `{}` *chats.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+Made specifically to manage your group , I specialize in managing Entertainment type groups.
+✪ Make sure you read *INFO* Section Below ✪ 
+"""
 
 buttons = [
     [
