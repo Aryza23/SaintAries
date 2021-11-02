@@ -97,7 +97,9 @@ HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
 )
-GROUP_START_IMG = "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
+GROUP_START_IMG = (
+    "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
+)
 
 PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
