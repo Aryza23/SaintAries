@@ -9,7 +9,7 @@ import requests
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CommandHandler
 
-from aries import DEV_USERS, ERROR_LOGS, dispatcher
+from aries import DEV_USERS, EVENT_LOGS, dispatcher
 
 pretty_errors.mono()
 
@@ -89,7 +89,7 @@ def error_callback(update: Update, context: CallbackContext):
         with open("error.txt", "w+") as f:
             f.write(pretty_message)
         context.bot.send_document(
-            ERROR_LOGS,
+            EVENT_LOGS,
             open("error.txt", "rb"),
             caption=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
             parse_mode="html",
@@ -98,7 +98,7 @@ def error_callback(update: Update, context: CallbackContext):
     key = key.get("key")
     url = f"https://hastebin.com/{key}"
     context.bot.send_message(
-        ERROR_LOGS,
+        EVENT_LOGS,
         text=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("HasteBin", url=url)]],
