@@ -5,6 +5,7 @@ import random
 
 import requests
 from PIL import Image, ImageDraw, ImageFont
+
 from aries import OWNER_ID, telethn
 from aries.events import register
 
