@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: git mv SnowGirl SaintAries
+      - run: git mv SnowGirl aries
       - uses: EndBug/add-and-commit@v5.1.0
