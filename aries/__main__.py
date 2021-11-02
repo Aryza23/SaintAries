@@ -98,7 +98,7 @@ HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
 )
 GROUP_START_IMG = (
-    "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
+    "CAACAgIAAx0CXBdkHQACihphgJWKYOrC3OBmuFOYofv2_XvUZQACFBAAAkXe2EuBs3crQ6mMdSEE"
 )
 
 PM_START_TEXT = """
@@ -577,7 +577,7 @@ def get_help(update, context):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_photo(
+            update.effective_message.animation(
                 HELP_IMG,
                 HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(
@@ -607,8 +607,12 @@ def get_help(update, context):
                     [
                         InlineKeyboardButton(
                             text="Support Chat",
-                            url="https://t.me/{}".format(SUPPORT_CHAT),
-                        )
+                            url="https://t.me/idzeroidsupport",
+                        )                        
+                        InlineKeyboardButton(
+                            text="Updates",
+                            url="https://t.me/idzeroid",
+                        )                        
                     ],
                 ]
             ),
