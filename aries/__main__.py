@@ -8,7 +8,7 @@ import time
 import traceback
 from sys import argv
 from typing import Optional
-from aries.modules.sql.user_sql import sql 
+from aries.modules.sql.user_sql import sql
 from telegram import (
     Chat,
     InlineKeyboardButton,
