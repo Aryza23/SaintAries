@@ -606,13 +606,11 @@ def get_help(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Support Chat",
-                            url="https://t.me/idzeroidsupport",
-                        )                        
+                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                        ),
                         InlineKeyboardButton(
-                            text="Updates",
-                            url="https://t.me/idzeroid",
-                        )                        
+                            text="Updates", url="https://telegram.dog/idzeroid"
+                        ),
                     ],
                 ]
             ),
