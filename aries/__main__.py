@@ -97,20 +97,16 @@ HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
 )
-GROUP_START_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
+GROUP_START_IMG = "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
 
 PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
-
 I am Powerfull Group Managing Bot and I will help in managing your group.
-
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 • *Uptime:* `{}`
 • `{}` *users, across* `{}` *chats.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
-
 ✪ Make sure you read *INFO* Section Below ✪ 
 """
 
