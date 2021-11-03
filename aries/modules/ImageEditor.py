@@ -458,5 +458,9 @@ Hello Guys Im have some advanced image editing tools inbuilt
 Bright, Circle, RemBG, Blur, Border, Flip, Glitch, Sticker maker and more.
 
 🔘 Command.
-❍ /edit [reply to image]: Open the image editor.
+❍ /edit [reply to image] : Open the image editor.
+❍ /logo [Text]: To make logo with your text (Random Pic).
+❍ /mmf [Text] : To writen in image or sitcker with your text.
+❍ /rmbg [Reply To Image ] : For remove background image.
+❍ /tiny [Reply] : To convert size to small in images.
 """
