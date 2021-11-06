@@ -13,10 +13,10 @@ __help__ = """
 
 🔘 Commands 
 ⇝ Song Playing
-❍ /play: Play song using youtube music
-❍ /play [yt url] : Play the given yt url
-❍ /video: download video song 
-❍ /song: download song via youtube
+❍ /play <i>query</i>: Play song using youtube music
+❍ /play [yt url] <i>query</i>: Play the given yt url
+❍ /video <i>query</i>: download video song 
+❍ /song <i>query</i>: download song via youtube
   
 ⇝ Playback
 ❍ /player: Open Settings menu of player
