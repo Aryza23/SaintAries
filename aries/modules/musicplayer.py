@@ -1,8 +1,6 @@
 __help__ = """
-          》** Saint Aries Music **《
-            
-* Saint Aries can plays music in your group's voice chat specialy made by @IdzXartez 
- Assistant name >> Ask At @Idzeroidsupport For assistant music *
+*<b>Saint Aries can plays music in your group's voice chat specialy made by @IdzXartez 
+ Assistant name >> Ask At @Idzeroidsupport For assistant music</b>*
  
 🔘 Setting up
 ❍ Make bot admin
@@ -14,7 +12,6 @@ __help__ = """
 🔘 Commands 
 ⇝ Song Playing
 ❍ /play <i>query</i>: Play song using youtube music
-❍ /play [yt url] <i>query</i>: Play the given yt url
 ❍ /video <i>query</i>: download video song 
 ❍ /song <i>query</i>: download song via youtube
   
@@ -29,7 +26,6 @@ __help__ = """
 
 ⇝ More tools 
 ❍ /admincache: Updates admin info of your group. Try if bot isn't recognize admin
-❍ /userbotjoin: Fot Invite Assistan Music Userbot to your chat anf play the music
 
 🔘 *Player cmd and all other cmds except /play, /current  and /playlist  are only for admins with manage group
 🔘 PLEASE NOTE THIS SERVICE IS UNSTABLE AND CAN BE STOPPED ANYTIME
