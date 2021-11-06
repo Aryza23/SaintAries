@@ -1,9 +1,9 @@
-__mod_name__ = "🔘 Music Player"
+
 __help__ = """
           》** Saint Aries Music **《
             
- Saint Aries can plays music in your group's voice chat specialy made by @IdzXartez 
- Assistant name >> Ask At @Idzeroidsupport For assistant music 
+* Saint Aries can plays music in your group's voice chat specialy made by @IdzXartez 
+ Assistant name >> Ask At @Idzeroidsupport For assistant music *
  
 🔘 Setting up
 ❍ Make bot admin
@@ -35,3 +35,5 @@ __help__ = """
 🔘 *Player cmd and all other cmds except /play, /current  and /playlist  are only for admins with manage group
 🔘 PLEASE NOTE THIS SERVICE IS UNSTABLE AND CAN BE STOPPED ANYTIME
 """
+
+__mod_name__ = "🔘 Music Player"
