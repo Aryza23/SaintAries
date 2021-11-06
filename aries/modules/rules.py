@@ -1,7 +1,12 @@
 from typing import Optional
 
-from telegram import Message, User
-from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    ParseMode,
+    User,
+)
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown
