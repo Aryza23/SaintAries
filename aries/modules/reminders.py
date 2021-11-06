@@ -2,13 +2,14 @@ import re
 import time
 
 from telegram import Update
-from telegram.ext import CommandHandler
+from telegram.ext import CommandHandler, run_async
 from telegram.ext.callbackcontext import CallbackContext
 from telegram.ext.filters import Filters
 from telegram.parsemode import ParseMode
 
-from aries import OWNER_ID, dispatcher, updater
+from aries import OWNER_ID, updater, dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
+
 
 job_queue = updater.job_queue
 
