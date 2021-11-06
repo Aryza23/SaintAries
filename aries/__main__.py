@@ -106,7 +106,6 @@ Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2d
 I am Powerfull Group Managing Bot and I will help in managing your group.
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 • *Uptime:* `{}`
-• `{}` *users, across* `{}` *chats.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
 ✪ Make sure you read *INFO* Section Below ✪ 
