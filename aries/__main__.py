@@ -105,8 +105,9 @@ PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
 I am Powerfull Group Managing Bot and I will help in managing your group.
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Main:* `{}` 
-• *Uptime:* `{}` ,
+• *Main:* `{}` `{}`
+• *Uptime:* `{}` `{}`
+`{}` `{}
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
 ✪ Make sure you read *INFO* Section Below ✪ 
