@@ -903,7 +903,7 @@ def main():
         Filters.status_update.migrate, migrate_chats, run_async=True
     )
     is_chat_allowed_handler = MessageHandler(
-        Filters.group, is_chat_allowed, run_async=True
+        Filters.chat_type.groups, is_chat_allowed, run_async=True
     )
 
     # dispatcher.add_handler(test_handler)
