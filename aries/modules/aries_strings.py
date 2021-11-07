@@ -1,4 +1,6 @@
 ARIES_IMG = (
+    "https://t.me/gabutafi/2660",
+    "https://i.imgur.com/Xc0nRVP.jpg",
     "https://pixeldrain.com/api/file/ic4hfgNo",
     "https://i.imgur.com/DgHMx5q.jpg",
     "https://i.imgur.com/EA9ErJd.jpg",
