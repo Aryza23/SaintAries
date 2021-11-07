@@ -9,7 +9,7 @@ from telegraph import upload_file
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
 
-from aries import telethn as bot
+from aries import telethn as tbot
 
 logging.basicConfig(
     level=logging.INFO, format="%(name)s - [%(levelname)s] - %(message)s"
