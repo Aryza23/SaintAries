@@ -39,7 +39,7 @@ coffeehouse==2.2.6
 regex==2021.11.2
 bleach==4.1.0
 wikipedia==1.4.0
-markdown2>=2.4.0
+markdown2
 pybase64
 telethon==1.23.0
 telegraph==2.1.0
