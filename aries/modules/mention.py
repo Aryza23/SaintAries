@@ -139,7 +139,7 @@ async def telegraph(client, message):
         os.remove(download_location)
 
 
-@bot.on(events.NewMessage(pattern="^/tagall|/mall|/tall|/all|#all|@all ?(.*)"))
+@bot.on(events.NewMessage(pattern="^/call ?(.*)"))
 async def mentionall(event):
     if event.is_private:
         return await event.respond(
