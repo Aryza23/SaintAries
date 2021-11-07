@@ -1,21 +1,20 @@
-from functools import wraps
-from threading import RLock
 from time import perf_counter
-
+from functools import wraps
 from cachetools import TTLCache
-from telegram import Chat, ChatMember, ParseMode, Update
-from telegram.ext import CallbackContext
-
+from threading import RLock
 from aries import (
     DEL_CMDS,
-    DEMONS,
     DEV_USERS,
     DRAGONS,
     SUPPORT_CHAT,
+    DEMONS,
     TIGERS,
     WOLVES,
     dispatcher,
 )
+
+from telegram import Chat, ChatMember, ParseMode, Update
+from telegram.ext import CallbackContext
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
@@ -34,35 +33,31 @@ def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DRAGONS or user_id in DEV_USERS
 
 
-def is_stats_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return user_id in DEV_USERS
-
-
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     if (
         chat.type == "private"
         or user_id in DRAGONS
         or user_id in DEV_USERS
         or chat.all_members_are_administrators
-        or user_id in {777000, 1087968824}
+        or user_id in [777000, 1087968824]
     ):  # Count telegram and Group Anonymous as admin
         return True
-    if member:
+    if not member:
+        with THREAD_LOCK:
+            # try to fetch from cache first.
+            try:
+                return user_id in ADMIN_CACHE[chat.id]
+            except KeyError:
+                # keyerror happend means cache is deleted,
+                # so query bot api again and return user status
+                # while saving it in cache for future useage...
+                chat_admins = dispatcher.bot.getChatAdministrators(chat.id)
+                admin_list = [x.user.id for x in chat_admins]
+                ADMIN_CACHE[chat.id] = admin_list
+
+                return user_id in admin_list
+    else:
         return member.status in ("administrator", "creator")
-
-    with THREAD_LOCK:
-        # try to fetch from cache first.
-        try:
-            return user_id in ADMIN_CACHE[chat.id]
-        except KeyError:
-            # keyerror happend means cache is deleted,
-            # so query bot api again and return user status
-            # while saving it in cache for future useage...
-            chat_admins = dispatcher.bot.getChatAdministrators(chat.id)
-            admin_list = [x.user.id for x in chat_admins]
-            ADMIN_CACHE[chat.id] = admin_list
-
-            return user_id in admin_list
 
 
 def is_bot_admin(chat: Chat, bot_id: int, bot_member: ChatMember = None) -> bool:
@@ -87,7 +82,7 @@ def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -
         or user_id in WOLVES
         or user_id in TIGERS
         or chat.all_members_are_administrators
-        or user_id in {777000, 1087968824}
+        or user_id in [777000, 1087968824]
     ):  # Count telegram and Group Anonymous as admin
         return True
 
@@ -105,7 +100,7 @@ def is_user_in_chat(chat: Chat, user_id: int) -> bool:
 def dev_plus(func):
     @wraps(func)
     def is_dev_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user
 
         if user.id in DEV_USERS:
@@ -120,7 +115,7 @@ def dev_plus(func):
         else:
             update.effective_message.reply_text(
                 "This is a developer restricted command."
-                "You do not have permissions to run this.",
+                " You do not have permissions to run this.",
             )
 
     return is_dev_plus_func
@@ -129,7 +124,7 @@ def dev_plus(func):
 def sudo_plus(func):
     @wraps(func)
     def is_sudo_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -144,31 +139,7 @@ def sudo_plus(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "At Least be an Admin to use these all Commands",
-            )
-
-    return is_sudo_plus_func
-
-
-def stats_plus(func):
-    @wraps(func)
-    def is_stats_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_stats_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        if not user:
-            pass
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            try:
-                update.effective_message.delete()
-            except:
-                pass
-        else:
-            update.effective_message.reply_text(
-                "Aries stats is just for Dev User",
+                "Who dis non-admin telling me what to do? You want a punch?",
             )
 
     return is_sudo_plus_func
@@ -177,7 +148,7 @@ def stats_plus(func):
 def support_plus(func):
     @wraps(func)
     def is_support_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -200,7 +171,7 @@ def whitelist_plus(func):
         *args,
         **kwargs,
     ):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -216,7 +187,7 @@ def whitelist_plus(func):
 def user_admin(func):
     @wraps(func)
     def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -231,7 +202,7 @@ def user_admin(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "At Least be an Admin to use these all Commands",
+                "Who dis non-admin telling me what to do? You want a punch?",
             )
 
     return is_admin
@@ -245,7 +216,7 @@ def user_admin_no_reply(func):
         *args,
         **kwargs,
     ):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
@@ -265,12 +236,14 @@ def user_admin_no_reply(func):
 def user_not_admin(func):
     @wraps(func)
     def is_not_admin(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
 
         if user and not is_user_admin(chat, user.id):
             return func(update, context, *args, **kwargs)
+        if not user:
+            pass
 
     return is_not_admin
 
@@ -286,7 +259,7 @@ def bot_admin(func):
         if update_chat_title == message_chat_title:
             not_admin = "I'm not admin!"
         else:
-            not_admin = f"I'm not admin in <b>{update_chat_title}</b>! "
+            not_admin = f"I'm not admin in <b>{update_chat_title}</b>!"
 
         if is_bot_admin(chat, bot.id):
             return func(update, context, *args, **kwargs)
@@ -350,7 +323,7 @@ def can_promote(func):
         else:
             cant_promote = (
                 f"I can't promote/demote people in <b>{update_chat_title}</b>!\n"
-                f"Make sure I'm admin there and have the permission to appoint new admins."
+                f"Make sure I'm admin there and can appoint new admins."
             )
 
         if chat.get_member(bot.id).can_promote_members:
@@ -386,12 +359,11 @@ def can_restrict(func):
 def user_can_ban(func):
     @wraps(func)
     def user_is_banhammer(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
+        bot = context.bot
         user = update.effective_user.id
         member = update.effective_chat.get_member(user)
         if (
-            not member.can_restrict_members
-            and member.status != "creator"
+            not (member.can_restrict_members or member.status == "creator")
             and user not in DRAGONS
             and user not in [777000, 1087968824]
         ):
@@ -418,7 +390,8 @@ def connection_status(func):
         if conn:
             chat = dispatcher.bot.getChat(conn)
             update.__setattr__("_effective_chat", chat)
-        elif update.effective_message.chat.type == "private":
+            return func(update, context, *args, **kwargs)
+        if update.effective_message.chat.type == "private":
             update.effective_message.reply_text(
                 "Send /connect in a group that you and I have in common first.",
             )
@@ -429,6 +402,7 @@ def connection_status(func):
     return connected_status
 
 
+# Workaround for circular import with connection.py
 from aries.modules import connection
 
 connected = connection.connected
