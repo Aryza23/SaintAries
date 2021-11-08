@@ -245,7 +245,7 @@ from aries.modules.sql import SESSION
 
 print("[INFO]: INITIALIZING CLIENT SYSTEM")
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
-telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
+telethn = TelegramClient(None, API_ID, API_HASH)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
