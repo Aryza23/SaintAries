@@ -931,25 +931,14 @@ def main():
 
     else:
         LOGGER.info("Arie using long polling.")
-        updater.start_polling(
-            allowed_updates=Update.ALL_TYPES,
-            timeout=15,
-            read_latency=4,
-            drop_pending_updates=True,
-        )
-    if SAINT == 1192108540:
-        print("IDZ ADDED ")
-    else:
-        os.execl(sys.executable, sys.executable, *sys.argv)
-        telethn.disconnect()
-        exit()
+        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
+
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
     else:
         telethn.run_until_disconnected()
 
     updater.idle()
-
 
 try:
     ubot.start()
@@ -962,4 +951,3 @@ if __name__ == "__main__":
     telethn.start(bot_token=TOKEN)
     pbot.start()
     main()
-    idle()
