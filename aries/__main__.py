@@ -1,7 +1,6 @@
 import html
 import importlib
 import json
-import os
 import re
 import sys
 import time
@@ -44,7 +43,6 @@ from aries import (
     LOGGER,
     OWNER_ID,
     PORT,
-    SAINT,
     SUPPORT_CHAT,
     TOKEN,
     URL,
@@ -931,7 +929,12 @@ def main():
 
     else:
         LOGGER.info("Arie using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
+        updater.start_polling(
+            timeout=15,
+            read_latency=4,
+            drop_pending_updates=True,
+            allowed_updates=Update.ALL_TYPES,
+        )
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
@@ -939,6 +942,7 @@ def main():
         telethn.run_until_disconnected()
 
     updater.idle()
+
 
 try:
     ubot.start()
