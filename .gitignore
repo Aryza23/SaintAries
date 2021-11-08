@@ -6,7 +6,6 @@ aries/config.ini
 log.txt
 kangsticker.png
 updates.txt
-start_service.bat
 
 # Session files
 aries/*.session
