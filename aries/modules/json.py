@@ -3,9 +3,8 @@ import io
 from telethon import types
 from telethon.tl import functions, types
 
-
-from aries.events import register
 from aries import telethn
+from aries.events import register
 
 
 async def is_register_admin(chat, user):
