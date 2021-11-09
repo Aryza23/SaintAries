@@ -10,7 +10,6 @@ from aries import dispatcher
 from aries.modules.helper_funcs.chat_status import dev_plus
 
 
-
 @dev_plus
 def leave(update: Update, context: CallbackContext):
     bot = context.bot
@@ -26,7 +25,6 @@ def leave(update: Update, context: CallbackContext):
             )
     else:
         update.effective_message.reply_text("Send a valid chat ID")
-
 
 
 @dev_plus
@@ -46,7 +44,6 @@ def gitpull(update: Update, context: CallbackContext):
 
     os.system("restart.bat")
     os.execv("start.bat", sys.argv)
-
 
 
 @dev_plus
