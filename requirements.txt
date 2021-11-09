@@ -93,7 +93,7 @@ pendulum==2.1.2
 launchpadlib==1.10.14
 requests_html==0.10.0
 pydub==0.25.1
-google-api-python-client==2.29.0
+google-api-python-client==2.30.0
 img2pdf==0.4.3
 hiredis==2.0.0
 selenium==4.0.0
