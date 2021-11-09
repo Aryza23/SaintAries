@@ -9,6 +9,7 @@ from aries import telethn
 from aries import telethn as tbot
 
 
+
 def register(**args):
     """Registers a new message."""
     pattern = args.get("pattern", None)
