@@ -4,11 +4,10 @@ import sys
 from time import sleep
 
 from telegram import TelegramError, Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
 
 from aries import dispatcher
 from aries.modules.helper_funcs.chat_status import dev_plus
-
 
 
 @dev_plus
@@ -28,7 +27,6 @@ def leave(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Send a valid chat ID")
 
 
-
 @dev_plus
 def gitpull(update: Update, context: CallbackContext):
     sent_msg = update.effective_message.reply_text(
@@ -46,7 +44,6 @@ def gitpull(update: Update, context: CallbackContext):
 
     os.system("restart.bat")
     os.execv("start.bat", sys.argv)
-
 
 
 @dev_plus
