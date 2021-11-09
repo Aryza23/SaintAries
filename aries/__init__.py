@@ -79,8 +79,10 @@ if ENV:
     CERT_PATH = os.environ.get("CERT_PATH")
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
-    DB_URI = os.environ.get("DATABASE_URL")
-    DB_URI = DB_URI.replace("postgres://", "postgresql://", 1)  # rest of connection code using the connection string `uri`
+    DB_URI = os.environ.get("DATABASE_URL")
+    DB_URI = DB_URI.replace(
+        "postgres://", "postgresql://", 1
+    )  # rest of connection code using the connection string `uri`
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     REDIS_URL = os.environ.get("REDIS_URL", None)
     IDZ = os.environ.get("IDZ", "IdzXartez")
