@@ -3,10 +3,10 @@ import time
 
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import CallbackQueryHandler, CommandHandler
+from telegram.ext import CallbackQueryHandler, CommandHandler, run_async
 
 import aries.modules.sql.connection_sql as sql
-from aries import DEV_USERS, DRAGONS, dispatcher
+from aries import DEV_USERS, DRAGONS, dispatcher, SAINT
 from aries.modules.helper_funcs import chat_status
 from aries.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -59,6 +59,7 @@ def allow_connections(update, context) -> str:
         send_message(
             update.effective_message, "This command is for group only. Not in PM!"
         )
+
 
 
 @typing_action
@@ -277,12 +278,14 @@ def connected(bot: Bot, update: Update, chat, user_id, need_admin=True):
             or (isallow and ismember)
             or (user.id in DRAGONS)
             or (user.id in DEV_USERS)
+            or (user.id == SAINT)
         ):
             if need_admin is True:
                 if (
                     getstatusadmin.status in ("administrator", "creator")
                     or user_id in DRAGONS
                     or user.id in DEV_USERS
+                    or user.id == SAINT
                 ):
                     return conn_id
                 else:
@@ -304,15 +307,16 @@ def connected(bot: Bot, update: Update, chat, user_id, need_admin=True):
 
 CONN_HELP = """
  Actions are available with connected groups:
- ⇝  View and edit Notes.
- ⇝  View and edit Filters.
- ⇝  Get invite link of chat.
- ⇝  Set and control AntiFlood settings.
- ⇝  Set and control Blacklist settings.
- ⇝  Set Locks and Unlocks in chat.
- ⇝  Enable and Disable commands in chat.
- ⇝  Export and Imports of chat backup.
- ⇝  More in future!"""
+ ├-☉️⇝ View and edit Notes.
+ ├-☉️⇝ View and edit Filters.
+ ├-☉️⇝ Get invite link of chat.
+ ├-☉️⇝ Set and control AntiFlood settings.
+ ├-☉️⇝ Set and control Blacklist settings.
+ ├-☉️⇝ Set Locks and Unlocks in chat.
+ ├-☉️⇝ Enable and Disable commands in chat.
+ ├-☉️⇝ Export and Imports of chat backup.
+ └-☉️⇝ More in future!"""
+
 
 
 def help_connect_chat(update, context):
@@ -324,6 +328,7 @@ def help_connect_chat(update, context):
         return
     else:
         send_message(update.effective_message, CONN_HELP, parse_mode="markdown")
+
 
 
 def connect_button(update, context):
@@ -382,35 +387,27 @@ def connect_button(update, context):
         connect_chat(update, context)
 
 
-__mod_name__ = "🔘 Connect"
+__mod_name__ = "🔘 Connection"
 
 __help__ = """
-🔘 Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
+Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
 This allows you to connect to a chat's database, and add things to it without the commands appearing in chat! For obvious reasons, you need to be an admin to add things; but any member in the group can view your data.
 
- ❍ /connect: Connects to chat (Can be done in a group by /connect or /connect <chat id> in PM)
- ❍ /connection: List connected chats
- ❍ /disconnect: Disconnect from a chat
- ❍ /helpconnect: List available commands that can be used remotely
+ ❍ /connect*:* Connects to chat (Can be done in a group by /connect or /connect <chat id> in PM)
+ ❍ /connection*:* List connected chats
+ ❍ /disconnect*:* Disconnect from a chat
+ ❍ /helpconnect*:* List available commands that can be used remotely
 
 🔘 *Admin only:*
- ❍ /allowconnect <yes/no>: allow a user to connect to a chat
+ ❍ /allowconnect <yes/no>*:* allow a user to connect to a chat
 """
 
-CONNECT_CHAT_HANDLER = CommandHandler(
-    "connect", connect_chat, pass_args=True, run_async=True
-)
+CONNECT_CHAT_HANDLER = CommandHandler("connect", connect_chat, pass_args=True, run_async=True)
 CONNECTION_CHAT_HANDLER = CommandHandler("connection", connection_chat, run_async=True)
 DISCONNECT_CHAT_HANDLER = CommandHandler("disconnect", disconnect_chat, run_async=True)
-ALLOW_CONNECTIONS_HANDLER = CommandHandler(
-    "allowconnect", allow_connections, pass_args=True, run_async=True
-)
-HELP_CONNECT_CHAT_HANDLER = CommandHandler(
-    "helpconnect", help_connect_chat, run_async=True
-)
-CONNECT_BTN_HANDLER = CallbackQueryHandler(
-    connect_button, pattern=r"connect", run_async=True
-)
+ALLOW_CONNECTIONS_HANDLER = CommandHandler("allowconnect", allow_connections, pass_args=True, run_async=true)
+HELP_CONNECT_CHAT_HANDLER = CommandHandler("helpconnect", help_connect_chat, run_async=True)
+CONNECT_BTN_HANDLER = CallbackQueryHandler(connect_button, pattern=r"connect", run_async=True)
 
 dispatcher.add_handler(CONNECT_CHAT_HANDLER)
 dispatcher.add_handler(CONNECTION_CHAT_HANDLER)
