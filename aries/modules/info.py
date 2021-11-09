@@ -1,9 +1,9 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from aries import pbot as app
-from aries.core.sections import section
 from aries.extrastuff import SUDOERS
+from aries import pgram as app
+from aries.core.sections import section
 
 
 async def get_user_info(user, already=False):
@@ -77,10 +77,14 @@ async def info_func(_, message: Message):
         return await m.edit(str(e))
 
     if not photo_id:
-        return await m.edit(info_caption, disable_web_page_preview=True)
+        return await m.edit(
+            info_caption, disable_web_page_preview=True
+        )
     photo = await app.download_media(photo_id)
 
-    await message.reply_photo(photo, caption=info_caption, quote=False)
+    await message.reply_photo(
+        photo, caption=info_caption, quote=False
+    )
     await m.delete()
     os.remove(photo)
 
@@ -89,7 +93,9 @@ async def info_func(_, message: Message):
 async def chat_info_func(_, message: Message):
     try:
         if len(message.command) > 2:
-            return await message.reply_text("**Usage:**cinfo <chat id/username>")
+            return await message.reply_text(
+                "**Usage:**cinfo <chat id/username>"
+            )
 
         if len(message.command) == 1:
             chat = message.chat.id
@@ -100,10 +106,14 @@ async def chat_info_func(_, message: Message):
 
         info_caption, photo_id = await get_chat_info(chat)
         if not photo_id:
-            return await m.edit(info_caption, disable_web_page_preview=True)
+            return await m.edit(
+                info_caption, disable_web_page_preview=True
+            )
 
         photo = await app.download_media(photo_id)
-        await message.reply_photo(photo, caption=info_caption, quote=False)
+        await message.reply_photo(
+            photo, caption=info_caption, quote=False
+        )
 
         await m.delete()
         os.remove(photo)
