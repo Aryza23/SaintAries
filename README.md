@@ -4,6 +4,8 @@
   </h1>
 </center>
 
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light.svg)](https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge)
+
 ![Saint Aries](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg)
 
 
