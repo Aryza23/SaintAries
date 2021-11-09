@@ -4,11 +4,6 @@
   </h1>
 </center>
 
-[![DeepSource](https://static.deepsource.io/deepsource-badge-light.svg)](https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge)
-
-<a href="https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/idzero23/SaintAries.svg/?label=active+issues&show_trend=true&token=AX_SAUidBGU75e2V2xMv0957"/></a>
-<a href="https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/idzero23/SaintAries.svg/?label=resolved+issues&show_trend=true&token=AX_SAUidBGU75e2V2xMv0957"/></a>
-
 ![Saint Aries](https://telegra.ph/file/1535401e82bc8b4fbfa41.jpg)
 
 
