@@ -1,4 +1,4 @@
 @echo off
-TITLE Saint Aries
-:: Enables virtual env mode and then starts aries
+TITLE aries
+:: Enables virtual env mode and then starts saitama
 env\scripts\activate.bat && py -m aries
