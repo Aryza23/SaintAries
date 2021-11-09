@@ -10,7 +10,7 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 if is_module_loaded(FILENAME):
     from telegram import ParseMode, Update
     from telegram.error import BadRequest, Unauthorized
-    from telegram.ext import CommandHandler, JobQueue, run_async
+    from telegram.ext import CommandHandler, JobQueue
     from telegram.utils.helpers import escape_markdown
 
     from aries import EVENT_LOGS, LOGGER, dispatcher
@@ -99,7 +99,6 @@ if is_module_loaded(FILENAME):
                     + "\n\nFormatting has been disabled due to an unexpected error.",
                 )
 
-    
     @user_admin
     def logging(update: Update, context: CallbackContext):
         bot = context.bot
@@ -118,7 +117,6 @@ if is_module_loaded(FILENAME):
         else:
             message.reply_text("No log channel has been set for this group!")
 
-    
     @user_admin
     def setlog(update: Update, context: CallbackContext):
         bot = context.bot
@@ -162,7 +160,6 @@ if is_module_loaded(FILENAME):
                 " - forward the /setlog to the group\n"
             )
 
-    
     @user_admin
     def unsetlog(update: Update, context: CallbackContext):
         bot = context.bot
