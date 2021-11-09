@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from aries import pgram as app
+from aries import pbot as app
 from aries.core.sections import section
 from aries.extrastuff import SUDOERS
 
