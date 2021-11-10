@@ -7,8 +7,8 @@ import time
 import traceback
 from sys import argv
 from typing import Optional
-from pyrogram import filters, idle
 
+from pyrogram import filters
 from telegram import (
     Chat,
     InlineKeyboardButton,
@@ -33,10 +33,8 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from aries.modules.system import bot_sys_stats
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
-from aries import pbot
 
 from aries import (
     ALLOW_EXCL,
@@ -53,9 +51,10 @@ from aries import (
     WHITELIST_CHATS,
     StartTime,
     dispatcher,
+    pbot,
     telethn,
+    ubot,
     updater,
-    ubot
 )
 
 # needed to dynamically load modules
@@ -65,6 +64,7 @@ from aries.modules.helper_funcs.alternate import typing_action
 from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
+from aries.modules.system import bot_sys_stats
 
 PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
@@ -76,7 +76,7 @@ Made specifically to manage your group , I specialize in managing Entertainment 
 
 buttons = [
     [
-        InlineKeyboardButton(text=" ｢ Help & Cmd 」",callback_data="help_back"),
+        InlineKeyboardButton(text=" ｢ Help & Cmd 」", callback_data="help_back"),
     ],
     [
         InlineKeyboardButton(text=" ｢ Info 」", callback_data="aboutmanu_"),
@@ -181,7 +181,6 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-
 def test(update, context):
     try:
         print(update)
@@ -192,7 +191,6 @@ def test(update, context):
     )
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
-
 
 
 def start(update: Update, context: CallbackContext):
@@ -243,7 +241,13 @@ def start(update: Update, context: CallbackContext):
             ),
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="System Stats 💻", callback_data="stats_callback")]],
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="System Stats 💻", callback_data="stats_callback"
+                        )
+                    ]
+                ],
             ),
         )
 
@@ -306,7 +310,6 @@ def error_callback(update: Update, context: CallbackContext):
         # handle all other telegram related errors
 
 
-
 def help_button(update, context):
     query = update.callback_query
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
@@ -317,9 +320,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "*｢  Help  for  {}  module 」*\n".format(
-                    HELPABLE[module].__mod_name__
-                )
+                "*｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
                 + HELPABLE[module].__help__
             )
             query.message.edit_text(
@@ -372,7 +373,6 @@ def help_button(update, context):
         else:
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
-
 
 
 def aries_about_callback(update, context):
@@ -517,11 +517,12 @@ def aries_about_callback(update, context):
             ),
         )
 
+
 @pbot.on_callback_query(filters.regex("stats_callback"))
 async def stats_callbacc(_, CallbackQuery):
     text = await bot_sys_stats()
     await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=True)
-        
+
 
 @typing_action
 def get_help(update, context):
@@ -632,7 +633,6 @@ def send_settings(chat_id, user_id, user=False):
             )
 
 
-
 def settings_button(update, context):
     query = update.callback_query
     user = update.effective_user
@@ -720,7 +720,6 @@ def settings_button(update, context):
             LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
-
 def get_settings(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -806,7 +805,6 @@ def is_chat_allowed(update, context):
         pass
 
 
-
 def donate(update: Update, context: CallbackContext):
     update.effective_message.from_user
     chat = update.effective_chat  # type: Optional[Chat]
@@ -841,10 +839,14 @@ def main():
     start_handler = CommandHandler("start", start, pass_args=True, run_async=True)
 
     help_handler = CommandHandler("help", get_help, run_async=True)
-    help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_", run_async=True)
+    help_callback_handler = CallbackQueryHandler(
+        help_button, pattern=r"help_", run_async=True
+    )
 
     settings_handler = CommandHandler("settings", get_settings, run_async=True)
-    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
+    settings_callback_handler = CallbackQueryHandler(
+        settings_button, pattern=r"stngs_", run_async=True
+    )
 
     about_callback_handler = CallbackQueryHandler(
         aries_about_callback, pattern=r"aboutmanu_", run_async=True
@@ -888,6 +890,7 @@ def main():
         telethn.run_until_disconnected()
 
     updater.idle()
+
 
 try:
     ubot.start()
