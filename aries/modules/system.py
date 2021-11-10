@@ -2,16 +2,13 @@
 XIT License 2021
 Copyright (c) 2021 Damantha126 
 """
-import asyncio
 import os
-import subprocess
 import time
 
 import psutil
-import aries.modules.sql.users_sql as sql
-from pyrogram import filters
 
-from aries import (bot_start_time, DEV_USERS, pbot)
+import aries.modules.sql.users_sql as sql
+from aries import bot_start_time
 from aries.utils import formatter
 
 # Stats Module
