@@ -8,7 +8,6 @@ import traceback
 from sys import argv
 from typing import Optional
 
-from pyrogram import filters
 from telegram import (
     Chat,
     InlineKeyboardButton,
@@ -64,46 +63,78 @@ from aries.modules.helper_funcs.alternate import typing_action
 from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
-from aries.modules.system import bot_sys_stats
+from aries.modules.sql import users_sql as sql
+
+
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    ping_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "days"]
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        ping_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    ping_time += ":".join(time_list)
+
+    return ping_time
+
+
+HELP_MSG = "Click the button below to get help menu in your pm."
+HELP_IMG = (
+    "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
+)
+GROUP_START_IMG = (
+    "CAACAgIAAx0CXBdkHQACihphgJWKYOrC3OBmuFOYofv2_XvUZQACFBAAAkXe2EuBs3crQ6mMdSEE"
+)
 
 PM_START_TEXT = """
 Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
 I am Powerfull Group Managing Bot and I will help in managing your group.
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+• *Main:* `{}` `{}`
+• *Uptime:* `{}`
+➖➖➖➖➖➖➖➖➖➖➖➖➖
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
 ✪ Make sure you read *INFO* Section Below ✪ 
- 
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text=" ｢ Help & Cmd 」", callback_data="help_back"),
+        InlineKeyboardButton(text=" ｢Help & Cmd」", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text=" ｢ Info 」", callback_data="aboutmanu_"),
-        InlineKeyboardButton(text=" ｢ Inline 」", switch_inline_query_current_chat=""),
+        InlineKeyboardButton(text=" ｢Info」", callback_data="aboutmanu_"),
+        InlineKeyboardButton(text=" ｢Inline」", switch_inline_query_current_chat=""),
     ],
     [
         InlineKeyboardButton(
-            text=" ｢ Summon Me 」",
+            text=" ➕ ｢Summon Me」➕ ",
             url="t.me/idzeroid_bot?startgroup=true",
         ),
     ],
 ]
 
-GROUP_START_IMG = (
-    "CAACAgIAAx0CXBdkHQACihphgJWKYOrC3OBmuFOYofv2_XvUZQACFBAAAkXe2EuBs3crQ6mMdSEE"
-)
-ARIES_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 
 HELP_STRINGS = f"""
-*Main Commands :* [🤖](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
+*Main Commands :* [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
 ✪ /start: Starts me! You've probably already used this.
 ✪ /help: Click this, I'll let you know about myself!
 ✪ /donate: You can support my creater using this command.
 ✪ /settings: 
    ◔ in PM: will send you your settings for all supported modules.
    ◔ in a Group: will redirect you to pm, with all that chat's settings.
-    Powered by : @IdzXartez
 """.format(
     dispatcher.bot.first_name,
     "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n",
@@ -114,7 +145,6 @@ DONATE_STRING = """Heya, glad to hear you want to donate!
  You can support the project via [pulsa](#) or by contacting @IdzXartez\
  Supporting isnt always financial! \
  Those who cannot provide monetary support are welcome to help us develop the bot at ."""
-
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -208,7 +238,13 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text="[Back]", callback_data="help_back"
+                                )
+                            ]
+                        ]
                     ),
                 )
 
@@ -225,10 +261,15 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            update.effective_user.first_name
-            update.effective_message.reply_photo(
-                ARIES_IMG,
-                caption=PM_START_TEXT,
+            first_name = update.effective_user.first_name
+            update.effective_message.reply_text(
+                PM_START_TEXT.format(
+                    escape_markdown(context.bot.first_name),
+                    escape_markdown(first_name),
+                    escape_markdown(uptime),
+                    sql.num_users(),
+                    sql.num_chats(),
+                ),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -244,10 +285,13 @@ def start(update: Update, context: CallbackContext):
                 [
                     [
                         InlineKeyboardButton(
-                            text="System Stats 💻", callback_data="stats_callback"
-                        )
-                    ]
-                ],
+                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                        ),
+                        InlineKeyboardButton(
+                            text="Updates", url="https://telegram.dog/idzeroid"
+                        ),
+                    ],
+                ]
             ),
         )
 
@@ -320,7 +364,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "*｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
+                "* ｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
                 + HELPABLE[module].__help__
             )
             query.message.edit_text(
@@ -379,8 +423,8 @@ def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmanu_":
         query.message.edit_text(
-            text=f"*👋 Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
-            f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} "
+            text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
+            f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 🔥"
             f"\n\n I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers."
             f"\n\n ⚡️ 》 I can restrict users."
             f"\n\n ⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules."
@@ -402,7 +446,11 @@ def aries_about_callback(update, context):
                             text="T.A.C", callback_data="aboutmanu_tac"
                         ),
                     ],
-                    [InlineKeyboardButton(text="Help", callback_data="help_back")],
+                    [
+                        InlineKeyboardButton(
+                            text="Help & Commands", callback_data="help_back"
+                        )
+                    ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_back")],
                 ]
             ),
@@ -451,7 +499,7 @@ def aries_about_callback(update, context):
 
     elif query.data == "aboutmanu_permis":
         query.message.edit_text(
-            text=f"<b>｢ Admin Permissions 」</b>"
+            text=f"<b> ｢ Admin Permissions 」</b>"
             f"\nTo avoid slowing down, {dispatcher.bot.first_name} caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), {dispatcher.bot.first_name} will only find out ~10 minutes later."
             f"\n\nIF you want to update them immediately, you can use the /admincache command,thta'll force {dispatcher.bot.first_name} to check who the admins are again and their permissions"
             f"\n\nIf you are getting a message saying:"
@@ -496,12 +544,12 @@ def aries_about_callback(update, context):
         query.message.edit_text(
             text=f"<b> ｢ Terms and Conditions 」</b>\n"
             f"\n<i>To Use This Bot, You Need To Read Terms and Conditions Carefully.</i>\n"
-            f"\n├-☉️⇝ We always respect your privacy \n  We never log into bot's api and spying on you \n  We use a encripted database \n  Bot will automatically stops if someone logged in with api."
-            f"\n├-☉️⇝ Always try to keep credits, so \n  This hardwork is done by @IdzXartez spending many sleepless nights.. So, Respect it."
-            f"\n├-☉️⇝ Some modules in this bot is owned by different authors, So, \n  All credits goes to them \n  Also for <b>Paul Larson for Marie</b>."
-            f"\n├-☉️⇝ If you need to ask anything about \n  this bot, Go @Idzeroidsupport."
-            f"\n├-☉️⇝ If you asking nonsense in Support \n  Chat, you will get warned/banned."
-            f"\n└-☉️⇝ All api's we used owned by originnal authors \n  Some api's we use Free version \n  Please don't overuse AI Chat."
+            f"\n✪ We always respect your privacy \n  We never log into bot's api and spying on you \n  We use a encripted database \n  Bot will automatically stops if someone logged in with api."
+            f"\n✪ Always try to keep credits, so \n  This hardwork is done by @IdzXartez spending many sleepless nights.. So, Respect it."
+            f"\n✪ Some modules in this bot is owned by different authors, So, \n  All credits goes to them \n  Also for <b>Paul Larson for Marie</b>."
+            f"\n✪ If you need to ask anything about \n  this bot, Go @Idzeroidsupport."
+            f"\n✪ If you asking nonsense in Support \n  Chat, you will get warned/banned."
+            f"\n✪ All api's we used owned by originnal authors \n  Some api's we use Free version \n  Please don't overuse AI Chat."
             f"\n\nFor any kind of help, related to this bot, Join @idzeroidsupport."
             f"\n\n<i>Terms & Conditions will be changed anytime</i>\n",
             parse_mode=ParseMode.HTML,
@@ -518,12 +566,6 @@ def aries_about_callback(update, context):
         )
 
 
-@pbot.on_callback_query(filters.regex("stats_callback"))
-async def stats_callbacc(_, CallbackQuery):
-    text = await bot_sys_stats()
-    await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=True)
-
-
 @typing_action
 def get_help(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -533,8 +575,9 @@ def get_help(update, context):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_text(
-                f"Contact me in PM to get help of {module.capitalize()}",
+            update.effective_message.animation(
+                HELP_IMG,
+                HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -827,7 +870,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "⚡️")
+            dispatcher.bot.sendMessage(f"@IdzeroidSupport", "⚡️")
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
@@ -835,7 +878,7 @@ def main():
         except BadRequest as e:
             LOGGER.warning(e.message)
 
-    # test_handler = CommandHandler("test", test, run_async=True)
+    test_handler = CommandHandler("test", test, run_async=True)
     start_handler = CommandHandler("start", start, pass_args=True, run_async=True)
 
     help_handler = CommandHandler("help", get_help, run_async=True)
@@ -843,7 +886,7 @@ def main():
         help_button, pattern=r"help_", run_async=True
     )
 
-    settings_handler = CommandHandler("settings", get_settings, run_async=True)
+    settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(
         settings_button, pattern=r"stngs_", run_async=True
     )
@@ -854,8 +897,12 @@ def main():
 
     donate_handler = CommandHandler("donate", donate, run_async=True)
 
-    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
-    is_chat_allowed_handler = MessageHandler(Filters.group, is_chat_allowed)
+    migrate_handler = MessageHandler(
+        Filters.status_update.migrate, migrate_chats
+    )
+    is_chat_allowed_handler = MessageHandler(
+        Filters.chat_type.groups, is_chat_allowed
+    )
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
@@ -881,8 +928,13 @@ def main():
             client.run_until_disconnected()
 
     else:
-        LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, clean=True)
+        LOGGER.info("Arie using long polling.")
+        updater.start_polling(
+            timeout=15,
+            read_latency=4,
+            drop_pending_updates=True,
+            allowed_updates=Update.ALL_TYPES,
+        )
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
