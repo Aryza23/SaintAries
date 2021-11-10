@@ -11,7 +11,7 @@ import psutil
 import aries.modules.sql.users_sql as sql
 from pyrogram import filters
 
-from aries import (bot_start_time, DEV_USERS, pbot)
+from aries import bot_start_time, DEV_USERS, pbot
 from aries.utils import formatter
 
 # Stats Module
