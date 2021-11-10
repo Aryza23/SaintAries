@@ -116,7 +116,7 @@ if ENV:
     ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = 1192108540
-
+    bot_start_time = time.time()
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
