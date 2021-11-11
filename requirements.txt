@@ -13,7 +13,7 @@ httpx
 python-telegram-bot==13.8.1
 SQLAlchemy==1.4.26
 youtube_dl
-python-dotenv==0.19.1
+python-dotenv==0.19.2
 psycopg2-binary
 feedparser==6.0.8
 faker==9.8.0
