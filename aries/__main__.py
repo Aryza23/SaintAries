@@ -66,6 +66,7 @@ from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 from aries.modules.system import bot_sys_stats
 
+
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
@@ -291,7 +292,11 @@ def start(update: Update, context: CallbackContext):
                             text="Updates", url="https://telegram.dog/idzeroid"
                         ),
                     ],
-                    [InlineKeyboardButton(text="System Stats 💻", callback_data="stats_callback")],
+                    [
+                        InlineKeyboardButton(
+                            text="System Stats 💻", callback_data="stats_callback"
+                        )
+                    ],
                 ]
             ),
         )
@@ -566,10 +571,12 @@ def aries_about_callback(update, context):
             ),
         )
 
+
 @pbot.on_callback_query(filters.regex("stats_callback"))
 async def stats_callback(_, CallbackQuery):
     text = await bot_sys_stats()
     await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=True)
+
 
 @typing_action
 def get_help(update, context):
