@@ -186,9 +186,6 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
             if sw_ban:
                 return
 
-        if is_user_gbanned(new_mem.id):
-            return
-
         reply = update.message.message_id
         cleanserv = sql.clean_service(chat.id)
         # Clean service welcome
