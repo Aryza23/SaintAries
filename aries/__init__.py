@@ -17,6 +17,7 @@ from Python_ARQ import ARQ
 from redis import StrictRedis
 from telethon import TelegramClient
 from telethon.sessions import MemorySession, StringSession
+from aries.utils.logger import log
 
 StartTime = time.time()
 
