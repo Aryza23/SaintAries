@@ -8,7 +8,7 @@ multicolorcaptcha
 gtts
 beautifulsoup4
 gitpython==3.1.24
-requests==2.20.0
+requests
 httpx
 python-telegram-bot==13.8.1
 SQLAlchemy==1.4.27
