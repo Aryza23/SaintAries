@@ -281,7 +281,7 @@ def start(update: Update, context: CallbackContext):
         )
 
 
-#def error_handler(update, context):
+# def error_handler(update, context):
 #    """Log the error and send a telegram message to notify the developer."""
 #    # Log the error before we do anything else, so we can see it even if something breaks.
 #    LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
@@ -898,7 +898,7 @@ def main():
 
     dispatcher.add_error_handler(error_callback)
 
-    #dispatcher.add_error_handler(error_handler)
+    # dispatcher.add_error_handler(error_handler)
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
