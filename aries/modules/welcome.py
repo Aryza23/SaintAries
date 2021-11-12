@@ -23,7 +23,7 @@ from telegram.ext import (
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
 import aries.modules.sql.welcome_sql as sql
-from aries import DEV_USERS, JOIN_LOGGER, LOGGER, OWNER_ID, dispatcher, sw
+from aries import DEV_USERS, JOIN_LOGGER, LOGGER, OWNER_ID, dispatcher, sw, DRAGONS, DEMONS, TIGERS, WOLVES
 from aries.modules.helper_funcs.chat_status import is_user_ban_protected, user_admin
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from aries.modules.helper_funcs.msg_types import get_welcome_type
@@ -175,6 +175,9 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
             if sw_ban:
                 return
 
+        if is_user_gbanned(new_mem.id):
+            return
+
         reply = update.message.message_id
         cleanserv = sql.clean_service(chat.id)
         # Clean service welcome
@@ -205,6 +208,56 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
                 update.effective_message.reply_text(
                     "Whoa! A Lord of the Idzeroid Syndicates just joined!",
                     reply_to_message_id=reply,
+                )
+                continue
+
+            # Welcome Sudos
+            elif new_mem.id in DRAGONS:
+                update.effective_message.reply_text(
+                    "Whoa! A Dragon disaster just joined! Stay Alert!",
+                    reply_to_message_id=reply,
+                )
+                welcome_log = (
+                    f"{html.escape(chat.title)}\n"
+                    f"#USER_JOINED\n"
+                    f"Bot Sudo just joined the group"
+                )
+                continue
+
+            # Welcome Support
+            elif new_mem.id in DEMONS:
+                update.effective_message.reply_text(
+                    "Huh! Someone with a Demon disaster level just joined!",
+                    reply_to_message_id=reply,
+                )
+                welcome_log = (
+                    f"{html.escape(chat.title)}\n"
+                    f"#USER_JOINED\n"
+                    f"Bot Support just joined the group"
+                )
+                continue
+
+            # Welcome Whitelisted
+            elif new_mem.id in TIGERS:
+                update.effective_message.reply_text(
+                    "Roar! A Tiger disaster just joined!", reply_to_message_id=reply,
+                )
+                welcome_log = (
+                    f"{html.escape(chat.title)}\n"
+                    f"#USER_JOINED\n"
+                    f"A whitelisted user joined the chat"
+                )
+                continue
+
+            # Welcome Tigers
+            elif new_mem.id in WOLVES:
+                update.effective_message.reply_text(
+                    "Awoo! A Wolf disaster just joined!", reply_to_message_id=reply,
+                )
+                welcome_log = (
+                    f"{html.escape(chat.title)}\n"
+                    f"#USER_JOINED\n"
+                    f"A whitelisted user joined the chat"
                 )
                 continue
 
