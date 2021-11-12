@@ -23,7 +23,18 @@ from telegram.ext import (
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
 import aries.modules.sql.welcome_sql as sql
-from aries import DEV_USERS, JOIN_LOGGER, LOGGER, OWNER_ID, dispatcher, sw, DRAGONS, DEMONS, TIGERS, WOLVES
+from aries import (
+    DEMONS,
+    DEV_USERS,
+    DRAGONS,
+    JOIN_LOGGER,
+    LOGGER,
+    OWNER_ID,
+    TIGERS,
+    WOLVES,
+    dispatcher,
+    sw,
+)
 from aries.modules.helper_funcs.chat_status import is_user_ban_protected, user_admin
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from aries.modules.helper_funcs.msg_types import get_welcome_type
@@ -240,7 +251,8 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
             # Welcome Whitelisted
             elif new_mem.id in TIGERS:
                 update.effective_message.reply_text(
-                    "Roar! A Tiger disaster just joined!", reply_to_message_id=reply,
+                    "Roar! A Tiger disaster just joined!",
+                    reply_to_message_id=reply,
                 )
                 welcome_log = (
                     f"{html.escape(chat.title)}\n"
@@ -252,7 +264,8 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
             # Welcome Tigers
             elif new_mem.id in WOLVES:
                 update.effective_message.reply_text(
-                    "Awoo! A Wolf disaster just joined!", reply_to_message_id=reply,
+                    "Awoo! A Wolf disaster just joined!",
+                    reply_to_message_id=reply,
                 )
                 welcome_log = (
                     f"{html.escape(chat.title)}\n"
