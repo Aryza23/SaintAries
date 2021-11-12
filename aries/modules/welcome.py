@@ -23,7 +23,7 @@ from telegram.ext import (
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
 import aries.modules.sql.welcome_sql as sql
-from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher, sw, JOIN_LOGGER
+from aries import DEV_USERS, JOIN_LOGGER, LOGGER, OWNER_ID, dispatcher, sw
 from aries.modules.helper_funcs.chat_status import is_user_ban_protected, user_admin
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from aries.modules.helper_funcs.msg_types import get_welcome_type
@@ -231,12 +231,14 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
                     bot.send_message(
                         JOIN_LOGGER,
                         "#NEW_GROUP\n<b>Group name:</b> {}\n<b>ID:</b> <code>{}</code>".format(
-                            html.escape(chat.title), chat.id,
+                            html.escape(chat.title),
+                            chat.id,
                         ),
                         parse_mode=ParseMode.HTML,
                     )
                 update.effective_message.reply_text(
-                    "I feel like I'm gonna suffocate in here.", reply_to_message_id=reply,
+                    "I feel like I'm gonna suffocate in here.",
+                    reply_to_message_id=reply,
                 )
                 continue
 
