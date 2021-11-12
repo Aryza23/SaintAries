@@ -74,31 +74,6 @@ async def system_status(_, CallbackQuery):
     await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=False)
 
 
-def get_readable_time(seconds: int) -> str:
-    count = 0
-    ping_time = ""
-    time_list = []
-    time_suffix_list = ["s", "m", "h", "days"]
-
-    while count < 4:
-        count += 1
-        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
-        if seconds == 0 and remainder == 0:
-            break
-        time_list.append(int(result))
-        seconds = int(remainder)
-
-    for x in range(len(time_list)):
-        time_list[x] = str(time_list[x]) + time_suffix_list[x]
-    if len(time_list) == 4:
-        ping_time += time_list.pop() + ", "
-
-    time_list.reverse()
-    ping_time += ":".join(time_list)
-
-    return ping_time
-
-
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
@@ -120,17 +95,18 @@ Made specifically to manage your group , I specialize in managing Entertainment 
 
 buttons = [
     [
-        InlineKeyboardButton(text=" ｢Help & Cmd」", callback_data="help_back"),
-    ],
-    [
-        InlineKeyboardButton(text=" ｢Info」", callback_data="aboutmanu_"),
-        InlineKeyboardButton(text=" ｢Inline」", switch_inline_query_current_chat=""),
+        InlineKeyboardButton(text=" ｢ Info & Cmd 」", callback_data="aboutmanu_"),
+        InlineKeyboardButton(text=" ｢ Inline 」", switch_inline_query_current_chat=""),
     ],
     [
         InlineKeyboardButton(
-            text=" ➕ ｢Summon Me」➕ ",
+            text=" ➕ ｢ Summon Me 」➕ ",
             url="t.me/idzeroid_bot?startgroup=true",
         ),
+    ],
+    [
+        InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroisupport"),
+        InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
 ]
 
