@@ -23,7 +23,7 @@ from telegram.ext import (
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
 import aries.modules.sql.welcome_sql as sql
-from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher, sw
+from aries import DEV_USERS, LOGGER, OWNER_ID, dispatcher, sw, JOIN_LOGGER
 from aries.modules.helper_funcs.chat_status import is_user_ban_protected, user_admin
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from aries.modules.helper_funcs.msg_types import get_welcome_type
@@ -205,6 +205,38 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
                 update.effective_message.reply_text(
                     "Whoa! A Lord of the Idzeroid Syndicates just joined!",
                     reply_to_message_id=reply,
+                )
+                continue
+
+            # Welcome yourselflog
+            elif new_mem.id == bot.id:
+                creator = None
+                for x in bot.get_chat_administrators(update.effective_chat.id):
+                    if x.status == "creator":
+                        creator = x.user
+                        break
+                if creator:
+                    bot.send_message(
+                        JOIN_LOGGER,
+                        f"""
+                        \\#NEWGROUP \
+                        \nGroup Name:   **\\{chat.title}** \
+                        \nID:   `\\{chat.id}` \
+                        \nCreator ID:   `\\{creator.id}` \
+                        \nCreator ID:   \{creator.username} \
+                        """,
+                        parse_mode=ParseMode.MARKDOWN_V2,
+                    )
+                else:
+                    bot.send_message(
+                        JOIN_LOGGER,
+                        "#NEW_GROUP\n<b>Group name:</b> {}\n<b>ID:</b> <code>{}</code>".format(
+                            html.escape(chat.title), chat.id,
+                        ),
+                        parse_mode=ParseMode.HTML,
+                    )
+                update.effective_message.reply_text(
+                    "I feel like I'm gonna suffocate in here.", reply_to_message_id=reply,
                 )
                 continue
 
