@@ -231,12 +231,14 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
                     bot.send_message(
                         JOIN_LOGGER,
                         "#NEW_GROUP\n<b>Group name:</b> {}\n<b>ID:</b> <code>{}</code>".format(
-                            html.escape(chat.title), chat.id,
+                            html.escape(chat.title),
+                            chat.id,
                         ),
                         parse_mode=ParseMode.HTML,
                     )
                 update.effective_message.reply_text(
-                    "I feel like I'm gonna suffocate in here.", reply_to_message_id=reply,
+                    "I feel like I'm gonna suffocate in here.",
+                    reply_to_message_id=reply,
                 )
                 continue
 
