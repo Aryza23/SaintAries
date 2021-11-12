@@ -105,7 +105,7 @@ buttons = [
         ),
     ],
     [
-        InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroisupport"),
+        InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroidsupport"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
 ]
@@ -277,7 +277,7 @@ def start(update: Update, context: CallbackContext):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="System Status", callback_data="system_status_callback"
+                            text="Donate", callback_data="donate"
                         )
                     ],
                 ]
