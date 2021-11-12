@@ -26,7 +26,6 @@ from telethon.tl import functions, types
 from telethon.tl.types import *
 
 
-
 async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
 
