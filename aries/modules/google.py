@@ -1,87 +1,70 @@
+from bs4 import BeautifulSoup
+import urllib
+from aries import telethn as tbot
 import glob
 import io
 import os
 import re
-import urllib
+import aiohttp
 import urllib.request
-
-import bs4
+from urllib.parse import urlencode
 import requests
-from bing_image_downloader import downloader
 from bs4 import BeautifulSoup
 from PIL import Image
+from search_engine_parser import GoogleSearch
 
-from aries import telethn as tbot
+import bs4
+import html2text
+from bing_image_downloader import downloader
+from telethon import *
+from telethon.tl import functions
+from telethon.tl import types
+from telethon.tl.types import *
+
+from aries import *
+
 from aries.events import register
 
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
 opener.addheaders = [("User-agent", useragent)]
 
-import html2text
-import requests
-from telethon import *
-from telethon.tl import functions, types
-from telethon.tl.types import *
-
-
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-
-        return isinstance(
-            (
-                await client(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    elif isinstance(chat, types.InputPeerChat):
-
-        ui = await client.get_peer_id(user)
-        ps = (
-            await client(functions.messages.GetFullChatRequest(chat.chat_id))
-        ).full_chat.participants.participants
-        return isinstance(
-            next((p for p in ps if p.user_id == ui), None),
-            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
-        )
-    else:
-        return None
-
 
 @register(pattern="^/google (.*)")
 async def _(event):
     if event.fwd_from:
         return
-    if event.is_group:
-        if not (await is_register_admin(event.input_chat, event.message.sender_id)):
-            await event.reply(
-                " Hai.. You are not admin..  You can't use this command.. But you can use in my pm"
-            )
-            return
-    # SHOW_DESCRIPTION = False
-    input_str = event.pattern_match.group(
-        1
-    )  # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
-    input_url = "https://bots.shrimadhavuk.me/search/?q={}".format(input_str)
-    headers = {"USER-AGENT": "UniBorg"}
-    response = requests.get(input_url, headers=headers).json()
-    output_str = " "
-    for result in response["results"]:
-        text = result.get("title")
-        url = result.get("url")
-        description = result.get("description")
-        last = html2text.html2text(description)
-        output_str += "[{}]({})\n{}\n".format(text, url, last)
-    await event.reply(
-        "{}".format(output_str), link_preview=False, parse_mode="Markdown"
+    
+    webevent = await event.reply("searching........")
+    match = event.pattern_match.group(1)
+    page = re.findall(r"page=\d+", match)
+    try:
+        page = page[0]
+        page = page.replace("page=", "")
+        match = match.replace("page=" + page[0], "")
+    except IndexError:
+        page = 1
+    search_args = (str(match), int(page))
+    gsearch = GoogleSearch()
+    gresults = await gsearch.async_search(*search_args)
+    msg = ""
+    for i in range(len(gresults["links"])):
+        try:
+            title = gresults["titles"][i]
+            link = gresults["links"][i]
+            desc = gresults["descriptions"][i]
+            msg += f"❍[{title}]({link})\n**{desc}**\n\n"
+        except IndexError:
+            break
+    await webevent.edit(
+        "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
-
 
 @register(pattern="^/img (.*)")
 async def img_sampler(event):
     if event.fwd_from:
         return
-
+    
     query = event.pattern_match.group(1)
     jit = f'"{query}"'
     downloader.download(
@@ -109,10 +92,10 @@ opener.addheaders = [("User-agent", useragent)]
 
 @register(pattern=r"^/reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """For .reverse command, Google search images and stickers."""
+    """ For .reverse command, Google search images and stickers. """
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
-
+    
     message = await img.get_reply_message()
     if message and message.media:
         photo = io.BytesIO()
@@ -225,7 +208,7 @@ async def scam(results, lim):
 
 @register(pattern="^/app (.*)")
 async def apk(e):
-
+    
     try:
         app_name = e.pattern_match.group(1)
         remove_space = app_name.split(" ")
@@ -233,7 +216,7 @@ async def apk(e):
         page = requests.get(
             "https://play.google.com/store/search?q=" + final_name + "&c=apps"
         )
-        str(page.status_code)
+        lnk = str(page.status_code)
         soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
         results = soup.findAll("div", "ZmHEEd")
         app_name = (
@@ -284,7 +267,7 @@ async def apk(e):
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += "\n\n===> Aries <==="
+        app_details += "\n\n===> Yone <==="
         await e.reply(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
         await e.reply("No result found in search. Please enter **Valid app name**")
@@ -292,16 +275,17 @@ async def apk(e):
         await e.reply("Exception Occured:- " + str(err))
 
 
-__mod_name__ = "🔘 Google"
+__mod_name__ = "◎Search"
 
 __help__ = """
  ❍ /google <text>*:* Perform a google search
  ❍ /img <text>*:* Search Google for images and returns them\nFor greater no. of results specify lim, For eg: `/img hello lim=10`
  ❍ /app <appname>*:* Searches for an app in Play Store and returns its details.
  ❍ /reverse: Does a reverse image search of the media which it was replied to.
- ❍ Aries <query>*:* Aries answers the query
-  💡Ex: `Aries where is Indonesia?`
  ❍ /gps <location>*:* Get gps location.
- ❍ /country <country name>*:* Gathering info about given country.
-
+ ❍ /github <username>*:* Get information about a GitHub user.
+ ❍ /country <country name>*:* Gathering info about given country
+ ❍ /imdb <Movie name>*:* Get full info about a movie with imdb.com
+ ❍ aries <query>*:* aries answers the query
+  💡Ex: `aries where is indonesia?`
 """
