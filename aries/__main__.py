@@ -66,6 +66,14 @@ from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 from aries.modules.system import bot_sys_stats
+from aries.modules.webtools import system_status
+
+
+@pbot.on_callback_query(filters.regex("system_status_callback"))
+async def system_status(_, CallbackQuery):
+    text = await system_status()
+    await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=False)
+
 
 
 def get_readable_time(seconds: int) -> str:
@@ -295,7 +303,7 @@ def start(update: Update, context: CallbackContext):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="System Stats 💻", callback_data="stats_callback"
+                            text="System Status", callback_data="system_status_callback"
                         )
                     ],
                 ]
@@ -571,12 +579,6 @@ def aries_about_callback(update, context):
                 ]
             ),
         )
-
-
-@pbot.on_callback_query(filters.regex("stats_callback"))
-async def stats_callback(_, CallbackQuery):
-    text = await bot_sys_stats()
-    await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=True)
 
 
 @typing_action
