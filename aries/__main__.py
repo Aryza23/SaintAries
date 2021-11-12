@@ -275,11 +275,7 @@ def start(update: Update, context: CallbackContext):
                             text="Updates", url="https://telegram.dog/idzeroid"
                         ),
                     ],
-                    [
-                        InlineKeyboardButton(
-                            text="Donate", callback_data="donate"
-                        )
-                    ],
+                    [InlineKeyboardButton(text="Donate", callback_data="donate")],
                 ]
             ),
         )
