@@ -75,7 +75,6 @@ async def system_status(_, CallbackQuery):
     await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=False)
 
 
-
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
