@@ -1,10 +1,7 @@
-import html
 import importlib
-import json
 import re
 import sys
 import time
-import traceback
 from sys import argv
 from typing import Optional
 
@@ -42,7 +39,6 @@ from aries import (
     CERT_PATH,
     DONATION_LINK,
     LOGGER,
-    OWNER_ID,
     PORT,
     SUPPORT_CHAT,
     TOKEN,
@@ -281,7 +277,7 @@ def start(update: Update, context: CallbackContext):
         )
 
 
-#def error_handler(update, context):
+# def error_handler(update, context):
 #    """Log the error and send a telegram message to notify the developer."""
 #    # Log the error before we do anything else, so we can see it even if something breaks.
 #    LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
@@ -898,7 +894,7 @@ def main():
 
     dispatcher.add_error_handler(error_callback)
 
-    #dispatcher.add_error_handler(error_handler)
+    # dispatcher.add_error_handler(error_handler)
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
