@@ -1,28 +1,18 @@
-from bs4 import BeautifulSoup
-import urllib
-from aries import telethn as tbot
 import glob
 import io
 import os
 import re
-import aiohttp
+import urllib
 import urllib.request
-from urllib.parse import urlencode
+
+import bs4
 import requests
+from bing_image_downloader import downloader
 from bs4 import BeautifulSoup
 from PIL import Image
 from search_engine_parser import GoogleSearch
 
-import bs4
-import html2text
-from bing_image_downloader import downloader
-from telethon import *
-from telethon.tl import functions
-from telethon.tl import types
-from telethon.tl.types import *
-
-from aries import *
-
+from aries import telethn as tbot
 from aries.events import register
 
 opener = urllib.request.build_opener()
@@ -34,7 +24,7 @@ opener.addheaders = [("User-agent", useragent)]
 async def _(event):
     if event.fwd_from:
         return
-    
+
     webevent = await event.reply("searching........")
     match = event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
@@ -60,11 +50,12 @@ async def _(event):
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
 
+
 @register(pattern="^/img (.*)")
 async def img_sampler(event):
     if event.fwd_from:
         return
-    
+
     query = event.pattern_match.group(1)
     jit = f'"{query}"'
     downloader.download(
@@ -92,10 +83,10 @@ opener.addheaders = [("User-agent", useragent)]
 
 @register(pattern=r"^/reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """ For .reverse command, Google search images and stickers. """
+    """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
-    
+
     message = await img.get_reply_message()
     if message and message.media:
         photo = io.BytesIO()
@@ -208,7 +199,7 @@ async def scam(results, lim):
 
 @register(pattern="^/app (.*)")
 async def apk(e):
-    
+
     try:
         app_name = e.pattern_match.group(1)
         remove_space = app_name.split(" ")
@@ -216,7 +207,7 @@ async def apk(e):
         page = requests.get(
             "https://play.google.com/store/search?q=" + final_name + "&c=apps"
         )
-        lnk = str(page.status_code)
+        str(page.status_code)
         soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
         results = soup.findAll("div", "ZmHEEd")
         app_name = (
