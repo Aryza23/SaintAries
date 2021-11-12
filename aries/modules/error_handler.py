@@ -23,10 +23,10 @@ import traceback
 
 import pretty_errors
 import requests
-from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CommandHandler
 
-from aries import dispatcher, DEV_USERS, EVENT_LOGS
+from aries import DEV_USERS, EVENT_LOGS, dispatcher
 
 pretty_errors.mono()
 
