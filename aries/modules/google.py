@@ -10,7 +10,6 @@ import requests
 from bing_image_downloader import downloader
 from bs4 import BeautifulSoup
 from PIL import Image
-from search_engine_parser import GoogleSearch
 
 from aries import telethn as tbot
 from aries.events import register
@@ -24,7 +23,6 @@ import requests
 from telethon import *
 from telethon.tl import functions, types
 from telethon.tl.types import *
-
 
 
 async def is_register_admin(chat, user):
