@@ -107,7 +107,7 @@ def error_callback(update: Update, context: CallbackContext):
             context.bot.send_document(
                 EVENT_LOGS,
                 open("error.txt", "rb"),
-                caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
+                caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
                 f"</b>\n<code>{e}</code>",
                 parse_mode="html",
             )
@@ -116,7 +116,7 @@ def error_callback(update: Update, context: CallbackContext):
         url = f"https://www.toptal.com/developers/hastebin/{key}"
         context.bot.send_message(
             EVENT_LOGS,
-            text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
+            text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
             f"</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Cursed Errors", url=url)]],
