@@ -847,6 +847,7 @@ def is_chat_allowed(update, context):
     else:
         pass
 
+
 def donate(update: Update, context: CallbackContext):
     update.effective_message.from_user
     chat = update.effective_chat  # type: Optional[Chat]
