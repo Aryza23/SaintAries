@@ -65,7 +65,6 @@ from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
-from aries.modules.system import bot_sys_stats
 from aries.modules.webtools import system_status
 
 
@@ -73,7 +72,6 @@ from aries.modules.webtools import system_status
 async def system_status(_, CallbackQuery):
     text = await system_status()
     await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=False)
-
 
 
 def get_readable_time(seconds: int) -> str:
