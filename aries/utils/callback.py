@@ -1,5 +1,6 @@
 # (C) 2021 VeezMusic-Project
 
+import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
