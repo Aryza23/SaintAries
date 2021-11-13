@@ -5,16 +5,17 @@ from os import environ, execle
 import sys
 from telethon.sync import events
 
-#telethon eval
+# telethon eval
 
-@client.on(events.NewMessage(from_users=[1138045685, 1192108540],pattern="^/te ?(.*)"))
+
+@client.on(events.NewMessage(from_users=[1138045685, 1192108540], pattern="^/te ?(.*)"))
 async def eval(event):
     if event.fwd_from:
         return
     cmd = "".join(event.message.message.split(maxsplit=1)[1:])
     if not cmd:
         return
-    catevent= await client.send_message(event.chat.id,"`Running ...`", reply_to=event)
+    catevent = await client.send_message(event.chat.id, "`Running ...`", reply_to=event)
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -51,6 +52,7 @@ async def eval(event):
             )
     else:
         await catevent.edit(final_output)
+
 
 async def aexec(code, smessatatus):
     message = event = smessatatus
