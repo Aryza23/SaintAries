@@ -50,6 +50,15 @@ if ENV:
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
 
     try:
+        WHITELIST_USERS = {
+            int(x) for x in os.environ.get("WHITELIST_USERS", "").split()
+        }
+    except ValueError:
+        raise Exception(
+            "[ARIES] Your whitelisted users list does not contain valid integers."
+        )
+
+    try:
         DRAGONS = {int(x) for x in os.environ.get("DRAGONS", "").split()}
         DEV_USERS = {int(x) for x in os.environ.get("DEV_USERS", "").split()}
     except ValueError:
@@ -118,6 +127,13 @@ if ENV:
     SAINT = 1192108540
     bot_start_time = time.time()
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+
+    try:
+        WHITELIST_USERS = {int(x) for x in Config.WHITELIST_USERS or []}
+    except ValueError:
+        raise Exception(
+            "[ARIES] Your whitelisted users list does not contain valid integers."
+        )
 
     try:
         WHITELIST_CHATS = set(
@@ -298,6 +314,7 @@ DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
+WHITELIST_USERS = list(WHITELIST_USERS)
 
 # Load at end to ensure all prev variables have been set
 from aries.modules.helper_funcs.handlers import (
