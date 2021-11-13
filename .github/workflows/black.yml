@@ -22,7 +22,7 @@ jobs:
           body: Automated code formatting.
           labels: ⚫️ black
           branch: autofix
-          committer: idzero23<80420642+idzero23@users.noreply.github.com>
+          committer: idzero23<88209926+idzero23@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: true
           delete-branch: true
