@@ -106,6 +106,12 @@ buttons = [
         InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroidsupport"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
+    [
+        InlineKeyboardButton(
+             text="Music Setup", callback_data="cbguides"
+        ),
+    ],
+
 ]
 
 
@@ -437,11 +443,6 @@ def aries_about_callback(update, context):
                         ),
                         InlineKeyboardButton(
                             text="Anti Spam", callback_data="aboutmanu_spamprot"
-                        ),
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            text="Music Setup", callback_data="cbguides"
                         ),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_")],
