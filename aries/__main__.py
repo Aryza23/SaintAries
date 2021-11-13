@@ -80,8 +80,9 @@ GROUP_START_IMG = (
 
 PM_START_TEXT = """
 Hello there, 👋 I'm *{}*.
-My Owner [IdzXartez](https://telegra.ph/file/ac893610cae84f302b2da.jpg) 
 I am Powerfull Group Managing Bot and I will help in managing your group.
+Maintained by: [Aryza](https://telegra.ph/file/ac893610cae84f302b2da.jpg).
+Owner: [IdzXartez](https://t.me/idzxartez)
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 • *Uptime:* `{}`
 • `{}` *Users, across* `{}` *chats.*
