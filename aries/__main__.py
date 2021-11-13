@@ -62,7 +62,7 @@ from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 from aries.modules.webtools import system_status
-from aries.utils import callback
+from aries.utils.callback import cbhelp
 
 
 @pbot.on_callback_query(filters.regex("system_status_callback"))
