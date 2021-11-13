@@ -378,9 +378,9 @@ def help_button(update, context):
 
 def cbguide_callback(update, context):
     query = update.callback_query
-    query.data == "cbguide":
-    query.message.edit_text(
-        f"""❓ **HOW TO USE THIS BOT:**
+    if query.data == "cbguide":
+        query.message.edit_text(
+        text=f"""❓ **HOW TO USE THIS BOT:**
 1.) **first, add me to your group.**
 2.) **then promote me as admin and give all permissions except anonymous admin.**
 3.) **after promoting me, type /reload in group to update the admin list.**
