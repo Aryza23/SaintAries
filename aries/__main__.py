@@ -64,6 +64,7 @@ from aries.modules.sql import users_sql as sql
 from aries.modules.webtools import system_status
 from aries.utils import callback
 
+
 @pbot.on_callback_query(filters.regex("system_status_callback"))
 async def system_status(_, CallbackQuery):
     text = await system_status()
@@ -107,11 +108,8 @@ buttons = [
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
     [
-        InlineKeyboardButton(
-             text="Music Setup", callback_data="cbguides"
-        ),
+        InlineKeyboardButton(text="Music Setup", callback_data="cbguides"),
     ],
-
 ]
 
 
