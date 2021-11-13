@@ -37,7 +37,7 @@ jikanpy
 speedtest-cli
 coffeehouse==2.2.6
 regex==2021.11.10
-bleach==4.1.0
+bleach
 wikipedia==1.4.0
 markdown2
 pybase64
@@ -60,7 +60,6 @@ youtube_search_python==1.5.1
 lyrics_extractor
 asyncio
 cloudscraper==1.2.58
-git+https://github.com/starry69/python-markdown2.git
 dateparser==1.1.0
 pymongo
 dnspython
@@ -76,7 +75,7 @@ bing_image_downloader
 search_engine_parser
 pytz==2021.3
 jikanpy
-lyricsgenius==3.0.1
+lyricsgenius
 tswift==0.7.0
 python-arq==6.0.3
 envparse==0.2.0
