@@ -3,7 +3,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-ASSISTANT_NAME = "IdzMusic
+ASSISTANT_NAME = "IdzMusic"
 BOT_NAME = "Aries"
 
 @Client.on_callback_query(filters.regex("cbhelp"))
