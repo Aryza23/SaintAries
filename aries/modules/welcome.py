@@ -160,7 +160,7 @@ def send(update, message, keyboard, backup_message):
 
 
 @loggable
-def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
+def new_member(update: Update, context: CallbackContext):
     bot, job_queue = context.bot, context.job_queue
     chat = update.effective_chat
     user = update.effective_user
@@ -174,6 +174,12 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
 
     for new_mem in new_members:
 
+        if new_mem.id == bot.id and not aries.ALLOW_CHATS:
+            with suppress(BadRequest):
+                update.effective_message.reply_text(f"Groups are disabled for {bot.first_name}, I'm outta here.")
+            bot.leave_chat(update.effective_chat.id)
+            return
+
         welcome_log = None
         res = None
         sent = None
@@ -186,17 +192,20 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
             if sw_ban:
                 return
 
-        reply = update.message.message_id
-        cleanserv = sql.clean_service(chat.id)
-        # Clean service welcome
-        if cleanserv:
-            try:
-                dispatcher.bot.delete_message(chat.id, update.message.message_id)
-            except BadRequest:
-                pass
-            reply = False
+        if is_user_gbanned(new_mem.id):
+            return
 
         if should_welc:
+
+            reply = update.message.message_id
+            cleanserv = sql.clean_service(chat.id)
+            # Clean service welcome
+            if cleanserv:
+                try:
+                    dispatcher.bot.delete_message(chat.id, update.message.message_id)
+                except BadRequest:
+                    pass
+                reply = False
 
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
