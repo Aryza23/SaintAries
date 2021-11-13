@@ -108,7 +108,7 @@ buttons = [
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
     [
-        InlineKeyboardButton(text="Music Setup", callback_data="cbguides"),
+        InlineKeyboardButton(text="Music Setup", callback_data="cbguide"),
     ],
 ]
 
@@ -375,6 +375,25 @@ def help_button(update, context):
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
 
+def cbguide_callback(update, context):
+    query = update.callback_query
+    query.data == "cbguide":
+    query.message.edit_text(
+        f"""❓ **HOW TO USE THIS BOT:**
+1.) **first, add me to your group.**
+2.) **then promote me as admin and give all permissions except anonymous admin.**
+3.) **after promoting me, type /reload in group to update the admin list.**
+3.) **add @IdzMusic to your group or type /join to invite her.**
+4.) **turn on the video chat first before start to play music.**
+📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or type /leave then type /join again.**
+⚡ __Powered by Aries A.I__""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📚 Command List", callback_data="cbhelp")],
+                [InlineKeyboardButton("🗑 Close", callback_data="close")],
+            ]
+        ),
+    )
 
 def aries_about_callback(update, context):
     query = update.callback_query
@@ -856,6 +875,8 @@ def main():
     about_callback_handler = CallbackQueryHandler(
         aries_about_callback, pattern=r"aboutmanu_", run_async=True
     )
+    
+    cbguide_callback, pattern=r"cbguide", run_async=Trues
 
     donate_handler = CommandHandler("donate", donate, run_async=True)
 
