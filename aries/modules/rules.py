@@ -1,24 +1,20 @@
 from typing import Optional
 
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-    ParseMode,
-    Update,
-    User,
-)
+from telegram import Message, User
+from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, Filters
+from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown
 
 import aries.modules.sql.rules_sql as sql
 from aries import dispatcher
+from aries.modules.helper_funcs.alternate import typing_action
 from aries.modules.helper_funcs.chat_status import user_admin
 from aries.modules.helper_funcs.string_handling import markdown_parser
 
 
-def get_rules(update: Update, context: CallbackContext):
+@typing_action
+def get_rules(update, context):
     chat_id = update.effective_chat.id
     send_rules(update, chat_id)
 
@@ -30,23 +26,20 @@ def send_rules(update, chat_id, from_pm=False):
     try:
         chat = bot.get_chat(chat_id)
     except BadRequest as excp:
-        if excp.message == "Chat not found" and from_pm:
-            bot.send_message(
-                user.id,
-                "The rules shortcut for this chat hasn't been set properly! Ask admins to "
-                "fix this.\nMaybe they forgot the hyphen in ID",
-            )
-            return
-        else:
+        if excp.message != "Chat not found" or not from_pm:
             raise
 
+        bot.send_message(
+            user.id,
+            "The rules shortcut for this chat hasn't been set properly! Ask admins to "
+            "fix this.",
+        )
+        return
     rules = sql.get_rules(chat_id)
-    text = f"The rules for *{escape_markdown(chat.title)}* are:\n\n{rules}"
+    text = "The rules for *{}* are:\n\n{}".format(escape_markdown(chat.title), rules)
 
     if from_pm and rules:
-        bot.send_message(
-            user.id, text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True
-        )
+        bot.send_message(user.id, text, parse_mode=ParseMode.MARKDOWN)
     elif from_pm:
         bot.send_message(
             user.id,
@@ -55,12 +48,13 @@ def send_rules(update, chat_id, from_pm=False):
         )
     elif rules:
         update.effective_message.reply_text(
-            "Please click the button below to see the rules.",
+            "Contact me in PM to get this group's rules.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Rules", url=f"t.me/{bot.username}?start={chat_id}"
+                            text="Rules",
+                            url="t.me/{}?start={}".format(bot.username, chat_id),
                         )
                     ]
                 ]
@@ -74,7 +68,8 @@ def send_rules(update, chat_id, from_pm=False):
 
 
 @user_admin
-def set_rules(update: Update, context: CallbackContext):
+@typing_action
+def set_rules(update, context):
     chat_id = update.effective_chat.id
     msg = update.effective_message  # type: Optional[Message]
     raw_text = msg.text
@@ -91,14 +86,15 @@ def set_rules(update: Update, context: CallbackContext):
 
 
 @user_admin
-def clear_rules(update: Update, context: CallbackContext):
+@typing_action
+def clear_rules(update, context):
     chat_id = update.effective_chat.id
     sql.set_rules(chat_id, "")
     update.effective_message.reply_text("Successfully cleared rules!")
 
 
 def __stats__():
-    return f"• {sql.num_chats()} chats have rules set."
+    return "× {} chats have rules set.".format(sql.num_chats())
 
 
 def __import_data__(chat_id, data):
@@ -112,15 +108,17 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return f"This chat has had it's rules set: `{bool(sql.get_rules(chat_id))}`"
+    return "This chat has had it's rules set: `{}`".format(bool(sql.get_rules(chat_id)))
 
 
 __help__ = """
- ❍ /rules*:* get the rules for this chat.
+Every chat works with different rules; this module will help make those rules clearer!
 
-🔘 *Admins only:*
- ❍ /setrules <your rules here>*:* set the rules for this chat.
- ❍ /clearrules*:* clear the rules for this chat.
+❍ /rules: get the rules for this chat.
+
+🔘 *Admin only:*
+❍ /setrules <your rules here>: Sets rules for the chat.
+❍ /clearrules: Clears saved rules for the chat.
 """
 
 __mod_name__ = "🔘 Rules"
