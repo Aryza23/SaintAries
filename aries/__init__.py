@@ -128,7 +128,6 @@ if ENV:
     bot_start_time = time.time()
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
-
     try:
         WHITELIST_CHATS = set(
             int(x) for x in os.environ.get("WHITELIST_CHATS", "").split()
