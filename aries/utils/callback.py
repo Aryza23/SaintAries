@@ -6,6 +6,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 ASSISTANT_NAME = "IdzMusic"
 BOT_NAME = "Aries"
 
+
 @Client.on_callback_query(filters.regex("cbhelp"))
 async def cbhelp(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -164,7 +165,6 @@ async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 
-
 @Client.on_callback_query(filters.regex("cbcmds"))
 async def cbhelps(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -317,19 +317,16 @@ async def cbmoon(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cmdhome"))
 async def cmdhome(_, query: CallbackQuery):
-    
+
     bttn = InlineKeyboardMarkup(
         [
-            [
-                InlineKeyboardButton("Command Syntax", callback_data="cmdsyntax")
-            ],[
-                InlineKeyboardButton("🗑 Close", callback_data="close")
-            ]
+            [InlineKeyboardButton("Command Syntax", callback_data="cmdsyntax")],
+            [InlineKeyboardButton("🗑 Close", callback_data="close")],
         ]
     )
-    
+
     nofound = "😕 **couldn't find song you requested**\n\n» **please provide the correct song name or include the artist's name as well**"
-    
+
     await query.edit_message_text(nofound, reply_markup=bttn)
 
 
