@@ -206,6 +206,7 @@ def test(update, context):
 
 def start(update: Update, context: CallbackContext):
     args = context.args
+    message = update.effective_message
     uptime = get_readable_time((time.time() - StartTime))
     if update.effective_chat.type == "private":
         if len(args) >= 1:
@@ -222,7 +223,7 @@ def start(update: Update, context: CallbackContext):
                         [
                             [
                                 InlineKeyboardButton(
-                                    text="[Back]", callback_data="help_back"
+                                    text="⬅️ BACK", callback_data="help_back"
                                 )
                             ]
                         ]
@@ -242,11 +243,9 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_text(
+            message.reply_text(
                 PM_START_TEXT.format(
                     escape_markdown(context.bot.first_name),
-                    escape_markdown(first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
                     sql.num_chats(),
@@ -256,7 +255,7 @@ def start(update: Update, context: CallbackContext):
                 timeout=60,
             )
     else:
-        update.effective_message.reply_animation(
+        message.reply_animation(
             GROUP_START_IMG,
             caption="<code> Aries Online \nI am Awake Since</code>: <code>{}</code>".format(
                 uptime
