@@ -79,11 +79,12 @@ GROUP_START_IMG = (
 )
 
 PM_START_TEXT = """
-Hello there, 👋 I'm [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
+Hello there, 👋 I'm *{}*.
+My Owner [IdzXartez](https://telegra.ph/file/ac893610cae84f302b2da.jpg) 
 I am Powerfull Group Managing Bot and I will help in managing your group.
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Main:* `{}` `{}`
 • *Uptime:* `{}`
+• `{}` *Users, across* `{}` *chats.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
 ✪ Make sure you read *INFO* Section Below ✪ 
@@ -409,7 +410,12 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_back":
         query.message.edit_text(
-            PM_START_TEXT,
+            PM_START_TEXT.format(
+                escape_markdown(context.bot.first_name),
+                escape_markdown(get_readable_time((time.time() - StartTime))),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
             timeout=60,
