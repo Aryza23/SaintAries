@@ -61,16 +61,6 @@ from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
-from aries.modules.webtools import system_status
-from aries.utils import callback
-from aries.modules.cb import cbguides
-
-
-@pbot.on_callback_query(filters.regex("system_status_callback"))
-async def system_status(_, CallbackQuery):
-    text = await system_status()
-    await pbot.answer_callback_query(CallbackQuery.id, text, show_alert=False)
-
 
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
@@ -107,9 +97,6 @@ buttons = [
     [
         InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroidsupport"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
-    ],
-    [
-        InlineKeyboardButton(text="Music Setup", callback_data="cbguide"),
     ],
 ]
 
@@ -376,25 +363,6 @@ def help_button(update, context):
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
 
-def cbguide_callback(update, context):
-    query = update.callback_query
-    if query.data == "cbguide":
-        query.message.edit_text(
-        text=f"""❓ **HOW TO USE THIS BOT:**
-1.) **first, add me to your group.**
-2.) **then promote me as admin and give all permissions except anonymous admin.**
-3.) **after promoting me, type /reload in group to update the admin list.**
-3.) **add @IdzMusic to your group or type /join to invite her.**
-4.) **turn on the video chat first before start to play music.**
-📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or type /leave then type /join again.**
-⚡ __Powered by Aries A.I__""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📚 Command List", callback_data="cbhelp")],
-                [InlineKeyboardButton("🗑 Close", callback_data="close")],
-            ]
-        ),
-    )
 
 def aries_about_callback(update, context):
     query = update.callback_query
@@ -461,6 +429,11 @@ def aries_about_callback(update, context):
                         ),
                         InlineKeyboardButton(
                             text="Anti Spam", callback_data="aboutmanu_spamprot"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Music Setup", callback_data="aboutmanu_cbguide"
                         ),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_")],
@@ -546,6 +519,22 @@ def aries_about_callback(update, context):
                 ]
             ),
         )
+    elif query.data == "aboutmanu_cbguide":
+        query.message.edit_text(
+             text=f"<b> ｢ How To Setup Music 」</b>\n"
+             f"\n1. **first, add me to your group."
+             f"\n2. **then promote me as admin and give all permissions except anonymous admin."
+             f"\n3. **after promoting me, type /reload in group to update the admin list."
+             f"\n4. **add @IdzMusic to your group or type /join to invite her."
+             f"\n5. **turn on the video chat first before start to play music.\n\n"
+             f"\n📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or type /leave then type /join again.**\n"
+             f"\n⚡ __Powered by Aries A.I__\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
+            ),
+        )
+
 
 
 @typing_action
@@ -876,9 +865,7 @@ def main():
     about_callback_handler = CallbackQueryHandler(
         aries_about_callback, pattern=r"aboutmanu_", run_async=True
     )
-    
-    cbguide_callback, pattern=r"cbguide", run_async=Trues
-
+        
     donate_handler = CommandHandler("donate", donate, run_async=True)
 
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
