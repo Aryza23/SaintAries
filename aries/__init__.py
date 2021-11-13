@@ -128,12 +128,6 @@ if ENV:
     bot_start_time = time.time()
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
-    try:
-        WHITELIST_USERS = {int(x) for x in Config.WHITELIST_USERS or []}
-    except ValueError:
-        raise Exception(
-            "[ARIES] Your whitelisted users list does not contain valid integers."
-        )
 
     try:
         WHITELIST_CHATS = set(
@@ -160,6 +154,14 @@ else:
     JOIN_LOGGER = Config.JOIN_LOGGER
     OWNER_USERNAME = Config.OWNER_USERNAME
     ALLOW_CHATS = Config.ALLOW_CHATS
+
+    try:
+        WHITELIST_USERS = {int(x) for x in Config.WHITELIST_USERS or []}
+    except ValueError:
+        raise Exception(
+            "[ARIES] Your whitelisted users list does not contain valid integers."
+        )
+
     try:
         DRAGONS = {int(x) for x in Config.DRAGONS or []}
         DEV_USERS = {int(x) for x in Config.DEV_USERS or []}
