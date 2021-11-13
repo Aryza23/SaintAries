@@ -62,7 +62,7 @@ from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 from aries.modules.webtools import system_status
-from aries.utils.callback import cbhelp
+from aries.utils.callback import cbhowtouse
 
 
 @pbot.on_callback_query(filters.regex("system_status_callback"))
@@ -442,7 +442,7 @@ def aries_about_callback(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Music Setup", callback_data="cbhelp"
+                            text="Music Setup", callback_data="cbhowtouse"
                         ),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_")],
