@@ -7,7 +7,7 @@ from telegram.ext import CallbackContext
 
 from aries import StartTime, dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
-from aries.modules.helper_funcs.chat_status import dev_plus
+from aries.modules.helper_funcs.chat_status import sudo_plus
 
 sites_list = {
     "Telegram": "https://api.telegram.org",
@@ -67,7 +67,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
     return ping_result
 
 
-@dev_plus
+@sudo_plus
 def ping(update: Update, context: CallbackContext):
     msg = update.effective_message
 
@@ -85,7 +85,7 @@ def ping(update: Update, context: CallbackContext):
     )
 
 
-@dev_plus
+@sudo_plus
 def pingall(update: Update, context: CallbackContext):
     to_ping = ["Kaizoku", "Kayo", "Telegram", "Jikan", "AI Server", "IDZ Server"]
     pinged_list = ping_func(to_ping)
