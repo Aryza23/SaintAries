@@ -521,13 +521,13 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_cbguide":
         query.message.edit_text(
-            text=f"<b> ｢ How To Setup Music 」</b>\n"
+            text=f"* ｢ How To Setup Music 」*\n"
             f"\n1. **first, add me to your group."
             f"\n2. **then promote me as admin and give all permissions except anonymous admin."
-            f"\n3. **after promoting me, type /reload in group to update the admin list."
-            f"\n4. **add @IdzMusic to your group or type /join to invite her."
+            f"\n3. **after promoting me, type /admincache in group to update the admin list."
+            f"\n4. **add @IdzMusic to your group."
             f"\n5. **turn on the video chat first before start to play music.\n\n"
-            f"\n📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or type /leave then type /join again.**\n"
+            f"\n📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or you can ask Admins in @idzeroidsupport.**\n"
             f"\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
