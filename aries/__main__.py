@@ -271,7 +271,7 @@ def start(update: Update, context: CallbackContext):
                             text="Updates", url="https://telegram.dog/idzeroid"
                         ),
                     ],
-                 ]
+                ]
             ),
         )
 
