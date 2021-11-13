@@ -166,7 +166,10 @@ def support_plus(func):
 def whitelist_plus(func):
     @wraps(func)
     def is_whitelist_plus_func(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
         bot = context.bot
         user = update.effective_user
@@ -209,7 +212,10 @@ def user_admin(func):
 def user_admin_no_reply(func):
     @wraps(func)
     def is_not_admin_no_reply(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
         bot = context.bot
         user = update.effective_user
@@ -349,7 +355,8 @@ def can_restrict(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                cant_restrict, parse_mode=ParseMode.HTML,
+                cant_restrict,
+                parse_mode=ParseMode.HTML,
             )
 
     return restrict_rights
