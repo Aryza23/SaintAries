@@ -65,6 +65,7 @@ from aries.modules.webtools import system_status
 from aries.utils import callback
 from aries.modules.cb import cbguides
 
+
 @pbot.on_callback_query(filters.regex("system_status_callback"))
 async def system_status(_, CallbackQuery):
     text = await system_status()
