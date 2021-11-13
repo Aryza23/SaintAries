@@ -409,6 +409,7 @@ async def cmdsyntax(_, query: CallbackQuery):
         ),
     )
 
+
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
     "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
