@@ -532,9 +532,41 @@ def aries_about_callback(update, context):
             f"\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
+                [
+                    [
+                        InlineKeyboardButton(text="[⇜], callback_data="aboutmanu_"),
+                        InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
+                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbhelps"),
+                    ],
+                ]
             ),
         )
+    elif query.data == "aboutmanu_cbhelps":
+        query.message.edit_text(
+            text=f"* ｢ Help Music 」*\n"
+            f"\n **press the button below to read the explanation and see the list of available commands !**\n\n"
+            f"\n\n⚡ __Powered by Aries A.I__\n",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("📚 Basic Cmd", callback_data="cblocal"),
+                    InlineKeyboardButton("📕 Advanced Cmd", callback_data="cbadven"),
+                ],
+                [
+                    InlineKeyboardButton("📘 Admin Cmd", callback_data="cblamp"),
+                    InlineKeyboardButton("📗 Sudo Cmd", callback_data="cblab"),
+                    InlineKeyboardButton("📙 Owner Cmd", callback_data="cbmoon"),
+
+                ],
+                [
+                    InlineKeyboardButton(text="[⇜], callback_data="aboutmanu_cbguide"),
+                    InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
+                    InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_"),
+                ],
+           ]
+        ),
+    )
 
 
 @typing_action
