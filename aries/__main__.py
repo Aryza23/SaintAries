@@ -369,17 +369,17 @@ def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmanu_":
         query.message.edit_text(
-            text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
-            f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 🔥"
-            f"\n\n I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers."
-            f"\n\n ⚡️ 》 I can restrict users."
-            f"\n\n ⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules."
-            f"\n\n ⚡️ 》 I have an advanced anti-flood system."
-            f"\n\n ⚡️ 》 I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc."
-            f"\n\n ⚡️ 》 I have a note keeping system, blacklists, and even predetermined replies on certain keywords."
-            f"\n\n ⚡️ 》 I check for admins' permissions before executing any command and more stuffs"
-            f"\n\n If you have any question about *Aries*, let us know at @IdzeroidSupport."
-            f"\n\n👇 You Can Know More About *Aries* By Clicking The Below Buttons 👇",
+            text=f"""*👋Hi again! The name's {dispatcher.bot.first_name} A powerful group management bot built to help you manage your group easily.
+🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 
+I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers.
+⚡️ 》 I can restrict users.
+⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules.
+⚡️ 》 I have an advanced anti-flood system.
+⚡️ 》 I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
+⚡️ 》 I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
+⚡️ 》 I check for admins' permissions before executing any command and more stuffs
+If you have any question about *Aries*, let us know at @IdzeroidSupport.
+👇 You Can Know More About *Aries* By Clicking The Below Buttons 👇""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -416,10 +416,9 @@ def aries_about_callback(update, context):
 
     elif query.data == "aboutmanu_howto":
         query.message.edit_text(
-            text=f"* ｢ BASIC HELP 」*"
-            f"\nIf You Can Also Add {dispatcher.bot.first_name} To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat. \n"
-            f"\n\nYou Can get support {dispatcher.bot.first_name} by joining [support](https://t.me/idzeroidsupport).\n"
-            f"",
+            text=f"""* ｢ BASIC HELP 」*
+If You Can Also Add {dispatcher.bot.first_name} To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat.
+You Can get *support* {dispatcher.bot.first_name} by joining [support](https://t.me/idzeroidsupport).""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -443,9 +442,9 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_credit":
         query.message.edit_text(
-            text=f"*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*"
-            f"\n\nAries source code was rewritten by @IdzXartez and All Of Conrtibutor For Help Aries"
-            f"\n\nIf Any Question About aries, \nLet Us Know At @Idzeroidsupport.",
+            text=f"""*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*
+Aries source code was rewritten by @IdzXartez and All Of Conrtibutor For Help Aries
+If Any Question About aries, \nLet Us Know At @Idzeroidsupport.""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -455,13 +454,14 @@ def aries_about_callback(update, context):
 
     elif query.data == "aboutmanu_permis":
         query.message.edit_text(
-            text=f"<b> ｢ Admin Permissions 」</b>"
-            f"\nTo avoid slowing down, {dispatcher.bot.first_name} caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), {dispatcher.bot.first_name} will only find out ~10 minutes later."
-            f"\n\nIF you want to update them immediately, you can use the /admincache command,thta'll force {dispatcher.bot.first_name} to check who the admins are again and their permissions"
-            f"\n\nIf you are getting a message saying:"
-            f"\n<Code>You must be this chat administrator to perform this action!</code>"
-            f"\nThis has nothing to do with {dispatcher.bot.first_name}'s rights; this is all about YOUR permissions as an admin. {dispatcher.bot.first_name} respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users with {dispatcher.bot.first_name}. Similarly, to change {dispatcher.bot.first_name} settings, you need to have the Change group info permission."
-            f"\n\nThe message very clearly says that you need these rights - <i>not {dispatcher.bot.first_name}.</i>",
+            text=f"""<b> ｢ Admin Permissions 」</b>
+
+To avoid slowing down, {dispatcher.bot.first_name} caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), {dispatcher.bot.first_name} will only find out ~10 minutes later.
+IF you want to update them immediately, you can use the /admincache command,thta'll force {dispatcher.bot.first_name} to check who the admins are again and their permission
+If you are getting a message saying:
+<Code>You must be this chat administrator to perform this action!</code>
+This has nothing to do with {dispatcher.bot.first_name}'s rights; this is all about YOUR permissions as an admin. {dispatcher.bot.first_name} respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users with {dispatcher.bot.first_name}. Similarly, to change {dispatcher.bot.first_name} settings, you need to have the Change group info permission.
+The message very clearly says that you need these rights - <i>not {dispatcher.bot.first_name}.</i>""",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
@@ -554,7 +554,7 @@ def aries_about_callback(update, context):
                 [
                     [
                         InlineKeyboardButton("📚 Basic Cmd", callback_data="aboutmanu_cblocal"),
-                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="aboutmanu_cbadven"),
+                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="aboutmanu_anyink"),
                     ],
                     [
                         InlineKeyboardButton("📘 Admin Cmd", callback_data="aboutmanu_cblamp"),
@@ -594,12 +594,13 @@ def aries_about_callback(update, context):
                  ]
              ),
          )
-     elif query.data == "aboutmanu_cbadven":
+     elif query.data == "aboutmanu_anyink":
          query.message.edit_text(
-             text=f"🏮 *here is the advanced commands*"
-             f"\n /ping - check the bot ping status."
-             f"\n /id - show the group or user id & other."
-             f"\n ⚡ __Powered by Aries A.I__\n\n",
+             text=f"""🏮 *here is the advanced commands*
+
+/ping - check the bot ping status.
+/id - show the group or user id & other.
+⚡ __Powered by Aries A.I__""",
              parse_mode=ParseMode.MARKDOWN,
              reply_markup=InlineKeyboardMarkup(
                 [
@@ -610,7 +611,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ],
+                    ]
                  ]
              ),
          )
