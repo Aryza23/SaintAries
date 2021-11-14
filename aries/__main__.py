@@ -534,9 +534,13 @@ def aries_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbhelps"),
+                        InlineKeyboardButton(
+                            text="[⇜]", callback_data="aboutmanu_cbhelps"
+                        ),
                         InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
-                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbhelps"),
+                        InlineKeyboardButton(
+                            text="[⇝]", callback_data="aboutmanu_cbhelps"
+                        ),
                     ],
                 ]
             ),
@@ -548,15 +552,19 @@ def aries_about_callback(update, context):
             f"\n\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-            [
                 [
-                    InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbguide"),
-                    InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
-                    InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbguide"),
-                ],
-           ]
-        ),
-    )
+                    [
+                        InlineKeyboardButton(
+                            text="[⇜]", callback_data="aboutmanu_cbguide"
+                        ),
+                        InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
+                        InlineKeyboardButton(
+                            text="[⇝]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                ]
+            ),
+        )
 
 
 @typing_action
