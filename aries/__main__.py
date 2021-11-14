@@ -534,7 +534,7 @@ def aries_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="[⇜], callback_data="aboutmanu_"),
+                        InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_"),
                         InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
                         InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbhelps"),
                     ],
@@ -560,7 +560,7 @@ def aries_about_callback(update, context):
 
                 ],
                 [
-                    InlineKeyboardButton(text="[⇜], callback_data="aboutmanu_cbguide"),
+                    InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbguide"),
                     InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
                     InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_"),
                 ],
