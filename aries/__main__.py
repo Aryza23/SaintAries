@@ -572,15 +572,14 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_cblocal":
         query.message.edit_text(
-            text=f"🏮 *here is the basic commands*\n\n"
-            f"🎧 [ VOICE CHAT PLAY CMD ]\n"
-            f"/play (song name) - play song from youtube."
-            f"/stream (reply to audio) - play song using audio file."
-            f"/playlist - show the list song in queue."
-            f"/download (song or video name) - download song from youtube."
-            f"/search (video name) - search video from youtube detailed."
-            f"/lyric - (song name) lyrics scrapper.\n\n"
-            f"⚡ __Powered by Aries A.I__\n",
+            text=f"🏮 *here is the basic commands*"
+            f"\n /play (song name) - play song from youtube."
+            f"\n /stream (reply to audio) - play song using audio file."
+            f"\n /playlist - show the list song in queue."
+            f"\n /download (song or video name) - download song from youtube."
+            f"\n /search (video name) - search video from youtube detailed."
+            f"\n /lyric - (song name) lyrics scrapper.\n\n"
+            f"\n ⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -591,16 +590,15 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ]
+                    ],
                  ]
              ),
          )
-
      elif query.data == "aboutmanu_cbadven":
          query.message.edit_text(
              text=f"🏮 *here is the advanced commands*"
              f"\n /ping - check the bot ping status."
-             f"\n /id - show the group/user id & other."
+             f"\n /id - show the group or user id & other."
              f"\n ⚡ __Powered by Aries A.I__\n\n",
              parse_mode=ParseMode.MARKDOWN,
              reply_markup=InlineKeyboardMarkup(
@@ -612,11 +610,10 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ]
+                    ],
                  ]
              ),
          )
-
      elif query.data == "aboutmanu_cblamp":
          query.message.edit_text(
              text=f"🏮 *here is the admin commands*\n\n"
@@ -636,7 +633,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ]
+                    ],
                  ]
              ),
          )
@@ -659,7 +656,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ]
+                    ],
                  ]
              ),
          )
@@ -683,7 +680,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ]
+                    ],
                  ]
              ),
          )
