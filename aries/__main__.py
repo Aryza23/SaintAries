@@ -369,8 +369,8 @@ def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmanu_":
         query.message.edit_text(
-            text=f"""*👋Hi again! The name's {dispatcher.bot.first_name} A powerful group management bot built to help you manage your group easily.
-🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 
+            text=f"""*👋Hi again! The name's *Aries* A powerful group management bot built to help you manage your group easily.
+🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About *Aries* 
 I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers.
 ⚡️ 》 I can restrict users.
 ⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules.
@@ -417,8 +417,8 @@ If you have any question about *Aries*, let us know at @IdzeroidSupport.
     elif query.data == "aboutmanu_howto":
         query.message.edit_text(
             text=f"""* ｢ BASIC HELP 」*
-If You Can Also Add {dispatcher.bot.first_name} To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat.
-You Can get *support* {dispatcher.bot.first_name} by joining [support](https://t.me/idzeroidsupport).""",
+If You Can Also Add *Aries* To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat.
+You Can get *support* Aries by joining [support](https://t.me/idzeroidsupport).""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -456,12 +456,12 @@ If Any Question About aries, \nLet Us Know At @Idzeroidsupport.""",
         query.message.edit_text(
             text=f"""<b> ｢ Admin Permissions 」</b>
 
-To avoid slowing down, {dispatcher.bot.first_name} caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), {dispatcher.bot.first_name} will only find out ~10 minutes later.
-IF you want to update them immediately, you can use the /admincache command,thta'll force {dispatcher.bot.first_name} to check who the admins are again and their permission
+To avoid slowing down, *Aries* caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), *Aries* will only find out ~10 minutes later.
+IF you want to update them immediately, you can use the /admincache command, thta'll force *Aries* to check who the admins are again and their permission
 If you are getting a message saying:
 <Code>You must be this chat administrator to perform this action!</code>
-This has nothing to do with {dispatcher.bot.first_name}'s rights; this is all about YOUR permissions as an admin. {dispatcher.bot.first_name} respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users with {dispatcher.bot.first_name}. Similarly, to change {dispatcher.bot.first_name} settings, you need to have the Change group info permission.
-The message very clearly says that you need these rights - <i>not {dispatcher.bot.first_name}.</i>""",
+This has nothing to do with Arie's rights; this is all about YOUR permissions as an admin. *Aries* respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users. Similarly, to change settings, you need to have the Change group info permission.
+The message very clearly says that you need these rights - not *Aries*""",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
