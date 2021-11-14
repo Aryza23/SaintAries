@@ -369,17 +369,17 @@ def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmanu_":
         query.message.edit_text(
-            text=f"""*👋Hi again! The name's *Aries* A powerful group management bot built to help you manage your group easily.
-🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About *Aries* 
-I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers.
-⚡️ 》 I can restrict users.
-⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules.
-⚡️ 》 I have an advanced anti-flood system.
-⚡️ 》 I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
-⚡️ 》 I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
-⚡️ 》 I check for admins' permissions before executing any command and more stuffs
-If you have any question about *Aries*, let us know at @IdzeroidSupport.
-👇 You Can Know More About *Aries* By Clicking The Below Buttons 👇""",
+            text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
+            f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 🔥"
+            f"\n\n I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers."
+            f"\n\n ⚡️ 》 I can restrict users."
+            f"\n\n ⚡️ 》 I can greet users with customizable welcome messages and even set a group's rules."
+            f"\n\n ⚡️ 》 I have an advanced anti-flood system."
+            f"\n\n ⚡️ 》 I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc."
+            f"\n\n ⚡️ 》 I have a note keeping system, blacklists, and even predetermined replies on certain keywords."
+            f"\n\n ⚡️ 》 I check for admins' permissions before executing any command and more stuffs"
+            f"\n\n If you have any question about *Aries*, let us know at @IdzeroidSupport."
+            f"\n\n👇 You Can Know More About *Aries* By Clicking The Below Buttons 👇",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -416,9 +416,10 @@ If you have any question about *Aries*, let us know at @IdzeroidSupport.
 
     elif query.data == "aboutmanu_howto":
         query.message.edit_text(
-            text=f"""* ｢ BASIC HELP 」*
-If You Can Also Add *Aries* To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat.
-You Can get *support* Aries by joining [support](https://t.me/idzeroidsupport).""",
+            text=f"* ｢ BASIC HELP 」*"
+            f"\nIf You Can Also Add {dispatcher.bot.first_name} To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat. \n"
+            f"\n\nYou Can get support {dispatcher.bot.first_name} by joining [support](https://t.me/idzeroidsupport).\n"
+            f"",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -442,9 +443,9 @@ You Can get *support* Aries by joining [support](https://t.me/idzeroidsupport)."
         )
     elif query.data == "aboutmanu_credit":
         query.message.edit_text(
-            text=f"""*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*
-Aries source code was rewritten by @IdzXartez and All Of Conrtibutor For Help Aries
-If Any Question About aries, \nLet Us Know At @Idzeroidsupport.""",
+            text=f"*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*"
+            f"\n\nAries source code was rewritten by @IdzXartez and All Of Conrtibutor For Help Aries"
+            f"\n\nIf Any Question About aries, \nLet Us Know At @Idzeroidsupport.",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -454,14 +455,13 @@ If Any Question About aries, \nLet Us Know At @Idzeroidsupport.""",
 
     elif query.data == "aboutmanu_permis":
         query.message.edit_text(
-            text=f"""<b> ｢ Admin Permissions 」</b>
-
-To avoid slowing down, *Aries* caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), *Aries* will only find out ~10 minutes later.
-IF you want to update them immediately, you can use the /admincache command, thta'll force *Aries* to check who the admins are again and their permission
-If you are getting a message saying:
-<Code>You must be this chat administrator to perform this action!</code>
-This has nothing to do with Arie's rights; this is all about YOUR permissions as an admin. *Aries* respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users. Similarly, to change settings, you need to have the Change group info permission.
-The message very clearly says that you need these rights - not *Aries*""",
+            text=f"<b> ｢ Admin Permissions 」</b>"
+            f"\nTo avoid slowing down, {dispatcher.bot.first_name} caches admin rights for each user. This cache lasts about 10 minutes; this may change in the future. This means that if you promote a user manually (without using the /promote command), {dispatcher.bot.first_name} will only find out ~10 minutes later."
+            f"\n\nIF you want to update them immediately, you can use the /admincache command,thta'll force {dispatcher.bot.first_name} to check who the admins are again and their permissions"
+            f"\n\nIf you are getting a message saying:"
+            f"\n<Code>You must be this chat administrator to perform this action!</code>"
+            f"\nThis has nothing to do with {dispatcher.bot.first_name}'s rights; this is all about YOUR permissions as an admin. {dispatcher.bot.first_name} respects admin permissions; if you do not have the Ban Users permission as a telegram admin, you won't be able to ban users with {dispatcher.bot.first_name}. Similarly, to change {dispatcher.bot.first_name} settings, you need to have the Change group info permission."
+            f"\n\nThe message very clearly says that you need these rights - <i>not {dispatcher.bot.first_name}.</i>",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
@@ -469,28 +469,28 @@ The message very clearly says that you need these rights - not *Aries*""",
         )
     elif query.data == "aboutmanu_spamprot":
         query.message.edit_text(
-            text=f""""*｢ Anti-Spam Settings 」*
-• /antispam <on/off/yes/no>: Change antispam security settings in the group, or return your current settings(when no arguments).
-This helps protect you and your groups by removing spam flooders as quickly as possible._
-• /setflood <int/'no'/'off'>: enables or disables flood control
-/setfloodmode <ban/kick/mute/tban/tmute> <value>: Action to perform when user have exceeded flood limit. ban/kick/mute/tmute/tban
-_Antiflood allows you to take action on users that send more than x messages in a row. Exceeding the set flood will result in restricting that user._
-• /addblacklist <triggers>: Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers.
-• /blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>: Action to perform when someone sends blacklisted words.
-_Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!_
-• /reports <on/off>: Change report setting, or view current status.
-• If done in pm, toggles your status.
-• If in chat, toggles that chat's status.
-If someone in your group thinks someone needs reporting, they now have an easy way to call all admins._
-- /lock <type>: Lock items of a certain type (not available in private)
-- /locktypes: Lists all possible locktypes
-The locks module allows you to lock away some common items in the telegram world; the bot will automatically delete them!_
-- /addwarn <keyword> <reply message>: Sets a warning filter on a certain keyword. If you want your keyword to be a sentence, encompass it with quotes, as such: /addwarn "very angry" This is an angry user.
-- /warn <userhandle>: Warns a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
-- /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
-_If you're looking for a way to automatically warn users when they say certain things, use the /addwarn command._
-- /welcomemute <off/soft/strong>: All users that join, get muted
-_A button gets added to the welcome message for them to unmute themselves. This proves they aren't a bot! soft - restricts users ability to post media for 24 hours. strong - mutes on join until they prove they're not bots._""",
+            text="* ｢ Anti-Spam Settings 」*"
+            "\n- /antispam <on/off/yes/no>: Change antispam security settings in the group, or return your current settings(when no arguments)."
+            "\n_This helps protect you and your groups by removing spam flooders as quickly as possible._"
+            "\n\n- /setflood <int/'no'/'off'>: enables or disables flood control"
+            "\n- /setfloodmode <ban/kick/mute/tban/tmute> <value>: Action to perform when user have exceeded flood limit. ban/kick/mute/tmute/tban"
+            "\n_Antiflood allows you to take action on users that send more than x messages in a row. Exceeding the set flood will result in restricting that user._"
+            "\n\n- /addblacklist <triggers>: Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers."
+            "\n- /blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>: Action to perform when someone sends blacklisted words."
+            "\n_Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!_"
+            "\n\n- /reports <on/off>: Change report setting, or view current status."
+            "\n • If done in pm, toggles your status."
+            "\n • If in chat, toggles that chat's status."
+            "\n_If someone in your group thinks someone needs reporting, they now have an easy way to call all admins._"
+            "\n\n- /lock <type>: Lock items of a certain type (not available in private)"
+            "\n- /locktypes: Lists all possible locktypes"
+            "\n_The locks module allows you to lock away some common items in the telegram world; the bot will automatically delete them!_"
+            '\n\n- /addwarn <keyword> <reply message>: Sets a warning filter on a certain keyword. If you want your keyword to be a sentence, encompass it with quotes, as such: /addwarn "very angry" This is an angry user. '
+            "\n- /warn <userhandle>: Warns a user. After 3 warns, the user will be banned from the group. Can also be used as a reply."
+            "\n- /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just kick."
+            "\n_If you're looking for a way to automatically warn users when they say certain things, use the /addwarn command._"
+            "\n\n- /welcomemute <off/soft/strong>: All users that join, get muted"
+            "\n_ A button gets added to the welcome message for them to unmute themselves. This proves they aren't a bot! soft - restricts users ability to post media for 24 hours. strong - mutes on join until they prove they're not bots._",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_howto")]]
@@ -534,157 +534,30 @@ _A button gets added to the welcome message for them to unmute themselves. This 
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Next]", callback_data="aboutmanu_cbhelps"
-                        ),
-                    ]
+                        InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbhelps"),
+                        InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
+                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbhelps"),
+                    ],
                 ]
             ),
         )
     elif query.data == "aboutmanu_cbhelps":
         query.message.edit_text(
-            text=f"* ｢ Help Music 」*\n"
-            f"\n **press the button below to read the explanation and see the list of available commands !**\n\n"
-            f"\n⚡ __Powered by Aries A.I__\n",
+            text=f"* ｢ Comming Soon 」*\n"
+            f"\n **COMMING SOON... !**\n\n"
+            f"\n\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton("📚 Basic Cmd", callback_data="aboutmanu_cblocal"),
-                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="aboutmanu_anyink"),
-                    ],
-                    [
-                        InlineKeyboardButton("📘 Admin Cmd", callback_data="aboutmanu_cblamp"),
-                        InlineKeyboardButton("📗 Sudo Cmd", callback_data="aboutmanu_cblab"),
-                        InlineKeyboardButton("📙 Owner Cmd", callback_data="aboutmanu_cbmoon"),
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(text="[Back]", callback_data="aboutmanu_cbguide"),
-                    ],
-                ]
-            ),
-        )
-    elif query.data == "aboutmanu_cblocal":
-        query.message.edit_text(
-            text=f"🏮 *here is the basic commands*"
-            f"\n /play (song name) - play song from youtube."
-            f"\n /stream (reply to audio) - play song using audio file."
-            f"\n /playlist - show the list song in queue."
-            f"\n /download (song or video name) - download song from youtube."
-            f"\n /search (video name) - search video from youtube detailed."
-            f"\n /lyric - (song name) lyrics scrapper.\n\n"
-            f"\n ⚡ __Powered by Aries A.I__\n",
-            parse_mode=ParseMode.MARKDOWN,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Back]", callback_data="aboutmanu_cbguide"
-                        ),
-                    ],
-                 ]
-             ),
-         )
-     elif query.data == "aboutmanu_anyink":
-         query.message.edit_text(
-             text=f"""🏮 *here is the advanced commands*
+                    InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbguide"),
+                    InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
+                    InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbguide"),
+                ],
+           ]
+        ),
+    )
 
-/ping - check the bot ping status.
-/id - show the group or user id & other.
-⚡ __Powered by Aries A.I__""",
-             parse_mode=ParseMode.MARKDOWN,
-             reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Back]", callback_data="aboutmanu_cbguide"
-                        ),
-                    ]
-                 ]
-             ),
-         )
-     elif query.data == "aboutmanu_cblamp":
-         query.message.edit_text(
-             text=f"🏮 *here is the admin commands*\n\n"
-             f"/player - show the music playing status."
-             f"/pause - pause the music streaming."
-             f"/resume - resume the music was paused."
-             f"/skip - skip to the next song."
-             f"/end - stop music streaming."
-             f"⚡ __Powered by Aries A.I__\n",
-             parse_mode=ParseMode.MARKDOWN,
-             reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Back]", callback_data="aboutmanu_cbguide"
-                        ),
-                    ],
-                 ]
-             ),
-         )
-     elif query.data == "aboutmanu_cblab":
-         query.message.edit_text(
-             text=f"🏮 *here is the sudo commands*\n\n"
-             f"/stats - show the bot statistic."
-             f"/clean - remove all raw files."
-             f"/cleandb - remove all database."
-             f"/eval (query) - execute code."
-             f"/sh (query) - run code."
-             f"⚡ __Powered by Aries A.I__\n",
-             parse_mode=ParseMode.MARKDOWN,
-             reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Back]", callback_data="aboutmanu_cbguide"
-                        ),
-                    ],
-                 ]
-             ),
-         )
-     elif query.data == "aboutmanu_cbmoon":
-         query.message.edit_text(
-             text=f"🏮 *here is the owner commands*\n\n"
-             f"/stats - show the bot statistic."
-             f"/broadcast - send a broadcast message from bot."
-             f"/block (user id - duration - reason) - block user for using your bot."
-             f"/unblock (user id - reason) - unblock user you blocked for using your bot."
-             f"/blocklist - show you the list of user was blocked for using your bot."
-             f"\n\n📝 note: all commands owned by this bot can be executed by the owner of the bot without any exceptions.\n\n"
-             f"⚡ __Powered by Aries A.I__\n",
-             parse_mode=ParseMode.MARKDOWN,
-             reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="🔄", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(
-                            text="[Back]", callback_data="aboutmanu_cbguide"
-                        ),
-                    ],
-                 ]
-             ),
-         )
 
 @typing_action
 def get_help(update, context):
