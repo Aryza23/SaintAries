@@ -96,6 +96,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroidsupport"),
+        InlineKeyboardButton(text=" [❌] ", callback_data="close"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
 ]
@@ -115,7 +116,7 @@ HELP_STRINGS = f"""
 )
 
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
+DONATE_STRING = """Hello, glad to hear you want to donate!
  You can support the project via [pulsa](#) or by contacting @IdzXartez\
  Supporting isnt always financial! \
  Those who cannot provide monetary support are welcome to help us develop the bot at ."""
