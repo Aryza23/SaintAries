@@ -535,8 +535,12 @@ def aries_about_callback(update, context):
                 [
                     [
                         InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_"),
-                        InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
-                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_cbhelps"),
+                        InlineKeyboardButton(
+                            text="[🔄]", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[⇝]", callback_data="aboutmanu_cbhelps"
+                        ),
                     ],
                 ]
             ),
@@ -548,25 +552,28 @@ def aries_about_callback(update, context):
             f"\n\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-            [
                 [
-                    InlineKeyboardButton("📚 Basic Cmd", callback_data="cblocal"),
-                    InlineKeyboardButton("📕 Advanced Cmd", callback_data="cbadven"),
-                ],
-                [
-                    InlineKeyboardButton("📘 Admin Cmd", callback_data="cblamp"),
-                    InlineKeyboardButton("📗 Sudo Cmd", callback_data="cblab"),
-                    InlineKeyboardButton("📙 Owner Cmd", callback_data="cbmoon"),
-
-                ],
-                [
-                    InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_cbguide"),
-                    InlineKeyboardButton(text="[🔄]", callback_data="aboutmanu_howto"),
-                    InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_"),
-                ],
-           ]
-        ),
-    )
+                    [
+                        InlineKeyboardButton("📚 Basic Cmd", callback_data="cblocal"),
+                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="cbadven"),
+                    ],
+                    [
+                        InlineKeyboardButton("📘 Admin Cmd", callback_data="cblamp"),
+                        InlineKeyboardButton("📗 Sudo Cmd", callback_data="cblab"),
+                        InlineKeyboardButton("📙 Owner Cmd", callback_data="cbmoon"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="[⇜]", callback_data="aboutmanu_cbguide"
+                        ),
+                        InlineKeyboardButton(
+                            text="[🔄]", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_"),
+                    ],
+                ]
+            ),
+        )
 
 
 @typing_action
