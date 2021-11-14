@@ -640,7 +640,7 @@ def aries_about_callback(update, context):
          )
      elif query.data == "aboutmanu_cblab":
          query.message.edit_text(
-             text="f"🏮 *here is the sudo commands*\n\n"
+             text=f"🏮 *here is the sudo commands*\n\n"
              f"/stats - show the bot statistic."
              f"/clean - remove all raw files."
              f"/cleandb - remove all database."
