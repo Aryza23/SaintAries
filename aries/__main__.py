@@ -469,7 +469,7 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_spamprot":
         query.message.edit_text(
-            text="* ｢ Anti-Spam Settings 」*"
+            text="f* ｢ Anti-Spam Settings 」*"
             "\n- /antispam <on/off/yes/no>: Change antispam security settings in the group, or return your current settings(when no arguments)."
             "\n_This helps protect you and your groups by removing spam flooders as quickly as possible._"
             "\n\n- /setflood <int/'no'/'off'>: enables or disables flood control"
@@ -540,7 +540,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Next]", callback_data="aboutmanu_cbhelps"
                         ),
-                    ],
+                    ]
                 ]
             ),
         )
@@ -591,31 +591,31 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ],
+                    ]
                  ]
              ),
          )
 
-#     elif query.data == "aboutmanu_cbadven":
-#         query.message.edit_text(
-#             text=f"🏮 *here is the advanced commands*"
-#             f"\n /ping - check the bot ping status."
-#             f"\n /id - show the group/user id & other."
-#             f"\n ⚡ __Powered by Aries A.I__\n\n",
-#             parse_mode=ParseMode.MARKDOWN,
-#             reply_markup=InlineKeyboardMarkup(
-#                [
-#                    [
-#                        InlineKeyboardButton(
-#                            text="🔄", callback_data="aboutmanu_howto"
-#                        ),
-#                        InlineKeyboardButton(
-#                            text="[Back]", callback_data="aboutmanu_cbguide"
-#                        ),
-#                    ],
-#                 ]
-#             ),
-#         )
+     elif query.data == "aboutmanu_cbadven":
+         query.message.edit_text(
+             text=f"🏮 *here is the advanced commands*"
+             f"\n /ping - check the bot ping status."
+             f"\n /id - show the group/user id & other."
+             f"\n ⚡ __Powered by Aries A.I__\n\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ]
+                 ]
+             ),
+         )
 
      elif query.data == "aboutmanu_cblamp":
          query.message.edit_text(
@@ -636,7 +636,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ],
+                    ]
                  ]
              ),
          )
@@ -659,7 +659,7 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ],
+                    ]
                  ]
              ),
          )
@@ -683,12 +683,10 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[Back]", callback_data="aboutmanu_cbguide"
                         ),
-                    ],
+                    ]
                  ]
              ),
          )
-
-
 
 @typing_action
 def get_help(update, context):
