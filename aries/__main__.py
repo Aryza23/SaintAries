@@ -80,12 +80,12 @@ Owner: [IdzXartez](https://t.me/idzxartez)
 • `{}` *Users, across* `{}` *chats.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 Made specifically to manage your group , I specialize in managing Entertainment type groups.
-✪ Make sure you read *INFO* Section Below ✪ 
+✪ Make sure you read *DETAILS* Section Below ✪ 
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text=" ｢ Info & Cmd 」", callback_data="aboutmanu_"),
+        InlineKeyboardButton(text=" ｢ Details 」", callback_data="aboutmanu_"),
         InlineKeyboardButton(text=" ｢ Inline 」", switch_inline_query_current_chat=""),
     ],
     [
@@ -578,6 +578,11 @@ def get_help(update, context):
                         ),
                         InlineKeyboardButton(
                             text="Updates", url="https://telegram.dog/idzeroid"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Music Setup", callback_data="aboutmanu_cbguide"
                         ),
                     ],
                 ]
