@@ -596,11 +596,11 @@ def aries_about_callback(update, context):
              ),
          )
      elif query.data == "aboutmanu_cbadven":
-         query.message.edit_text(       
+         query.message.edit_text(
              text=f"🏮 *here is the advanced commands*\n\n"
-             f"/ping - check the bot ping status."
-             f"/id - show the group/user id & other.\n\n"
-             f"⚡ __Powered by Aries A.I__\n",
+             f"\n /ping - check the bot ping status."
+             f"\n /id - show the group/user id & other.\n\n"
+             f"\n ⚡ __Powered by Aries A.I__\n\n",
              parse_mode=ParseMode.MARKDOWN,
              reply_markup=InlineKeyboardMarkup(
                 [
