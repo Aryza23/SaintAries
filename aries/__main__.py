@@ -534,12 +534,11 @@ def aries_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="[⇜]", callback_data="aboutmanu_"),
                         InlineKeyboardButton(
-                            text="[🔄]", callback_data="aboutmanu_howto"
+                            text="🔄", callback_data="aboutmanu_howto"
                         ),
                         InlineKeyboardButton(
-                            text="[⇝]", callback_data="aboutmanu_cbhelps"
+                            text="[Next]", callback_data="aboutmanu_cbhelps"
                         ),
                     ],
                 ]
@@ -549,31 +548,144 @@ def aries_about_callback(update, context):
         query.message.edit_text(
             text=f"* ｢ Help Music 」*\n"
             f"\n **press the button below to read the explanation and see the list of available commands !**\n\n"
-            f"\n\n⚡ __Powered by Aries A.I__\n",
+            f"\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("📚 Basic Cmd", callback_data="cblocal"),
-                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="cbadven"),
+                        InlineKeyboardButton("📚 Basic Cmd", callback_data="aboutmanu_cblocal"),
+                        InlineKeyboardButton("📕 Advanced Cmd", callback_data="aboutmanu_cbadven"),
                     ],
                     [
-                        InlineKeyboardButton("📘 Admin Cmd", callback_data="cblamp"),
-                        InlineKeyboardButton("📗 Sudo Cmd", callback_data="cblab"),
-                        InlineKeyboardButton("📙 Owner Cmd", callback_data="cbmoon"),
+                        InlineKeyboardButton("📘 Admin Cmd", callback_data="aboutmanu_cblamp"),
+                        InlineKeyboardButton("📗 Sudo Cmd", callback_data="aboutmanu_cblab"),
+                        InlineKeyboardButton("📙 Owner Cmd", callback_data="aboutmanu_cbmoon"),
                     ],
                     [
                         InlineKeyboardButton(
-                            text="[⇜]", callback_data="aboutmanu_cbguide"
+                            text="🔄", callback_data="aboutmanu_howto"
                         ),
-                        InlineKeyboardButton(
-                            text="[🔄]", callback_data="aboutmanu_howto"
-                        ),
-                        InlineKeyboardButton(text="[⇝]", callback_data="aboutmanu_"),
+                        InlineKeyboardButton(text="[Back]", callback_data="aboutmanu_cbguide"),
                     ],
                 ]
             ),
         )
+    elif query.data == "aboutmanu_cblocal":
+        query.message.edit_text(
+            text=f"🏮 *here is the basic commands*\n\n"
+            f"🎧 [ VOICE CHAT PLAY CMD ]\n"
+            f"/play (song name) - play song from youtube."
+            f"/stream (reply to audio) - play song using audio file."
+            f"/playlist - show the list song in queue."
+            f"/download (song or video name) - download song from youtube."
+            f"/search (video name) - search video from youtube detailed."
+            f"/lyric - (song name) lyrics scrapper.\n\n"
+            f"⚡ __Powered by Aries A.I__\n",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                 ]
+             ),
+         )
+     elif query.data == "aboutmanu_cbadven":
+         query.message.edit_text(       
+             text=f"🏮 *here is the advanced commands*\n\n"
+             f"/ping - check the bot ping status."
+             f"/id - show the group/user id & other.\n\n"
+             f"⚡ __Powered by Aries A.I__\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                 ]
+             ),
+         )
+     elif query.data == "aboutmanu_cblamp":
+         query.message.edit_text(
+             text=f"🏮 *here is the admin commands*\n\n"
+             f"/player - show the music playing status."
+             f"/pause - pause the music streaming."
+             f"/resume - resume the music was paused."
+             f"/skip - skip to the next song."
+             f"/end - stop music streaming."
+             f"⚡ __Powered by Aries A.I__\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                 ]
+             ),
+         )
+     elif query.data == "aboutmanu_cblab":
+         query.message.edit_text(
+             text="f"🏮 *here is the sudo commands*\n\n"
+             f"/stats - show the bot statistic."
+             f"/clean - remove all raw files."
+             f"/cleandb - remove all database."
+             f"/eval (query) - execute code."
+             f"/sh (query) - run code."
+             f"⚡ __Powered by Aries A.I__\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                 ]
+             ),
+         )
+     elif query.data == "aboutmanu_cbmoon":
+         query.message.edit_text(
+             text=f"🏮 *here is the owner commands*\n\n"
+             f"/stats - show the bot statistic."
+             f"/broadcast - send a broadcast message from bot."
+             f"/block (user id - duration - reason) - block user for using your bot."
+             f"/unblock (user id - reason) - unblock user you blocked for using your bot."
+             f"/blocklist - show you the list of user was blocked for using your bot."
+             f"\n\n📝 note: all commands owned by this bot can be executed by the owner of the bot without any exceptions.\n\n"
+             f"⚡ __Powered by Aries A.I__\n",
+             parse_mode=ParseMode.MARKDOWN,
+             reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
+                        InlineKeyboardButton(
+                            text="[Back]", callback_data="aboutmanu_cbguide"
+                        ),
+                    ],
+                 ]
+             ),
+         )
+
 
 
 @typing_action
