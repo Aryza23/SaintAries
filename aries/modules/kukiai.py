@@ -43,7 +43,7 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html
 
-#import aries.modules.sql.kuki_sql as sql
+# import aries.modules.sql.kuki_sql as sql
 import aries.modules.redis.kuki_redis as rza
 from aries import dispatcher
 from aries.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
