@@ -26,7 +26,7 @@ import requests
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CommandHandler
 
-from aries import DEV_USERS, EVENT_LOGS, dispatcher
+from aries import DEV_USERS, SUPPORT_CHAT, dispatcher
 
 pretty_errors.mono()
 
@@ -113,9 +113,9 @@ def error_callback(update: Update, context: CallbackContext):
             )
             return
         key = key.get("key")
-        url = f"https://www.toptal.com/developers/hastebin/{key}"
+        url = f"https://www.toptal.com/developers/batbin/{key}"
         context.bot.send_message(
-            EVENT_LOGS,
+            SUPPORT_CHAT,
             text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
             f"</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
