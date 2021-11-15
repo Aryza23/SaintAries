@@ -17,6 +17,7 @@ from Python_ARQ import ARQ
 from redis import StrictRedis
 from telethon import TelegramClient
 from telethon.sessions import MemorySession, StringSession
+from telegraph import Telegraph
 
 StartTime = time.time()
 
@@ -262,6 +263,10 @@ else:
 
 from aries.modules.sql import SESSION
 
+print("[ARIES]: Telegraph Installing")
+telegraph = Telegraph()
+print("[ARIES]: Telegraph Account Creating")
+telegraph.create_account(short_name='Aries')
 print("[INFO]: INITIALIZING CLIENT SYSTEM")
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
