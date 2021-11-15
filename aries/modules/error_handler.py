@@ -105,7 +105,7 @@ def error_callback(update: Update, context: CallbackContext):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
-                EVENT_LOGS,
+                SUPPORT_CHAT,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
                 f"</b>\n<code>{e}</code>",
