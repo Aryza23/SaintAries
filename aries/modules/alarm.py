@@ -1,7 +1,7 @@
 import dateparser
 from telethon import *
 
-from aries import db, tbot
+from aries import db, telethn as tbot
 from aries.events import register
 
 
