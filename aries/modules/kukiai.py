@@ -43,8 +43,7 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html
 
-#import aries.modules.sql.kuki_sql as sql
-import aries.modules.redis.kuki_redis as rza
+import aries.modules.sql.kuki_sql as sql
 from aries import dispatcher
 from aries.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
 from aries.modules.helper_funcs.filters import CustomFilters
@@ -60,9 +59,9 @@ def kukirm(update: Update, context: CallbackContext) -> str:
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
-        is_kuki = rza.rem_kuki(chat.id)
+        is_kuki = sql.rem_kuki(chat.id)
         if is_kuki:
-            is_kuki = rza.rem_kuki(user_id)
+            is_kuki = sql.rem_kuki(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"AI_DISABLED\n"
@@ -86,9 +85,9 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
     if match:
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
-        is_kuki = rza.set_kuki(chat.id)
+        is_kuki = sql.set_kuki(chat.id)
         if is_kuki:
-            is_kuki = rza.set_kuki(user_id)
+            is_kuki = sql.set_kuki(user_id)
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"AI_ENABLE\n"
@@ -137,7 +136,7 @@ def ai(update: Update, context: CallbackContext):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
-    is_kuki = rza.is_kuki(chat_id)
+    is_kuki = sql.is_kuki(chat_id)
     if not is_kuki:
         return
 
@@ -157,7 +156,7 @@ def ai(update: Update, context: CallbackContext):
 
 
 def list_all_chats(update: Update, context: CallbackContext):
-    chats = rza.get_all_kuki_chats()
+    chats = sql.get_all_kuki_chats()
     text = "<b>KUKI-Enabled Chats</b>\n"
     for chat in chats:
         try:
@@ -165,7 +164,7 @@ def list_all_chats(update: Update, context: CallbackContext):
             name = x.title or x.first_name
             text += f"• <code>{name}</code>\n"
         except (BadRequest, Unauthorized):
-            rza.rem_kuki(*chat)
+            sql.rem_kuki(*chat)
         except RetryAfter as e:
             sleep(e.retry_after)
     update.effective_message.reply_text(text, parse_mode="HTML")
