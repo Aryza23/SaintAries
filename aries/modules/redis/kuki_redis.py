@@ -6,25 +6,28 @@ try:
 except BaseException:
     REDIS_URL.set("KUKIBOT", "[]")
 
+
 def is_kuki(chat_id):
-    chat = idz.literal_eval(REDIS_URL.get("KUKIBOT"))	
+    chat = idz.literal_eval(REDIS_URL.get("KUKIBOT"))
     chat = list(chat)
     if chat_id in chat:
-    	return True
+        return True
     return False
-	   
+
+
 def set_kuki(chat_id):
     chat = idz.literal_eval(REDIS_URL.get("KUKIBOT"))
     chat = list(chat)
     if chat_id not in chat:
-    	chat.append(chat_id)
-    	REDIS_URL.set("KUKIBOT", str(chat))
-    return 
-	
+        chat.append(chat_id)
+        REDIS_URL.set("KUKIBOT", str(chat))
+    return
+
+
 def rm_kuki(chat_id):
-	chat = idz.literal_eval(REDIS_URL.get("KUKIBOT"))
-	chat = list(chat)
-	if chat_id in chat:
-		chat.remove(chat_id)
-		REDIS_URL.set("KUKIBOT", str(chat))
-	return 
+    chat = idz.literal_eval(REDIS_URL.get("KUKIBOT"))
+    chat = list(chat)
+    if chat_id in chat:
+        chat.remove(chat_id)
+        REDIS_URL.set("KUKIBOT", str(chat))
+    return
