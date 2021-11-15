@@ -1,17 +1,18 @@
 import requests
 
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardMarkup,
-                            InlineKeyboardButton,
-                            InlineQueryResultArticle,
-                            InputTextMessageContent
-                            )
+from pyrogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+)
 
 from aries import pbot, telegraph
 from aries.utils.errors import capture_err
 
 
-@pbot.on_message(~filters.me & filters.command('nhentai', prefixes='/'), group=8)
+@pbot.on_message(~filters.me & filters.command("nhentai", prefixes="/"), group=8)
 @capture_err
 async def nhentai(client, message):
     query = message.text.split(" ")[1]
@@ -19,15 +20,8 @@ async def nhentai(client, message):
     await message.reply_text(
         f"<code>{title}</code>\n\n<b>Tags:</b>\n{tags}\n<b>Artists:</b>\n{artist}\n<b>Pages:</b>\n{total_pages}",
         reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "Read Here",
-                        url=post_url
-                    )
-                ]
-            ]
-        )
+            [[InlineKeyboardButton("Read Here", url=post_url)]]
+        ),
     )
 
 
@@ -39,23 +33,19 @@ def nhentai_data(noombers):
     title = res["title"]["english"]
     links = []
     tags = ""
-    artist = ''
-    total_pages = res['num_pages']
-    extensions = {
-        'j':'jpg',
-        'p':'png',
-        'g':'gif'
-    }
+    artist = ""
+    total_pages = res["num_pages"]
+    extensions = {"j": "jpg", "p": "png", "g": "gif"}
     for i, x in enumerate(pages):
         media_id = res["media_id"]
-        temp = x['t']
+        temp = x["t"]
         file = f"{i+1}.{extensions[temp]}"
         link = f"https://i.nhentai.net/galleries/{media_id}/{file}"
         links.append(link)
 
     for i in info:
         if i["type"] == "tag":
-            tag = i['name']
+            tag = i["name"]
             tag = tag.split(" ")
             tag = "_".join(tag)
             tags += f"#{tag} "
@@ -67,7 +57,7 @@ def nhentai_data(noombers):
     post = telegraph.create_page(
         f"{title}",
         html_content=post_content,
-        author_name="@idzeroid_bot", 
-        author_url="https://t.me/idzeroid_bot"
+        author_name="@idzeroid_bot",
+        author_url="https://t.me/idzeroid_bot",
     )
-    return title,tags,artist,total_pages,post['url'],links[0]
+    return title, tags, artist, total_pages, post["url"], links[0]
