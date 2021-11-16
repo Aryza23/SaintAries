@@ -11,11 +11,13 @@ log.txt
 .vscode
 aries/modules/helper_funcs/temp.txt
 aries/elevated_users.json
-start-3.9.bat
+start-3.6.bat
 *.session
 kangsticker.png
 venv
 env
-aries.session-journal
+LEGEND.session-journal
 updates.txt
 *.exe
+suzuyaPyro
+str
