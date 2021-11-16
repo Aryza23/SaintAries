@@ -10,6 +10,7 @@ from aries import OWNER_ID, telethn
 from aries.events import register
 
 LOGO_LINKS = [
+    "https://telegra.ph/file/98bf31ab534bbaf75267a.jpg",
     "https://telegra.ph/file/d1838efdafce9fe611d0c.jpg",
     "https://telegra.ph/file/c1ff2d5ec5e1b5bd1b200.jpg",
     "https://telegra.ph/file/08c5fbe14cc4b13d1de05.jpg",
