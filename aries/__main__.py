@@ -548,13 +548,13 @@ def aries_about_callback(update, context):
     elif query.data == "aboutmanu_cbhelps":
         query.message.edit_text(
             text=f"* ｢ Music Command 」*\n"
-            f"\n /play (name song) for playing music\n"
-            f"\n /pause for paused music\n"
-            f"\n /resume for resume music\n"
-            f"\n /stop or /end for end music playing\n"
-            f"\n /lyrics for searching lyrics\n"
-            f"\n\n Also you can download music or video with push button menu\n"
-            f"\n\n⚡ __Powered by Aries A.I__\n",
+            f"\n1. **/play (name song) for playing music."
+            f"\n2. **/pause for paused music."
+            f"\n3. **/resume for resume music."
+            f"\n4. **/stop or /end for end music playing."
+            f"\n5. **/lyrics for searching lyrics.\n\n"
+            f"\n📌 **Also you can download music or video with push button menu.**\n"
+            f"\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
