@@ -3,7 +3,10 @@ import asyncio
 import os
 
 from aries import OWNER_ID
-from aries.events import register
+from aries.events import register, load_module
+from pathlib import Path
+
+opn = []
 
 water = "./aries/resources/Aries.jpg"
 
@@ -30,13 +33,6 @@ async def Prof(event):
         )
     else:
         await event.reply("No File Found!")
-
-
-import asyncio
-import os
-from pathlib import Path
-
-from aries.events import load_module
 
 
 @register(pattern="^/install")
@@ -80,16 +76,6 @@ async def install(event):
     await event.delete()
 
 
-import asyncio
-import os
-
-from aries import OWNER_ID
-from aries import telethn as tbot
-from aries.events import register
-
-opn = []
-
-
 @register(pattern="/open")
 async def _(event):
     xx = await event.reply("Processing...")
@@ -117,10 +103,6 @@ async def _(event):
             return await event.reply("Reply to a readable file")
     else:
         return await event.reply("Reply to a readable file")
-
-
-client = tbot
-from pathlib import Path
 
 
 @register(pattern="^/make ?(.*)")
