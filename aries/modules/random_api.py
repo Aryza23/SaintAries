@@ -2,7 +2,17 @@ import requests
 import random
 from aries import telethn as tbot
 from aries.events import register
-import aries.modules.fun_strings as fun_strings
+
+APAKAH_STRINGS = (
+    "iya",
+    "tidak",
+    "mungkin",
+    "bisa jadi",
+    "anda benar sekali",
+    "anda salah besar",
+    "👍",
+    "👎",
+)
 
 @register(pattern="^/apakah ?(.*)")
 async def apakah(event)
@@ -10,7 +20,7 @@ async def apakah(event)
     if not kontol:
         await event.reply("Example: /apakah (text)")
         return
-    await event.reply(random.choice(fun_strings.APAKAH_STRINGS))
+    await event.reply(random.choice(APAKAH_STRINGS))
 
 
 @register(pattern="^/asupan ?(.*)")
