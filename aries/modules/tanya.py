@@ -9,7 +9,7 @@ APAKAH_STRINGS = (
     "anda benar sekali",
     "anda salah besar",
     "👍",
-    "👎"
+    "👎",
 )
 
 
@@ -18,5 +18,5 @@ async def apakah(event):
     kontol = event.pattern_match.group(1)
     if not kontol:
         return await event.reply("Example: /apakah (text)")
-    else:  
+    else:
         return await event.reply(random.choice(APAKAH_STRINGS))
