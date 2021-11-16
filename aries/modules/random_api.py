@@ -14,6 +14,7 @@ APAKAH_STRINGS = (
     "👎",
 )
 
+
 @register(pattern="^/apakah ?(.*)")
 async def apakah(event):
     kontol = event.pattern_match.group(1)
