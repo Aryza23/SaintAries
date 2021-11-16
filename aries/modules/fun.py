@@ -210,6 +210,7 @@ def decide(update: Update, context: CallbackContext):
     )
     reply_text(random.choice(fun_strings.DECIDE))
 
+
 def eightball(update: Update, context: CallbackContext):
     reply_text = (
         update.effective_message.reply_to_message.reply_text
