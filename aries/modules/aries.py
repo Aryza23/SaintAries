@@ -23,6 +23,8 @@ __help__ = """
  ❍ `/aries`*:* gives random aries media
  ❍ `/asupan`*:* gives random asupan medi
  ❍ `/chika`*:* gives random chika media
+ ❍ `/apakah`*:* For ask question about someone with AI
+ ❍ `/siapakah`*:* For ask question about someone with AI
 """
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
 
