@@ -1,12 +1,12 @@
 APAKAH_STRINGS = (
-       "iya",
-       "tidak",
-       "mungkin",
-       "bisa jadi",
-       "anda benar sekali",
-       "anda salah besar",
-       "👍",
-       "👎",
+    "iya",
+    "tidak",
+    "mungkin",
+    "bisa jadi",
+    "anda benar sekali",
+    "anda salah besar",
+    "👍",
+    "👎",
 )
 
 RUN_STRINGS = (
