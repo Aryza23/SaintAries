@@ -171,7 +171,6 @@ def shout(update: Update, context: CallbackContext):
 def toss(update: Update, context: CallbackContext):
     update.message.reply_text(random.choice(fun_strings.TOSS))
 
-
 def shrug(update: Update, context: CallbackContext):
     msg = update.effective_message
     reply_text = (
@@ -209,6 +208,14 @@ def decide(update: Update, context: CallbackContext):
         else update.effective_message.reply_text
     )
     reply_text(random.choice(fun_strings.DECIDE))
+
+def apakah(update: Update, context: CallbackContext):
+    reply_text = (
+        update.effective_message.reply_to_message.reply_text
+        if update.effective_message.reply_to_message
+        else update.effective_message.reply_text
+    )
+    reply_text(random.choice(fun_strings.APAKAH_STRINGS))
 
 
 def eightball(update: Update, context: CallbackContext):
@@ -340,6 +347,7 @@ SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug, run_async=True)
 BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext, run_async=True)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg, run_async=True)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide, run_async=True)
+APAKAH_HANDLER = DisableAbleCommandHandler("apakah", apakah, run_async=True)
 EIGHTBALL_HANDLER = DisableAbleCommandHandler("8ball", eightball, run_async=True)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table, run_async=True)
 SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout, run_async=True)
@@ -357,6 +365,7 @@ dispatcher.add_handler(SHRUG_HANDLER)
 dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
+dispatcher.add_handler(APAKAH_HANDLER)
 dispatcher.add_handler(EIGHTBALL_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
 
@@ -370,6 +379,7 @@ __command_list__ = [
     "bluetext",
     "rlg",
     "decide",
+    "apakah",
     "table",
     "pat",
     "sanitize",
@@ -387,6 +397,7 @@ __handlers__ = [
     BLUETEXT_HANDLER,
     RLG_HANDLER,
     DECIDE_HANDLER,
+    APAKAH_HANDLER,
     TABLE_HANDLER,
     SANITIZE_HANDLER,
     SHOUT_HANDLER,
