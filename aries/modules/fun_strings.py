@@ -1,3 +1,14 @@
+APAKAH_STRINGS = (
+       "iya",
+       "tidak",
+       "mungkin",
+       "bisa jadi",
+       "anda benar sekali",
+       "anda salah besar",
+       "👍",
+       "👎",
+)
+
 RUN_STRINGS = (
     "Now you see me, now you don't." "ε=ε=ε=ε=┌(;￣▽￣)┘",
     "Get back here!",
@@ -8,7 +19,7 @@ RUN_STRINGS = (
     "Chotto matte!",
     "Yare yare daze",
     "*Naruto run activated*",
-    "*Nezuko run activated*",
+    "*Aries run activated*",
     "Hey take responsibilty for what you just did!",
     "May the odds be ever in your favour.",
     "Run everyone, they just dropped a bomb 💣💣",
