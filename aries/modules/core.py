@@ -3,11 +3,9 @@ import asyncio
 import os
 
 from aries import OWNER_ID
-from aries import telethn as tbot
 from aries.events import register
 
 water = "./aries/resources/Aries.jpg"
-client = tbot
 
 
 @register(pattern=r"^/send ?(.*)")

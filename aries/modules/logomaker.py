@@ -6,7 +6,7 @@ import random
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-from aries import OWNER_ID, telethn
+from aries import OWNER_ID, telethn as tbot
 from aries.events import register
 
 LOGO_LINKS = [
@@ -684,7 +684,7 @@ async def lego(event):
         )
         fname = "ARIES.png"
         img.save(fname, "png")
-        await telethn.send_file(
+        await tbot.send_file(
             event.chat_id, file=fname, caption=f"Made by @IDZEROID_BOT"
         )
         await pesan.delete()
