@@ -1,14 +1,3 @@
-APAKAH_STRINGS = (
-    "iya",
-    "tidak",
-    "mungkin",
-    "bisa jadi",
-    "anda benar sekali",
-    "anda salah besar",
-    "👍",
-    "👎",
-)
-
 RUN_STRINGS = (
     "Now you see me, now you don't." "ε=ε=ε=ε=┌(;￣▽￣)┘",
     "Get back here!",
