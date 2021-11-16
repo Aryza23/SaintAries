@@ -15,7 +15,7 @@ APAKAH_STRINGS = (
 )
 
 @register(pattern="^/apakah ?(.*)")
-async def apakah(event)
+async def apakah(event):
     kontol = event.pattern_match.group(1)
     if not kontol:
         await event.reply("Example: /apakah (text)")
