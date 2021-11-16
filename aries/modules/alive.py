@@ -1,9 +1,19 @@
 from telethon import Button
-
+import random
 from aries import telethn as tbot
 from aries.events import register
+import aries.modules.fun_strings as fun_strings
 
 PHOTO = "https://telegra.ph/file/b4704fdf82e7a46cc5b51.jpg"
+
+
+@register(pattern="^/apakah ?(.*)")
+async def apakah(event)
+    kontol = event.pattern_match.group(1)
+    if not kontol:
+        await event.reply("Example: /apakah (text)")
+        return
+    await event.reply(random.choice(fun_strings.APAKAH_STRINGS))
 
 
 @register(pattern=("/alive|/ALIVE"))
