@@ -20,4 +20,3 @@ async def apakah(event):
         await event.reply("Example: /apakah (text)")
         return
     await event.reply(random.choice(APAKAH_STRINGS))
-
