@@ -1,6 +1,3 @@
-# By @TroJanzHEX
-# Improved by DaisyX
-
 from pyrogram import filters
 from pyrogram.types import (
     CallbackQuery,
@@ -8,8 +5,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
-
-from aries import pbot as Client
 
 # By @TroJanzHEX
 from aries.bot_plugins.ImageEditor.edit_1 import (  # pylint:disable=import-error
@@ -58,11 +53,12 @@ from aries.bot_plugins.ImageEditor.edit_5 import (  # pylint:disable=import-erro
     scanlineglitch_4,
     scanlineglitch_5,
 )
+from aries import pbot
 
 lel = 00000000
 # pylint:disable=import-error
-@Client.on_message(filters.command(["edit", "editor"]))
-async def photo(client: Client, message: Message):
+@pbot.on_message(filters.command(["edit", "editor"]))
+async def photo(client: pbot, message: Message):
     try:
         if not message.reply_to_message.photo:
             await client.send_message(message.chat.id, "Reply to an image man!ㅤㅤ")
@@ -120,15 +116,14 @@ async def photo(client: Client, message: Message):
         print("photomarkup error - " + str(e))
         if "USER_IS_BLOCKED" in str(e):
             return
-        else:
-            try:
-                await message.reply_text("Something went wrong!", quote=True)
-            except Exception:
-                return
+        try:
+            await message.reply_text("Something went wrong!", quote=True)
+        except Exception:
+            return
 
 
-@Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery):
+@pbot.on_callback_query()
+async def cb_handler(client: pbot, query: CallbackQuery):
     user_id = query.from_user.id
     if lel == user_id:
         if query.data == "removebg":
@@ -456,7 +451,6 @@ __help__ = """
 🔘 IMAGE EDITOR.
 Hello Guys Im have some advanced image editing tools inbuilt
 Bright, Circle, RemBG, Blur, Border, Flip, Glitch, Sticker maker and more.
-
 🔘 Command.
 ❍ /edit [reply to image] : Open the image editor.
 ❍ /logo [Text]: To make logo with your text (Random Pic).
