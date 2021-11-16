@@ -171,6 +171,7 @@ def shout(update: Update, context: CallbackContext):
 def toss(update: Update, context: CallbackContext):
     update.message.reply_text(random.choice(fun_strings.TOSS))
 
+
 def shrug(update: Update, context: CallbackContext):
     msg = update.effective_message
     reply_text = (
@@ -208,6 +209,7 @@ def decide(update: Update, context: CallbackContext):
         else update.effective_message.reply_text
     )
     reply_text(random.choice(fun_strings.DECIDE))
+
 
 def apakah(update: Update, context: CallbackContext):
     reply_text = (
