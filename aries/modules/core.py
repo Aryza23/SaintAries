@@ -1,15 +1,15 @@
-from NaoRobot import telethn as tbot
-from NaoRobot.events import register
+from aries import telethn as tbot
+from aries.events import register
 import os
 import asyncio
 import os
 import time
 from datetime import datetime
-from NaoRobot import OWNER_ID, DEV_USERS
-from NaoRobot import TEMP_DOWNLOAD_DIRECTORY as path
-from NaoRobot import TEMP_DOWNLOAD_DIRECTORY
+from aries import OWNER_ID, DEV_USERS
+from aries import TEMP_DOWNLOAD_DIRECTORY as path
+from aries import TEMP_DOWNLOAD_DIRECTORY
 from datetime import datetime
-water = './Natsunagi/resources/Aries.jpg'
+water = './aries/resources/Aries.jpg'
 client = tbot
 
 @register(pattern=r"^/send ?(.*)")
@@ -21,7 +21,7 @@ async def Prof(event):
     thumb = water
     message_id = event.message.id
     input_str = event.pattern_match.group(1)
-    the_plugin_file = "./Natsunagi/modules/{}.py".format(input_str)
+    the_plugin_file = "./aries/modules/{}.py".format(input_str)
     if os.path.exists(the_plugin_file):
      message_id = event.message.id
      await event.client.send_file(
