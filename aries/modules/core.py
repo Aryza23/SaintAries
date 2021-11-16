@@ -9,6 +9,7 @@ from aries.events import register
 water = "./aries/resources/Aries.jpg"
 client = tbot
 
+
 @register(pattern=r"^/send ?(.*)")
 async def Prof(event):
     if event.sender_id == OWNER_ID:
