@@ -17,21 +17,36 @@ def locale(bot, update, args):
     if len(args) > 0:
         locale = args[0].lower()
         if locale in list_locales:
-            if locale in ('en', 'ru', 'ua', 'es', 'tr', 'id'):
+            if locale in ("en", "ru", "ua", "es", "tr", "id"):
                 switch_to_locale(chat.id, locale)
-                update.message.reply_text(tld(chat.id, 'Switched to {} successfully!').format(list_locales[locale]))
+                update.message.reply_text(
+                    tld(chat.id, "Switched to {} successfully!").format(
+                        list_locales[locale]
+                    )
+                )
             else:
-                update.message.reply_text("{} is not supported yet!".format(list_locales[locale]))
+                update.message.reply_text(
+                    "{} is not supported yet!".format(list_locales[locale])
+                )
         else:
-            update.message.reply_text("Is that even a valid language code? Use an internationally accepted ISO code!")
+            update.message.reply_text(
+                "Is that even a valid language code? Use an internationally accepted ISO code!"
+            )
     else:
         LANGUAGE = prev_locale(chat.id)
         if LANGUAGE:
             locale = LANGUAGE.locale_name
             native_lang = list_locales[locale]
-            update.message.reply_text("Current locale for this chat is: *{}*".format(native_lang), parse_mode = ParseMode.MARKDOWN)
+            update.message.reply_text(
+                "Current locale for this chat is: *{}*".format(native_lang),
+                parse_mode=ParseMode.MARKDOWN,
+            )
         else:
-            update.message.reply_text("Current locale for this chat is: *English*", parse_mode=ParseMode.MARKDOWN)
+            update.message.reply_text(
+                "Current locale for this chat is: *English*",
+                parse_mode=ParseMode.MARKDOWN,
+            )
+
 
 @user_admin
 def locale_button(bot, update):
@@ -68,22 +83,36 @@ def locale_button(bot, update):
 
     text += "*\n\nSelect new user language:*"
 
-    query.message.reply_text(text, parse_mode=ParseMode.MARKDOWN,
-                                            reply_markup=InlineKeyboardMarkup([[
-                                            InlineKeyboardButton("English 🇺🇸", callback_data="set_lang_en")]] + [[
-                                            InlineKeyboardButton("Russian 🇷🇺", callback_data="set_lang_ru"),
-                                            InlineKeyboardButton("Ukrainian 🇺🇦", callback_data="set_lang_ua")]] + [[
-                                            InlineKeyboardButton("Spanish 🇪🇸", callback_data="set_lang_es"),
-                                            InlineKeyboardButton("Turkish 🇹🇷", callback_data="set_lang_tr")]] + [[
-                                            InlineKeyboardButton("Indonesian 🇮🇩", callback_data="set_lang_id")]] + [[
-                                            InlineKeyboardButton("⬅️ Back", callback_data="bot_start")]]))
+    query.message.reply_text(
+        text,
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("English 🇺🇸", callback_data="set_lang_en")]]
+            + [
+                [
+                    InlineKeyboardButton("Russian 🇷🇺", callback_data="set_lang_ru"),
+                    InlineKeyboardButton("Ukrainian 🇺🇦", callback_data="set_lang_ua"),
+                ]
+            ]
+            + [
+                [
+                    InlineKeyboardButton("Spanish 🇪🇸", callback_data="set_lang_es"),
+                    InlineKeyboardButton("Turkish 🇹🇷", callback_data="set_lang_tr"),
+                ]
+            ]
+            + [[InlineKeyboardButton("Indonesian 🇮🇩", callback_data="set_lang_id")]]
+            + [[InlineKeyboardButton("⬅️ Back", callback_data="bot_start")]]
+        ),
+    )
 
     print(lang_match)
     query.message.delete()
     bot.answer_callback_query(query.id)
 
 
-LOCALE_HANDLER = CommandHandler(["set_locale", "locale", "lang", "setlang"], locale, pass_args=True)
+LOCALE_HANDLER = CommandHandler(
+    ["set_locale", "locale", "lang", "setlang"], locale, pass_args=True
+)
 locale_handler = CallbackQueryHandler(locale_button, pattern="chng_lang")
 set_locale_handler = CallbackQueryHandler(locale_button, pattern=r"set_lang_")
 
