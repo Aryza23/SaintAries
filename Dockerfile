@@ -1,6 +1,5 @@
 FROM python:3.9.7-slim-buster
 ENV PIP_NO_CACHE_DIR 1
-ENV PYTHONUNBUFFERED=1
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
 RUN apt update && apt upgrade -y && \
     apt install --no-install-recommends -y \
@@ -56,12 +55,10 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
-RUN python -m pip install -U pip
-RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
-RUN python -m pip install -U matplotlib 
 RUN pip3 install --upgrade pip setuptools
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
+COPY ./aries/sample_config.py ./aries/config.py* /root/aries/aries/
 ENV PATH="/home/bot/bin:$PATH"
 RUN pip3 install -U -r requirements.txt
 CMD ["python3","-m","aries"]
