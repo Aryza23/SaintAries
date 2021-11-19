@@ -1,20 +1,3 @@
-# ZeldrisRobot
-# Copyright (C) 2017-2019, Paul Larsen
-# Copyright (c) 2021, IDNCoderX Team, <https://github.com/IDN-C-X/ZeldrisRobot>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
 import html
 import io
 import random
@@ -23,10 +6,10 @@ import traceback
 
 import pretty_errors
 import requests
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from aries import DEV_USERS, SUPPORT_CHAT, dispatcher
+from aries import dispatcher, DEV_USERS, ERROR_LOGS
 
 pretty_errors.mono()
 
@@ -97,26 +80,25 @@ def error_callback(update: Update, context: CallbackContext):
             tb,
         )
         key = requests.post(
-            "https://www.toptal.com/developers/batbin/documents",
-            data=pretty_message.encode("UTF-8"),
+            "https://nekobin.com/api/documents", json={"content": pretty_message}
         ).json()
         e = html.escape(f"{context.error}")
-        if not key.get("key"):
+        if not key.get("result", {}).get("key"):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
-                SUPPORT_CHAT,
+                ERROR_LOGS,
                 open("error.txt", "rb"),
-                caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
+                caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
                 f"</b>\n<code>{e}</code>",
                 parse_mode="html",
             )
             return
-        key = key.get("key")
-        url = f"https://www.toptal.com/developers/batbin/{key}"
+        key = key.get("result").get("key")
+        url = f"https://nekobin.com/{key}.py"
         context.bot.send_message(
-            SUPPORT_CHAT,
-            text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you:"
+            ERROR_LOGS,
+            text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
             f"</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Cursed Errors", url=url)]],
@@ -147,4 +129,3 @@ def list_errors(update: Update, context: CallbackContext):
 
 
 dispatcher.add_error_handler(error_callback)
-dispatcher.add_handler(CommandHandler("errors", list_errors))
