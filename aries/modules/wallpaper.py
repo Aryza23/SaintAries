@@ -9,7 +9,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from aries import telethn as tbot
 from aries.events import register
-from aries.utils.telethonubot import ubot
+from aries import ubot
 
 
 @register(pattern="^/wall ?(.*)")
