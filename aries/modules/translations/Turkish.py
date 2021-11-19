@@ -24,7 +24,7 @@ RUN_STRINGS = (
     "Belki şans sana güler.",
     "Ünlü son sözler.",
     "Ve sonsuza dek yok oldular, hiç görünmediler.",
-    "\"Hey, bana bakın! Bottan kaçabiliyorum çok havalıyım!\" - bu kişi",
+    '"Hey, bana bakın! Bottan kaçabiliyorum çok havalıyım!" - bu kişi',
     "Evet evet, /kickme tuşuna şimdiden bas.",
     "İşte, bu yüzüğü alın ve Mordor'a gidin.",
     "Efsaneye göre onlar hala çalışıyor...",
@@ -99,7 +99,7 @@ SLAP_TEMPLATES = (
     "{user1} {user2} kullanıcısını yere sabitleyıp ardı ardına {item} ile {hits} .",
     "{user1} {item} alarak {user2} {hits}.",
     "{user1} {user2} kullanıcısını sandalyeye bağlayıp {item} {throws} .",
-    "{user1} {user2} kullanıcısını arkadaşca ittirerek lavda yüzmeyi öğrenmesini sağlıyor."
+    "{user1} {user2} kullanıcısını arkadaşca ittirerek lavda yüzmeyi öğrenmesini sağlıyor.",
 )
 
 ITEMS = (
@@ -184,7 +184,6 @@ ya da öneride bulunmak için katıl:)
 
 Beni kullanmaktan hoşlanıyorsan ve vahşi doğada hayatta kalmama yardım etmek istiyorsan, /donate basarak VPS'yi ödemeyi/güçlendirmemi sağla!
 """,
-
     "send-help": """Merhaba! Benim adım *{}*.
 Ben bir birkaç eğlenceli ekstraları olan modüler grup yönetim botuyum! Yardımcı olabileceğim şeyler hakkında bir fikir edinmek için aşağıdakilere bir göz atın.
 
@@ -199,11 +198,8 @@ Başlıca komutlar bunlar:
    - grupta: seni PM'ye chat ayarlarıyla yönlendirir.
    {}
    """,
-
     "send-group-settings": """Merhaba! *{}* için birkaç ayar var - durma neye ilgin
 olduğunu seç.""",
-
-
     "Disabled connections to this chat for users": "Bu sohbetteki bağlantılar kullanıcılar için devre dışı bırakıldı.",
     "Enabled connections to this chat for users": "Bu sohbetteki bağlantılar kullanıcılar için etkinleştiildi.",
     "Please enter on/yes/off/no in group!": "Lütfen grupta açık/evet/kapalı/hayır kelimelerinden girin.",
@@ -212,301 +208,216 @@ olduğunu seç.""",
     "Connections to this chat not allowed!": "Bu sohbete bağlantı yasak!",
     "Write chat ID to connect!": "Bağlanmak için sohbet ID girin!",
     "Usage limited to PMs only!": "Sadece özel mesaj için kullanım sınırlandırıldı!",
-
-
-#Misc
-"RUNS-K": RUN_STRINGS,
-"SLAP_TEMPLATES-K": SLAP_TEMPLATES,
-"ITEMS-K": ITEMS,
-"HIT-K": HIT,
-"THROW-K": THROW,
-"ITEMP-K": ITEMS,
-"ITEMR-K": ITEMS,
-"MARKDOWN_HELP-K": MARKDOWN_HELP,
-"INSULTS-K": INSULTS_STRINGS,
-
-
-
-    "The original sender, {}, has an ID of `{}`.\nThe forwarder, {}, has an ID of `{}`.":
-        "Asıl göneren, {}, bu ID'e sahip `{}`.\nİleten, {}, bu ID'e sahip `{}`.",
+    # Misc
+    "RUNS-K": RUN_STRINGS,
+    "SLAP_TEMPLATES-K": SLAP_TEMPLATES,
+    "ITEMS-K": ITEMS,
+    "HIT-K": HIT,
+    "THROW-K": THROW,
+    "ITEMP-K": ITEMS,
+    "ITEMR-K": ITEMS,
+    "MARKDOWN_HELP-K": MARKDOWN_HELP,
+    "INSULTS-K": INSULTS_STRINGS,
+    "The original sender, {}, has an ID of `{}`.\nThe forwarder, {}, has an ID of `{}`.": "Asıl göneren, {}, bu ID'e sahip `{}`.\nİleten, {}, bu ID'e sahip `{}`.",
     "{}'s id is `{}`.": "{}'in ID'si `{}`.",
     "Your id is `{}`.": "ID'niz `{}`.",
     "This group's id is `{}`.": "Bu grubun ID'si `{}`.",
-
     "I can't extract a user from this.": "Bundan bir kullanıcı çıkartamıyorum.",
     "<b>User info</b>:": "<b>Kullanıcı bilgisi</b>:",
     "\nFirst Name: {}": "\nİsim: {}",
     "\nLast Name: {}": "\nSoyisim: {}",
     "\nUsername: @{}": "\Kullanıcı adı: @{}",
     "\nPermanent user link: {}": "\nKalıcı kullanıcı bağlantısı: {}",
-    "\n\nThis person is my owner - I would never do anything against them!":
-        "\n\nBu kişi benim sahibim - Asla ona karşı gelmem!",
-    "\nThis person is one of my sudo users! Nearly as powerful as my owner - so watch it.":
-        "\nBu kişi benim sudo yöneticilerimden birisi! Neredeyse sahibim kadar güçlü - izle ve gör.",
-    "\nThis person is one of my support users! Not quite a sudo user, but can still gban you off the map.":
-        "\nBu kişi bana destek verenlerden birisi! Bir sudo yöneticisi değil, ancak yine de seni haritadan gbanlayabilir.",
-    "\nThis person has been whitelisted! That means I'm not allowed to ban/kick them.":
-        "\nBu kişi beyaz listede! Bu demek oluyor ki, ben bu kişiyi uzaklaştıramam, kovamam.",
-
+    "\n\nThis person is my owner - I would never do anything against them!": "\n\nBu kişi benim sahibim - Asla ona karşı gelmem!",
+    "\nThis person is one of my sudo users! Nearly as powerful as my owner - so watch it.": "\nBu kişi benim sudo yöneticilerimden birisi! Neredeyse sahibim kadar güçlü - izle ve gör.",
+    "\nThis person is one of my support users! Not quite a sudo user, but can still gban you off the map.": "\nBu kişi bana destek verenlerden birisi! Bir sudo yöneticisi değil, ancak yine de seni haritadan gbanlayabilir.",
+    "\nThis person has been whitelisted! That means I'm not allowed to ban/kick them.": "\nBu kişi beyaz listede! Bu demek oluyor ki, ben bu kişiyi uzaklaştıramam, kovamam.",
     "Its always banhammer time for me!": "Vakit, engel çekicini vurma vakti!",
-
     "Please reply to a sticker to get its ID.": "Sticker ID'sini alabilmek için bir stickera yanıt ver..",
     "Please reply to a sticker for me to upload its PNG.": "Stickerın PNG dosyasını alabilmek için bir stickera yanıt ver.",
-
     "Write a location to check the weather.": "Hava durumunu kontrol etmek için bir konum gir.",
     "I will keep an eye on both happy and sad times!": "Sana iyi günde, kötü günde göz kulak olacağım!",
     "Today in {} is being {}, around {}°C.\n": "Bugün {} is being {}, around {}°C.\n",
     "Sorry, location not found.": "Üzgünüm, konumu bulamadım.",
-
     "Deleting identifiable data...": "Deleting identifiable data...",
-
-    "Try forwarding the following message to me, and you'll see!":
-        "Bana bir mesaj ilet, arından otur ve izle!",
-    "/save test This is a markdown test. _italics_, *bold*, `code`, [URL](example.com) [button](buttonurl:github.com) [button2](buttonurl://google.com:same)":
-    """/save test Bu bir yazım stili testi. _eğik_, *kalın*, `kod`, \
+    "Try forwarding the following message to me, and you'll see!": "Bana bir mesaj ilet, arından otur ve izle!",
+    "/save test This is a markdown test. _italics_, *bold*, `code`, [URL](example.com) [button](buttonurl:github.com) [button2](buttonurl://google.com:same)": """/save test Bu bir yazım stili testi. _eğik_, *kalın*, `kod`, \
 [URL](fabrikam.com)
 [Botón](buttonurl:github.com)
 [Botón2](buttonurl://google.com:same)""",
-
-#Admin
-"How am I meant to promote someone that's already an admin?": "Zaten yönetici olan birisini nasıl yönetici yapabilirim?",
-"I can't promote myself! Get an admin to do it for me.": "Kendi kendimi yönetici yapamam! Bir yöneticinin beni yönetici yapması gerekli!",
-"Successfully promoted in *{}*!": "*{}* 'da başarıyla yönetici yapıldı!",
-
-"This person CREATED the chat, how would I demote them?": "Bu kişi bu sohbeti OLUŞTURDU, şimdi söyle bakalım, bu kişiyi nasıl yöneticilikten çıkartabilirim?",
-"Can't demote what wasn't promoted!": "Yönetici olmayan bir şeyi yöneticilikten atamam!",
-"I can't demote myself!": "Kendi kendimi yöneticilikten çıkaramam!",
-"Successfully demoted in *{}*!": "*{}* 'da başarıyla yöneticilikten çıkartıldı!",
-"Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!": 
-"Yöneticilikten çıkartamıyorum. Sanırım yönetici değilim ya da kullanıcı başkası tarafından yönetici yapıldı, tek bildiğim şey yetkim yok!",
-
-"I don't have access to the invite link, try changing my permissions!": "Davet bağlantısına erişme yetkim yok, yetkilerimi değiştirmeyi denemelisin!",
-"I can only give you invite links for supergroups and channels, sorry!": "Sadece süpergruplar ve kanalların davet bağlantılarını verebilirim, üzgünüm!",
-
-"Admins in": "Grubundaki yöneticiler:",
-"this chat": "bu grupta",
-" (Creator)": " (Kurucu)",
-
-#AFK
-"{} is now AFK!": "{} şu anda meşgul!",
-"{} is no longer AFK!": "{} artık meşgul değil!",
-"{} is AFK!": "{} meşgul!",
-"{} is AFK! says its because of: \n{}": "{} meşgul, çünkü: \n{}",
-
-#Antiflood
-"I like to leave the flooding to natural disasters. But you, you were just a disappointment. Get out.":
-     "Yağmuru doğal halinde bırakmayı severim. Ama sen, mesaj yağmuruna tuttun! Git buradan.",
-"I can't kick people here, give me permissions first! Until then, I'll disable antiflood.":
-    "İnsanları buradan çıkaramıyorum, önce bana yetki ver! Bundan sonra flood korumasını devre dışı bırakacağım.",
-"Antiflood has been disabled.": "Flood koruması devre dışı bırakıldı..",
-"Antiflood has to be either 0 (disabled), or a number bigger than 3 (enabled)!":
-    "Flood koruması şu anda 0 (devre dışı), 3'den büyük sayı girmelisin (etkinleşir)!",
-"Antiflood has been updated and set to {}": "Flood koruması güncellendi ve bu sayıya çıkartıldı{}",
-"Unrecognised argument - please use a number, 'off', or 'no'.":
-    "Tanınmayan karakter - ya bir sayı gir, ya 'off', ya 'no'.",
-"I'm not currently enforcing flood control!": "Şu anda flood kontrolü için zorlanmıyorum.!",
-"I'm currently banning users if they send more than {} consecutive messages.":
-     "Şu anda {} mesajdan fazla üst üste mesaj gelirse kullanıcıyı engelliyorum.",
-
-#Antispam
-"I've enabled antispam security in this group. This will help protect you from spammers, unsavoury characters, and the biggest trolls.":
- "I've enabled antispam security in this group. This will help protect you from spammers, unsavoury characters, and the biggest trolls.",
-
-"I've disabled antispam security in this group. GBans wont affect your users anymore. You'll be less protected from any trolls and spammers though!":
-    "I've disabled antispam security in this group. GBans wont affect your users anymore. You'll be less protected from any trolls and spammers though!",
-
-"Give me some arguments to choose a setting! on/off, yes/no!\n\nYour current setting is: {}\nWhen True, any gbans that happen will also happen in your group. When False, they won't, leaving you at the possible mercy of spammers.":
-    "Give me some arguments to choose a setting! on/off, yes/no!\n\nYour current setting is: {}\nWhen True, any gbans that happen will also happen in your group. When False, they won't, leaving you at the possible mercy of spammers.",
-
-"Globally banned: <b>{}</b>": "Globally banned: <b>{}</b>",
-"\nGlobally muted: <b>{}</b>": "\nGlobally muted: <b>{}</b>",
-"\nReason: {}": "\nReason: {}",
-
-#Bans
+    # Admin
+    "How am I meant to promote someone that's already an admin?": "Zaten yönetici olan birisini nasıl yönetici yapabilirim?",
+    "I can't promote myself! Get an admin to do it for me.": "Kendi kendimi yönetici yapamam! Bir yöneticinin beni yönetici yapması gerekli!",
+    "Successfully promoted in *{}*!": "*{}* 'da başarıyla yönetici yapıldı!",
+    "This person CREATED the chat, how would I demote them?": "Bu kişi bu sohbeti OLUŞTURDU, şimdi söyle bakalım, bu kişiyi nasıl yöneticilikten çıkartabilirim?",
+    "Can't demote what wasn't promoted!": "Yönetici olmayan bir şeyi yöneticilikten atamam!",
+    "I can't demote myself!": "Kendi kendimi yöneticilikten çıkaramam!",
+    "Successfully demoted in *{}*!": "*{}* 'da başarıyla yöneticilikten çıkartıldı!",
+    "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!": "Yöneticilikten çıkartamıyorum. Sanırım yönetici değilim ya da kullanıcı başkası tarafından yönetici yapıldı, tek bildiğim şey yetkim yok!",
+    "I don't have access to the invite link, try changing my permissions!": "Davet bağlantısına erişme yetkim yok, yetkilerimi değiştirmeyi denemelisin!",
+    "I can only give you invite links for supergroups and channels, sorry!": "Sadece süpergruplar ve kanalların davet bağlantılarını verebilirim, üzgünüm!",
+    "Admins in": "Grubundaki yöneticiler:",
+    "this chat": "bu grupta",
+    " (Creator)": " (Kurucu)",
+    # AFK
+    "{} is now AFK!": "{} şu anda meşgul!",
+    "{} is no longer AFK!": "{} artık meşgul değil!",
+    "{} is AFK!": "{} meşgul!",
+    "{} is AFK! says its because of: \n{}": "{} meşgul, çünkü: \n{}",
+    # Antiflood
+    "I like to leave the flooding to natural disasters. But you, you were just a disappointment. Get out.": "Yağmuru doğal halinde bırakmayı severim. Ama sen, mesaj yağmuruna tuttun! Git buradan.",
+    "I can't kick people here, give me permissions first! Until then, I'll disable antiflood.": "İnsanları buradan çıkaramıyorum, önce bana yetki ver! Bundan sonra flood korumasını devre dışı bırakacağım.",
+    "Antiflood has been disabled.": "Flood koruması devre dışı bırakıldı..",
+    "Antiflood has to be either 0 (disabled), or a number bigger than 3 (enabled)!": "Flood koruması şu anda 0 (devre dışı), 3'den büyük sayı girmelisin (etkinleşir)!",
+    "Antiflood has been updated and set to {}": "Flood koruması güncellendi ve bu sayıya çıkartıldı{}",
+    "Unrecognised argument - please use a number, 'off', or 'no'.": "Tanınmayan karakter - ya bir sayı gir, ya 'off', ya 'no'.",
+    "I'm not currently enforcing flood control!": "Şu anda flood kontrolü için zorlanmıyorum.!",
+    "I'm currently banning users if they send more than {} consecutive messages.": "Şu anda {} mesajdan fazla üst üste mesaj gelirse kullanıcıyı engelliyorum.",
+    # Antispam
+    "I've enabled antispam security in this group. This will help protect you from spammers, unsavoury characters, and the biggest trolls.": "I've enabled antispam security in this group. This will help protect you from spammers, unsavoury characters, and the biggest trolls.",
+    "I've disabled antispam security in this group. GBans wont affect your users anymore. You'll be less protected from any trolls and spammers though!": "I've disabled antispam security in this group. GBans wont affect your users anymore. You'll be less protected from any trolls and spammers though!",
+    "Give me some arguments to choose a setting! on/off, yes/no!\n\nYour current setting is: {}\nWhen True, any gbans that happen will also happen in your group. When False, they won't, leaving you at the possible mercy of spammers.": "Give me some arguments to choose a setting! on/off, yes/no!\n\nYour current setting is: {}\nWhen True, any gbans that happen will also happen in your group. When False, they won't, leaving you at the possible mercy of spammers.",
+    "Globally banned: <b>{}</b>": "Globally banned: <b>{}</b>",
+    "\nGlobally muted: <b>{}</b>": "\nGlobally muted: <b>{}</b>",
+    "\nReason: {}": "\nReason: {}",
+    # Bans
     "I really wish I could ban admins...": "I really wish I could ban admins...",
     "I'm not gonna BAN myself, are you crazy?": "I'm not gonna BAN myself, are you crazy?",
     "Banned!": "Banned!",
     "Well damn, I can't ban that user.": "Well damn, I can't ban that user.",
-    "You haven't specified a time to ban this user for!":
-        "You haven't specified a time to ban this user for!",
+    "You haven't specified a time to ban this user for!": "You haven't specified a time to ban this user for!",
     "Banned! User will be banned for {}.": "Banned! User will be banned for {}.",
-
-#Blacklist
+    # Blacklist
     "<b>Current blacklisted words in {}:</b>\n": "<b>{}</b> grubundaki yasaklı keliemeler:\n",
     "There are no blacklisted messages in <b>{}</b>!": " <b>{}</b> grubunda yasaklı kelime yok!",
-    "Added <code>{}</code> to the blacklist in <b>{}</b>!":
-        "<code>{}</code>, <b>{}</b> grubunda yasaklı kelimelere eklendi!",
-    "Tell me which words you would like to add to the blacklist.":
-        "Yasaklamak istediğin kelimeleri bana fısılda.",
-    "Removed <code>{}</code> from the blacklist in <b>{}</b>!":
-        "<code>{}</code>, <b>{}</b> grubundaki yasaklı kelimeler listesinden kaldırıldı!",
+    "Added <code>{}</code> to the blacklist in <b>{}</b>!": "<code>{}</code>, <b>{}</b> grubunda yasaklı kelimelere eklendi!",
+    "Tell me which words you would like to add to the blacklist.": "Yasaklamak istediğin kelimeleri bana fısılda.",
+    "Removed <code>{}</code> from the blacklist in <b>{}</b>!": "<code>{}</code>, <b>{}</b> grubundaki yasaklı kelimeler listesinden kaldırıldı!",
     "This isn't a blacklisted trigger...!": "This isn't a blacklisted trigger...!",
-    "None of these triggers exist, so they weren't removed.":
-        "None of these triggers exist, so they weren't removed.",
-    "Removed <code>{}</code> triggers from the blacklist in <b>{}</b>! {} did not exist, so were not removed.":
-        "Removed <code>{}</code> triggers from the blacklist in <b>{}</b>! {} did not exist, so were not removed.",
-    "Tell me which words you would like to remove from the blacklist.":
-        "Tell me which words you would like to remove from the blacklist.",
-
-    #Filters
+    "None of these triggers exist, so they weren't removed.": "None of these triggers exist, so they weren't removed.",
+    "Removed <code>{}</code> triggers from the blacklist in <b>{}</b>! {} did not exist, so were not removed.": "Removed <code>{}</code> triggers from the blacklist in <b>{}</b>! {} did not exist, so were not removed.",
+    "Tell me which words you would like to remove from the blacklist.": "Tell me which words you would like to remove from the blacklist.",
+    # Filters
     "*Filters in {}:*\n": "*Filters in {}:*\n",
     "local filters": "local filters",
     "*local filters:*\n": "*local filters:*\n",
     "No filters in {}!": "No filters in {}!",
-    "There is no note message - You can't JUST have buttons, you need a message to go with it!":
-        "There is no note message - You can't JUST have buttons, you need a message to go with it!",
+    "There is no note message - You can't JUST have buttons, you need a message to go with it!": "There is no note message - You can't JUST have buttons, you need a message to go with it!",
     "You didn't specify what to reply with!": "You didn't specify what to reply with!",
     "Handler '{}' added in *{}*!": "Handler '{}' added in *{}*!",
     "No filters are active in {}!": "No filters are active in {}!",
-    "Yep, I'll stop replying to that in *{}*." : "Yep, I'll stop replying to that in *{}*.",
-    "That's not a current filter - run /filters for all active filters.":
-        "That's not a current filter - run /filters for all active filters.",
-
-    #Disable
+    "Yep, I'll stop replying to that in *{}*.": "Yep, I'll stop replying to that in *{}*.",
+    "That's not a current filter - run /filters for all active filters.": "That's not a current filter - run /filters for all active filters.",
+    # Disable
     "Disabled the use of `{}` in *{}*": "Disabled the use of `{}` in *{}*",
     "That command can't be disabled": "That command can't be disabled",
     "What should I disable?": "What should I disable?",
-
     "Enabled the use of `{}` in *{}*": "Enabled the use of `{}` in *{}*",
     "Is that even disabled?": "Is that even disabled?",
     "What should I enable?": "What should I enable?",
-
     "The following commands are toggleable:\n{}": "The following commands are toggleable:\n{}",
     "No commands can be disabled.": "No commands can be disabled.",
     "No commands are disabled in *{}*!": "No commands are disabled in *{}*!",
     "No commands are disabled!": "No commands are disabled!",
-    "The following commands are currently restricted in *{}*:\n{}":
-        "The following commands are currently restricted in *{}*:\n{}",
-
-#Locks
+    "The following commands are currently restricted in *{}*:\n{}": "The following commands are currently restricted in *{}*:\n{}",
+    # Locks
     "Locked {} messages for all non-admins!": "Locked {} messages for all non-admins!",
-    "What are you trying to lock...? Try /locktypes for the list of lockables":
-        "What are you trying to lock...? Try /locktypes for the list of lockables",
-    "I'm not an administrator, or haven't got delete rights.":
-        "I'm not an administrator, or haven't got delete rights.",
+    "What are you trying to lock...? Try /locktypes for the list of lockables": "What are you trying to lock...? Try /locktypes for the list of lockables",
+    "I'm not an administrator, or haven't got delete rights.": "I'm not an administrator, or haven't got delete rights.",
     "Unlocked {} for everyone!": "Unlocked {} for everyone!",
-    "What are you trying to unlock...? Try /locktypes for the list of lockables":
-        "What are you trying to unlock...? Try /locktypes for the list of lockables",
+    "What are you trying to unlock...? Try /locktypes for the list of lockables": "What are you trying to unlock...? Try /locktypes for the list of lockables",
     "What are you trying to unlock...?": "What are you trying to unlock...?",
-    "I see a bot, and I've been told to stop them joining... but I'm not admin!":
-        "I see a bot, and I've been told to stop them joining... but I'm not admin!",
-    "Only admins are allowed to add bots to this chat! Get outta here.":
-        "Only admins are allowed to add bots to this chat! Get outta here.",
+    "I see a bot, and I've been told to stop them joining... but I'm not admin!": "I see a bot, and I've been told to stop them joining... but I'm not admin!",
+    "Only admins are allowed to add bots to this chat! Get outta here.": "Only admins are allowed to add bots to this chat! Get outta here.",
     "There are no current locks in *{}*.": "There are no current locks in *{}*.",
     "These are the locks in *{}*:": "These are the locks in *{}*:",
     "this chat": "this chat",
-
-#Log channel
-    "Now, forward the /setlog to the group you want to tie this channel to!":
-        "Now, forward the /setlog to the group you want to tie this channel to!",
-    "This channel has been set as the log channel for {}.":
-        "This channel has been set as the log channel for {}.",
+    # Log channel
+    "Now, forward the /setlog to the group you want to tie this channel to!": "Now, forward the /setlog to the group you want to tie this channel to!",
+    "This channel has been set as the log channel for {}.": "This channel has been set as the log channel for {}.",
     "Successfully set log channel!": "Successfully set log channel!",
-    "*The steps to set a log channel are:*\n • add bot to the desired channel\n • send /setlog to the channel\n • forward the /setlog to the group\n":
-        """*The steps to set a log channel are:*
+    "*The steps to set a log channel are:*\n • add bot to the desired channel\n • send /setlog to the channel\n • forward the /setlog to the group\n": """*The steps to set a log channel are:*
  • add bot to the desired channel)
  • send /setlog to the channel
  • forward the /setlog to the group.""",
-
     "Channel has been unlinked from {}": "Channel has been unlinked from {}",
     "Log channel has been un-set.": "Log channel has been un-set.",
     "No log channel has been set yet!": "No log channel has been set yet!",
-
-#Users
-    "I've seen them in <code>{}</code> chats in total.":
-        "I've seen them in <code>{}</code> chats in total.",
-    "I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me.":
-        "I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me.",
-
-#Msg_deleting
-    "Cannot delete all messages. The messages may be too old, I might not have delete rights, or this might not be a supergroup.":
-        "Cannot delete all messages. The messages may be too old, I might not have delete rights, or this might not be a supergroup.",
+    # Users
+    "I've seen them in <code>{}</code> chats in total.": "I've seen them in <code>{}</code> chats in total.",
+    "I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me.": "I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me.",
+    # Msg_deleting
+    "Cannot delete all messages. The messages may be too old, I might not have delete rights, or this might not be a supergroup.": "Cannot delete all messages. The messages may be too old, I might not have delete rights, or this might not be a supergroup.",
     "Purge complete.": "Purge complete.",
-    "Reply to a message to select where to start purging from.":
-        "Reply to a message to select where to start purging from.",
+    "Reply to a message to select where to start purging from.": "Reply to a message to select where to start purging from.",
     "Whadya want to delete?": "Whadya want to delete?",
-
-#Muting
-    "You'll need to either give me a username to mute, or reply to someone to be muted.":
-        "You'll need to either give me a username to mute, or reply to someone to be muted.",
+    # Muting
+    "You'll need to either give me a username to mute, or reply to someone to be muted.": "You'll need to either give me a username to mute, or reply to someone to be muted.",
     "I'm not muting myself!": "I'm not muting myself!",
     "Afraid I can't stop an admin from talking!": "Afraid I can't stop an admin from talking!",
-    "You'll need to either give me a username to unmute, or reply to someone to be unmuted.":
-        "You'll need to either give me a username to unmute, or reply to someone to be unmuted.",
+    "You'll need to either give me a username to unmute, or reply to someone to be unmuted.": "You'll need to either give me a username to unmute, or reply to someone to be unmuted.",
     "This user already has the right to speak in {}.": "This user already has the right to speak in {}.",
     "Yep, {} can start talking again in {}!": "Yep, {} can start talking again in {}!",
-    "This user isn't even in the chat, unmuting them won't make them talk more than they already do!":
-        "This user isn't even in the chat, unmuting them won't make them talk more than they already do!",
+    "This user isn't even in the chat, unmuting them won't make them talk more than they already do!": "This user isn't even in the chat, unmuting them won't make them talk more than they already do!",
     "I really wish I could mute admins...": "I really wish I could mute admins...",
-    "I'm not gonna MUTE myself, are you crazy?" : "I'm not gonna MUTE myself, are you crazy?",
-    "You haven't specified a time to mute this user for!":
-        "You haven't specified a time to mute this user for!",
+    "I'm not gonna MUTE myself, are you crazy?": "I'm not gonna MUTE myself, are you crazy?",
+    "You haven't specified a time to mute this user for!": "You haven't specified a time to mute this user for!",
     "Muted for {} in {}!": "Muted for {} in {}!",
     "This user is already muted in {}!": "This user is already muted in {}!",
     "Well damn, I can't mute that user.": "Well damn, I can't mute that user.",
-
-    "You'll need to either give me a username to restrict, or reply to someone to be restricted.":
-        "You'll need to either give me a username to restrict, or reply to someone to be restricted.",
+    "You'll need to either give me a username to restrict, or reply to someone to be restricted.": "You'll need to either give me a username to restrict, or reply to someone to be restricted.",
     "I'm not restricting myself!": "I'm not restricting myself!",
     "Afraid I can't restrict admins!": "Afraid I can't restrict admins!",
     "{} is restricted from sending media in {}!": "{} is restricted from sending media in {}!",
     "This user is already restricted in {}!": "This user is already restricted in {}!",
     "This user isn't in the {}!": "This user isn't in the {}!",
-
-    "You'll need to either give me a username to unrestrict, or reply to someone to be unrestricted.":
-        "You'll need to either give me a username to unrestrict, or reply to someone to be unrestricted.",
-    "This user already has the rights to send anything in {}.": 
-        "This user already has the rights to send anything in {}.",
+    "You'll need to either give me a username to unrestrict, or reply to someone to be unrestricted.": "You'll need to either give me a username to unrestrict, or reply to someone to be unrestricted.",
+    "This user already has the rights to send anything in {}.": "This user already has the rights to send anything in {}.",
     "Yep, {} can send media again in {}!": "Yep, {} can send media again in {}!",
-    "This user isn't even in the chat, unrestricting them won't make them send anything than they already do!":
-        "This user isn't even in the chat, unrestricting them won't make them send anything than they already do!",
+    "This user isn't even in the chat, unrestricting them won't make them send anything than they already do!": "This user isn't even in the chat, unrestricting them won't make them send anything than they already do!",
     "I really wish I could restrict admins...": "I really wish I could restrict admins...",
     "I'm not gonna RESTRICT myself, are you crazy?": "I'm not gonna RESTRICT myself, are you crazy?",
-    "You haven't specified a time to restrict this user for!": 
-        "You haven't specified a time to restrict this user for!",
+    "You haven't specified a time to restrict this user for!": "You haven't specified a time to restrict this user for!",
     "Well damn, I can't restrict that user.": "Well damn, I can't restrict that user.",
     "{} is muted in {}!": "{} is muted in {}!",
     "Restricted from sending media for {} in {}!": "Restricted from sending media for {} in {}!",
     "Restricted for {} in {}!": "Restricted for {} in {}!",
-
-#Notes
+    # Notes
     "Get rekt": "Sie mk.",
-    "Invalid Chat ID provided!": "Geçersiz sohbet kimliği!", #Connections
-    "You don't seem to be referring to a user.": "Bu bir kullanıcıyı atıfta bulundurmuyor..", #Admin, Bans, Muting
-    "I can't seem to find this user": "Bu kullancıyı bulamıyorum.", #Bans, Muting
-    "Yes": "Evet", #Antispam
-    "No": "Hayır", #Antispam
-
-#__main__
-    #Module names
-        "Admin": "Yönetici",
-        "AFK": "Meşgul (AFK)",
-        "AntiFlood": "Flood koruması",
-        "Antispam Security": "Spam koruması",
-        "Bans": "Engelliler",
-        "Memes and etc.": "Capsler vb.",
-        "Word Blacklists": "Engelli kelimeler",
-        "Filters": "Filtreler",
-        "Federations": "Örgütler",
-        "Command disabling": "Komut devre dışı bırakma",
-        "Locks": "Kilitler",
-        "Log Channels": "Kanal dökümleri",
-        "Misc": "Diğer",
-        "Purges": "Toplu mesaj silme",
-        "Muting & Restricting": "Sessize alma ve kısıtlama",
-        "Notes": "Notlar",
-        "Reporting": "Şikayet etme",
-        "RSS Feed": "RSS akışı",
-        "Rules": "Kurallar",
-        "Connections": "Bağlantılar",
-        "Bios and Abouts": "Biyografi ve hakkında",
-        "Warnings": "Uyarılar",
-        "Welcomes/Goodbyes": "Hoşgeldiniz/Görüşürüz",
-
-#Some main stuff
-"Here is the help for the *{}* module:\n{}": "Sana *{}* komutu hakkında yardım edeyim:\n{}",
-"Back": "Geri",
-"send-help": """Merhaba! Benim adım {}.
+    "Invalid Chat ID provided!": "Geçersiz sohbet kimliği!",  # Connections
+    "You don't seem to be referring to a user.": "Bu bir kullanıcıyı atıfta bulundurmuyor..",  # Admin, Bans, Muting
+    "I can't seem to find this user": "Bu kullancıyı bulamıyorum.",  # Bans, Muting
+    "Yes": "Evet",  # Antispam
+    "No": "Hayır",  # Antispam
+    # __main__
+    # Module names
+    "Admin": "Yönetici",
+    "AFK": "Meşgul (AFK)",
+    "AntiFlood": "Flood koruması",
+    "Antispam Security": "Spam koruması",
+    "Bans": "Engelliler",
+    "Memes and etc.": "Capsler vb.",
+    "Word Blacklists": "Engelli kelimeler",
+    "Filters": "Filtreler",
+    "Federations": "Örgütler",
+    "Command disabling": "Komut devre dışı bırakma",
+    "Locks": "Kilitler",
+    "Log Channels": "Kanal dökümleri",
+    "Misc": "Diğer",
+    "Purges": "Toplu mesaj silme",
+    "Muting & Restricting": "Sessize alma ve kısıtlama",
+    "Notes": "Notlar",
+    "Reporting": "Şikayet etme",
+    "RSS Feed": "RSS akışı",
+    "Rules": "Kurallar",
+    "Connections": "Bağlantılar",
+    "Bios and Abouts": "Biyografi ve hakkında",
+    "Warnings": "Uyarılar",
+    "Welcomes/Goodbyes": "Hoşgeldiniz/Görüşürüz",
+    # Some main stuff
+    "Here is the help for the *{}* module:\n{}": "Sana *{}* komutu hakkında yardım edeyim:\n{}",
+    "Back": "Geri",
+    "send-help": """Merhaba! Benim adım {}.
 Ben grup yönetici botuyum! Sana yardım edebileceğim komutlara şöyle bir bakalım
 Mevcut olan ana konumlar:
  - /start: Botun yaşadığını kontrol etmeye dair en önemli komut
@@ -520,30 +431,24 @@ Mevcut olan ana konumlar:
    
 {}
    """,
-
-
-"\nAll commands can either be used with `/` or `!`.\n": "\nAll commands can either be used with `/` or `!`.\n",
-
-#Module helps
-"Admin_help": """ - /adminlist | /admins: list of admins in the chat
+    "\nAll commands can either be used with `/` or `!`.\n": "\nAll commands can either be used with `/` or `!`.\n",
+    # Module helps
+    "Admin_help": """ - /adminlist | /admins: list of admins in the chat
 *Admin only:*
  - /pin: silently pins the message replied to - add 'loud' or 'notify' to give notifs to users.
  - /unpin: unpins the currently pinned message
  - /invitelink: gets invitelink
  - /promote: promotes the user replied to
  - /demote: demotes the user replied to""",
-
-"AFK_help": """ - /afk <reason>: mark yourself as AFK.
+    "AFK_help": """ - /afk <reason>: mark yourself as AFK.
  - brb <reason>: same as the afk command - but not a command.
 When marked as AFK, any mentions will be replied to with a message to say you're not available!""",
-
-"AntiFlood_help": """ You know how sometimes, people join, send 100 messages, and ruin your chat? With antiflood, that happens no more!
+    "AntiFlood_help": """ You know how sometimes, people join, send 100 messages, and ruin your chat? With antiflood, that happens no more!
 Antiflood allows you to take action on users that send more than x messages in a row. Actions are: ban/kick/mute/tban/tmute
 Available commands are:
  - /flood: gets the current antiflood settings.
  - /setflood <number/off>: sets the number of messages at which to take action on a user.""",
-
-"Locks_help": """Do stickers annoy you? or want to avoid people sharing links? or pictures? You're in the right place!
+    "Locks_help": """Do stickers annoy you? or want to avoid people sharing links? or pictures? You're in the right place!
 The locks module allows you to lock away some common items in the telegram world; the bot will automatically delete them!
 Available commands are:
  - /lock <item(s)>: lock the usage of "item". Now, only admins will be able to use this type!
@@ -552,8 +457,7 @@ Available commands are:
  - /locktypes: gets a list of all things that can be locked. (have a look at this!)
 eg: lock stickers with:
 /lock sticker""",
-
-"Command disabling_help":"""Not everyone wants every feature that rose offers. Some commands are best left unused; to avoid spam and abuse.
+    "Command disabling_help": """Not everyone wants every feature that rose offers. Some commands are best left unused; to avoid spam and abuse.
 This allows you to disable some commonly used commands, so noone can use them. It'll also allow you to autodelete them, stopping people from
 Available commands are:
  - /disable <commandname>: stop users from using the "commandname" command in this group.
@@ -562,9 +466,8 @@ Available commands are:
  - /disabled: list the disabled commands in this chat.
 Note:
 When disabling a command, the command only gets disabled for non-admins. All admins can still use those commands.
-Disabled commands are still accessible through the /connect feature. If you would be interested to see this disabled too, let me know in the support chat.""", 
-
-"Filters_help": """Make your chat more lively with filters; The bot will reply to certain words!
+Disabled commands are still accessible through the /connect feature. If you would be interested to see this disabled too, let me know in the support chat.""",
+    "Filters_help": """Make your chat more lively with filters; The bot will reply to certain words!
 Filters are case insensitive; every time someone says your trigger words, {} will reply something else! can be used to create your own commands, if desired.
  - /filters: list all active filters in this chat.
 *Admin only:*
@@ -578,8 +481,7 @@ A multiword filter could be set via:
 If you want to save an image, gif, or sticker, or any other data, do the following:
 `/filter word while replying to a sticker or whatever data you'd like. Now, every time someone mentions "word", that sticker will be sent as a reply.`
 Now, anyone saying "hello" will be replied to with "Hello there! How are you?".""",
-
-"Bans_help": """Some people need to be publicly banned; spammers, annoyances, or just trolls.
+    "Bans_help": """Some people need to be publicly banned; spammers, annoyances, or just trolls.
 This module allows you to do that easily, by exposing some common actions, so everyone will see!
 Available commands are:
  - /ban: bans a user from your chat.
@@ -594,8 +496,7 @@ Available commands are:
  - /kickme: users who use this, kick themselves!
  An example of temporarily muting someone:
 /tmute @username 2h; this mutes a user for 2 hours.""",
-
-"Connections_help":"""Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
+    "Connections_help": """Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
 This allows you to connect to a chat's database, and add things to it without the chat knowing about it! For obvious reasons, you need to be an admin to add things; but any member can view your data. (banned/kicked users can't!)
 Actions are available with connected groups:
  • View and edit notes
@@ -611,8 +512,7 @@ Actions are available with connected groups:
  - /disconnect: Disconnect from chat
  - /allowconnect on/yes/off/no: Allow connect users to group
  You can retrieve the chat id by using the /id command in your chat. Don't be surprised if the id is negative; all super groups have negative ids.""",
-
-"Log Channels_help": """*Admin only:*
+    "Log Channels_help": """*Admin only:*
 - /logchannel: get log channel info
 - /setlog: set the log channel.
 - /unsetlog: unset the log channel.
@@ -620,17 +520,15 @@ Setting the log channel is done by:
 - adding the bot to the desired channel (as an admin!)
 - sending /setlog in the channel
 - forwarding the /setlog to the group
-""", 
-
-"Reporting_help": """ - /report <reason>: reply to a message to report it to admins.
+""",
+    "Reporting_help": """ - /report <reason>: reply to a message to report it to admins.
  - @admin: reply to a message to report it to admins.
 NOTE: neither of these will get triggered if used by admins
 *Admin only:*
  - /reports <on/off>: change report setting, or view current status.
    - If done in pm, toggles your status.
    - If in chat, toggles that chat's status.""",
-
-"Notes_help": """Save data for future users with notes!
+    "Notes_help": """Save data for future users with notes!
 Notes are great to save random tidbits of information; a phone number, a nice gif, a funny picture - anything!
 Available commands are:
  - /save <word> <sentence>: Save that sentence to the note called "word". Replying to a message will save that message. Even works on media!
@@ -646,8 +544,7 @@ If you want to save an image, gif, or sticker, or any other data, do the followi
 /save word while replying to a sticker or whatever data you'd like. Now, the note at "#word" contains a sticker which will be sent as a reply.
 Tip: to retrieve a note without the formatting, use /get <notename> noformat
 This will retrieve the note and send it without formatting it; getting you the raw markdown, allowing you to make easy edits""",
-
-"Muting & Restricting_help": """Some people need to be publicly banned; spammers, annoyances, or just trolls.
+    "Muting & Restricting_help": """Some people need to be publicly banned; spammers, annoyances, or just trolls.
 This module allows you to do that easily, by exposing some common actions, so everyone will see!
 Available commands are:
  - /ban: bans a user from your chat.
@@ -662,8 +559,7 @@ Available commands are:
  - /kickme: users who use this, kick themselves!
  An example of temporarily muting someone:
 /tmute @username 2h; this mutes a user for 2 hours.""",
-
-"Misc_help": """ - /id: get the current group id. If used by replying to a message, gets that user's id.
+    "Misc_help": """ - /id: get the current group id. If used by replying to a message, gets that user's id.
  - /runs: reply a random string from an array of replies.
  - /insults: reply a random string from an array of replies.
  - /slap: slap a user, or get slapped if not a reply.
@@ -681,18 +577,15 @@ Available commands are:
  - /ud: Type the word or expression you want to search. For example /ud Gay
  - /removebotkeyboard: Got a nasty bot keyboard stuck in your group?
  - /exec <language> <code> [/stdin <stdin>]: Execute a code in a specified language. Send an empty command to get the suppoerted languages.""",
-
-"Bios and Abouts_help": """ - /setbio <text>: while replying, will save another user's bio
+    "Bios and Abouts_help": """ - /setbio <text>: while replying, will save another user's bio
  - /bio: will get your or another user's bio. This cannot be set by yourself.
  - /setme <text>: will set your info
  - /me: will get your or another user's info""",
-
-"Rules_help": """ - /rules: get the rules for this chat.
+    "Rules_help": """ - /rules: get the rules for this chat.
 *Admin only:*
  - /setrules <your rules here>: set the rules for this chat.
  - /clearrules: clear the rules for this chat.""",
-
-"Warnings_help": """ - /warns <userhandle>: get a user's number, and reason, of warnings.
+    "Warnings_help": """ - /warns <userhandle>: get a user's number, and reason, of warnings.
  - /warnlist: list of all current warning filters
 *Admin only:*
  - /warn <userhandle>: warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
@@ -704,8 +597,7 @@ be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is
  - /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
  - /rmwarn <userhandle>: removes latest warn for a user. It also can be used as reply.
  - /unwarn <userhandle>: same as /rmwarn""",
-
-"Welcomes/Goodbyes_help": """
+    "Welcomes/Goodbyes_help": """
 Give your members a warm welcome with the greetings module! Or a sad goodbye... Depends!
 Available commands are:
  - /welcome <on/off/yes/no>: enables/disables welcome messages. If no option is given, returns the current welcome message and welcome settings.
@@ -735,8 +627,7 @@ If you want to save an image, gif, or sticker, or any other data, do the followi
 Tip: use /welcome noformat to retrieve the unformatted welcome message.
 This will retrieve the welcome message and send it without formatting it; getting you the raw markdown, allowing you to make easy edits.
 This also works with /goodbye.""",
-
-"Word Blacklists_help":"""You can set blacklist filters to take automatic action on people when they say certain things. This is done using:
+    "Word Blacklists_help": """You can set blacklist filters to take automatic action on people when they say certain things. This is done using:
  - /addblacklist <blacklist trigger> <blacklist reason>: blacklists the trigger. You can set sentences by putting quotes around the reason.
  - /unblacklist <blacklist trigger>: stop blacklisting a certain blacklist trigger.
  - /rmblacklist <blacklist trigger>: same as /unblacklist
@@ -752,15 +643,12 @@ For example, the following will ban any bit.ly link:
 If you wanted to only match bit.ly/ links followed by three characters, you could use:
 /addblacklist "bit.ly/???" We dont like shorteners!
 This would match bit.ly/abc, but not bit.ly/abcd.""",
-
-"Purges_help": """Bir sürü mesajı tek seferde mi silmek istiyorsun. Purge bunun için var!
+    "Purges_help": """Bir sürü mesajı tek seferde mi silmek istiyorsun. Purge bunun için var!
 Mevcut komutla:
  - /purge: yanıtlanan mesajdan, güncel mesaja kadar hepsini siler.
  - /purge X: yanıtlanan mesaj dahil, X sayısı kadar mesaj siler.
  - /del: yanıtladığın mesajı siler. """,
-
-
-"Federations_help": """Ah, group management. It's all fun and games, until you start getting spammers in, and you need to ban them. Then you need to start banning more, and more, and it gets painful.
+    "Federations_help": """Ah, group management. It's all fun and games, until you start getting spammers in, and you need to ban them. Then you need to start banning more, and more, and it gets painful.
 But then you have multiple groups, and you don't want these spammers in any of your groups - how can you deal? Do you have to ban them manually, in all your groups?
 Inspired by [Rose bot](t.me/MissRose_bot)
 No more! With federations, you can make a ban in one chat overlap to all your other chats.
@@ -779,10 +667,8 @@ Commands:
  - /frules: Show federation rules
  - /chatfed: Show the federation the chat is in
  - /fedadmins: Show the federation admins""",
-
-#GDPR
-"send-gdpr": """Kişisel bilgilerin silindi.\n\nBu işlem senin yasağını \
+    # GDPR
+    "send-gdpr": """Kişisel bilgilerin silindi.\n\nBu işlem senin yasağını \
 hiçbir gruptan açmayacak çünkü bu telegramın verisi YanaBot'un değil.
-[buna](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), dayanaraktan flood, uyarılar ve gbanlar korundu."""
-
+[buna](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), dayanaraktan flood, uyarılar ve gbanlar korundu.""",
 }

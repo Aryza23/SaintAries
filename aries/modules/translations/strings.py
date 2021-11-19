@@ -6,20 +6,21 @@ from aries.modules.translations.Spanish import SpanishStrings
 from aries.modules.translations.Turkish import TurkishStrings
 from aries.modules.translations.Indonesian import IndonesianStrings
 
+
 def tld(chat_id, t, show_none=True):
     LANGUAGE = prev_locale(chat_id)
     print(chat_id, t)
     if LANGUAGE:
         LOCALE = LANGUAGE.locale_name
-        if LOCALE in ('ru') and t in RussianStrings:
-           return RussianStrings[t]
-        elif LOCALE in ('ua') and t in UkrainianStrings:
+        if LOCALE in ("ru") and t in RussianStrings:
+            return RussianStrings[t]
+        elif LOCALE in ("ua") and t in UkrainianStrings:
             return UkrainianStrings[t]
-        elif LOCALE in ('es') and t in SpanishStrings:
+        elif LOCALE in ("es") and t in SpanishStrings:
             return SpanishStrings[t]
-        elif LOCALE in ('tr') and t in TurkishStrings:
+        elif LOCALE in ("tr") and t in TurkishStrings:
             return TurkishStrings[t]
-        elif LOCALE in ('id') and t in IndonesianStrings:
+        elif LOCALE in ("id") and t in IndonesianStrings:
             return IndonesianStrings[t]
         else:
             if t in EnglishStrings:
@@ -33,7 +34,6 @@ def tld(chat_id, t, show_none=True):
             return t
 
 
-
 def tld_help(chat_id, t):
     LANGUAGE = prev_locale(chat_id)
     print("tld_help ", chat_id, t)
@@ -44,15 +44,15 @@ def tld_help(chat_id, t):
 
         print("Test2", t)
 
-        if LOCALE in ('ru') and t in RussianStrings:
+        if LOCALE in ("ru") and t in RussianStrings:
             return RussianStrings[t]
-        elif LOCALE in ('ua') and t in UkrainianStrings:
+        elif LOCALE in ("ua") and t in UkrainianStrings:
             return UkrainianStrings[t]
-        elif LOCALE in ('es') and t in SpanishStrings:
+        elif LOCALE in ("es") and t in SpanishStrings:
             return SpanishStrings[t]
-        elif LOCALE in ('tr') and t in TurkishStrings:
+        elif LOCALE in ("tr") and t in TurkishStrings:
             return TurkishStrings[t]
-        elif LOCALE in ('id') and t in IndonesianStrings:
+        elif LOCALE in ("id") and t in IndonesianStrings:
             return IndonesianStrings[t]
         else:
             return False
