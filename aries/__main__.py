@@ -4,7 +4,7 @@ import sys
 import time
 from sys import argv
 from typing import Optional
-from telethon import idle
+from pyrogram import idle
 
 from pyrogram import filters
 from telegram import (
