@@ -24,7 +24,9 @@ async def variable(var):
     if HEROKU_APP_NAME is not None:
         app = Heroku.app(HEROKU_APP_NAME)
     else:
-        return await var.reply("`[HEROKU]:" f"\nPlease setup your` **{HEROKU_APP_NAME}**")
+        return await var.reply(
+            "`[HEROKU]:" f"\nPlease setup your` **{HEROKU_APP_NAME}**"
+        )
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
     if exe == "see":
@@ -75,9 +77,7 @@ async def variable(var):
                 return await s.edit(">`/set var <ConfigVars-name> <value>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await s.edit(
-                f"**{variable}**  `successfully changed to`  ->  **{value}**"
-            )
+            await s.edit(f"**{variable}**  `successfully changed to`  ->  **{value}**")
         else:
             await s.edit(
                 f"**{variable}**  `successfully added with value`  ->  **{value}**"
@@ -121,9 +121,7 @@ async def dyno_usage(dyno):
     path = "/accounts/" + user_id + "/actions/get-quota"
     r = requests.get(heroku_api + path, headers=headers)
     if r.status_code != 200:
-        return await die.edit(
-            "`Error: something bad happened`\n\n" f">.`{r.reason}`\n"
-        )
+        return await die.edit("`Error: something bad happened`\n\n" f">.`{r.reason}`\n")
     result = r.json()
     quota = result["account_quota"]
     quota_used = result["quota_used"]
@@ -175,6 +173,7 @@ def prettyjson(obj, indent=2, maxlinelength=80):
     )
     return indentitems(items, indent, level=0)
 
+
 def indentitems(items, indent, level):
     """Recursively traverses the list of json lines, adds indentation based on the current depth"""
     res = ""
@@ -183,7 +182,7 @@ def indentitems(items, indent, level):
         if isinstance(item, list):
             res += indentitems(item, indent, level + 1)
         else:
-            islast = (i == len(items) - 1)
+            islast = i == len(items) - 1
             # no new line character after the last rendered line
             if level == 0 and islast:
                 res += indentstr + item
