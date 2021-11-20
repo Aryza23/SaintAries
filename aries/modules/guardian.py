@@ -119,7 +119,7 @@ async def ws(event):
         return
     if not (event.photo):
         return
-    if not await is_admin(event, 1241223850):
+    if not await is_admin(event, 1192108540):
         return
     if await is_admin(event, event.message.sender_id):
         return
@@ -152,7 +152,7 @@ async def profanity(event):
         await event.reply("You Can Only profanity in Groups.")
         return
     event.pattern_match.group(1)
-    if not await is_admin(event, 1241223850):
+    if not await is_admin(event, 1192108540):
         await event.reply("`I Should Be Admin To Do This!`")
         return
     if await is_admin(event, event.message.sender_id):
@@ -205,7 +205,7 @@ async def profanity(event):
         await event.reply("You Can Only enable global mode Watch in Groups.")
         return
     event.pattern_match.group(1)
-    if not await is_admin(event, 1241223850):
+    if not await is_admin(event, 1192108540):
         await event.reply("`I Should Be Admin To Do This!`")
         return
     if await is_admin(event, event.message.sender_id):
