@@ -20,7 +20,8 @@ from aries.modules.sql.nsfw_watch_sql import (
     is_nsfwatch_indb,
     rmnsfwatch,
 )
-from aries import telethn, MONGO_DB_URI
+from aries import telethn as tbot
+from aries import MONGO_DB_URI
 
 translator = google_translator()
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
