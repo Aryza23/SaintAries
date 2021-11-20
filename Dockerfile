@@ -1,4 +1,6 @@
-FROM python:latest # 3.10.0-slim-buster
+#3.10.0-slim-buster
+
+FROM python:latest
 ENV PIP_NO_CACHE_DIR 1
 ENV PYTHONUNBUFFERED=1
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
