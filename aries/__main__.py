@@ -223,8 +223,6 @@ def start(update: Update, context: CallbackContext):
                         ]
                     ),
                 )
-            elif args[0].lower() == "markdownhelp":
-                IMPORTED["extras"].markdown_help_sender(update)
             elif args[0].lower() == "disasters":
                 IMPORTED["disasters"].send_disasters(update)
             elif args[0].lower().startswith("stngs_"):
