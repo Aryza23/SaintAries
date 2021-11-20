@@ -261,13 +261,10 @@ else:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
 
-from aries.modules.sql import SESSION
+from aries.modules.sql import sql 
 
-print("[ARIES]: Telegraph Installing")
 telegraph = Telegraph()
-print("[ARIES]: Telegraph Account Creating")
 telegraph.create_account(short_name="Aries")
-print("[INFO]: INITIALIZING CLIENT SYSTEM")
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
@@ -275,9 +272,7 @@ aiohttpsession = ClientSession()
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 mongo_client = MongoClient(MONGO_DB_URI)
 db = mongo_client.aries
-print("[INFO]: INITIALIZING SUCCESS")
 ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
-print("[USERBOT]: Connecting Aries Userbot")
 
 pbot = Client(
     ":memory:",
