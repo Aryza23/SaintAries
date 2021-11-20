@@ -553,7 +553,9 @@ def aries_about_callback(update, context):
             f"\n2. **/pause for paused music."
             f"\n3. **/resume for resume music."
             f"\n4. **/stop or /end for end music playing."
-            f"\n5. **/lyrics for searching lyrics.\n\n"
+            f"\n5. **/music (name song) for download song."
+            f"\n6. **/video (name video) for download video."
+            f"\n7. **/lyrics for searching lyrics.\n\n"
             f"\n📌 **Also you can download music or video with push button menu.**\n"
             f"\n⚡ __Powered by Aries A.I__\n",
             parse_mode=ParseMode.MARKDOWN,
