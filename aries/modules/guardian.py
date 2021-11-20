@@ -65,7 +65,7 @@ async def is_nsfw(event):
     return is_nsfw
 
 
-@telethn.on(events.NewMessage(pattern="/gshield (.*)"))
+@tbot.on(events.NewMessage(pattern="/gshield (.*)"))
 async def nsfw_watch(event):
     if not event.is_group:
         await event.reply("You Can Only Nsfw Watch in Groups.")
@@ -110,7 +110,7 @@ async def nsfw_watch(event):
         return
 
 
-@telethn.on(events.NewMessage())
+@tbot.on(events.NewMessage())
 async def ws(event):
     warner_starkz = get_all_nsfw_enabled_chat()
     if len(warner_starkz) == 0:
@@ -293,7 +293,7 @@ def extract_emojis(s):
     return "".join(c for c in s if c in emoji.UNICODE_EMOJI)
 
 
-@telethn.on(events.NewMessage(pattern=None))
+@tbot.on(events.NewMessage(pattern=None))
 async def del_profanity(event):
     if event.is_private:
         return
