@@ -911,8 +911,8 @@ def main():
 
     donate_handler = CommandHandler("donate", donate, run_async=True)
 
-    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
-    is_chat_allowed_handler = MessageHandler(Filters.chat_type.groups, is_chat_allowed)
+    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats, run_async=True)
+    is_chat_allowed_handler = MessageHandler(Filters.chat_type.groups, is_chat_allowed, run_async=True)
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
