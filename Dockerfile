@@ -1,6 +1,4 @@
-#3.10.0-slim-buster
-
-FROM python:latest
+FROM python:3.9.7-slim-buster
 ENV PIP_NO_CACHE_DIR 1
 ENV PYTHONUNBUFFERED=1
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
@@ -59,11 +57,11 @@ RUN apt update && apt upgrade -y && \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 RUN python -m pip install -U pip
+RUN pip3 install -U https://github.com/pyrogram/pyrogram/archive/develop.zip
 RUN python -m pip install -U matplotlib 
 RUN pip3 install --upgrade pip setuptools
 RUN git clone -b main https://github.com/idzero23/SaintAries /root/aries
 WORKDIR /root/aries
 ENV PATH="/home/bot/bin:$PATH"
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -U -r requirements.txt
+RUN pip3 install -U -r requirements.txt
 CMD ["python3","-m","aries"]
