@@ -12,7 +12,7 @@ from telethon import events
 from telethon.tl.types import ChatBannedRights
 from pymongo import MongoClient
 
-from aries.modules.admin import is_admin
+from aries.utils.telethonbasics import is_admin
 from aries.events import register
 from aries.modules.sql.nsfw_watch_sql import (
     add_nsfwatch,
@@ -71,7 +71,7 @@ async def nsfw_watch(event):
         await event.reply("You Can Only Nsfw Watch in Groups.")
         return
     input_str = event.pattern_match.group(1)
-    if not await is_admin(event, 1241223850):
+    if not await is_admin(event, 1192108540):
         await event.reply("`I Should Be Admin To Do This!`")
         return
     if await is_admin(event, event.message.sender_id):
