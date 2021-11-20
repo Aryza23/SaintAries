@@ -273,6 +273,7 @@ arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 mongo_client = MongoClient(MONGO_DB_URI)
 db = mongo_client.aries
 ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
+loop = asyncio.get_event_loop()
 
 pbot = Client(
     ":memory:",
