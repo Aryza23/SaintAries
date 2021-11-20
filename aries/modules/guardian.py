@@ -12,7 +12,7 @@ from telethon import events
 from telethon.tl.types import ChatBannedRights
 from pymongo import MongoClient
 
-from aries.utils.telethonbasics import is_admin
+from aries.pyrogramee.telethonbasics import is_admin
 from aries.events import register
 from aries.modules.sql.nsfw_watch_sql import (
     add_nsfwatch,
