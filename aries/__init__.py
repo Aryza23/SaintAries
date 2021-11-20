@@ -261,7 +261,7 @@ else:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
 
-from aries.modules.sql import sql 
+from aries.modules.sql import sql
 
 telegraph = Telegraph()
 telegraph.create_account(short_name="Aries")
