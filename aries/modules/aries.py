@@ -12,6 +12,7 @@ AD_STRINGS = (
     "*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*",
 )
 
+
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
     message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
