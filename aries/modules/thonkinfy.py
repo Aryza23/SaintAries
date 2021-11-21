@@ -8,7 +8,6 @@ from telegram.ext import run_async, CommandHandler
 from aries import dispatcher
 
 
-
 def thonkify(bot: Bot, update: Update):
     from aries.modules.thonkify_dict import thonkifydict
 
@@ -24,7 +23,13 @@ def thonkify(bot: Bot, update: Update):
         message.reply_text(chat.id, "Thonk yourself!")
         return
 
-    tracking = Image.open(BytesIO(base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAYAAAOACAYAAAAZzQIQAAAALElEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwZV4AAAfA8WFIAAAAASUVORK5CYII='))) # base64 encoded empty image(but longer)
+    tracking = Image.open(
+        BytesIO(
+            base64.b64decode(
+                "iVBORw0KGgoAAAANSUhEUgAAAAYAAAOACAYAAAAZzQIQAAAALElEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwZV4AAAfA8WFIAAAAASUVORK5CYII="
+            )
+        )
+    )  # base64 encoded empty image(but longer)
 
     # remove characters thonkify can't parse
     for character in msg:
@@ -34,10 +39,12 @@ def thonkify(bot: Bot, update: Update):
     # idk PIL. this part was untouched and ask @devrism for better explanation. According to my understanding, Image.new creates a new image and paste "pastes" the character one by one comparing it with "value" variable
     x = 0
     y = 896
-    image = Image.new('RGBA', [x, y], (0, 0, 0))
+    image = Image.new("RGBA", [x, y], (0, 0, 0))
     for character in msg:
         value = thonkifydict.get(character)
-        addedimg = Image.new('RGBA', [x + value.size[0] + tracking.size[0], y], (0, 0, 0))
+        addedimg = Image.new(
+            "RGBA", [x + value.size[0] + tracking.size[0], y], (0, 0, 0)
+        )
         addedimg.paste(image, [0, 0])
         addedimg.paste(tracking, [x, 0])
         addedimg.paste(value, [x + tracking.size[0], 0])
@@ -50,8 +57,8 @@ def thonkify(bot: Bot, update: Update):
 
     # put processed image in a buffer and then upload cause async
     with BytesIO() as buffer:
-        buffer.name = 'image.png'
-        image.save(buffer, 'PNG')
+        buffer.name = "image.png"
+        image.save(buffer, "PNG")
         buffer.seek(0)
         bot.send_sticker(chat_id=message.chat_id, sticker=buffer)
 
