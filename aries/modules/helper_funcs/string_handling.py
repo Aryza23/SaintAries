@@ -277,3 +277,14 @@ def extract_time(message, time_val):
             )
         )
         return ""
+
+def markdown_to_html(text):
+    text = text.replace("*", "**")
+    text = text.replace("`", "```")
+    text = text.replace("~", "~~")
+    _html = markdown2.markdown(text, extras=["strike", "underline"])
+    return bleach.clean(
+        _html,
+        tags=["strong", "em", "a", "code", "pre", "strike", "u"],
+        strip=True,
+    )[:-1]
