@@ -8,8 +8,8 @@ from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 
 AD_STRINGS = (
-    "__kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu__",
-    "__healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak__",
+    "_kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu_",
+    "_healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak_",
 )
 
 
@@ -29,7 +29,7 @@ def diaryaryza(update: Update, context: CallbackContext):
     reply_text = (
         msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
     )
-    reply_text(random.choice(AD_STRINGS))
+    reply_text(random.choice(AD_STRINGS),parse_mode=ParseMode.MARKDOWN)
 
 
 __help__ = """
