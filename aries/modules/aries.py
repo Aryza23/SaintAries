@@ -48,7 +48,7 @@ dispatcher.add_handler(DIARYARYZA_HANDLER)
 
 __mod_name__ = "Aries fun"
 
-"""
-__command_list__ = ["aries", "diaryaryza"]
-__handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
-"""
+
+## __command_list__ = ["aries", "diaryaryza"]
+## __handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
+
