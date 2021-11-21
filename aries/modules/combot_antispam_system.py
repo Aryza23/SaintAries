@@ -23,8 +23,8 @@ from aries import (
     OWNER_ID,
     DEV_USERS,
     DRAGONS,
-    SUPPORT_USERS,
-    TIGER_USERS,
+    WOLVES,
+    TIGERS,
     WHITELIST_USERS,
     LOGGER,
 )
@@ -41,7 +41,7 @@ import aries.modules.sql.welcome_sql as sql
 import aries.modules.sql.global_bans_sql as gbansql
 import aries.modules.sql.users_sql as userssql
 
-from aries import dispatcher, OWNER_ID, LOGGER, DRAGONS, SUPPORT_USERS
+from aries import dispatcher, OWNER_ID, LOGGER, DRAGONS, WOLVES
 from aries.modules.helper_funcs.chat_status import (
     user_admin,
     can_delete,
