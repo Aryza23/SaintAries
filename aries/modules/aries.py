@@ -6,7 +6,11 @@ from telegram.ext import CallbackContext
 import aries.modules.aries_strings as aries_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
-from aries.modules.aries_strings import AD_STRINGS
+
+AD_STRINGS = (
+    "https://i.imgur.com/O6gNv68.jpg",
+    "https://i.imgur.com/YdD9ToI.jpg",
+)
 
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -43,5 +47,8 @@ DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_asy
 dispatcher.add_handler(DIARYARYZA_HANDLER)
 
 __mod_name__ = "Aries fun"
+
+"""
 __command_list__ = ["aries", "diaryaryza"]
 __handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
+"""
