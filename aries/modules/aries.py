@@ -12,6 +12,7 @@ AD_STRINGS = (
     "https://i.imgur.com/YdD9ToI.jpg",
 )
 
+
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
     message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
@@ -21,6 +22,7 @@ def aries(update: Update, context: CallbackContext):
         else message.reply_photo
     )
     reply_photo(random.choice(aries_strings.ARIES_IMG))
+
 
 def diaryaryza(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -51,4 +53,3 @@ __mod_name__ = "Aries fun"
 
 __command_list__ = ["aries", "diaryaryza"]
 __handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
-
