@@ -147,6 +147,7 @@ def build_keyboard_parser(bot, chat_id, buttons):
 
     return keyb
 
+
 def user_bot_owner(func):
     @wraps(func)
     def is_user_bot_owner(bot: Bot, update: Update, *args, **kwargs):
@@ -158,6 +159,7 @@ def user_bot_owner(func):
 
     return is_user_bot_owner
 
+
 def build_keyboard_alternate(buttons):
     keyb = []
     for btn in buttons:
@@ -167,6 +169,7 @@ def build_keyboard_alternate(buttons):
             keyb.append([InlineKeyboardButton(btn[0], url=btn[1])])
 
     return keyb
+
 
 def is_module_loaded(name):
     return name not in NO_LOAD
