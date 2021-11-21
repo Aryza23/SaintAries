@@ -381,8 +381,7 @@ def __chat_settings__(chat_id, user_id):
     )
 
 
-__help__ = """
-{}
+"""
 Commands:
  - /casver: Returns the API version that the bot is currently running
  - /cascheck: Checks you or another user for CAS BAN
