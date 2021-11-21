@@ -8,8 +8,8 @@ from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 
 AD_STRINGS = (
-    "_kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu_",
-    "_healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak_",
+    "_*kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu*_",
+    "_*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*_",
 )
 
 
