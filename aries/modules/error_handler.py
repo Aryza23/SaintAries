@@ -80,10 +80,11 @@ def error_callback(update: Update, context: CallbackContext):
             tb,
         )
         key = requests.post(
-            "https://nekobin.com/api/documents", json={"content": pretty_message}
+            "https://www.toptal.com/developers/hastebin/documents",
+            data=pretty_message.encode("UTF-8"),
         ).json()
         e = html.escape(f"{context.error}")
-        if not key.get("result", {}).get("key"):
+        if not key.get("key"):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
@@ -94,8 +95,8 @@ def error_callback(update: Update, context: CallbackContext):
                 parse_mode="html",
             )
             return
-        key = key.get("result").get("key")
-        url = f"https://nekobin.com/{key}.py"
+        key = key.get("key")
+        url = f"https://www.toptal.com/developers/hastebin/{key}"
         context.bot.send_message(
             SUPPORT_CHAT,
             text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
@@ -129,3 +130,4 @@ def list_errors(update: Update, context: CallbackContext):
 
 
 dispatcher.add_error_handler(error_callback)
+dispatcher.add_handler(CommandHandler("errors", list_errors))
