@@ -18,18 +18,30 @@ def aries(update: Update, context: CallbackContext):
     )
     reply_photo(random.choice(aries_strings.ARIES_IMG))
 
+def diaryaryza(update: Update, context: CallbackContext):
+    message = update.effective_message
+    message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
+    reply_photo = (
+        message.reply_to_message.reply_photo
+        if message.reply_to_message
+        else message.reply_photo
+    )
+    reply_photo(random.choice(aries_strings.AD_STRINGS))
+
 
 __help__ = """
  ❍ `/aries`*:* gives random aries media
  ❍ `/asupan`*:* gives random asupan medi
  ❍ `/chika`*:* gives random chika media
  ❍ `/apakah`*:* For ask question about someone with AI
- ❍ `/siapakah`*:* For ask question about someone with AI
-"""
-ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
+ ❍ `/diaryaryza`*:* Check Aja 
 
+ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
+DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_async=True)
+
+dispatcher.add_handler(DIARYARYZA_HANDLER)
 dispatcher.add_handler(ARIES_HANDLER)
 
-__mod_name__ = "🔘 Aries fun"
-__command_list__ = ["aries"]
-__handlers__ = [ARIES_HANDLER]
+__mod_name__ = "Aries fun"
+__command_list__ = ["aries", "diaryaryza"]
+__handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
