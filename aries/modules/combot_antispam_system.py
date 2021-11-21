@@ -22,7 +22,7 @@ from aries import (
     dispatcher,
     OWNER_ID,
     DEV_USERS,
-    DRAGON,
+    DRAGONS,
     SUPPORT_USERS,
     TIGER_USERS,
     WHITELIST_USERS,
@@ -41,7 +41,7 @@ import aries.modules.sql.welcome_sql as sql
 import aries.modules.sql.global_bans_sql as gbansql
 import aries.modules.sql.users_sql as userssql
 
-from aries import dispatcher, OWNER_ID, LOGGER, DRAGON, SUPPORT_USERS
+from aries import dispatcher, OWNER_ID, LOGGER, DRAGONS, SUPPORT_USERS
 from aries.modules.helper_funcs.chat_status import (
     user_admin,
     can_delete,
@@ -237,7 +237,7 @@ def gbanChat(bot: Bot, update: Update, args: List[str]):
             banner = update.effective_user
             send_to_list(
                 bot,
-                DRAGON,
+                DRAGONS,
                 "<b>Chat Blacklist</b>"
                 "\n#BLCHAT"
                 "\n<b>Status:</b> <code>Blacklisted</code>"
@@ -272,7 +272,7 @@ def ungbanChat(bot: Bot, update: Update, args: List[str]):
             banner = update.effective_user
             send_to_list(
                 bot,
-                DRAGON,
+                DRAGONS,
                 "<b>Regression of Chat Blacklist</b>"
                 "\n#UNBLCHAT"
                 "\n<b>Status:</b> <code>Un-Blacklisted</code>"
