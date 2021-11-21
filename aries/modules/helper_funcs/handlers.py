@@ -65,6 +65,9 @@ class CustomCommandHandler(CommandHandler):
             self.filters &= ~(
                 Filters.update.edited_message | Filters.update.edited_channel_post
             )
+        if "admin_ok" in kwargs:
+            del kwargs["admin_ok"]
+        super().__init__(command, callback, **kwargs)
 
     def check_update(self, update):
         if isinstance(update, Update) and update.effective_message:
