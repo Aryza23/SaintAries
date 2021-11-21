@@ -103,10 +103,6 @@ buttons = [
         InlineKeyboardButton(text=" [❌] ", callback_data="close"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
     ],
-    [
-        InlineKeyboardButton(text="🛠 Control Panel", callback_data="cntrl_panel_M"),
-        InlineKeyboardButton(text="🇮🇳 Language", callback_data="set_lang_"),
-    ],
 ]
 
 
@@ -641,6 +637,10 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="Help & Commands", callback_data="help_back"
                         )
+                    ],
+                    [
+                        InlineKeyboardButton(text="Control Panel", callback_data="cntrl_panel_M"),
+                        InlineKeyboardButton(text="Language", callback_data="set_lang_"),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_back")],
                 ]
