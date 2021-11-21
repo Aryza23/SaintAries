@@ -8,7 +8,7 @@ def tld(chat_id, t, show_none=True):
     print(chat_id, t)
     if LANGUAGE:
         LOCALE = LANGUAGE.locale_name
-        if LOCALE in ('id') and t in IndonesianStrings:
+        if LOCALE in ("id") and t in IndonesianStrings:
             return IndonesianStrings[t]
         else:
             if t in EnglishStrings:
@@ -32,7 +32,7 @@ def tld_help(chat_id, t):
 
         print("Test2", t)
 
-        if LOCALE in ('id') and t in IndonesianStrings:
+        if LOCALE in ("id") and t in IndonesianStrings:
             return IndonesianStrings[t]
         else:
             return False
