@@ -4,6 +4,7 @@ emoji
 lxml
 wget
 pythonping
+PyYAML
 multicolorcaptcha
 gtts
 beautifulsoup4
