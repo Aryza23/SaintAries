@@ -643,8 +643,12 @@ def aries_about_callback(update, context):
                         )
                     ],
                     [
-                        InlineKeyboardButton(text="Control Panel", callback_data="cntrl_panel_M"),
-                        InlineKeyboardButton(text="Language", callback_data="set_lang_"),
+                        InlineKeyboardButton(
+                            text="Control Panel", callback_data="cntrl_panel_M"
+                        ),
+                        InlineKeyboardButton(
+                            text="Language", callback_data="set_lang_"
+                        ),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="aboutmanu_back")],
                 ]
