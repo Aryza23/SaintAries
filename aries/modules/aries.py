@@ -10,9 +10,9 @@ from aries.modules.disable import DisableAbleCommandHandler
 AD_STRINGS = (
     "<i>Kembali dengan versi terbaik,
      karna di sini aku masih menunggumu,
-     masih tentang kamu</i>",
+     masih tentang kamu</i>\n",
     "<i>Healing terbaik jatuh kepada rebahan,
-      jalan jalan dan makanan enak</i>",
+      jalan jalan dan makanan enak</i>\n",
 )
 
 def aries(update: Update, context: CallbackContext):
