@@ -8,9 +8,11 @@ from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 
 AD_STRINGS = (
-    "https://i.imgur.com/O6gNv68.jpg",
-    "https://i.imgur.com/YdD9ToI.jpg",
-)
+    " __Kembali dengan versi terbaik,
+     karna di sini aku masih menunggumu,
+     masih tentang kamu__ ",
+    " __Healing terbaik jatuh kepada rebahan,
+      jalan jalan dan makanan enak__ ",
 
 
 def aries(update: Update, context: CallbackContext):
@@ -27,12 +29,12 @@ def aries(update: Update, context: CallbackContext):
 def diaryaryza(update: Update, context: CallbackContext):
     message = update.effective_message
     message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
-    reply_photo = (
-        message.reply_to_message.reply_photo
+    reply_message = (
+        message.reply_to_message.reply_message
         if message.reply_to_message
-        else message.reply_photo
+        else message.reply_message
     )
-    reply_photo(random.choice(AD_STRINGS))
+    reply_message(random.choice(AD_STRINGS))
 
 
 __help__ = """
