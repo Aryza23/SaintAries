@@ -4,10 +4,37 @@ from typing import Optional, List
 
 import aries.modules.helper_funcs.cas_api as cas
 
-from telegram import Message, Chat, Update, Bot, User, CallbackQuery, ChatMember, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, MessageEntity
+from telegram import (
+    Message,
+    Chat,
+    Update,
+    Bot,
+    User,
+    CallbackQuery,
+    ChatMember,
+    ParseMode,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    MessageEntity,
+)
 from telegram.error import BadRequest
-from aries import dispatcher, OWNER_ID, DEV_USERS, SUDO_USERS, SUPPORT_USERS, TIGER_USERS, WHITELIST_USERS, LOGGER
-from telegram.ext import MessageHandler, Filters, CommandHandler, run_async, CallbackQueryHandler
+from aries import (
+    dispatcher,
+    OWNER_ID,
+    DEV_USERS,
+    SUDO_USERS,
+    SUPPORT_USERS,
+    TIGER_USERS,
+    WHITELIST_USERS,
+    LOGGER,
+)
+from telegram.ext import (
+    MessageHandler,
+    Filters,
+    CommandHandler,
+    run_async,
+    CallbackQueryHandler,
+)
 from telegram.utils.helpers import mention_markdown, mention_html, escape_markdown
 
 import aries.modules.sql.welcome_sql as sql
@@ -15,23 +42,29 @@ import aries.modules.sql.global_bans_sql as gbansql
 import aries.modules.sql.users_sql as userssql
 
 from aries import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS
-from aries.modules.helper_funcs.chat_status import user_admin, can_delete, is_user_ban_protected
+from aries.modules.helper_funcs.chat_status import (
+    user_admin,
+    can_delete,
+    is_user_ban_protected,
+)
 from aries.modules.helper_funcs.misc import build_keyboard, revert_buttons, send_to_list
 from aries.modules.helper_funcs.msg_types import get_welcome_type
 from aries.modules.helper_funcs.extraction import extract_user
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.helper_funcs.filters import CustomFilters
-from aries.modules.helper_funcs.string_handling import markdown_parser, escape_invalid_curly_brackets
+from aries.modules.helper_funcs.string_handling import (
+    markdown_parser,
+    escape_invalid_curly_brackets,
+)
 from aries.modules.log_channel import loggable
-
 
 
 @user_admin
 def setcas(bot: Bot, update: Update):
     chat = update.effective_chat
     msg = update.effective_message
-    split_msg = msg.text.split(' ')
-    if len(split_msg)!= 2:
+    split_msg = msg.text.split(" ")
+    if len(split_msg) != 2:
         msg.reply_text("Invalid arguments!")
         return
     param = split_msg[1]
@@ -44,7 +77,7 @@ def setcas(bot: Bot, update: Update):
         msg.reply_text("Successfully updated configuration.")
         return
     else:
-        msg.reply_text("Invalid status to set!") #on or off ffs
+        msg.reply_text("Invalid status to set!")  # on or off ffs
         return
 
 
@@ -52,8 +85,8 @@ def setcas(bot: Bot, update: Update):
 def setban(bot: Bot, update: Update):
     chat = update.effective_chat
     msg = update.effective_message
-    split_msg = msg.text.split(' ')
-    if len(split_msg)!= 2:
+    split_msg = msg.text.split(" ")
+    if len(split_msg) != 2:
         msg.reply_text("Invalid arguments!")
         return
     param = split_msg[1]
@@ -66,7 +99,7 @@ def setban(bot: Bot, update: Update):
         msg.reply_text("Successfully updated configuration.")
         return
     else:
-        msg.reply_text("Invalid autoban definition to set!") #on or off ffs
+        msg.reply_text("Invalid autoban definition to set!")  # on or off ffs
         return
 
 
@@ -76,7 +109,9 @@ def get_current_setting(bot: Bot, update: Update):
     msg = update.effective_message
     stats = sql.get_cas_status(chat.id)
     autoban = sql.get_cas_autoban(chat.id)
-    rtext = "<b>CAS Preferences</b>\n\nCAS Checking: {}\nAutoban: {}".format(stats, autoban)
+    rtext = "<b>CAS Preferences</b>\n\nCAS Checking: {}\nAutoban: {}".format(
+        stats, autoban
+    )
     msg.reply_text(rtext, parse_mode=ParseMode.HTML)
     return
 
@@ -86,7 +121,9 @@ def getTimeSetting(bot: Bot, update: Update):
     chat = update.effective_chat
     msg = update.effective_message
     timeSetting = sql.getKickTime(chat.id)
-    text = "This group will automatically kick people in " + str(timeSetting) + " seconds."
+    text = (
+        "This group will automatically kick people in " + str(timeSetting) + " seconds."
+    )
     msg.reply_text(text)
     return
 
@@ -100,42 +137,58 @@ def setTimeSetting(bot: Bot, update: Update, args: List[str]):
         return
     value = int(args[0])
     if value < 30 or value > 900:
-        msg.reply_text("Invalid value! Please use a value between 30 and 900 seconds (15 minutes)")
+        msg.reply_text(
+            "Invalid value! Please use a value between 30 and 900 seconds (15 minutes)"
+        )
         return
     sql.setKickTime(str(chat.id), value)
-    msg.reply_text("Success! Users that don't confirm being people will be kicked after " + str(value) + " seconds.")
+    msg.reply_text(
+        "Success! Users that don't confirm being people will be kicked after "
+        + str(value)
+        + " seconds."
+    )
     return
 
 
 def get_version(bot: Bot, update: Update):
     msg = update.effective_message
     ver = cas.vercheck()
-    msg.reply_text("CAS API version: "+ver)
+    msg.reply_text("CAS API version: " + ver)
     return
 
 
 def caschecker(bot: Bot, update: Update, args: List[str]):
-    #/info logic
+    # /info logic
     msg = update.effective_message  # type: Optional[Message]
     user_id = extract_user(update.effective_message, args)
     if user_id and int(user_id) != 777000:
         user = bot.get_chat(user_id)
     elif user_id and int(user_id) == 777000:
-        msg.reply_text("This is Telegram. Unless you manually entered this reserved account's ID, it is likely a broadcast from a linked channel.")
+        msg.reply_text(
+            "This is Telegram. Unless you manually entered this reserved account's ID, it is likely a broadcast from a linked channel."
+        )
         return
     elif not msg.reply_to_message and not args:
         user = msg.from_user
-    elif not msg.reply_to_message and (not args or (
-            len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not msg.parse_entities(
-        [MessageEntity.TEXT_MENTION]))):
+    elif not msg.reply_to_message and (
+        not args
+        or (
+            len(args) >= 1
+            and not args[0].startswith("@")
+            and not args[0].isdigit()
+            and not msg.parse_entities([MessageEntity.TEXT_MENTION])
+        )
+    ):
         msg.reply_text("I can't extract a user from this.")
         return
     else:
         return
 
-    text = "<b>CAS Check</b>:" \
-           "\nID: <code>{}</code>" \
-           "\nFirst Name: {}".format(user.id, html.escape(user.first_name))
+    text = (
+        "<b>CAS Check</b>:"
+        "\nID: <code>{}</code>"
+        "\nFirst Name: {}".format(user.id, html.escape(user.first_name))
+    )
     if user.last_name:
         text += "\nLast Name: {}".format(html.escape(user.last_name))
     if user.username:
@@ -150,7 +203,7 @@ def caschecker(bot: Bot, update: Update, args: List[str]):
             text += str(parsing)
         parsing = cas.timeadded(user.id)
         if parsing:
-            parseArray=str(parsing).split(", ")
+            parseArray = str(parsing).split(", ")
             text += "\nDay added: "
             text += str(parseArray[1])
             text += "\nTime added: "
@@ -159,22 +212,21 @@ def caschecker(bot: Bot, update: Update, args: List[str]):
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
+# this sends direct request to combot server. Will return true if user is banned, false if
+# id invalid or user not banned
 
-#this sends direct request to combot server. Will return true if user is banned, false if
-#id invalid or user not banned
 
 def casquery(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
     try:
-        user_id = msg.text.split(' ')[1]
+        user_id = msg.text.split(" ")[1]
     except:
         msg.reply_text("There was a problem parsing the query.")
         return
     text = "Your query returned: "
     result = cas.banchecker(user_id)
     text += str(result)
-    msg.reply_text(text)        
-
+    msg.reply_text(text)
 
 
 def gbanChat(bot: Bot, update: Update, args: List[str]):
@@ -183,15 +235,25 @@ def gbanChat(bot: Bot, update: Update, args: List[str]):
         del args[0]
         try:
             banner = update.effective_user
-            send_to_list(bot, SUDO_USERS,
-                     "<b>Chat Blacklist</b>" \
-                     "\n#BLCHAT" \
-                     "\n<b>Status:</b> <code>Blacklisted</code>" \
-                     "\n<b>Sudo Admin:</b> {}" \
-                     "\n<b>Chat Name:</b> {}" \
-                     "\n<b>ID:</b> <code>{}</code>".format(mention_html(banner.id, banner.first_name),userssql.get_chat_name(chat_id),chat_id), html=True)
+            send_to_list(
+                bot,
+                SUDO_USERS,
+                "<b>Chat Blacklist</b>"
+                "\n#BLCHAT"
+                "\n<b>Status:</b> <code>Blacklisted</code>"
+                "\n<b>Sudo Admin:</b> {}"
+                "\n<b>Chat Name:</b> {}"
+                "\n<b>ID:</b> <code>{}</code>".format(
+                    mention_html(banner.id, banner.first_name),
+                    userssql.get_chat_name(chat_id),
+                    chat_id,
+                ),
+                html=True,
+            )
             sql.blacklistChat(chat_id)
-            update.effective_message.reply_text("Chat has been successfully blacklisted!")
+            update.effective_message.reply_text(
+                "Chat has been successfully blacklisted!"
+            )
             try:
                 bot.leave_chat(int(chat_id))
             except:
@@ -199,7 +261,7 @@ def gbanChat(bot: Bot, update: Update, args: List[str]):
         except:
             update.effective_message.reply_text("Error blacklisting chat!")
     else:
-        update.effective_message.reply_text("Give me a valid chat id!") 
+        update.effective_message.reply_text("Give me a valid chat id!")
 
 
 def ungbanChat(bot: Bot, update: Update, args: List[str]):
@@ -208,40 +270,54 @@ def ungbanChat(bot: Bot, update: Update, args: List[str]):
         del args[0]
         try:
             banner = update.effective_user
-            send_to_list(bot, SUDO_USERS,
-                     "<b>Regression of Chat Blacklist</b>" \
-                     "\n#UNBLCHAT" \
-                     "\n<b>Status:</b> <code>Un-Blacklisted</code>" \
-                     "\n<b>Sudo Admin:</b> {}" \
-                     "\n<b>Chat Name:</b> {}" \
-                     "\n<b>ID:</b> <code>{}</code>".format(mention_html(banner.id, banner.first_name),userssql.get_chat_name(chat_id),chat_id), html=True)
+            send_to_list(
+                bot,
+                SUDO_USERS,
+                "<b>Regression of Chat Blacklist</b>"
+                "\n#UNBLCHAT"
+                "\n<b>Status:</b> <code>Un-Blacklisted</code>"
+                "\n<b>Sudo Admin:</b> {}"
+                "\n<b>Chat Name:</b> {}"
+                "\n<b>ID:</b> <code>{}</code>".format(
+                    mention_html(banner.id, banner.first_name),
+                    userssql.get_chat_name(chat_id),
+                    chat_id,
+                ),
+                html=True,
+            )
             sql.unblacklistChat(chat_id)
-            update.effective_message.reply_text("Chat has been successfully un-blacklisted!")
+            update.effective_message.reply_text(
+                "Chat has been successfully un-blacklisted!"
+            )
         except:
             update.effective_message.reply_text("Error unblacklisting chat!")
     else:
-        update.effective_message.reply_text("Give me a valid chat id!") 
+        update.effective_message.reply_text("Give me a valid chat id!")
 
 
 @user_admin
 def setDefense(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat
     msg = update.effective_message
-    if len(args)!=1:
+    if len(args) != 1:
         msg.reply_text("Invalid arguments!")
         return
     param = args[0]
     if param == "on" or param == "true":
         sql.setDefenseStatus(chat.id, True)
-        msg.reply_text("Defense mode has been turned on, this group is under attack. Every user that now joins will be auto kicked.")
+        msg.reply_text(
+            "Defense mode has been turned on, this group is under attack. Every user that now joins will be auto kicked."
+        )
         return
     elif param == "off" or param == "false":
         sql.setDefenseStatus(chat.id, False)
-        msg.reply_text("Defense mode has been turned off, group is no longer under attack.")
+        msg.reply_text(
+            "Defense mode has been turned off, group is no longer under attack."
+        )
         return
     else:
-        msg.reply_text("Invalid status to set!") #on or off ffs
-        return 
+        msg.reply_text("Invalid status to set!")  # on or off ffs
+        return
 
 
 @user_admin
@@ -249,8 +325,11 @@ def getDefense(bot: Bot, update: Update):
     chat = update.effective_chat
     msg = update.effective_message
     stat = sql.getDefenseStatus(chat.id)
-    text = "<b>Defense Status</b>\n\nCurrently, this group has the defense setting set to: <b>{}</b>".format(stat)
+    text = "<b>Defense Status</b>\n\nCurrently, this group has the defense setting set to: <b>{}</b>".format(
+        stat
+    )
     msg.reply_text(text, parse_mode=ParseMode.HTML)
+
 
 # TODO: get welcome data from group butler snap
 # def __import_data__(chat_id, data):
@@ -262,11 +341,13 @@ def getDefense(bot: Bot, update: Update):
 #     welcome = welcome.replace('$surname', '{lastname}')
 #     welcome = welcome.replace('$rules', '{rules}')
 #     sql.set_custom_welcome(chat_id, welcome, sql.Types.TEXT)
-ABOUT_CAS = "<b>Combot Anti-Spam System (CAS)</b>" \
-            "\n\nCAS stands for Combot Anti-Spam, an automated system designed to detect spammers in Telegram groups."\
-            "\nIf a user with any spam record connects to a CAS-secured group, the CAS system will ban that user immediately."\
-            "\n\n<i>CAS bans are permanent, non-negotiable, and cannot be removed by Combot community managers.</i>" \
-            "\n<i>If a CAS ban is determined to have been issued incorrectly, it will automatically be removed.</i>"
+ABOUT_CAS = (
+    "<b>Combot Anti-Spam System (CAS)</b>"
+    "\n\nCAS stands for Combot Anti-Spam, an automated system designed to detect spammers in Telegram groups."
+    "\nIf a user with any spam record connects to a CAS-secured group, the CAS system will ban that user immediately."
+    "\n\n<i>CAS bans are permanent, non-negotiable, and cannot be removed by Combot community managers.</i>"
+    "\n<i>If a CAS ban is determined to have been issued incorrectly, it will automatically be removed.</i>"
+)
 
 
 def about_cas(bot: Bot, update: Update):
@@ -282,17 +363,23 @@ def about_cas(bot: Bot, update: Update):
 
             update.effective_message.reply_text("You'll find in PM more info about CAS")
         except Unauthorized:
-            update.effective_message.reply_text("Contact me in PM first to get CAS information.")
+            update.effective_message.reply_text(
+                "Contact me in PM first to get CAS information."
+            )
 
 
 def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
+
 def __chat_settings__(chat_id, user_id):
     welcome_pref, _, _ = sql.get_welc_pref(chat_id)
     goodbye_pref, _, _ = sql.get_gdbye_pref(chat_id)
-    return "This chat has it's welcome preference set to `{}`.\n" \
-           "It's goodbye preference is `{}`.".format(welcome_pref, goodbye_pref)
+    return (
+        "This chat has it's welcome preference set to `{}`.\n"
+        "It's goodbye preference is `{}`.".format(welcome_pref, goodbye_pref)
+    )
+
 
 __help__ = """
 {}
@@ -312,19 +399,49 @@ Commands:
 
 __mod_name__ = "CAS"
 
-SETCAS_HANDLER = CommandHandler("setcas", setcas, filters=Filters.chat_type.groups, run_async=True)
-GETCAS_HANDLER = CommandHandler("getcas", get_current_setting, filters=Filters.chat_type.groups, run_async=True)
+SETCAS_HANDLER = CommandHandler(
+    "setcas", setcas, filters=Filters.chat_type.groups, run_async=True
+)
+GETCAS_HANDLER = CommandHandler(
+    "getcas", get_current_setting, filters=Filters.chat_type.groups, run_async=True
+)
 GETVER_HANDLER = DisableAbleCommandHandler("casver", get_version, run_async=True)
-CASCHECK_HANDLER = CommandHandler("cascheck", caschecker, pass_args=True, run_async=True)
-CASQUERY_HANDLER = CommandHandler("casquery", casquery, pass_args=True ,filters=CustomFilters.sudo_filter, run_async=True)
-SETBAN_HANDLER = CommandHandler("setban", setban, filters=Filters.chat_type.groups, run_async=True)
-GBANCHAT_HANDLER = CommandHandler("blchat", gbanChat, pass_args=True, filters=CustomFilters.sudo_filter, run_async=True)
-UNGBANCHAT_HANDLER = CommandHandler("unblchat", ungbanChat, pass_args=True, filters=CustomFilters.sudo_filter, run_async=True)
-DEFENSE_HANDLER = CommandHandler("setdefense", setDefense, pass_args=True, run_asyn=True)
+CASCHECK_HANDLER = CommandHandler(
+    "cascheck", caschecker, pass_args=True, run_async=True
+)
+CASQUERY_HANDLER = CommandHandler(
+    "casquery",
+    casquery,
+    pass_args=True,
+    filters=CustomFilters.sudo_filter,
+    run_async=True,
+)
+SETBAN_HANDLER = CommandHandler(
+    "setban", setban, filters=Filters.chat_type.groups, run_async=True
+)
+GBANCHAT_HANDLER = CommandHandler(
+    "blchat",
+    gbanChat,
+    pass_args=True,
+    filters=CustomFilters.sudo_filter,
+    run_async=True,
+)
+UNGBANCHAT_HANDLER = CommandHandler(
+    "unblchat",
+    ungbanChat,
+    pass_args=True,
+    filters=CustomFilters.sudo_filter,
+    run_async=True,
+)
+DEFENSE_HANDLER = CommandHandler(
+    "setdefense", setDefense, pass_args=True, run_asyn=True
+)
 GETDEF_HANDLER = CommandHandler("defense", getDefense, run_async=true)
 GETTIMESET_HANDLER = CommandHandler("kicktime", getTimeSetting, run_async=True)
-SETTIMER_HANDLER = CommandHandler("setkicktime", setTimeSetting, pass_args=True, run_async=True)
-ABOUT_CAS_HANDLER = CommandHandler("cas",  about_cas, run_async=True)
+SETTIMER_HANDLER = CommandHandler(
+    "setkicktime", setTimeSetting, pass_args=True, run_async=True
+)
+ABOUT_CAS_HANDLER = CommandHandler("cas", about_cas, run_async=True)
 
 
 dispatcher.add_handler(SETCAS_HANDLER)
