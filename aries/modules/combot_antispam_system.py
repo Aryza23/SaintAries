@@ -436,7 +436,7 @@ UNGBANCHAT_HANDLER = CommandHandler(
 DEFENSE_HANDLER = CommandHandler(
     "setdefense", setDefense, pass_args=True, run_async=True
 )
-GETDEF_HANDLER = CommandHandler("defense", getDefense, run_async=true)
+GETDEF_HANDLER = CommandHandler("defense", getDefense, run_async=True)
 GETTIMESET_HANDLER = CommandHandler("kicktime", getTimeSetting, run_async=True)
 SETTIMER_HANDLER = CommandHandler(
     "setkicktime", setTimeSetting, pass_args=True, run_async=True
