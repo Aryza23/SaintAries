@@ -1,6 +1,6 @@
 import random
 
-from telegram import Update
+from telegram import Update, ParseMode
 from telegram.ext import CallbackContext
 
 import aries.modules.aries_strings as aries_strings
