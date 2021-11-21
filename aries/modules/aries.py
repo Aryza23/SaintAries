@@ -6,7 +6,7 @@ from telegram.ext import CallbackContext
 import aries.modules.aries_strings as aries_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
-form aries.modules.aries_strings import AD_STRINGS
+from aries.modules.aries_strings import AD_STRINGS
 
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
