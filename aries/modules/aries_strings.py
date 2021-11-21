@@ -3,6 +3,7 @@ ARIES_IMG = (
     "https://i.imgur.com/Xc0nRVP.jpg",
     "https://pixeldrain.com/api/file/ic4hfgNo",
     "https://i.imgur.com/DgHMx5q.jpg",
+    "https://i.imgur.com/FxBmsdw.jpg",
     "https://i.imgur.com/EA9ErJd.jpg",
     "https://i.imgur.com/hpfAAH3.jpg",
     "https://i.imgur.com/BYk8myt.jpg",
