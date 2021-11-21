@@ -6,7 +6,7 @@ from telegram.ext import CallbackContext
 import aries.modules.aries_strings as aries_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
-
+form aries.modules.aries_strings import AD_STRINGS
 
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -26,7 +26,7 @@ def diaryaryza(update: Update, context: CallbackContext):
         if message.reply_to_message
         else message.reply_photo
     )
-    reply_photo(random.choice(aries_strings.AD_STRINGS))
+    reply_photo(random.choice(AD_STRINGS))
 
 
 __help__ = """
@@ -37,10 +37,10 @@ __help__ = """
  ❍ `/diaryaryza`*:* Check Aja 
 
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
-DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_async=True)
-
-dispatcher.add_handler(DIARYARYZA_HANDLER)
 dispatcher.add_handler(ARIES_HANDLER)
+
+DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_async=True)
+dispatcher.add_handler(DIARYARYZA_HANDLER)
 
 __mod_name__ = "Aries fun"
 __command_list__ = ["aries", "diaryaryza"]
