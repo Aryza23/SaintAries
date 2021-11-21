@@ -1,7 +1,3 @@
-AD_STRINGS = (
-    "https://i.imgur.com/O6gNv68.jpg",
-    "https://i.imgur.com/YdD9ToI.jpg",
-)
 ARIES_IMG = (
     "https://t.me/gabutafi/2660",
     "https://i.imgur.com/Xc0nRVP.jpg",
