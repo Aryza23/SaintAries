@@ -1,6 +1,6 @@
-from hitsuki.modules.sql.translation import prev_locale
-from hitsuki.modules.translations.English import EnglishStrings
-from hitsuki.modules.translations.Indonesian import IndonesianStrings
+from aries.modules.sql.translation import prev_locale
+from aries.modules.translations.English import EnglishStrings
+from aries.modules.translations.Indonesian import IndonesianStrings
 
 
 def tld(chat_id, t, show_none=True):
