@@ -13,7 +13,7 @@ AD_STRINGS = (
      masih tentang kamu__ ",
     " __Healing terbaik jatuh kepada rebahan,
       jalan jalan dan makanan enak__ ",
-
+)
 
 def aries(update: Update, context: CallbackContext):
     message = update.effective_message
