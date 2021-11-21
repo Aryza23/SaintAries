@@ -2,6 +2,7 @@ import importlib
 import re
 import sys
 import time
+import wikipedia
 from sys import argv
 from typing import Optional
 
@@ -61,6 +62,9 @@ from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
+from aries.modules.translations.strings import tld, tld_help
+from aries.modules.sql import languages_sql as langsql
+from aries.modules.connection import connected
 
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
@@ -98,6 +102,10 @@ buttons = [
         InlineKeyboardButton(text=" ｢ Support 」", url="http://t.me/idzeroidsupport"),
         InlineKeyboardButton(text=" [❌] ", callback_data="close"),
         InlineKeyboardButton(text=" ｢ Update 」", url="http://t.me/idzeroid"),
+    ],
+    [   
+        InlineKeyboardButton(text="🛠 Control Panel", callback_data="cntrl_panel_M"),
+        InlineKeyboardButton(text="🇮🇳 Language", callback_data="set_lang_"),
     ],
 ]
 
@@ -234,6 +242,23 @@ def start(update: Update, context: CallbackContext):
 
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
+            elif args[0].lower() == "controlpanel":
+                control_panel(bot, update)
+                
+            elif args[0][:4] == "wiki":
+                wiki = args[0].split("-")[1].replace('_', ' ')
+                message = update.effective_message
+                getlang = langsql.get_lang(message)
+                if getlang == "en":
+                    wikipedia.set_lang("en")
+                pagewiki = wikipedia.page(wiki)
+                judul = pagewiki.title
+                summary = pagewiki.summary
+                if len(summary) >= 4096:
+                    summary = summary[:4000]+"..."
+                message.reply_text("<b>{}</b>\n{}".format(judul, summary), parse_mode=ParseMode.HTML,
+                    reply_markup=InlineKeyboardMarkup(
+                            [[InlineKeyboardButton(text=(tld(chat.id, "Read it on Wikipedia")), url=pagewiki.url)]]))
 
         else:
             message.reply_text(
@@ -267,6 +292,152 @@ def start(update: Update, context: CallbackContext):
                 ]
             ),
         )
+
+def control_panel(bot, update):
+    chat = update.effective_chat
+    user = update.effective_user
+
+    # ONLY send help in PM
+    if chat.type != chat.PRIVATE:
+        update.effective_message.reply_text("Contact me in PM to access the control panel.",
+                                            reply_markup=InlineKeyboardMarkup(
+                                                [[InlineKeyboardButton(text="Control Panel",
+                                                                       url=f"t.me/{bot.username}?start=controlpanel")]]))
+        return
+
+    # Support to run from command handler
+    query = update.callback_query
+    if query:
+
+        try:
+            query.message.delete()
+        except BadRequest as ee:
+            update.effective_message.reply_text(f"Failed to delete query, {ee}")
+
+        M_match = re.match(r"cntrl_panel_M", query.data)
+        U_match = re.match(r"cntrl_panel_U", query.data)
+        G_match = re.match(r"cntrl_panel_G", query.data)
+        back_match = re.match(r"help_back", query.data)
+
+    else:
+        M_match = "Aries is best bot"  # LMAO, don't uncomment
+
+    if M_match:
+        text = "*Control panel* 🛠"
+
+        keyboard = [[InlineKeyboardButton(text="👤 My settings", callback_data="cntrl_panel_U(1)")]]
+
+        # Show connected chat and add chat settings button
+        conn = connected(bot, update, chat, user.id, need_admin=False)
+
+        if conn:
+            chatG = bot.getChat(conn)
+            # admin_list = chatG.get_administrators() #Unused variable
+
+            # If user admin
+            member = chatG.get_member(user.id)
+            if member.status in ('administrator', 'creator'):
+                text += f"\nConnected chat - *{chatG.title}* (you {member.status})"
+                keyboard += [[InlineKeyboardButton(text="👥 Group settings", callback_data="cntrl_panel_G_back")]]
+            elif user.id in SUDO_USERS:
+                text += f"\nConnected chat - *{chatG.title}* (you sudo)"
+                keyboard += [
+                    [InlineKeyboardButton(text="👥 Group settings (SUDO)", callback_data="cntrl_panel_G_back")]]
+            else:
+                text += f"\nConnected chat - *{chatG.title}* (you aren't an admin!)"
+        else:
+            text += "\nNo chat connected!"
+
+        keyboard += [[InlineKeyboardButton(text="⬅️ Back", callback_data="bot_start")]]
+
+        update.effective_message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard),
+                                            parse_mode=ParseMode.MARKDOWN)
+
+    elif U_match:
+
+        mod_match = re.match(r"cntrl_panel_U_module\((.+?)\)", query.data)
+        back_match = re.match(r"cntrl_panel_U\((.+?)\)", query.data)
+
+        chatP = update.effective_chat  # type: Optional[Chat]
+        if mod_match:
+            module = mod_match.group(1)
+
+            R = CHAT_SETTINGS[module].__user_settings__(bot, update, user)
+
+            text = "You has the following settings for the *{}* module:\n\n".format(
+                CHAT_SETTINGS[module].__mod_name__) + R[0]
+
+            keyboard = R[1]
+            keyboard += [[InlineKeyboardButton(text="⬅️ Back", callback_data="cntrl_panel_U(1)")]]
+
+            query.message.reply_text(text=text, arse_mode=ParseMode.MARKDOWN,
+                                     reply_markup=InlineKeyboardMarkup(keyboard))
+
+        elif back_match:
+            text = "*User control panel* 🛠"
+
+            query.message.reply_text(text=text, parse_mode=ParseMode.MARKDOWN,
+                                     reply_markup=InlineKeyboardMarkup(
+                                         paginate_modules(user.id, 0, USER_SETTINGS, "cntrl_panel_U")))
+
+    elif G_match:
+        mod_match = re.match(r"cntrl_panel_G_module\((.+?)\)", query.data)
+        prev_match = re.match(r"cntrl_panel_G_prev\((.+?)\)", query.data)
+        next_match = re.match(r"cntrl_panel_G_next\((.+?)\)", query.data)
+        back_match = re.match(r"cntrl_panel_G_back", query.data)
+
+        chatP = chat
+        conn = connected(bot, update, chat, user.id)
+
+        if conn:
+            chat = bot.getChat(conn)
+        else:
+            query.message.reply_text(text="Error with connection to chat")
+            exit(1)
+
+        if mod_match:
+            module = mod_match.group(1)
+            R = CHAT_SETTINGS[module].__chat_settings__(bot, update, chat, chatP, user)
+
+            if type(R) is list:
+                text = R[0]
+                keyboard = R[1]
+            else:
+                text = R
+                keyboard = []
+
+            text = "*{}* has the following settings for the *{}* module:\n\n".format(
+                escape_markdown(chat.title), CHAT_SETTINGS[module].__mod_name__) + text
+
+            keyboard += [[InlineKeyboardButton(text="Back", callback_data="cntrl_panel_G_back")]]
+
+            query.message.reply_text(text=text, parse_mode=ParseMode.MARKDOWN,
+                                     reply_markup=InlineKeyboardMarkup(keyboard))
+
+        elif prev_match:
+            chat_id = prev_match.group(1)
+            curr_page = int(prev_match.group(2))
+            chat = bot.get_chat(chat_id)
+            query.message.reply_text(tld(user.id, "send-group-settings").format(chat.title),
+                                     reply_markup=InlineKeyboardMarkup(
+                                         paginate_modules(curr_page - 1, 0, CHAT_SETTINGS, "cntrl_panel_G",
+                                                          chat=chat_id)))
+
+        elif next_match:
+            chat_id = next_match.group(1)
+            next_page = int(next_match.group(2))
+            chat = bot.get_chat(chat_id)
+            query.message.reply_text(tld(user.id, "send-group-settings").format(chat.title),
+                                     reply_markup=InlineKeyboardMarkup(
+                                         paginate_modules(next_page + 1, 0, CHAT_SETTINGS, "cntrl_panel_G",
+                                                          chat=chat_id)))
+
+        elif back_match:
+            text = tld(chat.id, "Control Panel :3")
+            query.message.reply_text(text=text, parse_mode=ParseMode.MARKDOWN,
+                                     reply_markup=InlineKeyboardMarkup(
+                                         paginate_modules(user.id, 0, CHAT_SETTINGS, "cntrl_panel_G")))
+
 
 
 # for test purposes
@@ -897,7 +1068,8 @@ def main():
     help_callback_handler = CallbackQueryHandler(
         help_button, pattern=r"help_", run_async=True
     )
-
+    cntrl_panel = CommandHandler("controlpanel", control_panel)
+    cntrl_panel_callback_handler = CallbackQueryHandler(control_panel, pattern=r"cntrl_panel")
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(
         settings_button, pattern=r"stngs_", run_async=True
@@ -922,6 +1094,8 @@ def main():
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
+    dispatcher.add_handler(cntrl_panel_callback_handler)
+    dispatcher.add_handler(cntrl_panel)
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(is_chat_allowed_handler)
