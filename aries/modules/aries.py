@@ -29,7 +29,7 @@ def diaryaryza(update: Update, context: CallbackContext):
     reply_text = (
         msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
     )
-    reply_text(random.choice(AD_STRINGS),parse_mode=ParseMode.MARKDOWN)
+    reply_text(random.choice(AD_STRINGS), parse_mode=ParseMode.MARKDOWN)
 
 
 __help__ = """
