@@ -24,7 +24,7 @@ RUN_STRINGS = (
     "May the odds be ever in your favour.",
     "Famous last words.",
     "And they disappeared forever, never to be seen again.",
-    "\"Oh, look at me! I'm so cool, I can run from a bot!\" - this person",
+    '"Oh, look at me! I\'m so cool, I can run from a bot!" - this person',
     "Yeah yeah, just tap /kickme already.",
     "Here, take this ring and head to Mordor while you're at it.",
     "Legend has it, they're still running...",
@@ -126,7 +126,7 @@ SLAP_TEMPLATES = (
     "{user1} pins {user2} down and repeatedly {hits} them with a {item}.",
     "{user1} grabs up a {item} and {hits} {user2} with it.",
     "{user1} ties {user2} to a chair and {throws} a {item} at them.",
-    "{user1} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} gave a friendly push to help {user2} learn to swim in lava.",
 )
 
 ITEMS = (
@@ -220,7 +220,6 @@ python-telegram-bot library,
 
 If you enjoying using me and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
 """,
-
     "send-help": """Hey! My name is *{}*. I am a group management bot, here to help you get around and keep the order in your groups!
 I have lots of handy features, such as flood control, a warning system, a note keeping system, and even predetermined replies on certain keywords.
 
@@ -234,19 +233,16 @@ I have lots of handy features, such as flood control, a warning system, a note k
    - in a group: Will redirect you to pm, with all that chat's settings.
    {}
    """,
-
     "send-group-settings": """Hi there! There are quite a few settings for *{}* - go ahead and pick what
 you're interested in.""",
-
-#Misc
-"RUNS-K": RUN_STRINGS,
-"SLAP_TEMPLATES-K": SLAP_TEMPLATES,
-"ITEMS-K": ITEMS,
-"HIT-K": HIT,
-"THROW-K": THROW,
-"ITEMP-K": ITEMS,
-"ITEMR-K": ITEMS,
-"MARKDOWN_HELP-K": MARKDOWN_HELP,
-"INSULTS-K": INSULTS_STRINGS,
-
+    # Misc
+    "RUNS-K": RUN_STRINGS,
+    "SLAP_TEMPLATES-K": SLAP_TEMPLATES,
+    "ITEMS-K": ITEMS,
+    "HIT-K": HIT,
+    "THROW-K": THROW,
+    "ITEMP-K": ITEMS,
+    "ITEMR-K": ITEMS,
+    "MARKDOWN_HELP-K": MARKDOWN_HELP,
+    "INSULTS-K": INSULTS_STRINGS,
 }
