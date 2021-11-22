@@ -12,7 +12,7 @@ from aiohttp import ClientSession
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, PeerIdInvalid
-from pyrogram.types import Chat, User
+from pyrogram.types import Chat, User, Message
 from Python_ARQ import ARQ
 from redis import StrictRedis
 from telethon import TelegramClient
