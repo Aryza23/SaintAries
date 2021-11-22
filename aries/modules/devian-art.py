@@ -48,7 +48,7 @@ async def _(event):
     out = []
     num = 0
     for on in res:
-        img = await event.download_file(
+        img = await event.download_media(
             on["src"], f"resources/downloads/{match}-{num}.jpg"
         )
         num += 1
