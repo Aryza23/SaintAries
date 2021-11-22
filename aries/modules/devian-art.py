@@ -19,7 +19,6 @@ import requests
 from bs4 import BeautifulSoup as bs
 from aries import telethn as tbot
 from aries.events import register
-from aries import ubot
 
 
 @register(pattern="^/devian ?(.*)")
@@ -55,7 +54,7 @@ async def _(event):
         out.append(img)
     if len(out) == 0:
         return await xd.edit("`No Results Found!`")
-    await tbot.send_file(
+    await event.send_file(
         event.chat_id, out, caption=f"Uploaded {len(res)} Images\n", album=True
     )
     await xd.delete()
