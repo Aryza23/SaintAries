@@ -4,7 +4,7 @@ import re
 import requests
 from bs4 import BeautifulSoup as bs
 
-from aries.events (http://odarobot.modules.helper_funcs.telethn.events/) import register
+from aries.events import register
 try:
     import aiofiles
     import aiohttp
