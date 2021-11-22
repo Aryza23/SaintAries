@@ -19,7 +19,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from aries import telethn as tbot
 from aries.events import register
-
+from aries import ubot
 
 @register(pattern="^/devian ?(.*)")
 async def _(event):
@@ -47,7 +47,7 @@ async def _(event):
     out = []
     num = 0
     for on in res:
-        img = await tbot.download_media(
+        img = await ubot.download_media(
             on["src"], f"resources/downloads/{match}-{num}.jpg"
         )
         num += 1
