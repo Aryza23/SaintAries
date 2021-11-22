@@ -56,7 +56,7 @@ tgcrypto
 Pyrogram
 humanize
 #PyDictionary==2.0.1
-youtube_search_python==1.5.1
+youtube_search_python==1.5.2
 lyrics_extractor
 asyncio
 cloudscraper==1.2.58
