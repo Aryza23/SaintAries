@@ -17,7 +17,7 @@ import re
 
 import requests
 from bs4 import BeautifulSoup as bs
-from aries import tbot
+from aries import telethn as tbot
 from aries.events import register
 
 
