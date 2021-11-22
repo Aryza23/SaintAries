@@ -23,10 +23,10 @@ from aries import pbot
 
 
 @register(pattern="^/devian ?(.*)")
-async def _(event):
-    match = event.pattern_match.group(1)
+async def downakd(e):
+    match = e.pattern_match.group(1)
     if not match:
-        return await event.reply("`Give Query to Search...`")
+        return await reply(e, "`Give Query to Search...`")
     Random = False
     if ";" in match:
         num = int(match.split(";")[1])
@@ -35,7 +35,7 @@ async def _(event):
         match = match.split(";")[0]
     else:
         num = 5
-    xd = await event.reply("`Processing...`")
+    xd = await reply(e, "`Processing...`")
     match = match.replace(" ", "+")
     link = "https://www.deviantart.com/search?q=" + match
     ct = requests.get(link).content
@@ -48,14 +48,12 @@ async def _(event):
     out = []
     num = 0
     for on in res:
-        img = await event.download_media(
-            on["src"], f"resources/downloads/{match}-{num}.jpg"
-        )
+        img = await download_file(on["src"], f"resources/downloads/{match}-{num}.jpg")
         num += 1
         out.append(img)
     if len(out) == 0:
         return await xd.edit("`No Results Found!`")
-    await pbot.send_file(
-        event.chat_id, out, caption=f"Uploaded {len(res)} Images\n", album=True
+    await e.client.send_file(
+        e.chat_id, out, caption=f"Uploaded {len(res)} Images\n", album=True
     )
     await xd.delete()
