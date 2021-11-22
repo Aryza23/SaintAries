@@ -23,6 +23,7 @@ async def chika(event):
     except Exception:
         await event.reply("`Error 404 not found...`")
 
+
 @register(pattern="/wibu ?(.*)")
 async def wibu(event):
     try:
