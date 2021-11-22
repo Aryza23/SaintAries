@@ -38,14 +38,16 @@ __help__ = """
  ❍ `/chika`*:* gives random chika media
  ❍ `/apakah`*:* For ask question about someone with AI
  ❍ `/diaryaryza`*:* Check Aja 
+ ❍ `/apod`*:* Get Astronomy Picture of Day by NASA
 """
+
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
 dispatcher.add_handler(ARIES_HANDLER)
 
 DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_async=True)
 dispatcher.add_handler(DIARYARYZA_HANDLER)
 
-__mod_name__ = "Aries fun"
+__mod_name__ = "Aries Extras"
 
 
 __command_list__ = ["aries", "diaryaryza"]
