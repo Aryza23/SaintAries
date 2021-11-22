@@ -40,6 +40,7 @@ __help__ = """
  ❍ `/apakah`*:* For ask question about someone with AI.
  ❍ `/diaryaryza`*:* Check Aja.
  ❍ `/apod`*:* Get Astronomy Picture of Day by NASA.
+ ❍ `/devian` <search query> ; <no of pics> *:* Devian-Art Image Search.
 """
 
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
