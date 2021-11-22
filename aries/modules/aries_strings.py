@@ -1,7 +1,17 @@
 ARIES_IMG = (
-    "https://t.me/gabutafi/2660",
+    "
+"https://i.imgur.com/uCQZXu1.jpg",
+
+"https://i.imgur.com/qp4Drny.jpg",
+
+"https://i.imgur.com/DsNmEwU.jpg",
+
+"https://i.imgur.com/TYStDRg.jpg",
+
+"https://i.imgur.com/GYseRDX.jpg",
+
+"https://i.imgur.com/CL7q29m.jpg",
     "https://i.imgur.com/Xc0nRVP.jpg",
-    "https://pixeldrain.com/api/file/ic4hfgNo",
     "https://i.imgur.com/DgHMx5q.jpg",
     "https://i.imgur.com/FxBmsdw.jpg",
     "https://i.imgur.com/EA9ErJd.jpg",
