@@ -18,6 +18,7 @@ from redis import StrictRedis
 from telethon import TelegramClient
 from telethon.sessions import MemorySession, StringSession
 from telegraph import Telegraph
+from inspect import getfullargspec
 
 StartTime = time.time()
 
@@ -319,6 +320,15 @@ WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 WHITELIST_USERS = list(WHITELIST_USERS)
+
+async def eor(msg: Message, **kwargs):
+    func = (
+        (msg.edit_text if msg.from_user.is_self else msg.reply)
+        if msg.from_user
+        else msg.reply
+    )
+    spec = getfullargspec(func.__wrapped__).args
+    return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 # Load at end to ensure all prev variables have been set
 from aries.modules.helper_funcs.handlers import (
