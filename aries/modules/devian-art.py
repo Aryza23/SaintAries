@@ -21,6 +21,7 @@ from aries import telethn as tbot
 from aries.events import register
 from aries import pbot
 
+
 @register(pattern="^/devian ?(.*)")
 async def _(event):
     match = event.pattern_match.group(1)
