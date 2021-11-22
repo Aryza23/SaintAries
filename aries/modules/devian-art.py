@@ -34,7 +34,7 @@ async def devian(event):
     out = []
     num = 0
     for on in res:
-        img = await event.download_file(on["src"], f"aries/utils/downloads/{match}-{num}.jpg")
+        img = await tbot.download_file(on["src"], f"aries/utils/downloads/{match}-{num}.jpg")
         num += 1
         out.append(img)
     if len(out) == 0:
