@@ -33,12 +33,13 @@ def diaryaryza(update: Update, context: CallbackContext):
 
 
 __help__ = """
- ❍ `/aries`*:* gives random aries media
- ❍ `/asupan`*:* gives random asupan medi
- ❍ `/chika`*:* gives random chika media
- ❍ `/apakah`*:* For ask question about someone with AI
- ❍ `/diaryaryza`*:* Check Aja 
- ❍ `/apod`*:* Get Astronomy Picture of Day by NASA
+ ❍ `/aries`*:* gives random aries media.
+ ❍ `/asupan`*:* gives random asupan medi.
+ ❍ `/chika`*:* gives random chika media.
+ ❍ `/apakah`*:* For ask question about someone with AI.
+ ❍ `/diaryaryza`*:* Check Aja.
+ ❍ `/apod`*:* Get Astronomy Picture of Day by NASA.
+ ❍ `/devian` <search query> ; <no of pics>*:* Devian-Art Image Search.
 """
 
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
