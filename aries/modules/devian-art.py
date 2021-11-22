@@ -3,7 +3,7 @@ import re
 
 import requests
 from bs4 import BeautifulSoup as bs
-from aries import eor
+
 from aries.events import register
 
 
