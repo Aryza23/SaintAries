@@ -26,7 +26,7 @@ from aries import pbot
 async def devian(event):
     match = event.pattern_match.group(1)
     if not match:
-        return await event.reply(event, "`Give Query to Search...`")
+        return await event.reply("`Give Query to Search...`")
     Random = False
     if ";" in match:
         num = int(match.split(";")[1])
@@ -35,7 +35,7 @@ async def devian(event):
         match = match.split(";")[0]
     else:
         num = 5
-    xd = await event.reply(event, "`Processing...`")
+    xd = await event.reply("`Processing...`")
     match = match.replace(" ", "+")
     link = "https://www.deviantart.com/search?q=" + match
     ct = requests.get(link).content
