@@ -47,7 +47,7 @@ async def _(event):
     out = []
     num = 0
     for on in res:
-        img = await download_media(on["src"], f"resources/downloads/{match}-{num}.jpg")
+        img = await download(on["src"], f"resources/downloads/{match}-{num}.jpg")
         num += 1
         out.append(img)
     if len(out) == 0:
