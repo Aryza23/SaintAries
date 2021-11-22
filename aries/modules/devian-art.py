@@ -34,7 +34,7 @@ async def _(event):
         match = match.split(";")[0]
     else:
         num = 5
-    xd = await tbot.reply_text("`Processing...`")
+    xd = await event.reply("`Processing...`")
     match = match.replace(" ", "+")
     link = "https://www.deviantart.com/search?q=" + match
     ct = requests.get(link).content
