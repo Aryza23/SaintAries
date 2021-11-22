@@ -36,6 +36,7 @@ __help__ = """
  ❍ `/aries`*:* gives random aries media.
  ❍ `/asupan`*:* gives random asupan medi.
  ❍ `/chika`*:* gives random chika media.
+ ❍ `/wibu`*:* gives random wibu media.
  ❍ `/apakah`*:* For ask question about someone with AI.
  ❍ `/diaryaryza`*:* Check Aja.
  ❍ `/apod`*:* Get Astronomy Picture of Day by NASA.
