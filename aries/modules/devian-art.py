@@ -32,7 +32,7 @@ async def download_file(link, name):
 async def downakd(e):
     match = e.pattern_match.group(1)
     if not match:
-        return await e.reply(e, "`Give Query to Search...`")
+        return await e.reply("`Give Query to Search...`")
     Random = False
     if ";" in match:
         num = int(match.split(";")[1])
@@ -41,7 +41,7 @@ async def downakd(e):
         match = match.split(";")[0]
     else:
         num = 5
-    xd = await e.reply(e, "`Processing...`")
+    xd = await e.reply("`Processing...`")
     match = match.replace(" ", "+")
     link = "https://www.deviantart.com/search?q=" + match
     ct = requests.get(link).content
