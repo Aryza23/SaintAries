@@ -1,4 +1,3 @@
-
 # inspired from bin.py which was made by @danish_00
 # written by @senku_ishigamiii/@Uzumaki_Naruto_XD
 
