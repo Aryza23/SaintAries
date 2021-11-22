@@ -55,6 +55,6 @@ async def _(event):
     if len(out) == 0:
         return await xd.edit("`No Results Found!`")
     await tbot.send_file(
-        tbot.chat_id, out, caption=f"Uploaded {len(res)} Images\n", album=True
+        event.chat_id, out, caption=f"Uploaded {len(res)} Images\n", album=True
     )
     await xd.delete()
