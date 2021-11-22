@@ -1,16 +1,10 @@
 ARIES_IMG = (
-    "
-"https://i.imgur.com/uCQZXu1.jpg",
-
-"https://i.imgur.com/qp4Drny.jpg",
-
-"https://i.imgur.com/DsNmEwU.jpg",
-
-"https://i.imgur.com/TYStDRg.jpg",
-
-"https://i.imgur.com/GYseRDX.jpg",
-
-"https://i.imgur.com/CL7q29m.jpg",
+    "https://i.imgur.com/uCQZXu1.jpg",
+    "https://i.imgur.com/qp4Drny.jpg",
+    "https://i.imgur.com/DsNmEwU.jpg",
+    "https://i.imgur.com/TYStDRg.jpg",
+    "https://i.imgur.com/GYseRDX.jpg",
+    "https://i.imgur.com/CL7q29m.jpg",
     "https://i.imgur.com/Xc0nRVP.jpg",
     "https://i.imgur.com/DgHMx5q.jpg",
     "https://i.imgur.com/FxBmsdw.jpg",
@@ -124,4 +118,5 @@ ARIES_IMG = (
     "https://i.imgur.com/coPzKo0.jpg",
     "https://i.imgur.com/lDj7b29.jpg",
     "https://i.imgur.com/sYl6tBB.jpg",
+
 )
