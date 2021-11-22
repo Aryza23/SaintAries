@@ -11,7 +11,7 @@ from aries.events import register
 async def downakd(e):
     match = e.pattern_match.group(1)
     if not match:
-        return await eor(e, "`Give Query to Search...`")
+        return await event.reply(e, "`Give Query to Search...`")
     Random = False
     if ";" in match:
         num = int(match.split(";")[1])
@@ -20,7 +20,7 @@ async def downakd(e):
         match = match.split(";")[0]
     else:
         num = 5
-    xd = await eor(e, "`Processing...`")
+    xd = await event.reply(e, "`Processing...`")
     match = match.replace(" ", "+")
     link = "https://www.deviantart.com/search?q=" + match
     ct = requests.get(link).content
