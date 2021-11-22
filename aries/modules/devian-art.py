@@ -1,17 +1,3 @@
-# Ultroid - UserBot
-# Copyright (C) 2021 TeamUltroid
-#
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
-
-"""
-✘ Commands Available -
-
-• {i}devian <search query> ; <no of pics>
-    Devian-Art Image Search.
-"""
-
 import random
 import re
 
@@ -48,7 +34,7 @@ async def devian(event):
     out = []
     num = 0
     for on in res:
-        img = await download_file(on["src"], f"resources/downloads/{match}-{num}.jpg")
+        img = await download_file(on["src"], f"aries/utils/downloads/{match}-{num}.jpg")
         num += 1
         out.append(img)
     if len(out) == 0:
