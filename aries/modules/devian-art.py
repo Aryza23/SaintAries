@@ -25,7 +25,7 @@ from aries.events import register
 async def _(event):
     match = event.pattern_match.group(1)
     if not match:
-        return await tbot.reply_text("`Give Query to Search...`")
+        return await event.reply("`Give Query to Search...`")
     Random = False
     if ";" in match:
         num = int(match.split(";")[1])
