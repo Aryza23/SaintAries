@@ -11,6 +11,7 @@ import aries.modules.aries_strings as aries_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.events import register
+from aries import ubot
 
 @register(pattern="^/joke ?(.*)")
 async def joke(event):
@@ -47,7 +48,7 @@ async def url(event):
 
 @register(pattern="^/xo ?(.*)")
 async def _(event):
-    xox = await event.client.inline_query("xobot", "play")
+    xox = await ubot.client.inline_query("xobot", "play")
     await xox[random.randrange(0, len(xox) - 1)].click(
         event.chat_id, reply_to=event.reply_to_msg_id, silent=True, hide_via=True
     )
