@@ -41,8 +41,7 @@ async def _(event):
     if event.reply_to_msg_id:
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
-        await event.reply("Processing...")
-        await reply_message.delete()
+        idz = await event.reply("Processing...")
         try:
             downloaded_file_name = await telethn.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
@@ -78,7 +77,7 @@ async def _(event):
                 output_file_name.content.decode("UTF-8")
             )
         )
-
+        await idz.delete()
 
 def ReTrieveFile(input_file_name):
     headers = {
