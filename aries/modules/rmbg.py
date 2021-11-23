@@ -79,6 +79,7 @@ async def _(event):
         )
         await idz.delete()
 
+
 def ReTrieveFile(input_file_name):
     headers = {
         "X-API-Key": REM_BG_API_KEY,
