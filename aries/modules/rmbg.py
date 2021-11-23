@@ -77,7 +77,6 @@ async def _(event):
                 output_file_name.content.decode("UTF-8")
             )
         )
-        await idz.delete()
 
 
 def ReTrieveFile(input_file_name):
