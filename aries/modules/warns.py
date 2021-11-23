@@ -57,7 +57,7 @@ def warn(
 ) -> str:
 
     if is_user_admin(chat, user.id):
-        # message.reply_text("Damn admins, They are too far to be One Punched!")
+        message.reply_text("Damn admins, They are too far to be One Punched!")
         return
 
     if is_approved(chat.id, user.id):
@@ -516,7 +516,7 @@ be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is
   ❍ `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
 """
 
-__mod_name__ = "🔘 Warnings"
+__mod_name__ = "Warnings"
 
 WARN_HANDLER = CommandHandler(
     ["warn", "dwarn"], warn_user, filters=Filters.chat_type.groups, run_async=True
