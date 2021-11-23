@@ -47,7 +47,7 @@ from aries.modules.sql import warns_sql as sql
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
-
+BAN_STICKER = CAACAgQAAx0CXBdkHQACzophnX1BaKXcKVqz2CeNLAK4yVRYwAACpwADxCUZEA6cwT4z2HsrIgQ
 
 # Not async
 def warn(
@@ -115,7 +115,7 @@ def warn(
         for warn_reason in reasons:
             reply += f"\n - {html.escape(warn_reason)}"
 
-        # message.bot.send_sticker(chat.id, BAN_STICKER)  # Saitama's sticker
+        message.bot.send_sticker(chat.id, BAN_STICKER)  # Saitama's sticker
         keyboard = None
         log_reason = (
             f"<b>{html.escape(chat.title)}:</b>\n"
