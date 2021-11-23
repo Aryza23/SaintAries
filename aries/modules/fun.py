@@ -201,7 +201,7 @@ def rlg(update: Update, context: CallbackContext):
         repl = ears[0] + eyes[0] + mouth[0] + eyes[0] + ears[1]
     update.message.reply_text(repl)
 
-
+"""
 def decide(update: Update, context: CallbackContext):
     reply_text = (
         update.effective_message.reply_to_message.reply_text
@@ -209,7 +209,7 @@ def decide(update: Update, context: CallbackContext):
         else update.effective_message.reply_text
     )
     reply_text(random.choice(fun_strings.DECIDE))
-
+"""
 
 def eightball(update: Update, context: CallbackContext):
     reply_text = (
