@@ -6,9 +6,12 @@ from aries import ubot
 from aries import TEMP_DOWNLOAD_DIRECTORY
 from aries import tbot
 
+
 @register(outgoing=True, pattern=r"^/kamuii(:? |$)([1-8])?")
 async def _(event):
-    aryza = await event.reply("`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`")
+    aryza = await event.reply(
+        "`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`"
+    )
     level = event.pattern_match.group(2)
     if event.fwd_from:
         return
