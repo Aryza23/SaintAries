@@ -42,6 +42,7 @@ async def _(event):
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
         await event.reply("Processing...")
+        await reply_message.delete()
         try:
             downloaded_file_name = await telethn.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
