@@ -37,7 +37,7 @@ async def url(event):
     sample_url = "https://da.gd/s?url={}".format(input_str)
     response_api = requests.get(sample_url).text
     if response_api:
-        await event.reply(           
+        await event.reply(
             "**Shortened url**==> {}\n**Given url**==> {}.".format(
                 response_api, input_str
             ),
@@ -54,6 +54,7 @@ async def xo(event):
     )
     await event.delete()
 
+
 @register(pattern="^/wordi ?(.*)")
 async def word(event):
     game = await event.client.inline_query("wordibot", "play")
@@ -61,6 +62,7 @@ async def word(event):
         ult.chat_id, reply_to=event.reply_to_msg_id, silent=True, hide_via=True
     )
     await event.delete()
+
 
 AD_STRINGS = (
     "_*kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu*_",
