@@ -1,12 +1,12 @@
 import aiohttp
 import requests
 from aries import pbot
+from aries.modules.nhentai import nhentai_data
 from aries.modules.anime import (
     airing_query,
     anime_query,
     character_query,
     manga_query,
-    nhentai_data,
     shorten,
     t,
     url,
