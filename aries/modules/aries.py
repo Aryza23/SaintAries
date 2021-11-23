@@ -11,7 +11,6 @@ import aries.modules.aries_strings as aries_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.events import register
-from aries import ubot
 
 
 @register(pattern="^/joke ?(.*)")
@@ -30,7 +29,7 @@ async def insult(event):
 
 
 @register(pattern="url ?(.*)")
-async def url(event):
+async def _(event):
     input_str = event.pattern_match.group(1)
     if not input_str:
         await event.reply("Give some url")
@@ -45,24 +44,6 @@ async def url(event):
         )
     else:
         await event.reply("`Something went wrong. Please try again Later.`")
-
-
-@register(pattern="^/xo ?(.*)")
-async def _(event):
-    xox = await ubot.client.inline_query("xobot", "play")
-    await xox[random.randrange(0, len(xox) - 1)].click(
-        event.chat_id, reply_to=event.reply_to_msg_id, silent=True, hide_via=True
-    )
-    await event.delete()
-
-
-@register(pattern="^/wordi ?(.*)")
-async def word(event):
-    game = await event.client.inline_query("wordibot", "play")
-    await game[0].click(
-        ult.chat_id, reply_to=event.reply_to_msg_id, silent=True, hide_via=True
-    )
-    await event.delete()
 
 
 AD_STRINGS = (
@@ -102,8 +83,6 @@ __help__ = """
  ❍ `/joke`*:* To get random joke.
  ❍ `/inslut`*:* Insult someone..
  ❍ `/url <long url>`*:* To get a shorten link of long link.
- ❍ `/xo`*:* Opens tic tac game only where using inline mode is allowed.
- ❍ `/wordi`*:* Opens word game only where using inline mode is allowed.
 """
 
 
