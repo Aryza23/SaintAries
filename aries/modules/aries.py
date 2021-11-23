@@ -13,6 +13,7 @@ from aries.modules.disable import DisableAbleCommandHandler
 from aries.events import register
 from aries import ubot
 
+
 @register(pattern="^/joke ?(.*)")
 async def joke(event):
     await event.reply(get_joke())
