@@ -34,7 +34,7 @@ from random import choice
 
 from telethon.errors import ChatSendInlineForbiddenError
 
-from aries.utila.stickertools import deEmojify
+from aries.utils.stickertools import deEmojify
 
 from aries.events import register
 
