@@ -2,28 +2,29 @@ import os
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from aries.events import register
-from aries import ubot, TEMP_DOWNLOAD_DIRECTORY
+from aries import ubot
+from aries import TEMP_DOWNLOAD_DIRECTORY
 
 
 @register(outgoing=True, pattern=r"^/kamuii(:? |$)([1-8])?")
-async def _(fry):
-    await fry.edit("`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`")
-    level = fry.pattern_match.group(2)
-    if fry.fwd_from:
+async def _(event):
+    await event.edit("`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`")
+    level = event.pattern_match.group(2)
+    if event.fwd_from:
         return
-    if not fry.reply_to_msg_id:
-        await fry.edit("`Mohon Balas Di Sticker`")
+    if not event.reply_to_msg_id:
+        await event.edit("`Mohon Balas Di Sticker`")
         return
-    reply_message = await fry.get_reply_message()
+    reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await fry.edit("`Gambar tidak di dukung`")
+        await event.edit("`Gambar tidak di dukung`")
         return
     if reply_message.sender.ubot:
-        await fry.edit("`Mohon Balas Di Sticker`")
+        await event.edit("`Mohon Balas Di Sticker`")
         return
     chat = "@image_deepfrybot"
     message_id_to_reply = fry.message.reply_to_msg_id
-    async with fry.client.conversation(chat) as conv:
+    async with event.client.conversation(chat) as conv:
         try:
             msg = await conv.send_message(reply_message)
             if level:
@@ -36,16 +37,16 @@ async def _(fry):
             """ - don't spam notif - """
             await ubot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await fry.reply("`Mohon Unblock` @image_deepfrybot`...`")
+            await event.reply("`Mohon Unblock` @image_deepfrybot`...`")
             return
         if response.text.startswith("Forward"):
-            await fry.edit("`Mohon Matikan Setelan Forward Privasi...`")
+            await event.edit("`Mohon Matikan Setelan Forward Privasi...`")
         else:
-            downloaded_file_name = await fry.client.download_media(
+            downloaded_file_name = await event.client.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
-            await fry.client.send_file(
-                fry.chat_id,
+            await event.client.send_file(
+                event.chat_id,
                 downloaded_file_name,
                 force_document=False,
                 reply_to=message_id_to_reply,
@@ -54,34 +55,34 @@ async def _(fry):
             try:
                 msg_level
             except NameError:
-                await fry.client.delete_messages(conv.chat_id, [msg.id, response.id])
+                await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
             else:
-                await fry.client.delete_messages(
+                await event.client.delete_messages(
                     conv.chat_id, [msg.id, response.id, r.id, msg_level.id]
                 )
-    await fry.delete()
+    await event.delete()
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern=r"^.df(:? |$)([1-8])?")
-async def _(fry):
-    await fry.edit("`Sedang Dalam Proses......`")
-    level = fry.pattern_match.group(2)
-    if fry.fwd_from:
+@register(outgoing=True, pattern=r"^/df(:? |$)([1-8])?")
+async def _(event):
+    await event.edit("`Sedang Dalam Proses......`")
+    level = event.pattern_match.group(2)
+    if event.fwd_from:
         return
-    if not fry.reply_to_msg_id:
-        await fry.edit("`Mohon Balas Di Sticker`")
+    if not event.reply_to_msg_id:
+        await event.edit("`Mohon Balas Di Sticker`")
         return
-    reply_message = await fry.get_reply_message()
+    reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await fry.edit("`Mohon Balas Di Sticker`")
+        await event.edit("`Mohon Balas Di Sticker`")
         return
     if reply_message.sender.ubot:
-        await fry.edit("`Mohon Balas Di Sticker`")
+        await event.edit("`Mohon Balas Di Sticker`")
         return
     chat = "@image_deepfrybot"
-    message_id_to_reply = fry.message.reply_to_msg_id
-    async with fry.client.conversation(chat) as conv:
+    message_id_to_reply = event.message.reply_to_msg_id
+    async with event.client.conversation(chat) as conv:
         try:
             msg = await conv.send_message(reply_message)
             if level:
@@ -94,16 +95,16 @@ async def _(fry):
             """ - don't spam notif - """
             await ubot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await fry.reply("`Mohon Unblock` @image_deepfrybot`...`")
+            await event.reply("`Mohon Unblock` @image_deepfrybot`...`")
             return
         if response.text.startswith("Forward"):
-            await fry.edit("`Mohon Matikan Setelan Privasi Forward...`")
+            await event.edit("`Mohon Matikan Setelan Privasi Forward...`")
         else:
-            downloaded_file_name = await fry.client.download_media(
+            downloaded_file_name = await event.client.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
-            await fry.client.send_file(
-                fry.chat_id,
+            await event.client.send_file(
+                event.chat_id,
                 downloaded_file_name,
                 force_document=False,
                 reply_to=message_id_to_reply,
@@ -112,12 +113,12 @@ async def _(fry):
             try:
                 msg_level
             except NameError:
-                await fry.client.delete_messages(conv.chat_id, [msg.id, response.id])
+                await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
             else:
-                await fry.client.delete_messages(
+                await event.client.delete_messages(
                     conv.chat_id, [msg.id, response.id, r.id, msg_level.id]
                 )
-    await fry.delete()
+    await event.delete()
     return os.remove(downloaded_file_name)
 
 
