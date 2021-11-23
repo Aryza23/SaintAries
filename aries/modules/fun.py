@@ -1,16 +1,21 @@
 import html
 import random
 import time
-
+import requests
 from telegram import ChatPermissions, ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext
+
+from bs4 import BeautifulSoup as bs
+from pyjokes import get_joke
+from telethon.errors import ChatSendMediaForbiddenError
 
 import aries.modules.fun_strings as fun_strings
 from aries import dispatcher
 from aries.modules.disable import DisableAbleCommandHandler
 from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.extraction import extract_user
+from aries.events import register
 
 GIF_ID = "CgACAgQAAx0CSVUvGgAC7KpfWxMrgGyQs-GUUJgt-TSO8cOIDgACaAgAAlZD0VHT3Zynpr5nGxsE"
 
@@ -210,6 +215,17 @@ def decide(update: Update, context: CallbackContext):
     )
     reply_text(random.choice(fun_strings.DECIDE))
 """
+
+@register(pattern="^/decide ?(.*)")
+async def decide(event):
+    hm = await event.reply("`Deciding`")
+    r = requests.get("https://yesno.wtf/api").json()
+    try:
+        await event.reply(r["answer"], file=r["image"])
+        await hm.delete()
+    except ChatSendMediaForbiddenError:
+        await event.reply(r["answer"])
+
 
 def eightball(update: Update, context: CallbackContext):
     reply_text = (
