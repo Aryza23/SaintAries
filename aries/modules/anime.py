@@ -7,7 +7,7 @@ import bs4
 import jikanpy
 import requests
 from aries import pbot
-from aries.modules.tr_engine.strings import tld
+from aries.modules.translations.strings import tld
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from aries import telegraph
