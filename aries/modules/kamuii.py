@@ -8,23 +8,23 @@ from aries import tbot
 
 @register(outgoing=True, pattern=r"^/kamuii(:? |$)([1-8])?")
 async def _(event):
-    await event.edit("`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`")
+    aryza = await event.reply("`Prosess, Berubah menjadi srirahanjing, jurus di aktifkan...`")
     level = event.pattern_match.group(2)
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.edit("`Mohon Balas Di Sticker`")
+        await aryza.edit("`Mohon Balas Di Sticker`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`Gambar tidak di dukung`")
+        await aryza.edit("`Gambar tidak di dukung`")
         return
     if reply_message.sender.ubot:
-        await event.edit("`Mohon Balas Di Sticker`")
+        await aryza.edit("`Mohon Balas Di Sticker`")
         return
     chat = "@image_deepfrybot"
     message_id_to_reply = event.message.reply_to_msg_id
-    async with event.client.conversation(chat) as conv:
+    async with ubot.conversation(chat) as conv:
         try:
             msg = await conv.send_message(reply_message)
             if level:
@@ -37,12 +37,12 @@ async def _(event):
             """ - don't spam notif - """
             await ubot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.reply("`Mohon Unblock` @image_deepfrybot`...`")
+            await aryza.edit("`Mohon Unblock` @image_deepfrybot`...`")
             return
         if response.text.startswith("Forward"):
-            await event.edit("`Mohon Matikan Setelan Forward Privasi...`")
+            await aryza.edit("`Mohon Matikan Setelan Forward Privasi...`")
         else:
-            downloaded_file_name = await event.client.download_media(
+            downloaded_file_name = await ubot.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
             await tbot.send_file(
@@ -55,34 +55,35 @@ async def _(event):
             try:
                 msg_level
             except NameError:
-                await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
+                await ubot.delete_messages(conv.chat_id, [msg.id, response.id])
             else:
-                await event.client.delete_messages(
+                await ubot.delete_messages(
                     conv.chat_id, [msg.id, response.id, r.id, msg_level.id]
                 )
+    await aryza.delete()
     await event.delete()
     return os.remove(downloaded_file_name)
 
 
 @register(outgoing=True, pattern=r"^/df(:? |$)([1-8])?")
 async def _(event):
-    await event.edit("`Sedang Dalam Proses......`")
+    aryza = await event.reply("`Sedang Dalam Proses......`")
     level = event.pattern_match.group(2)
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.edit("`Mohon Balas Di Sticker`")
+        await aryza.edit("`Mohon Balas Di Sticker`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`Mohon Balas Di Sticker`")
+        await aryza.edit("`Mohon Balas Di Sticker`")
         return
     if reply_message.sender.ubot:
-        await event.edit("`Mohon Balas Di Sticker`")
+        await aryza.edit("`Mohon Balas Di Sticker`")
         return
     chat = "@image_deepfrybot"
     message_id_to_reply = event.message.reply_to_msg_id
-    async with event.client.conversation(chat) as conv:
+    async with ubot.conversation(chat) as conv:
         try:
             msg = await conv.send_message(reply_message)
             if level:
@@ -95,12 +96,12 @@ async def _(event):
             """ - don't spam notif - """
             await ubot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.reply("`Mohon Unblock` @image_deepfrybot`...`")
+            await aryza.edit("`Mohon Unblock` @image_deepfrybot`...`")
             return
         if response.text.startswith("Forward"):
-            await event.edit("`Mohon Matikan Setelan Privasi Forward...`")
+            await aryza.edit("`Mohon Matikan Setelan Privasi Forward...`")
         else:
-            downloaded_file_name = await event.client.download_media(
+            downloaded_file_name = await ubot.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
             await tbot.send_file(
@@ -113,11 +114,12 @@ async def _(event):
             try:
                 msg_level
             except NameError:
-                await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
+                await ubot.delete_messages(conv.chat_id, [msg.id, response.id])
             else:
-                await event.client.delete_messages(
+                await ubot.delete_messages(
                     conv.chat_id, [msg.id, response.id, r.id, msg_level.id]
                 )
+    await aryza.delete()
     await event.delete()
     return os.remove(downloaded_file_name)
 
