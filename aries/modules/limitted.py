@@ -14,7 +14,7 @@ from aries.events import register
 from aries import ubot
 
 
-@register(pattern="^limited ?(.*)")
+@register(pattern="^/limited ?(.*)")
 async def _(event):
     chat = "@SpamBot"
     msg = await event.reply("Checking If You Are Limited...")
