@@ -4,7 +4,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from aries.events import register
 from aries import ubot
 from aries import TEMP_DOWNLOAD_DIRECTORY
-
+from aries import tbot
 
 @register(outgoing=True, pattern=r"^/kamuii(:? |$)([1-8])?")
 async def _(event):
@@ -23,7 +23,7 @@ async def _(event):
         await event.edit("`Mohon Balas Di Sticker`")
         return
     chat = "@image_deepfrybot"
-    message_id_to_reply = fry.message.reply_to_msg_id
+    message_id_to_reply = event.message.reply_to_msg_id
     async with event.client.conversation(chat) as conv:
         try:
             msg = await conv.send_message(reply_message)
@@ -45,7 +45,7 @@ async def _(event):
             downloaded_file_name = await event.client.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
-            await event.client.send_file(
+            await tbot.send_file(
                 event.chat_id,
                 downloaded_file_name,
                 force_document=False,
@@ -103,7 +103,7 @@ async def _(event):
             downloaded_file_name = await event.client.download_media(
                 response.media, TEMP_DOWNLOAD_DIRECTORY
             )
-            await event.client.send_file(
+            await tbot.send_file(
                 event.chat_id,
                 downloaded_file_name,
                 force_document=False,
