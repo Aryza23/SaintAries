@@ -47,7 +47,7 @@ from aries.modules.sql import warns_sql as sql
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
-BAN_STICKER = CAACAgQAAx0CXBdkHQACzophnX1BaKXcKVqz2CeNLAK4yVRYwAACpwADxCUZEA6cwT4z2HsrIgQ
+BAN_STICKER = "CAACAgQAAx0CXBdkHQACzophnX1BaKXcKVqz2CeNLAK4yVRYwAACpwADxCUZEA6cwT4z2HsrIgQ"
 
 # Not async
 def warn(
