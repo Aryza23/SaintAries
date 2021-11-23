@@ -23,6 +23,7 @@ pykeyboard==0.1.2
 pynewtonmath==1.0.1
 aiofiles==0.7.0
 ffmpeg
+pyjokes
 spongemock==0.3.4
 zalgo-text==0.6
 geopy
