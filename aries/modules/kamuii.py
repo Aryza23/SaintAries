@@ -4,7 +4,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from aries.events import register
 from aries import ubot
 from aries import TEMP_DOWNLOAD_DIRECTORY
-from aries import tbot
+from aries import telethn as tbot
 
 
 @register(outgoing=True, pattern=r"^/kamuii(:? |$)([1-8])?")
