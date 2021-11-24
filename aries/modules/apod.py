@@ -23,4 +23,4 @@ async def aposj(e):
         if e.out:
             await e.delete()
     except Exception as E:
-        return await eod(e, str(E))
+        return await e.delete(e, str(E))
