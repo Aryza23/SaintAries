@@ -191,13 +191,11 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-@idzcmd(command='text')
 def test(update: Update, context: CallbackContext):
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
-@idzcallback(pattern=r'start_back')
-@idzcmd(command='start', pass_args=True)
+
 def start(update: Update, context: CallbackContext):    # sourcery no-metrics
     if hasattr(update, 'callback_query'):
         query = update.callback_query
