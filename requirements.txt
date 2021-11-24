@@ -6,6 +6,7 @@ wget
 pythonping
 multicolorcaptcha
 gtts
+pyYAML>=5.1.2
 beautifulsoup4
 gitpython
 requests
