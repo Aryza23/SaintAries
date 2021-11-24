@@ -1,7 +1,7 @@
 from aries.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, InlineQueryHandler
 from telegram.ext.filters import BaseFilter
-from aries import dispatcher as d, logger
+from aries import dispatcher as d, LOGGER
 from typing import Optional, Union, List
 
 
