@@ -51,14 +51,14 @@ alphabet-detector==0.0.7
 pyrate-limiter==2.4.7
 cachetools
 python-rapidjson==1.5
-ujson==4.2.0
+ujson
 pretty-errors==1.2.24
 pygithub
 tgcrypto
 Pyrogram
 humanize
 #PyDictionary==2.0.1
-youtube_search_python==1.5.1
+youtube_search_python
 lyrics_extractor
 asyncio
 cloudscraper==1.2.58
