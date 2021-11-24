@@ -3,7 +3,7 @@ from Python_ARQ import ARQ
 
 from aries import ARQ_API_KEY
 
-ARQ_API_URL = "https://thearq.tech"
+ARQ_API_URL = "https://grambuilders.tech"
 
 aiohttpsession = ClientSession()
 
