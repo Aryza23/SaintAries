@@ -18,7 +18,6 @@ from redis import StrictRedis
 from telethon import TelegramClient
 from telethon.sessions import MemorySession, StringSession
 from telegraph import Telegraph
-from inspect import getfullargspec
 
 StartTime = time.time()
 
@@ -124,7 +123,7 @@ if ENV:
         "g~_w3BTzVQOCkm~hO0Dvi5aQCg6v92ZD_1dyZUnVFKneKg7VMw37sVfdqltxtCuq",
     )
     BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
-    ARQ_API_URL = "https://thearq.tech"
+    ARQ_API_URL = "https://grambuilders.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = 1192108540
     bot_start_time = time.time()
@@ -322,14 +321,6 @@ TIGERS = list(TIGERS)
 WHITELIST_USERS = list(WHITELIST_USERS)
 
 
-async def eor(msg: Message, **kwargs):
-    func = (
-        (msg.edit_text if msg.from_user.is_self else msg.reply)
-        if msg.from_user
-        else msg.reply
-    )
-    spec = getfullargspec(func.__wrapped__).args
-    return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
 # Load at end to ensure all prev variables have been set
