@@ -271,8 +271,6 @@ def start(update: Update, context: CallbackContext):    # sourcery no-metrics
                 ]
             ),
         )
-            context.bot.answer_callback_query(query.id)
-            return
 
     if hasattr(update, 'callback_query'):
         query = update.callback_query 
