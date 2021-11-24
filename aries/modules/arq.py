@@ -3,7 +3,7 @@ from pyrogram import filters
 from aries import arq
 from aries import pbot as app
 
-ARQ_API_URL = "https://thearq.teach"
+ARQ_API_URL = "https://grambuilders.tech"
 
 
 @app.on_message(filters.command("arq"))
