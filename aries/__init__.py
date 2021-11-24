@@ -321,8 +321,6 @@ TIGERS = list(TIGERS)
 WHITELIST_USERS = list(WHITELIST_USERS)
 
 
-
-
 # Load at end to ensure all prev variables have been set
 from aries.modules.helper_funcs.handlers import (
     CustomCommandHandler,
