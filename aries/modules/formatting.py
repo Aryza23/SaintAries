@@ -7,6 +7,7 @@ from telegram import (
 )
 from telegram.ext import CallbackContext
 
+
 def fmt_md_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         (update.effective_chat.id, "md_help"),
@@ -21,7 +22,6 @@ def fmt_filling_help(update: Update, context: CallbackContext):
     )
 
 
-
 @idzcallback(pattern=r"fmt_help_")
 def fmt_help(update: Update, context: CallbackContext):
     query = update.callback_query
@@ -30,23 +30,35 @@ def fmt_help(update: Update, context: CallbackContext):
     if help_info == "md":
         help_text = (update.effective_chat.id, "md_help")
     elif help_info == "filling":
-        help_text = (update.effective_chat.id, "filling_help") 
+        help_text = (update.effective_chat.id, "filling_help")
     query.message.edit_text(
         text=help_text,
         parse_mode=ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Back", callback_data=f"help_module({__mod_name__.lower()})"),
-            InlineKeyboardButton(text='Report Error', url='https://t.me/idzeroidsupport')]]
+            [
+                [
+                    InlineKeyboardButton(
+                        text="Back",
+                        callback_data=f"help_module({__mod_name__.lower()})",
+                    ),
+                    InlineKeyboardButton(
+                        text="Report Error", url="https://t.me/idzeroidsupport"
+                    ),
+                ]
+            ]
         ),
     )
     bot.answer_callback_query(query.id)
 
-__mod_name__ = 'Formatting'
+
+__mod_name__ = "Formatting"
+
 
 def get_help(chat):
-    return [(chat, "formt_help_bse"),
-    [
-        InlineKeyboardButton(text="Markdown", callback_data="fmt_help_md"),
-        InlineKeyboardButton(text="Filling", callback_data="fmt_help_filling")
+    return [
+        (chat, "formt_help_bse"),
+        [
+            InlineKeyboardButton(text="Markdown", callback_data="fmt_help_md"),
+            InlineKeyboardButton(text="Filling", callback_data="fmt_help_filling"),
+        ],
     ]
-]
