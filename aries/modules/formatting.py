@@ -53,6 +53,7 @@ def fmt_help(update: Update, context: CallbackContext):
 
 __mod_name__ = "Formatting"
 
+__mod_help__ = "test"
 
 def get_help(chat):
     return [
