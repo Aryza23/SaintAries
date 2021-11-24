@@ -50,7 +50,7 @@ class AriesTelegramHandler:
                         ),
                         group,
                     )
-                log.debug(
+                LOGGER.debug(
                     f"[IDZCMD] Loaded handler {command} for function {func.__name__} in group {group}"
                 )
             except TypeError:
@@ -77,7 +77,7 @@ class AriesTelegramHandler:
                             pass_chat_data=pass_chat_data,
                         )
                     )
-                log.debug(
+                LOGGER.debug(
                     f"[IDZCMD] Loaded handler {command} for function {func.__name__}"
                 )
 
@@ -106,7 +106,7 @@ class AriesTelegramHandler:
                     self._dispatcher.add_handler(
                         MessageHandler(pattern, func, run_async=run_async), group
                     )
-                log.debug(
+                LOGGER.debug(
                     f"[IDZMSG] Loaded filter pattern {pattern} for function {func.__name__} in group {group}"
                 )
             except TypeError:
@@ -120,7 +120,7 @@ class AriesTelegramHandler:
                     self._dispatcher.add_handler(
                         MessageHandler(pattern, func, run_async=run_async)
                     )
-                log.debug(
+                LOGGER.debug(
                     f"[IDZMSG] Loaded filter pattern {pattern} for function {func.__name__}"
                 )
 
@@ -135,7 +135,7 @@ class AriesTelegramHandler:
                     pattern=pattern, callback=func, run_async=run_async
                 )
             )
-            log.debug(
+            LOGGER.debug(
                 f"[IDZCALLBACK] Loaded callbackquery handler with pattern {pattern} for function {func.__name__}"
             )
             return func
@@ -161,7 +161,7 @@ class AriesTelegramHandler:
                     chat_types=chat_types,
                 )
             )
-            log.debug(
+            LOGGER.debug(
                 f"[IDZINLINE] Loaded inlinequery handler with pattern {pattern} for function {func.__name__} | PASSES USER DATA: {pass_user_data} | PASSES CHAT DATA: {pass_chat_data} | CHAT TYPES: {chat_types}"
             )
             return func
