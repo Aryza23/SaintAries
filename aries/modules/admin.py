@@ -923,11 +923,11 @@ __help__ = """
 
 
 __help__ = """
-*🔘 User Commands*:
+🔘 *User Commands*:
   ❍ `/admins`*:* list of admins in the chat
   ❍ `/pinned`*:* to get the current pinned message.
-*🔘 The Following Commands are Admins only:*
- 
+
+🔘 *The Following Commands are Admins only:*
   ❍ `/pin`*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
   ❍ `/unpin`*:* unpins the currently pinned message
   ❍ `/invitelink`*:* gets invitelink
@@ -944,16 +944,16 @@ __help__ = """
   ❍ `/setdesc`*:* Set group description
   ❍ `/setsticker`*:* Set group sticker
   ❍ `/antiservice`*:* For Enable/Disable Telegram Service Message.
-*🔘 Log Channel*:
+🔘 *Log Channel*:
   ❍ `/logchannel`*:* get log channel info
   ❍ `/setlog`*:* set the log channel.
   ❍ `/unsetlog`*:* unset the log channel.
-*⚠ Setting the log channel is done by*:
+⚠ *Setting the log channel is done by*:
  ✔ adding the bot to the desired channel (as an admin!)
  ✔ sending `/setlog` in the channel
  ✔ forwarding the `/setlog` to the group
  
-*🔘 Rules*:
+🔘 *Rules*:
   ❍ `/rules`*:* get the rules for this chat.
   ❍ `/setrules <your rules here>`*:* set the rules for this chat.
   ❍ `/clearrules`*:* clear the rules for this chat.
