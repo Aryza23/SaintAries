@@ -8,8 +8,15 @@ from platform import python_version
 
 import requests
 from psutil import boot_time, cpu_percent, disk_usage, virtual_memory
-from telegram import MAX_MESSAGE_LENGTH, MessageEntity, ParseMode, Update
-from telegram import __version__ as ptbver
+from telegram import (
+    MAX_MESSAGE_LENGTH,
+    ParseMode,
+    Update,
+    MessageEntity,
+    __version__ as ptbver,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+)
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown, mention_html
