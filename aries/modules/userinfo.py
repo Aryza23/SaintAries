@@ -1,5 +1,3 @@
-# File part of cutipiee
-
 import datetime
 import html
 import platform
@@ -46,6 +44,28 @@ from aries.modules.redis.afk_redis import afk_reason, is_user_afk
 from aries.modules.sql.global_bans_sql import is_user_gbanned
 from aries.modules.sql.users_sql import get_user_num_chats
 
+def aries_callback(update, context):
+    query = update.callback_query
+    if query.data == "kntl_":
+        query.message.edit_text(
+            text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
+            f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 🔥"
+            f"\n\n Klick This Button."
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                            InlineKeyboardButton(
+                                "Health", url="https://t.me/IDZEROID/15"
+                            ),
+                            InlineKeyboardButton(
+                                "Disaster", url="https://t.me/IDZEROID/14"
+                            ),
+                    ],
+                ]
+            ),
+        )
 
 def no_by_per(totalhp, percentage):
     """
@@ -366,6 +386,9 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
+                            inlineKeyboarButton(
+                                "Test", callback_data="kntl_"
+                            ),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
@@ -383,6 +406,9 @@ def info(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
+                            ),
+                            inlineKeyboarButton(
+                                "Test", callback_data="kntl_"
                             ),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
