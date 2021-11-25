@@ -14,7 +14,6 @@ from telegram import (
     __version__ as ptbver,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ReplyKeyboardMarkup,
     KeyboardButton,
 )
 from telegram.error import BadRequest
