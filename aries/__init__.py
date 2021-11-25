@@ -92,7 +92,7 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
-    connection_db = psycopg2.connect(DATABASE_URL,sslmode='require')
+    connection_db = psycopg2.connect(DB_URI,sslmode='require')
     DB_URI = DB_URI.replace(
         "postgres://", "postgresql://", 1
     )  # rest of connection code using the connection string `uri`
