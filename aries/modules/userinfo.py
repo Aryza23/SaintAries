@@ -43,7 +43,9 @@ from aries.modules.helper_funcs.extraction import extract_user
 from aries.modules.redis.afk_redis import afk_reason, is_user_afk
 from aries.modules.sql.global_bans_sql import is_user_gbanned
 from aries.modules.sql.users_sql import get_user_num_chats
+from aries import pbot
 
+@pbot.on_callback_query()
 def aries_callback(update, context):
     query = update.callback_query
     if query.data == "kntl_":
