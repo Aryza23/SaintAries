@@ -44,6 +44,7 @@ from aries.modules.redis.afk_redis import afk_reason, is_user_afk
 from aries.modules.sql.global_bans_sql import is_user_gbanned
 from aries.modules.sql.users_sql import get_user_num_chats
 
+
 def no_by_per(totalhp, percentage):
     """
     rtype: num of `percentage` from total
@@ -363,9 +364,7 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboaddButton(
-                                 "[❌]", callback_data="close"
-                            ),
+                            InlineKeyboaddButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
@@ -384,9 +383,7 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboaddButton(
-                                 "[❌]", callback_data="close"
-                            ),
+                            InlineKeyboaddButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
