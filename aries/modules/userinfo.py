@@ -371,9 +371,7 @@ def info(update: Update, context: CallbackContext):
                             ),
                         ],
                         [
-                            [
-                                InlineKeyboardButton(" [❌] ", callback_data="close"),
-                            ]
+                            InlineKeyboardButton(" [❌] ", callback_data="close"),
                         ],
                     ]
                 ),
@@ -394,9 +392,7 @@ def info(update: Update, context: CallbackContext):
                             ),
                         ],
                         [
-                            [
-                                InlineKeyboardButton(" [❌] ", callback_data="close"),
-                            ]
+                            InlineKeyboardButton(" [❌] ", callback_data="close"),
                         ],
                     ]
                 ),
