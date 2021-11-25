@@ -608,7 +608,7 @@ def pin(update: Update, context: CallbackContext) -> str:
             msg.reply_text(
                 f"I have pinned a message.",
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("👉 Go to message", url=f"{message_link}")]]
+                    [[InlineKeyboardButton("👉 Go to message", url=f"{html.escape(chat.title)}{message_link}")]]
                 ),
                 parse_mode=ParseMode.HTML,
                 disable_web_page_preview=True,
@@ -616,6 +616,7 @@ def pin(update: Update, context: CallbackContext) -> str:
         except BadRequest as excp:
             if excp.message != "Chat_not_modified":
                 raise
+
 
         log_message = (
             f"<b>{html.escape(chat.title)}:</b>\n"
