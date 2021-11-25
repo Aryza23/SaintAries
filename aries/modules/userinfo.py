@@ -14,6 +14,8 @@ from telegram import (
     __version__ as ptbver,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
 )
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler
@@ -364,11 +366,11 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboardButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
+                        [[InlineKeyboardButton(" [❌] ", callback_data="close"),]],
                     ]
                 ),
                 parse_mode=ParseMode.HTML,
@@ -383,11 +385,11 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboardButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
+                        [[InlineKeyboardButton(" [❌] ", callback_data="close"),]],
                     ]
                 ),
                 parse_mode=ParseMode.HTML,
