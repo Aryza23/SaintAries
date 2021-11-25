@@ -5,6 +5,7 @@ import os
 import re
 import sys
 import time
+import psycopg2
 
 import spamwatch
 import telegram.ext as tg
@@ -91,6 +92,7 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     DB_URI = DB_URI.replace(
         "postgres://", "postgresql://", 1
     )  # rest of connection code using the connection string `uri`
