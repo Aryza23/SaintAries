@@ -1,9 +1,8 @@
 import threading
 from typing import Union
 
-from sqlalchemy import Boolean, Column, Integer, String
-
 from aries.modules.sql import BASE, SESSION
+from sqlalchemy import Boolean, Column, Integer, String
 
 
 class ReportingUserSettings(BASE):
