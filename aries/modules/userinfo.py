@@ -386,13 +386,16 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
+                            InlineKeyboaddButton(
+                                 "[❌]", callback_data="close"
+                            ),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
                         [
                             InlineKeyboarButton(
-                                "Test", callback_data="aries_callback"
+                                "Test", callback_data="kntl_"
                             ),
                         ],
                     ]
@@ -409,13 +412,16 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
+                            InlineKeyboaddButton(
+                                 "[❌]", callback_data="close"
+                            ),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
                         [
                             InlineKeyboarButton(
-                                "Test", callback_data="aries_callback"
+                                "Test", callback_data="kntl_"
                             ),
                         ],
                     ]
