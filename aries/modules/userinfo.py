@@ -357,9 +357,11 @@ def info(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                "Health", url="https://t.me/IDZEROID/15"),
+                                "Health", url="https://t.me/IDZEROID/15"
+                            ),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237")
+                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237"
+                            ),
                         ],
                     ]
                 ),
@@ -368,19 +370,21 @@ def info(update: Update, context: CallbackContext):
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, 
+                text,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                "Health", url="https://t.me/IDZEROID/15"),
+                                "Health", url="https://t.me/IDZEROID/15"
+                            ),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237")
+                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237"
+                            ),
                         ],
                     ]
                 ),
                 parse_mode=ParseMode.HTML,
-                disable_web_page_preview=True
+                disable_web_page_preview=True,
             )
 
     else:
