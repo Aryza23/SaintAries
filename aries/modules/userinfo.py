@@ -287,7 +287,7 @@ def info(update: Update, context: CallbackContext):
                     text += _stext.format("Admin")
     if user_id not in [bot.id, 777000, 1087968824]:
         userhp = hpmanager(user)
-        text += f"\n\n<b>Health:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]. [<a href='https://t.me/OnePunchUpdates/192'>?</a>]"
+        text += f"\n\n<b>Health:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]. [<a href='https://t.me/IDZEROID/15'>?</a>]"
 
     try:
         spamwtc = sw.get_ban(int(user.id))
@@ -353,12 +353,34 @@ def info(update: Update, context: CallbackContext):
                 chat.id,
                 photo=profile,
                 caption=(text),
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Health", url="https://t.me/IDZEROID/15"),
+                            InlineKeyboardButton(
+                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237")
+                        ],
+                    ]
+                ),
                 parse_mode=ParseMode.HTML,
             )
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+                text, 
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Health", url="https://t.me/IDZEROID/15"),
+                            InlineKeyboardButton(
+                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237")
+                        ],
+                    ]
+                ),
+                parse_mode=ParseMode.HTML,
+                disable_web_page_preview=True
             )
 
     else:
