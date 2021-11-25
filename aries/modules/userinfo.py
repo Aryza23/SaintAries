@@ -327,7 +327,7 @@ def info(update: Update, context: CallbackContext):
         disaster_level_present = True
 
     if disaster_level_present:
-        text += ' [<a href="https://t.me/IDZEROIDSUPPORT/27237">?</a>]'.format(
+        text += ' [<a href="https://t.me/IDZEROID/14">?</a>]'.format(
             bot.username,
         )
 
@@ -367,7 +367,7 @@ def info(update: Update, context: CallbackContext):
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237"
+                                "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
                     ]
@@ -385,7 +385,7 @@ def info(update: Update, context: CallbackContext):
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/IDZEROIDSUPPORT/27237"
+                                "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
                     ]
