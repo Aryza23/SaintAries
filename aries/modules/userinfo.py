@@ -370,7 +370,11 @@ def info(update: Update, context: CallbackContext):
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
-                        [[InlineKeyboardButton(" [❌] ", callback_data="close"),]],
+                        [
+                            [
+                                InlineKeyboardButton(" [❌] ", callback_data="close"),
+                            ]
+                        ],
                     ]
                 ),
                 parse_mode=ParseMode.HTML,
@@ -389,7 +393,11 @@ def info(update: Update, context: CallbackContext):
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
                         ],
-                        [[InlineKeyboardButton(" [❌] ", callback_data="close"),]],
+                        [
+                            [
+                                InlineKeyboardButton(" [❌] ", callback_data="close"),
+                            ]
+                        ],
                     ]
                 ),
                 parse_mode=ParseMode.HTML,
