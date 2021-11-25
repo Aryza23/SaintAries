@@ -48,9 +48,9 @@ def aries_callback(update, context):
     query = update.callback_query
     if query.data == "kntl_":
         query.message.edit_text(
-            text=f"*👋Hi again!  The name's {dispatcher.bot.first_name}  \n\nA powerful group management bot built to help you manage your group easily.* "
+            text=f"*👋 Hi again! My name's {dispatcher.bot.first_name} \n\nA powerful group management bot built to help you manage your group easily.* "
             f"\n\n 🔥 Join [Idzeroid Syndicates](https://t.me/idzeroidsupport) To Keep Yourself Updated About {dispatcher.bot.first_name} 🔥"
-            f"\n\n Klick This Button."
+            f"\n\n Click This Button."
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -391,8 +391,8 @@ def info(update: Update, context: CallbackContext):
                             ),
                         ],
                         [
-                            inlineKeyboarButton(
-                                "Test", callback_data="kntl_"
+                            InlineKeyboarButton(
+                                "Test", callback_data="aries_callback"
                             ),
                         ],
                     ]
@@ -414,8 +414,8 @@ def info(update: Update, context: CallbackContext):
                             ),
                         ],
                         [
-                            inlineKeyboarButton(
-                                "Test", callback_data="kntl_"
+                            InlineKeyboarButton(
+                                "Test", callback_data="aries_callback"
                             ),
                         ],
                     ]
