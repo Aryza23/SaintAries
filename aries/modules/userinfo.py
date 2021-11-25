@@ -364,7 +364,7 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboaddButton("[❌]", callback_data="close"),
+                            InlineKeyboardButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
@@ -383,7 +383,7 @@ def info(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 "Health", url="https://t.me/IDZEROID/15"
                             ),
-                            InlineKeyboaddButton("[❌]", callback_data="close"),
+                            InlineKeyboardButton("[❌]", callback_data="close"),
                             InlineKeyboardButton(
                                 "Disaster", url="https://t.me/IDZEROID/14"
                             ),
