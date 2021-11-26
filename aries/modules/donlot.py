@@ -41,7 +41,7 @@ async def stats(client, message):
         os_unmae = str(os.uname())
         disk_stat = str(psutil.disk_usage("/"))
         print(psutil.disk_usage("/"))
-        status = str("RUNNING IN HEROKU , WANNA DOANTE VPS ? check /donate")
+        status = str("RUNNING IN HEROKU , WANNA DONATE VPS ? check /donate")
         await message.reply_text(
             text="**\n\nHOSTNAME:** "
             + os_unmae
@@ -63,7 +63,7 @@ async def stats(client, message):
         await message.reply_text(text="Hosted on heroku , /donateme for more speed!")
 
 
-@pbot.on_message(filters.command(["aboutdl"], prefixes=["/", "wtf_"]))
+@pbot.on_message(filters.command(["about"], prefixes=["/", "wtf_"]))
 async def about(client, message):
     keyboard = [
         [
@@ -83,19 +83,6 @@ async def about(client, message):
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
-
-
-@pbot.on_message(filters.command(["helpdl"]))
-async def help(client, message):
-    await message.reply_text(
-        text="<b> Need help ? </b>"
-        "<b> \n\n I can help you download files less than 2GB </b>"
-        "<b> \n\n Just send me a link and reply it with /dl </b>"
-        "<b> \n\n To know More About me /about </b>"
-        "<b> \n\n /support to get support </b>"
-        "<b> \n\n /donate to donate this bot !</b>"
-    )
-
 
 @pbot.on_message(filters.command(["support"]))
 async def support(client, message):
@@ -119,3 +106,15 @@ async def donate(client, message):
     await message.reply_text(
         "Thank you for comming forwad to donate", reply_markup=reply_markup
     )
+
+__mod_help__ = """
+I can help you download files less than 2GB.
+Just send me a link and reply it with /dl.
+
+`/dl`<link>or<reply link>*:* for download.
+`/about`*:* To know More About me.
+`/support`*:* to get support.
+`/donate`*:* to donate this bot !.
+"""
+
+__mod_name__ = "Download"
