@@ -1,18 +1,48 @@
-from asyncio import gather
-from datetime import datetime, timedelta
+import codecs
+import pickle
+from asyncio import gather, get_running_loop
 from io import BytesIO
 from math import atan2, cos, radians, sin, sqrt
 from random import randint
-from re import findall
+from datetime import datetime, timedelta
+from os import execvp
 from re import sub as re_sub
+from re import findall
+from sys import executable
 
 import aiofiles
+import aiohttp
 import speedtest
+from carbonnow import Carbon
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from wget import download
 from pyrogram.types import Message
 
-from aries.arqclient import aiohttpsession as aiosession
+from aries.utils import aiodownloader
+from aries.utils.fetch import fetch
+from aries import aiohttpsession as aiosession
 from aries.utils.http import get, post
+from aries.utils.dbfunctions import start_restart_stage
+
+"""
+Just import 'downloader' anywhere and do downloader.download() to
+download file from a given url
+"""
+downloader = aiodownloader.Handler()
+
+# Another downloader, but with wget
+
+
+async def restart(m: Message):
+    if m:
+        await start_restart_stage(m.chat.id, m.message_id)
+    execvp(executable, [executable, "-m", "Natsunagi"])
+
+
+async def download_url(url: str):
+    loop = get_running_loop()
+    file = await loop.run_in_executor(None, download, url)
+    return file
 
 
 def generate_captcha():
@@ -28,10 +58,7 @@ def generate_captcha():
 
     # Generate a 4 letter word
     def gen_wrong_answer():
-        word = ""
-        for _ in range(4):
-            word += gen_letter()
-        return word
+        return "".join(gen_letter() for _ in range(4))
 
     # Generate 8 wrong captcha answers
     wrong_answers = []
@@ -77,35 +104,47 @@ def test_speedtest():
     return [speed_convert(download), speed_convert(upload), info]
 
 
+async def file_size_from_url(url: str) -> int:
+    async with aiohttp.ClientSession() as session, session.head(url) as resp:
+        size = int(resp.headers["content-length"])
+    return size
+
+
 async def get_http_status_code(url: str) -> int:
-    async with aiosession.head(url) as resp:
+    async with aiohttp.ClientSession() as session, session.head(url) as resp:
         return resp.status
 
 
 async def make_carbon(code):
-    url = "https://carbonara.vercel.app/api/cook"
-    async with aiosession.post(url, json={"code": code}) as resp:
-        image = BytesIO(await resp.read())
-    image.name = "carbon.png"
+    carbon = Carbon(code=code)
+    image = await carbon.save(str(randint(1000, 10000)))
     return image
 
 
-async def transfer_sh(file_or_message):
-    if isinstance(file_or_message, Message):
-        file_or_message = await file_or_message.download()
-    file = file_or_message
+async def transfer_sh(file):
     async with aiofiles.open(file, "rb") as f:
         params = {file: await f.read()}
-        resp = await post("https://transfer.sh/", data=params)
-        url = resp.strip()
-    return url
+    async with aiohttp.ClientSession() as session, session.post(
+        "https://transfer.sh/", data=params
+    ) as resp:
+        download_link = str(await resp.text()).strip()
+    return download_link
+
+
+def obj_to_str(object):
+    if not object:
+        return False
+    return codecs.encode(pickle.dumps(object), "base64").decode()
+
+
+def str_to_obj(string: str):
+    return pickle.loads(codecs.decode(string.encode(), "base64"))
 
 
 async def calc_distance_from_ip(ip1: str, ip2: str) -> float:
     Radius_Earth = 6371.0088
     data1, data2 = await gather(
-        get(f"http://ipinfo.io/{ip1}"),
-        get(f"http://ipinfo.io/{ip2}"),
+        fetch(f"http://ipinfo.io/{ip1}"), fetch(f"http://ipinfo.io/{ip2}")
     )
     lat1, lon1 = data1["loc"].split(",")
     lat2, lon2 = data2["loc"].split(",")
@@ -115,8 +154,7 @@ async def calc_distance_from_ip(ip1: str, ip2: str) -> float:
     dlat = lat2 - lat1
     a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
-    distance = Radius_Earth * c
-    return distance
+    return Radius_Earth * c
 
 
 def get_urls_from_text(text: str) -> bool:
@@ -210,10 +248,8 @@ async def extract_user(message):
 def get_file_id_from_message(
     message,
     max_file_size=3145728,
-    mime_types=None,
+    mime_types=["image/png", "image/jpeg"],
 ):
-    if mime_types is None:
-        mime_types = ["image/png", "image/jpeg"]
     file_id = None
     if message.document:
         if int(message.document.file_size) > max_file_size:
@@ -221,7 +257,7 @@ def get_file_id_from_message(
 
         mime_type = message.document.mime_type
 
-        if mime_type not in mime_types:
+        if mime_types and mime_type not in mime_types:
             return
         file_id = message.document.file_id
 
