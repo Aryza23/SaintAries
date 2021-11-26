@@ -72,7 +72,7 @@ countryinfo
 html2text
 bs4
 redis
-pySmartDL
+pySmartDL==1.3.4
 bing_image_downloader
 search_engine_parser
 pytz==2021.3
