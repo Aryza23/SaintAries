@@ -34,7 +34,7 @@ async def isPreviewUp(preview: str) -> bool:
     return False
 
 
-@pbot.on_message(filters.command("hpaste") & ~filters.edited)
+@pbot.on_message(filters.command("paste") & ~filters.edited)
 @capture_err
 async def paste_func(_, message: Message):
     if not message.reply_to_message:
@@ -82,7 +82,7 @@ async def paste_func(_, message: Message):
         await m.edit("Here's your paste", reply_markup=kb)
 
 
-@app.on_message(filters.command("paste") & ~filters.edited)
+@app.on_message(filters.command("hpaste") & ~filters.edited)
 @capture_err
 async def epaste_func(_, message: Message):
     if not message.reply_to_message:
