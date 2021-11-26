@@ -2,7 +2,7 @@ import os
 import psutil
 from pySmartDL import SmartDL
 from aries import pbot
-from aries import DRAGONS as sudo_users
+from aries import DEV_USERS as sudo_users
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -32,7 +32,7 @@ async def download(client, message):
         await message.reply_text(text="ERROR OCCURED REPORT TO @IDZEROIDSUPPORT")
 
 
-@pbot.on_message(filters.command(["statsdl"], prefixes=["."]))
+@pbot.on_message(filters.command(["statsdl"], prefixes=["/"]))
 async def stats(client, message):
     user_id = message.from_user.id
     if user_id in sudo_users:
@@ -63,7 +63,7 @@ async def stats(client, message):
         await message.reply_text(text="Hosted on heroku , /donateme for more speed!")
 
 
-@pbot.on_message(filters.command(["aboutdl"], prefixes=[".", "wtf_"]))
+@pbot.on_message(filters.command(["aboutdl"], prefixes=["/", "wtf_"]))
 async def about(client, message):
     keyboard = [
         [
@@ -91,7 +91,7 @@ async def help(client, message):
         text="<b> Need help ? </b>"
         "<b> \n\n I can help you download files less than 2GB </b>"
         "<b> \n\n Just send me a link and reply it with /dl </b>"
-        "<b> \n\n To know More About me &  to get Source Code /about </b>"
+        "<b> \n\n To know More About me /about </b>"
         "<b> \n\n /support to get support </b>"
         "<b> \n\n /donate to donate this bot !</b>"
     )
@@ -100,13 +100,13 @@ async def help(client, message):
 @pbot.on_message(filters.command(["support"]))
 async def support(client, message):
     await message.reply_text(
-        text="<b> currently there is no support for this bot🥺! </b>"
+        text="<b> currently there is for support for this bot🥺! </b>"
         "<b> \n\n JOIN @idzeroidsupport !</b>"
-        "<b>\n\n Update bot @idzeroid"
+        "<b>\n\n Update bot @idzeroid</b>"
     )
 
 
-@pbot.on_message(filters.command(["donateme"]))
+@pbot.on_message(filters.command(["donate"]))
 async def donate(client, message):
     keyboard = [
         [
