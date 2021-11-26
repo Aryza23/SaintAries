@@ -10,4 +10,4 @@ Just send me a link and reply it with /dl.
 
 __mod_name__ = "Link To Download"
 
-__command_list__ = ["dl" "aboutme" "support" "donate"]
+__command_list__ = ["dl", "aboutme", "support", "donate"]
