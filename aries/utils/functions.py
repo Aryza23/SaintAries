@@ -36,7 +36,7 @@ downloader = aiodownloader.Handler()
 async def restart(m: Message):
     if m:
         await start_restart_stage(m.chat.id, m.message_id)
-    execvp(executable, [executable, "-m", "Natsunagi"])
+    execvp(executable, [executable, "-m", "aries"])
 
 
 async def download_url(url: str):
