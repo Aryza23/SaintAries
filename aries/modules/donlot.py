@@ -29,7 +29,7 @@ async def download(client, message):
         await message.reply_text(text=f"**Uploaded Successfully! 🥺")
         os.remove(filename)
     except:
-        await message.reply_text(text="ERROR OCCURED PLS DONT CONTACT @RAVEEN2003")
+        await message.reply_text(text="ERROR OCCURED REPORT TO @IDZEROIDSUPPORT")
 
 
 @pbot.on_message(filters.command(["statsdl"], prefixes=["."]))
@@ -60,7 +60,7 @@ async def stats(client, message):
         )
     else:
         await message.reply_text(text="you are not a sudo user of Aries")
-        await message.reply_text(text="Hosted on heroku , /donate for more speed!")
+        await message.reply_text(text="Hosted on heroku , /donateme for more speed!")
 
 
 @pbot.on_message(filters.command(["aboutdl"], prefixes=[".", "wtf_"]))
