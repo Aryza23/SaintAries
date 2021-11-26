@@ -28,7 +28,5 @@ async def hpaste(content: str):
 
 async def epaste(content):
     loop = get_running_loop()
-    link = await loop.run_in_executor(
-        None, partial(_netcat, "ezup.dev", 9999, content)
-    )
+    link = await loop.run_in_executor(None, partial(_netcat, "ezup.dev", 9999, content))
     return link

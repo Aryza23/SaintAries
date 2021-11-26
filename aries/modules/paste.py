@@ -81,23 +81,19 @@ async def paste_func(_, message: Message):
     except Exception:
         await m.edit("Here's your paste", reply_markup=kb)
 
-        
+
 @app.on_message(filters.command("paste") & ~filters.edited)
 @capture_err
 async def epaste_func(_, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text(
-            "Reply To A Message With /paste"
-        )
+        return await message.reply_text("Reply To A Message With /paste")
     m = await message.reply_text("Pasting...")
     if message.reply_to_message.text:
         content = str(message.reply_to_message.text)
     elif message.reply_to_message.document:
         document = message.reply_to_message.document
         if document.file_size > 1048576:
-            return await m.edit(
-                "You can only paste files smaller than 1MB."
-            )
+            return await m.edit("You can only paste files smaller than 1MB.")
         if not pattern.search(document.mime_type):
             return await m.edit("Only text files can be pasted.")
         doc = await message.reply_to_message.download()
@@ -111,9 +107,7 @@ async def epaste_func(_, message: Message):
 
     if await isPreviewUp(preview):
         try:
-            await message.reply_photo(
-                photo=preview, quote=False, reply_markup=button
-            )
+            await message.reply_photo(photo=preview, quote=False, reply_markup=button)
             return await m.delete()
         except Exception:
             pass
