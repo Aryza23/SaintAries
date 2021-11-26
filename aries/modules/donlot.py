@@ -63,7 +63,7 @@ async def stats(client, message):
         await message.reply_text(text="Hosted on heroku , /donateme for more speed!")
 
 
-@pbot.on_message(filters.command(["about"], prefixes=["/", "wtf_"]))
+@pbot.on_message(filters.command(["aboutme"], prefixes=["/", "wtf_"]))
 async def about(client, message):
     keyboard = [
         [
@@ -111,10 +111,10 @@ __mod_help__ = """
 I can help you download files less than 2GB.
 Just send me a link and reply it with /dl.
 
-`/dl`<link>or<reply link>*:* for download.
-`/about`*:* To know More About me.
-`/support`*:* to get support.
-`/donate`*:* to donate this bot !.
+❍ `/dl`<link>or<reply link>*:* for download.
+❍ `/aboutme`*:* To know More About me.
+❍ `/support`*:* to get support.
+❍ `/donate`*:* to donate this bot !.
 """
 
 __mod_name__ = "Download"
