@@ -18,6 +18,7 @@ python-dotenv==0.19.2
 psycopg2-binary
 feedparser==6.0.8
 faker
+carbonnow
 validators
 hachoir==3.1.2
 pykeyboard==0.1.2
