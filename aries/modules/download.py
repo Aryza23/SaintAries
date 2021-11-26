@@ -108,15 +108,3 @@ async def donate(client, message):
         "Thank you for comming forwad to donate", reply_markup=reply_markup
     )
 
-
-__mod_help__ = """
-I can help you download files less than 2GB.
-Just send me a link and reply it with /dl.
-
-❍ `/dl`<link>or<reply link>*:* for download.
-❍ `/aboutme`*:* To know More About me.
-❍ `/support`*:* to get support.
-❍ `/donate`*:* to donate this bot !.
-"""
-
-__mod_name__ = "Download"
