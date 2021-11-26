@@ -1,9 +1,7 @@
 import socket
+
 from asyncio import get_running_loop
 from functools import partial
-from aries.utils.http import post
-
-BASE = "https://batbin.me/"
 
 
 def _netcat(host, port, content):
@@ -19,14 +17,9 @@ def _netcat(host, port, content):
     s.close()
 
 
-async def hpaste(content: str):
-    resp = await post(f"{BASE}api/v2/paste", data=content)
-    if not resp["success"]:
-        return
-    return BASE + resp["message"]
-
-
-async def epaste(content):
+async def paste(content):
     loop = get_running_loop()
-    link = await loop.run_in_executor(None, partial(_netcat, "ezup.dev", 9999, content))
+    link = await loop.run_in_executor(
+        None, partial(_netcat, "ezup.dev", 9999, content)
+    )
     return link
