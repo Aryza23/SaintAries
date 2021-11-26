@@ -39,7 +39,7 @@ from aries.modules.info import get_chat_info, get_user_info
 from aries.modules.media import download_youtube_audio
 from aries.utils.functions import test_speedtest
 from aries.utils.keyboard import ikb
-from aries.utils.pastebin import paste
+from aries.utils.pastebin import epaste
 
 MESSAGE_DUMP_CHAT = EVENT_LOGS
 
