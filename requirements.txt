@@ -53,7 +53,7 @@ pyrate-limiter==2.4.7
 cachetools
 python-rapidjson==1.5
 ujson
-pretty-errors==1.2.24
+pretty-errors==1.2.25
 pygithub
 tgcrypto
 Pyrogram
