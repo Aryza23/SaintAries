@@ -56,7 +56,7 @@ ujson
 pretty-errors==1.2.25
 pygithub
 tgcrypto
-Pyrogram
+git+https://github.com/AmanoTeam/pyrogram.git
 humanize
 #PyDictionary==2.0.1
 youtube_search_python
