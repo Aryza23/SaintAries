@@ -6,7 +6,7 @@ from telegram import (
     InlineKeyboardButton,
 )
 from telegram.ext import CallbackContext
-from events import register
+from aries.events import register
 
 
 def fmt_md_help(update: Update, context: CallbackContext):
