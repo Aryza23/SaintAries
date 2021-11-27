@@ -14,7 +14,7 @@ from aries import pbot as app
 from aries.arqclient import aiohttpsession as session
 from aries.arqclient import arq
 from aries.pyroerror import capture_err
-from aries.utils.pastebin import hpaste
+from aries.utils.pastebin import paste
 
 __mod_name__ = "Media"
 __help__ = """
