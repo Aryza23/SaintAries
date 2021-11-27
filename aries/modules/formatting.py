@@ -6,8 +6,6 @@ from telegram import (
     InlineKeyboardButton,
 )
 from telegram.ext import CallbackContext
-from aries.events import register
-
 
 def fmt_md_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
@@ -26,7 +24,6 @@ def fmt_filling_help(update: Update, context: CallbackContext):
 # @idzcallback(pattern=r"fmt_help_")
 
 
-@register(pattetn=r"fmt_help_")
 def fmt_help(update: Update, context: CallbackContext):
     query = update.callback_query
     bot = context.bot
