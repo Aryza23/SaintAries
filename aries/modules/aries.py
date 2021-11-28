@@ -49,6 +49,8 @@ async def _(event):
 AD_STRINGS = (
     "_*kembali dengan versi terbaik, karna di sini aku masih menunggumu,masih tentang kamu*_",
     "_*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*_",
+    "_*sorry I'm not a perfect person like you, also not arrogant like you,and it's not something that requires me to be jealous.*_",
+    "_*maaf aku bukan orang yang sempurna sepertimu, juga tidak sombong sepertimu, dan itu bukan sesuatu yang mengharuskan saya untuk cemburu.*_",
 )
 
 
