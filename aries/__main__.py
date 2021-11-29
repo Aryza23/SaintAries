@@ -65,6 +65,7 @@ from aries.modules.helper_funcs.chat_status import is_user_admin
 from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
+from aries.modules.language import gs
 
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
@@ -149,7 +150,7 @@ for module_name in ALL_MODULES:
     else:
         raise Exception("Can't have two modules with the same name! Please change one")
 
-    if hasattr(imported_module, "__help__") and imported_module.__help__:
+    if hasattr(imported_module, "get_help") and imported_module.get_help:
         HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
     # Chats to migrate on chat_migrated events
@@ -306,69 +307,84 @@ def error_callback(update: Update, context: CallbackContext):
 
 
 def help_button(update, context):
+    '''#TODO
+    Params:
+        update  -
+        context -
+    '''
+
     query = update.callback_query
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
     prev_match = re.match(r"help_prev\((.+?)\)", query.data)
     next_match = re.match(r"help_next\((.+?)\)", query.data)
     back_match = re.match(r"help_back", query.data)
+    chat = update.effective_chat
+    print(query.message.chat.id)
+
     try:
         if mod_match:
             module = mod_match.group(1)
+            help_list = HELPABLE[module].get_help(update.effective_chat.id)
+            if isinstance(help_list, list):
+                help_text = help_list[0]
+                help_buttons = help_list[1:]
+            elif isinstance(help_list, str):
+                help_text = help_list
+                help_buttons = []
             text = (
-                "* ｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
-                + HELPABLE[module].__help__
+                "Here is the help for the *{}* module:\n".format(
+                    HELPABLE[module].__mod_name__
+                )
+                + help_text
+            )
+            help_buttons.append(
+                [InlineKeyboardButton(text="Back", callback_data="help_back"),
+                InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport')]
             )
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
-                ),
+                reply_markup=InlineKeyboardMarkup(help_buttons),
             )
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
+            kb = paginate_modules(curr_page - 1, HELPABLE, "help")
+            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
+            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
             query.message.edit_text(
-                HELP_STRINGS,
+                text=(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(curr_page - 1, HELPABLE, "help")
-                ),
+                reply_markup=InlineKeyboardMarkup(kb),
             )
 
         elif next_match:
             next_page = int(next_match.group(1))
+            kb = paginate_modules(next_page + 1, HELPABLE, "help")
+            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
+            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
             query.message.edit_text(
-                HELP_STRINGS,
+                text=gs(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(next_page + 1, HELPABLE, "help")
-                ),
+                reply_markup=InlineKeyboardMarkup(kb),
             )
 
         elif back_match:
+            kb = paginate_modules(0, HELPABLE, "help")
+            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
+            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
             query.message.edit_text(
-                text=HELP_STRINGS,
+                text=gs(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(0, HELPABLE, "help")
-                ),
+                reply_markup=InlineKeyboardMarkup(kb),
             )
 
         # ensure no spinny white circle
         context.bot.answer_callback_query(query.id)
         # query.message.delete()
-    except Exception as excp:
-        if excp.message == "Message is not modified":
-            pass
-        elif excp.message == "Query_id_invalid":
-            pass
-        elif excp.message == "Message can't be deleted":
-            pass
-        else:
-            query.message.edit_text(excp.message)
-            LOGGER.exception("Exception in help buttons. %s", str(query.data))
 
+    except BadRequest:
+        pass
 
 def aries_about_callback(update, context):
     query = update.callback_query
@@ -639,7 +655,7 @@ def get_help(update, context):
             "Here is the available help for the *{}* module:\n".format(
                 HELPABLE[module].__mod_name__
             )
-            + HELPABLE[module].__help__
+            + HELPABLE[module].get_help
         )
         send_help(
             chat.id,
