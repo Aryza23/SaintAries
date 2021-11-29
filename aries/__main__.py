@@ -366,7 +366,7 @@ def help_button(update, context):
                 ]
             )
             query.message.edit_text(
-                text=(chat.id, "HELP_STRINGS"),
+                text=(chat.id, "HELP_MSG"),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(kb),
             )
@@ -386,7 +386,7 @@ def help_button(update, context):
                 ]
             )
             query.message.edit_text(
-                text=gs(chat.id, "HELP_STRINGS"),
+                text=gs(chat.id, "HELP_MSG"),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(kb),
             )
@@ -405,7 +405,7 @@ def help_button(update, context):
                 ]
             )
             query.message.edit_text(
-                text=gs(chat.id, "HELP_STRINGS"),
+                text=gs(chat.id, "HELP_MSG"),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(kb),
             )
