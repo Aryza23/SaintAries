@@ -13,8 +13,15 @@ import speedtest
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from pyrogram.types import Message
 
-from aries.arqclient import aiohttpsession as aiosession
+from aries import aiohttpsession as aiosession
+from aries.utils.dbfunctions import start_restart_stage
 from aries.utils.http import get, post
+
+
+async def restart(m: Message):
+    if m:
+        await start_restart_stage(m.chat.id, m.message_id)
+    execvp(executable, [executable, "-m", "aries"])
 
 
 def generate_captcha():
@@ -212,10 +219,8 @@ async def extract_user(message):
 def get_file_id_from_message(
     message,
     max_file_size=3145728,
-    mime_types=None,
+    mime_types=["image/png", "image/jpeg"],
 ):
-    if mime_types is None:
-        mime_types = ["image/png", "image/jpeg"]
     file_id = None
     if message.document:
         if int(message.document.file_size) > max_file_size:
@@ -223,7 +228,7 @@ def get_file_id_from_message(
 
         mime_type = message.document.mime_type
 
-        if mime_type not in mime_types:
+        if mime_types and mime_type not in mime_types:
             return
         file_id = message.document.file_id
 
