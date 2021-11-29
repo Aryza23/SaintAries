@@ -51,7 +51,10 @@ AD_STRINGS = (
     "_*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*_",
     "_*sorry I'm not a perfect person like you, also not arrogant like you,and it's not something that requires me to be jealous.*_",
     "_*maaf aku bukan orang yang sempurna sepertimu, juga tidak sombong sepertimu, dan itu bukan sesuatu yang mengharuskan saya untuk cemburu.*_",
+    "_*[Bahkan jika perasaanmu pergi besok, aku pasti akan mencintaimu dan bahkan sampai aku tidak bisa melihat mu pun, aku akan tetap mencintaimu.]( https://telegra.ph/file/b2374ad7c5a30e0326e2a.jpg)*_",
 )
+
+
 
 
 def aries(update: Update, context: CallbackContext):
