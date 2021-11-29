@@ -307,11 +307,11 @@ def error_callback(update: Update, context: CallbackContext):
 
 
 def help_button(update, context):
-    '''#TODO
+    """#TODO
     Params:
         update  -
         context -
-    '''
+    """
 
     query = update.callback_query
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
@@ -338,8 +338,12 @@ def help_button(update, context):
                 + help_text
             )
             help_buttons.append(
-                [InlineKeyboardButton(text="Back", callback_data="help_back"),
-                InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport')]
+                [
+                    InlineKeyboardButton(text="Back", callback_data="help_back"),
+                    InlineKeyboardButton(
+                        text="Support", url="https://t.me/idzeroidsupport"
+                    ),
+                ]
             )
             query.message.edit_text(
                 text=text,
@@ -350,8 +354,17 @@ def help_button(update, context):
         elif prev_match:
             curr_page = int(prev_match.group(1))
             kb = paginate_modules(curr_page - 1, HELPABLE, "help")
-            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
-            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
+            kb.append(
+                [
+                    InlineKeyboardButton(
+                        text="Support", url="https://t.me/idzeroidsupport"
+                    ),
+                    InlineKeyboardButton(text="Back", callback_data="start_back"),
+                    InlineKeyboardButton(
+                        text="Try inline", switch_inline_query_current_chat=""
+                    ),
+                ]
+            )
             query.message.edit_text(
                 text=(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
@@ -361,8 +374,17 @@ def help_button(update, context):
         elif next_match:
             next_page = int(next_match.group(1))
             kb = paginate_modules(next_page + 1, HELPABLE, "help")
-            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
-            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
+            kb.append(
+                [
+                    InlineKeyboardButton(
+                        text="Support", url="https://t.me/idzeroidsupport"
+                    ),
+                    InlineKeyboardButton(text="Back", callback_data="start_back"),
+                    InlineKeyboardButton(
+                        text="Try inline", switch_inline_query_current_chat=""
+                    ),
+                ]
+            )
             query.message.edit_text(
                 text=gs(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
@@ -371,8 +393,17 @@ def help_button(update, context):
 
         elif back_match:
             kb = paginate_modules(0, HELPABLE, "help")
-            kb.append([InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
-            InlineKeyboardButton(text='Back', callback_data='start_back'), InlineKeyboardButton(text="Try inline", switch_inline_query_current_chat="")])
+            kb.append(
+                [
+                    InlineKeyboardButton(
+                        text="Support", url="https://t.me/idzeroidsupport"
+                    ),
+                    InlineKeyboardButton(text="Back", callback_data="start_back"),
+                    InlineKeyboardButton(
+                        text="Try inline", switch_inline_query_current_chat=""
+                    ),
+                ]
+            )
             query.message.edit_text(
                 text=gs(chat.id, "HELP_STRINGS"),
                 parse_mode=ParseMode.MARKDOWN,
@@ -385,6 +416,7 @@ def help_button(update, context):
 
     except BadRequest:
         pass
+
 
 def aries_about_callback(update, context):
     query = update.callback_query
