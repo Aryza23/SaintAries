@@ -176,11 +176,13 @@ def kang(update: Update, context: CallbackContext):
                                     "Add To Your Pack",
                                     url=f"t.me/addstickers/{packname}",
                                 ),
+                            ],
+                            [
                                 InlineKeyboardButton(
                                     "[❌]",
                                     callback_data="close",
                                 ),
-                            ]
+                        ],
                         ]
                     ),
                     parse_mode=ParseMode.MARKDOWN,
@@ -214,19 +216,21 @@ def kang(update: Update, context: CallbackContext):
                         f"Kang Sticker successfully Click this button to add in your pack. "
                         + f"\nEmoji is: {sticker_emoji}",
                         reply_markup=InlineKeyboardMarkup(
+                        [
                             [
-                                [
-                                    InlineKeyboardButton(
-                                        "Add To Your Pack",
-                                        url=f"t.me/addstickers/{packname}",
-                                    ),
-                                    InlineKeyboardButton(
-                                        "[❌]",
-                                        callback_data="close",
-                                    ),
-                                ]
-                            ]
-                        ),
+                                InlineKeyboardButton(
+                                    "Add To Your Pack",
+                                    url=f"t.me/addstickers/{packname}",
+                                ),
+                            ],
+                            [
+                                InlineKeyboardButton(
+                                    "[❌]",
+                                    callback_data="close",
+                                ),
+                        ],
+                        ]
+                    ),
                         parse_mode=ParseMode.MARKDOWN,
                     )
                 elif e.message == "Stickers_too_much":
@@ -342,19 +346,21 @@ def kang(update: Update, context: CallbackContext):
                 f"Kang Sticker successfully Click this button to add in your pack. "
                 + f"\nEmoji is: {sticker_emoji}",
                 reply_markup=InlineKeyboardMarkup(
-                    [
                         [
-                            InlineKeyboardButton(
-                                "Add To Your Pack",
-                                url=f"t.me/addstickers/{packname}",
-                            ),
-                            InlineKeyboardButton(
-                                "[❌]",
-                                callback_data="close",
-                            ),
+                            [
+                                InlineKeyboardButton(
+                                    "Add To Your Pack",
+                                    url=f"t.me/addstickers/{packname}",
+                                ),
+                            ],
+                            [
+                                InlineKeyboardButton(
+                                    "[❌]",
+                                    callback_data="close",
+                                ),
+                        ],
                         ]
-                    ]
-                ),
+                    ),
                 parse_mode=ParseMode.MARKDOWN,
             )
         except OSError as e:
