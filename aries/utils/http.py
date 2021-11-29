@@ -1,6 +1,6 @@
 from asyncio import gather
 
-from aries.arqclient import aiohttpsession as session
+from aries import aiohttpsession as session
 
 
 async def get(url: str, *args, **kwargs):
