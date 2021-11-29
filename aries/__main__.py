@@ -329,7 +329,7 @@ def help_button(update, context):
                 + HELPABLE[module].__help__
             )
             + help_text
-          )
+
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
