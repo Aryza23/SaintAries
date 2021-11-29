@@ -173,7 +173,7 @@ def kang(update: Update, context: CallbackContext):
                         [
                             [
                                 InlineKeyboardButton(
-                                    "👉 Go to message",
+                                    "Add {sticker_emoji} To Your Pack",
                                     url=f"t.me/addstickers/{packname}",
                                 )
                             ]
@@ -210,15 +210,15 @@ def kang(update: Update, context: CallbackContext):
                         f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                         + f"\nEmoji is: {sticker_emoji}",
                         reply_markup=InlineKeyboardMarkup(
+                        [
                             [
-                                [
-                                    InlineKeyboardButton(
-                                        "👉 Go to message",
-                                        url=f"t.me/addstickers/{packname}",
-                                    )
-                                ]
+                                InlineKeyboardButton(
+                                    "Add {sticker_emoji} To Your Pack",
+                                    url=f"t.me/addstickers/{packname}",
+                                )
                             ]
-                        ),
+                        ]
+                    ),
                         parse_mode=ParseMode.MARKDOWN,
                     )
                 elif e.message == "Stickers_too_much":
@@ -334,15 +334,15 @@ def kang(update: Update, context: CallbackContext):
                 f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                 + f"\nEmoji is: {sticker_emoji}",
                 reply_markup=InlineKeyboardMarkup(
-                    [
                         [
-                            InlineKeyboardButton(
-                                "👉 Go to message",
-                                url=f"t.me/addstickers/{packname}",
-                            )
+                            [
+                                InlineKeyboardButton(
+                                    "Add {sticker_emoji} To Your Pack",
+                                    url=f"t.me/addstickers/{packname}",
+                                )
+                            ]
                         ]
-                    ]
-                ),
+                    ),
                 parse_mode=ParseMode.MARKDOWN,
             )
         except OSError as e:
