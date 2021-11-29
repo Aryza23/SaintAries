@@ -328,7 +328,7 @@ def help_button(update, context):
                 "* ｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
                 + HELPABLE[module].__help__
             )
-            + help_text
+            +help_text
 
             query.message.edit_text(
                 text=text,
