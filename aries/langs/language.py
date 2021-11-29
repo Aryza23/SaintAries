@@ -23,7 +23,7 @@ class Language:
             if filename.endswith(".yaml"):
                 language_name = filename[:-5]
                 self.languages[language_name] = yaml.safe_load(
-                    open(r"./tg_bot/langs/" + filename, encoding="utf8")
+                    open(r"./aries/langs/" + filename, encoding="utf8")
                 )
 
     def get_languages(self) -> Dict:
