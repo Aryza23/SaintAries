@@ -169,6 +169,16 @@ def kang(update: Update, context: CallbackContext):
                 msg.reply_text(
                     f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                     + f"\nEmoji is: {sticker_emoji}",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "👉 Go to message",
+                                url=f"t.me/addstickers/{packname}",
+                            )
+                        ]
+                    ]
+                ),
                     parse_mode=ParseMode.MARKDOWN,
                 )
 
@@ -199,6 +209,16 @@ def kang(update: Update, context: CallbackContext):
                     msg.reply_text(
                         f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                         + f"\nEmoji is: {sticker_emoji}",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "👉 Go to message",
+                                url=f"t.me/addstickers/{packname}",
+                            )
+                        ]
+                    ]
+                ),
                         parse_mode=ParseMode.MARKDOWN,
                     )
                 elif e.message == "Stickers_too_much":
@@ -313,6 +333,16 @@ def kang(update: Update, context: CallbackContext):
             msg.reply_text(
                 f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                 + f"\nEmoji is: {sticker_emoji}",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "👉 Go to message",
+                                url=f"t.me/addstickers/{packname}",
+                            )
+                        ]
+                    ]
+                ),
                 parse_mode=ParseMode.MARKDOWN,
             )
         except OSError as e:
@@ -630,7 +660,7 @@ __help__ = """
   ❍ `/stickers` : Find stickers for given term on combot sticker catalogue
 """
 
-__mod_name__ = "🔘 Stickers"
+__mod_name__ = "Stickers"
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid, run_async=True)
 GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker, run_async=True)
 KANG_HANDLER = DisableAbleCommandHandler(
