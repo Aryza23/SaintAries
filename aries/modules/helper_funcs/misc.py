@@ -2,7 +2,15 @@ from math import ceil
 from typing import Dict, List
 from uuid import uuid4
 from aries import NO_LOAD
-from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, InlineQueryResultArticle, InputTextMessageContent
+from telegram import (
+    MAX_MESSAGE_LENGTH,
+    Bot,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ParseMode,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+)
 from telegram.error import TelegramError
 
 
@@ -35,7 +43,6 @@ def split_message(msg: str) -> List[str]:
         result.append(small_msg)
 
     return result
-
 
 
 def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
@@ -93,6 +100,7 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
 
     return pairs
 
+
 def article(
     title: str = "",
     description: str = "",
@@ -113,6 +121,7 @@ def article(
         ),
         reply_markup=reply_markup,
     )
+
 
 def send_to_list(
     bot: Bot, send_to: list, message: str, markdown=False, html=False
@@ -165,6 +174,7 @@ def build_keyboard_parser(bot, chat_id, buttons):
 
     return keyb
 
+
 def user_bot_owner(func):
     @wraps(func)
     def is_user_bot_owner(bot: Bot, update: Update, *args, **kwargs):
@@ -190,7 +200,3 @@ def build_keyboard_alternate(buttons):
 
 def is_module_loaded(name):
     return name not in NO_LOAD
-
-
-
-
