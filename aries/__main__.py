@@ -152,6 +152,9 @@ for module_name in ALL_MODULES:
     if hasattr(imported_module, "__help__") and imported_module.__help__:
         HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
+    if hasattr(imported_module, "get_help") and imported_module.get_help:
+        HELPABLE[imported_module.__mod_name__.lower()] = imported_module
+
     # Chats to migrate on chat_migrated events
     if hasattr(imported_module, "__migrate__"):
         MIGRATEABLE.append(imported_module)
@@ -322,10 +325,9 @@ def help_button(update, context):
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
-                ),
-            )
-
+                    [InlineKeyboardButton(text="Back", callback_data="help_back"),
+                InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport')]
+            ),
         elif prev_match:
             curr_page = int(prev_match.group(1))
             query.message.edit_text(
