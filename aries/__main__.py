@@ -317,10 +317,19 @@ def help_button(update, context):
     try:
         if mod_match:
             module = mod_match.group(1)
+            help_list = HELPABLE[module].get_help(update.effective_chat.id)
+            if isinstance(help_list, list):
+                help_text = help_list[0]
+                help_buttons = help_list[1:]
+            elif isinstance(help_list, str):
+                help_text = help_list
+                help_buttons = []
             text = (
                 "* ｢  Help  for  {}  module 」*\n".format(HELPABLE[module].__mod_name__)
                 + HELPABLE[module].__help__
             )
+            + help_text
+          )
             query.message.edit_text(
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
