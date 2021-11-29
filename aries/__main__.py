@@ -325,9 +325,14 @@ def help_button(update, context):
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
+                    [
                     [InlineKeyboardButton(text="Back", callback_data="help_back"),
-                InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport')]
+                    ],
+                    [InlineKeyboardButton(text='Support', url='https://t.me/idzeroidsupport'),
+                    ],
+                    ]
             ),
+        )
         elif prev_match:
             curr_page = int(prev_match.group(1))
             query.message.edit_text(
