@@ -1,10 +1,9 @@
 from math import ceil
 from typing import Dict, List
-
-from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, ParseMode
-from telegram.error import TelegramError
-
+from uuid import uuid4
 from aries import NO_LOAD
+from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, InlineQueryResultArticle, InputTextMessageContent
+from telegram.error import TelegramError
 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
@@ -38,6 +37,7 @@ def split_message(msg: str) -> List[str]:
     return result
 
 
+
 def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
     if not chat:
         modules = sorted(
@@ -64,13 +64,11 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
             ]
         )
 
-    pairs = [modules[i * 3 : (i + 1) * 3] for i in range((len(modules) + 3 - 2) // 3)]
+    pairs = [modules[i * 3 : (i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)]
 
     round_num = len(modules) / 3
     calc = len(modules) - round(round_num)
-    if calc == 1:
-        pairs.append((modules[-2],))
-    elif calc == 2:
+    if calc in [1, 2]:
         pairs.append((modules[-1],))
 
     max_num_pages = ceil(len(pairs) / 3)
@@ -95,6 +93,26 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
 
     return pairs
 
+def article(
+    title: str = "",
+    description: str = "",
+    message_text: str = "",
+    thumb_url: str = None,
+    reply_markup: InlineKeyboardMarkup = None,
+    disable_web_page_preview: bool = False,
+) -> InlineQueryResultArticle:
+
+    return InlineQueryResultArticle(
+        id=uuid4(),
+        title=title,
+        description=description,
+        thumb_url=thumb_url,
+        input_message_content=InputTextMessageContent(
+            message_text=message_text,
+            disable_web_page_preview=disable_web_page_preview,
+        ),
+        reply_markup=reply_markup,
+    )
 
 def send_to_list(
     bot: Bot, send_to: list, message: str, markdown=False, html=False
@@ -147,7 +165,6 @@ def build_keyboard_parser(bot, chat_id, buttons):
 
     return keyb
 
-
 def user_bot_owner(func):
     @wraps(func)
     def is_user_bot_owner(bot: Bot, update: Update, *args, **kwargs):
@@ -173,3 +190,7 @@ def build_keyboard_alternate(buttons):
 
 def is_module_loaded(name):
     return name not in NO_LOAD
+
+
+
+
