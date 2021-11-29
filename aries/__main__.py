@@ -384,6 +384,7 @@ def help_button(update, context):
     except BadRequest:
         pass
 
+
 def aries_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmanu_":
