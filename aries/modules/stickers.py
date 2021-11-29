@@ -169,16 +169,16 @@ def kang(update: Update, context: CallbackContext):
                 msg.reply_text(
                     f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                     + f"\nEmoji is: {sticker_emoji}",
-                reply_markup=InlineKeyboardMarkup(
-                    [
+                    reply_markup=InlineKeyboardMarkup(
                         [
-                            InlineKeyboardButton(
-                                "👉 Go to message",
-                                url=f"t.me/addstickers/{packname}",
-                            )
+                            [
+                                InlineKeyboardButton(
+                                    "👉 Go to message",
+                                    url=f"t.me/addstickers/{packname}",
+                                )
+                            ]
                         ]
-                    ]
-                ),
+                    ),
                     parse_mode=ParseMode.MARKDOWN,
                 )
 
@@ -209,16 +209,16 @@ def kang(update: Update, context: CallbackContext):
                     msg.reply_text(
                         f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
                         + f"\nEmoji is: {sticker_emoji}",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "👉 Go to message",
-                                url=f"t.me/addstickers/{packname}",
-                            )
-                        ]
-                    ]
-                ),
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton(
+                                        "👉 Go to message",
+                                        url=f"t.me/addstickers/{packname}",
+                                    )
+                                ]
+                            ]
+                        ),
                         parse_mode=ParseMode.MARKDOWN,
                     )
                 elif e.message == "Stickers_too_much":
