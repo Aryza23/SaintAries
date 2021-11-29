@@ -1,117 +1,76 @@
-import re
-
-from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
-from telegram.ext import CallbackQueryHandler
-from telegram.ext import CommandHandler
+from typing import Union, List, Dict, Callable, Generator, Any
+import itertools
+from collections.abc import Iterable
+from telegram.ext import CommandHandler, CallbackQueryHandler
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 
 from aries import dispatcher
-from aries.modules.connection import connected
-from aries.modules.helper_funcs.chat_status import user_admin
-from aries.modules.sql.translation import switch_to_locale, prev_locale
-from aries.modules.translations.list_locale import list_locales
-from aries.modules.translations.strings import tld
+import aries.modules.sql.language_sql as sql
+from aries.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
+from aries.langs import get_string, get_languages, get_language
+
+
+
+def paginate(
+    iterable: Iterable, page_size: int
+) -> Generator[List, None, None]:
+    while True:
+        i1, i2 = itertools.tee(iterable)
+        iterable, page = (
+            itertools.islice(i1, page_size, None),
+            list(itertools.islice(i2, page_size)),
+        )
+        if not page:
+            break
+        yield page
+
+
+def gs(chat_id: Union[int, str], string: str) -> str:
+    lang = sql.get_chat_lang(chat_id)
+    return get_string(lang, string)
 
 
 @user_admin
-def locale(bot, update, args):
+def set_lang(update: Update, _) -> None:
     chat = update.effective_chat
-    if len(args) > 0:
-        locale = args[0].lower()
-        if locale in list_locales:
-            if locale in ("en|id"):
-                switch_to_locale(chat.id, locale)
-                update.message.reply_text(
-                    tld(chat.id, "Switched to {} successfully!").format(
-                        list_locales[locale]
-                    )
-                )
-            else:
-                update.message.reply_text(
-                    tld(
-                        chat.id, "{} is not supported yet!".format(list_locales[locale])
-                    )
-                )
-        else:
-            update.message.reply_text(
-                tld(
-                    chat.id,
-                    "Is that even a valid language code? Use an internationally accepted ISO code!",
-                )
-            )
-    else:
-        LANGUAGE = prev_locale(chat.id)
-        if LANGUAGE:
-            locale = LANGUAGE.locale_name
-            native_lang = list_locales[locale]
-            update.message.reply_text(
-                tld(
-                    chat.id, "Current locale for this chat is: *{}*".format(native_lang)
-                ),
-                parse_mode=ParseMode.MARKDOWN,
-            )
-        else:
-            update.message.reply_text(
-                "Current locale for this chat is: *English*",
-                parse_mode=ParseMode.MARKDOWN,
-            )
+    msg = update.effective_message
 
-
-@user_admin
-def locale_button(bot, update):
-    chat = update.effective_chat
-    user = update.effective_user  # type: optional[User]
-    query = update.callback_query
-    lang_match = re.findall(r"en|id", query.data)
-    if lang_match:
-        if lang_match[0]:
-            switch_to_locale(chat.id, lang_match[0])
-            query.answer(text="Language changed!")
-        else:
-            query.answer(text="Error!", show_alert=True)
-
-    try:
-        LANGUAGE = prev_locale(chat.id)
-        locale = LANGUAGE.locale_name
-        curr_lang = list_locales[locale]
-    except:
-        curr_lang = "English"
-
-    text = "*Select language* \n"
-    text += "User language : `{}`".format(curr_lang)
-
-    conn = connected(bot, update, chat, user.id, need_admin=False)
-
-    if not conn == False:
-        try:
-            chatlng = prev_locale(conn).locale_name
-            chatlng = list_locales[chatlng]
-            text += "\nConnected chat language : `{}`".format(chatlng)
-        except:
-            chatlng = "English"
-
-    text += "*\n\nSelect new user language:*"
-
-    query.message.reply_text(
-        text,
-        parse_mode=ParseMode.MARKDOWN,
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("English", callback_data="set_lang_en")]]
-            + [[InlineKeyboardButton("Indonesian", callback_data="set_lang_id")]]
-            + [[InlineKeyboardButton("⬅️ Back", callback_data="bot_start")]]
-        ),
+    msg_text = gs(chat.id, "curr_chat_lang").format(
+        get_language(sql.get_chat_lang(chat.id))[:-3]
     )
 
-    print(lang_match)
-    query.message.delete()
-    bot.answer_callback_query(query.id)
+    keyb = [InlineKeyboardButton(
+                text=name,
+                callback_data=f"setLang_{code}",
+            ) for code, name in get_languages().items()]
+    keyb = list(paginate(keyb, 2))
+    keyb.append(
+        [
+            InlineKeyboardButton(
+                text="Help us in translations",
+                url="https://poeditor.com/join/project?hash=oJISpjNcEx",
+            )
+        ]
+    )
+    msg.reply_text(msg_text, reply_markup=InlineKeyboardMarkup(keyb))
 
 
-LOCALE_HANDLER = CommandHandler(
-    ["set_locale", "locale", "lang", "setlang"], locale, pass_args=True
-)
-locale_handler = CallbackQueryHandler(locale_button, pattern="chng_lang")
-set_locale_handler = CallbackQueryHandler(locale_button, pattern=r"set_lang_")
+@user_admin_no_reply
+def lang_button(update: Update, _) -> None:
+    query = update.callback_query
+    chat = update.effective_chat
 
-dispatcher.add_handler(LOCALE_HANDLER)
-dispatcher.add_handler(locale_handler)
-dispatcher.add_handler(set_locale_handler)
+    query.answer()
+    lang = query.data.split("_")[1]
+    sql.set_lang(chat.id, lang)
+
+    query.message.edit_text(
+        gs(chat.id, "set_chat_lang").format(get_language(lang)[:-3])
+    )
+
+
+SETLANG_HANDLER = CommandHandler("language", set_lang)
+SETLANG_BUTTON_HANDLER = CallbackQueryHandler(lang_button, pattern=r"setLang_")
+
+dispatcher.add_handler(SETLANG_HANDLER)
+dispatcher.add_handler(SETLANG_BUTTON_HANDLER)
