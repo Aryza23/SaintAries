@@ -10,10 +10,7 @@ from aries.modules.helper_funcs.chat_status import user_admin, user_admin_no_rep
 from aries.langs import get_string, get_languages, get_language
 
 
-
-def paginate(
-    iterable: Iterable, page_size: int
-) -> Generator[List, None, None]:
+def paginate(iterable: Iterable, page_size: int) -> Generator[List, None, None]:
     while True:
         i1, i2 = itertools.tee(iterable)
         iterable, page = (
@@ -39,10 +36,13 @@ def set_lang(update: Update, _) -> None:
         get_language(sql.get_chat_lang(chat.id))[:-3]
     )
 
-    keyb = [InlineKeyboardButton(
-                text=name,
-                callback_data=f"setLang_{code}",
-            ) for code, name in get_languages().items()]
+    keyb = [
+        InlineKeyboardButton(
+            text=name,
+            callback_data=f"setLang_{code}",
+        )
+        for code, name in get_languages().items()
+    ]
     keyb = list(paginate(keyb, 2))
     keyb.append(
         [
