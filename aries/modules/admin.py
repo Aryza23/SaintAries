@@ -565,7 +565,6 @@ def set_title(update: Update, context: CallbackContext):
     )
 
 
-
 @bot_admin
 @can_pin
 @user_admin
