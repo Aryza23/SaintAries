@@ -67,9 +67,7 @@ from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 
 HELP_MSG = "Click the button below to get help menu in your pm."
-HELP_IMG = (
-    "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
-)
+HELP_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 GROUP_START_IMG = (
     "CAACAgIAAx0CXBdkHQAC34lhpHKAV3nIlqfcnYmDkIhbOFTktwACFBAAAkXe2EuBs3crQ6mMdR4E"
 )
