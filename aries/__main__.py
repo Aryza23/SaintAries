@@ -66,15 +66,15 @@ from aries.modules.helper_funcs.misc import paginate_modules
 from aries.modules.helper_funcs.readable_time import get_readable_time
 from aries.modules.sql import users_sql as sql
 
-HELP_MSG = "Click the button below to get help menu in your pm."
+HELP_MSG = "Click The Button Below To Get Help Menu In Your Private Message."
 HELP_IMG = "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 GROUP_START_IMG = (
     "CAACAgIAAx0CXBdkHQAC34lhpHKAV3nIlqfcnYmDkIhbOFTktwACFBAAAkXe2EuBs3crQ6mMdR4E"
 )
 
 PM_START_TEXT = """
-Hello there, 👋 I'm *{}*.
-I am Powerfull Bot Managing and I will help in managing your group.
+Hello there, 👋 I'm [*{}*.](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
+Im Powerfull Management Bot And I Will Help In Managing Your Group.
 Maintained by : [Aryza](https://t.me/idzxartez)
 Founder And Dev Of : [IDZEROID SYNDICATES](https://telegra.ph/file/ac893610cae84f302b2da.jpg).
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
