@@ -3,13 +3,13 @@ import io
 import random
 import sys
 import traceback
-
 import pretty_errors
 import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
+from aries import dispatcher, DEV_USERS
 
-from aries import dispatcher, DEV_USERS, SUPPORT_CHAT
+MESSAGE_DUMP = "-1001545036829"
 
 pretty_errors.mono()
 
@@ -80,7 +80,7 @@ def error_callback(update: Update, context: CallbackContext):
             tb,
         )
         key = requests.post(
-            "https://www.toptal.com/developers/hastebin/documents",
+            "https://nekobin/api/documents",
             data=pretty_message.encode("UTF-8"),
         ).json()
         e = html.escape(f"{context.error}")
@@ -88,7 +88,7 @@ def error_callback(update: Update, context: CallbackContext):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
-                SUPPORT_CHAT,
+                MESSAGE_DUMP,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
                 f"</b>\n<code>{e}</code>",
@@ -96,9 +96,9 @@ def error_callback(update: Update, context: CallbackContext):
             )
             return
         key = key.get("key")
-        url = f"https://www.toptal.com/developers/hastebin/{key}"
+        url = f"https://nekobin.com/{key}.py"
         context.bot.send_message(
-            SUPPORT_CHAT,
+            MESSAGE_DUMP,
             text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
             f"</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
