@@ -68,7 +68,7 @@ from aries.modules.sql import users_sql as sql
 
 HELP_MSG = "Click the button below to get help menu in your pm."
 HELP_IMG = (
-    "CAACAgUAAx0CWzGrAgACUI5hgH1cmk2ATbKMSLbBkyT4gFZh2AACugMAAnT9wFQMa0H7UtS9nSEE"
+    "https://telegra.ph/file/ac893610cae84f302b2da.jpg"
 )
 GROUP_START_IMG = (
     "CAACAgIAAx0CXBdkHQAC34lhpHKAV3nIlqfcnYmDkIhbOFTktwACFBAAAkXe2EuBs3crQ6mMdR4E"
@@ -76,14 +76,14 @@ GROUP_START_IMG = (
 
 PM_START_TEXT = """
 Hello there, 👋 I'm *{}*.
-I am Powerfull Group Managing Bot and I will help in managing your group.
-Maintained by : *[Aryza](https://t.me/idzxartez)*
-Founder And Dev Of : *[IDZEROID SYNDICATES]*(https://telegra.ph/file/ac893610cae84f302b2da.jpg).
+I am Powerfull Bot Managing and I will help in managing your group.
+Maintained by : [Aryza](https://t.me/idzxartez)
+Founder And Dev Of : [IDZEROID SYNDICATES](https://telegra.ph/file/ac893610cae84f302b2da.jpg).
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 • *Uptime:* `{}`
 • `{}` *Users, across* `{}` *chats.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-Made specifically to manage your group , I specialize in managing Entertainment type groups.
+Made specifically to manage your group , I specialize in managing Entertainment and all type groups and channels.
 ✪ Make sure you read *DETAILS* Section Below ✪ 
 """
 
