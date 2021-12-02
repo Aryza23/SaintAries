@@ -51,6 +51,7 @@ AD_STRINGS = (
     "_*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*_",
     "_*sorry I'm not a perfect person like you, also not arrogant like you,and it's not something that requires me to be jealous.*_",
     "_*maaf aku bukan orang yang sempurna sepertimu, juga tidak sombong sepertimu, dan itu bukan sesuatu yang mengharuskan saya untuk cemburu.*_",
+    "_*Suara tawanya, sangat ingin ku simpan dikotak musik hatiku. Aku selalu ingin memeluknya. Biarkan pelukanku menjadi pelindungnya bahkan hatiku akan selalu menjadi rumahnya dalam jangka waktu panjang. Senyumnya selalu terukir disetiap benakku dan ciummannya seperi bunga mawar yang bermekaran setiap harinya. Ini untukmu yang pernah berbagi kehangatan padaku.*_",
 )
 
 
