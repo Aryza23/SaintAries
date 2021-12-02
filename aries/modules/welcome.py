@@ -44,6 +44,7 @@ from aries.modules.helper_funcs.string_handling import (
 )
 from aries.modules.log_channel import loggable
 from aries.modules.sql.global_bans_sql import is_user_gbanned
+from aries import ALLOW_CHATS
 
 VALID_WELCOME_FORMATTERS = [
     "first",
