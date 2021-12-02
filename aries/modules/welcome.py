@@ -44,7 +44,6 @@ from aries.modules.helper_funcs.string_handling import (
 )
 from aries.modules.log_channel import loggable
 from aries.modules.sql.global_bans_sql import is_user_gbanned
-from aries import ALLOW_CHATS
 
 VALID_WELCOME_FORMATTERS = [
     "first",
@@ -113,7 +112,7 @@ def send(update, message, keyboard, backup_message):
                 message,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=keyboard,
-                quote=False,
+                quote=True,
             )
 
         elif excp.message == "Unsupported url protocol":
@@ -174,14 +173,6 @@ def new_member(update: Update, context: CallbackContext):
     new_members = update.effective_message.new_chat_members
 
     for new_mem in new_members:
-
-        if new_mem.id == bot.id and not aries.ALLOW_CHATS:
-            with suppress(BadRequest):
-                update.effective_message.reply_text(
-                    f"Groups are disabled for {bot.first_name}, I'm outta here."
-                )
-            bot.leave_chat(update.effective_chat.id)
-            return
 
         welcome_log = None
         res = None
