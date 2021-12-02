@@ -10,7 +10,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboardMarkup
 
-from aries import DRAGONS as SUDO_USERS
+from aries import DEV_USERS
 from aries import pbot
 from aries.modules.sql import forceSubscribe_sql as sql
 
@@ -76,7 +76,7 @@ def _check_member(client, message):
         if (
             not client.get_chat_member(chat_id, user_id).status
             in ("administrator", "creator")
-            and not user_id in SUDO_USERS
+            and not user_id in DEV_USERS
         ):
             channel = chat_db.channel
             try:
@@ -122,7 +122,7 @@ def _check_member(client, message):
 @pbot.on_message(filters.command(["forcesubscribe", "fsub"]) & ~filters.private)
 def config(client, message):
     user = client.get_chat_member(message.chat.id, message.from_user.id)
-    if user.status is "creator" or user.user.id in SUDO_USERS:
+    if user.status is "creator" or user.user.id in DEV_USERS:
         chat_id = message.chat.id
         if len(message.command) > 1:
             input_str = message.command[1]
@@ -195,4 +195,4 @@ __help__ = """
   💡If you disable fsub, you need to set again for working.. /fsub {channel username} 
  ❍ /fsub clear - To unmute all members who muted by me.
 """
-__mod_name__ = "🔘 F-Sub"
+__mod_name__ = "F-Sub"
