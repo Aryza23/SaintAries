@@ -612,7 +612,7 @@ def pin(update: Update, context: CallbackContext) -> str:
                         [
                             InlineKeyboardButton(
                                 "👉 Go to message",
-                                url=f"{html.escape(chat.title)}{message_link}",
+                                url=f"{message_link}",
                             )
                         ]
                     ]
