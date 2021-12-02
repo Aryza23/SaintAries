@@ -2,9 +2,10 @@ import os
 import subprocess
 import sys
 from time import sleep
-
 from contextlib import suppress
+
 from telegram import TelegramError, Update
+from telegram.error import Unauthorized
 from telegram.ext import CallbackContext, CommandHandler
 
 from aries import dispatcher
