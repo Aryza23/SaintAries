@@ -260,7 +260,7 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
                         \nGroup Name:   **\\{chat.title}** \
                         \nID:   `\\{chat.id}` \
                         \nCreator ID:   `\\{creator.id}` \
-                        \nCreator ID:   \{creator.username} \
+                        \nCreator Username:   \@{creator.username} \
                         """,
                         parse_mode=ParseMode.MARKDOWN_V2,
                     )
