@@ -19,12 +19,12 @@
       "API_ID": {
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": "7754894"
+         "value": "123"
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": "e19957919f4da56ce9240dc475b3593d"
+         "value": "123"
       },
       "API_PORT": {
          "description": "Don't change.",
@@ -63,7 +63,7 @@
       "BOT_ID": {
          "description": "Your bot ID use other bot for get id.",
          "required": true,
-         "value": "1914584978"
+         "value": "123"
       },
       "OWNER_USERNAME": {
          "description": "Your username without the @",
@@ -77,7 +77,7 @@
       "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
          "required": true,
-         "value": "-1001422528389"
+         "value": "-123"
       },
       "SUDO_USERS": {
          "description": "For gbans",
@@ -97,7 +97,7 @@
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
          "required": true,
-         "value": "-1001422528389"
+         "value": "-123"
       },
       "CASH_API_KEY": {
          "description": "Required for currency converter. Get yours from https://www.alphavantage.co/support/#api-key",
