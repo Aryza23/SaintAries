@@ -9,8 +9,8 @@ from telethon.tl import functions
 from aries import TEMP_DOWNLOAD_DIRECTORY, telethn
 from aries.events import register
 
-REM_BG_API_KEY = "icujRMB7cEDtbjUXow5Xw1up"
-UNSCREEN_API = "mR7UnVPVRbV235iK8s5jk7vU"
+REM_BG_API_KEY = ""
+UNSCREEN_API = ""
 
 
 async def is_register_admin(chat, user):
