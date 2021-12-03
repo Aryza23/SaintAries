@@ -228,7 +228,7 @@ else:
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
-#DON'T REMOVE IF U REMOVE SOME MODULES NOT WORK
+# DON'T REMOVE IF U REMOVE SOME MODULES NOT WORK
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
