@@ -8,11 +8,11 @@ from pyrogram.types import (
     InputTextMessageContent,
 )
 
-from aries import pgram, telegraph
+from aries import pbot, telegraph
 from aries.utils.errors import capture_err
 
 
-@pgram.on_message(~filters.me & filters.command("nhentai", prefixes="/"), group=8)
+@pbot.on_message(~filters.me & filters.command("nhentai", prefixes="/"), group=8)
 @capture_err
 async def nhentai(client, message):
     query = message.text.split(" ")[1]
