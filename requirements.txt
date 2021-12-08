@@ -49,7 +49,7 @@ telegraph==2.1.0
 heroku3
 spamwatch
 alphabet-detector==0.0.7
-pyrate-limiter==2.4.7
+pyrate-limiter==2.6.0
 cachetools
 python-rapidjson==1.5
 ujson
