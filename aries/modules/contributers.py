@@ -31,7 +31,7 @@ async def give_repo(c, m):
 **Pyrogram Version :** `{z}`
 
 ```----------------
-| **Collaborators** |
+| Collaborators |
 ----------------```
 {list_of_users}
 **Create your own with click button bellow.**
