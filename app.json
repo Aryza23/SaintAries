@@ -38,12 +38,12 @@
       "REDIS_PORT": {
          "description": "Get from redislabs.com",
          "value": "",
-         "required": true
+         "required": false
       },
       "REDIS_PASS": {
          "description": "Get from redislabs.com",
          "value": "",
-         "required": true
+         "required": false
       },
       "MONGO_DB_URI": {
          "description": "Required for database connections",
