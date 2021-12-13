@@ -30,20 +30,10 @@
          "description": "Don't change.",
          "value": "8080"
       },
-      "REDIS_URI": {
-         "description": "Get from redislabs.com",
-         "value": "",
+      "REDIS_URL": {
+         "description": "Get from redislabs.com see sample at @idzeroidsupport",
+         "value": "redis://<username>:<password><endpoint>",
          "required": true
-      },
-      "REDIS_PORT": {
-         "description": "Get from redislabs.com",
-         "value": "",
-         "required": false
-      },
-      "REDIS_PASS": {
-         "description": "Get from redislabs.com",
-         "value": "",
-         "required": false
       },
       "MONGO_DB_URI": {
          "description": "Required for database connections",
