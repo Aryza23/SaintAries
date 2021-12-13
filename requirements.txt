@@ -11,7 +11,7 @@ beautifulsoup4
 gitpython
 requests
 httpx
-python-telegram-bot==13.8.1
+python-telegram-bot==13.9
 SQLAlchemy==1.4.28
 youtube_dl
 python-dotenv==0.19.2
