@@ -103,7 +103,7 @@ cowpy
 glitch_this==1.0.2
 uvloop==0.16.0
 youtube_search
-pytube==11.0.1
+pytube==11.0.2
 cryptg==0.2.post4
 aioredis==2.0.0
 NumPy==1.21.4
