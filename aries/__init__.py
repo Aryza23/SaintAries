@@ -126,7 +126,7 @@ if ENV:
         "g~_w3BTzVQOCkm~hO0Dvi5aQCg6v92ZD_1dyZUnVFKneKg7VMw37sVfdqltxtCuq",
     )
     BOT_ID = int(os.environ.get("BOT_ID", "1914584978"))
-    ARQ_API_URL = "https://grambuilders.tech"
+    ARQ_API_URL = "https://thearq.tech"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "ZBYMIN-TVRHON-OGTFXW-PUCAGK-ARQ")
     SAINT = 1192108540
     bot_start_time = time.time()
@@ -234,7 +234,6 @@ DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1669508271)
 DEV_USERS.add(1817146787)
-DEV_USERS.add(2131857711)
 DEV_USERS.add(1192108540)
 DEV_USERS.add(1138045685)
 DEV_USERS.add(870471128)
