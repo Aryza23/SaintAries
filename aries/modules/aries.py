@@ -3,8 +3,12 @@ import requests
 from bs4 import BeautifulSoup as bs
 from pyjokes import get_joke
 from telethon.errors import ChatSendMediaForbiddenError
-
-from telegram import Update, ParseMode
+from telegram import (
+    Update,
+    ParseMode,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+)
 from telegram.ext import CallbackContext
 
 import aries.modules.aries_strings as aries_strings
@@ -28,7 +32,7 @@ async def insult(event):
     await m.edit(f"{cm}")
 
 
-@register(pattern="url ?(.*)")
+@register(pattern="^/url ?(.*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     if not input_str:
@@ -51,7 +55,7 @@ AD_STRINGS = (
     "_*healing terbaik jatuh kepada rebahan, jalan jalan dan makanan enak*_",
     "_*sorry I'm not a perfect person like you, also not arrogant like you,and it's not something that requires me to be jealous.*_",
     "_*maaf aku bukan orang yang sempurna sepertimu, juga tidak sombong sepertimu, dan itu bukan sesuatu yang mengharuskan saya untuk cemburu.*_",
-    "_*Suara tawanya, sangat ingin ku simpan dikotak musik hatiku. Aku selalu ingin memeluknya. Biarkan pelukanku menjadi pelindungnya bahkan hatiku akan selalu menjadi rumahnya dalam jangka waktu panjang. Senyumnya selalu terukir disetiap benakku dan ciummannya seperi bunga mawar yang bermekaran setiap harinya. Ini untukmu yang pernah berbagi kehangatan padaku.*_",
+    "_*lupakan aku ku sayangi mu tak berarti bahwa ku bisa memilikimu maaf kan ak tidak bisa memberi yang terbaik tapi jika kau membutuh kan ku untuk mendampingimu di saat hari-hari buruk mu aku kan selalu sedia berada di sisi mu.*_",
 )
 
 
@@ -64,6 +68,33 @@ def aries(update: Update, context: CallbackContext):
         else message.reply_photo
     )
     reply_photo(random.choice(aries_strings.ARIES_IMG))
+
+
+LAWAK_STRINGS = (
+    "https://telegra.ph/file/abdae436beade5626f568.mp4",
+    "https://telegra.ph/file/776897d2aa2de78cd59c7.mp4",
+    "https://telegra.ph/file/266d16b4d941b3953a3ea.mp4",
+    "https://telegra.ph/file/fab2d5b2e871b26febe8c.mp4",
+    "https://telegra.ph/file/697428078668a59f06739.mp4",
+    "https://telegra.ph/file/e1558f2984f90048017ff.mp4",
+    "https://telegra.ph/file/036333fb4ce099b7ca02a.mp4",
+)
+
+
+def lawak(update, context):
+    msg = update.effective_message
+    msg.reply_video(
+        random.choice(LAWAK_STRINGS),
+        caption=f"""<i>Powered by: Aries Robot</i> 🔥""",
+        parse_mode=ParseMode.HTML,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("Support", url="https://t.me/idzeroidsupport"),
+                ],
+            ]
+        ),
+    )
 
 
 def diaryaryza(update: Update, context: CallbackContext):
@@ -79,6 +110,7 @@ __help__ = """
  ❍ `/asupan`*:* gives random asupan medi.
  ❍ `/chika`*:* gives random chika media.
  ❍ `/wibu`*:* gives random wibu media.
+ ❍ `/lawak`*:* gives random lawak media.
  ❍ `/apakah`*:* For ask question about someone with AI.
  ❍ `/diaryaryza`*:* Check Aja.
  ❍ `/apod`*:* Get Astronomy Picture of Day by NASA.
@@ -86,17 +118,20 @@ __help__ = """
  ❍ `/joke`*:* To get random joke.
  ❍ `/inslut`*:* Insult someone..
  ❍ `/url <long url>`*:* To get a shorten link of long link.
+ ❍ `/carbon` <text> [or reply] *:* Beautify your code using carbon.now.sh
+ ❍ `/webss` <url> *:* Take A Screenshot Of A Webpage.
 """
 
 
 ARIES_HANDLER = DisableAbleCommandHandler("aries", aries, run_async=True)
 dispatcher.add_handler(ARIES_HANDLER)
-
+LAWAK_HANDLER = DisableAbleCommandHandler("lawak", lawak, run_async=True)
+dispatcher.add_handler(LAWAK_HANDLER)
 DIARYARYZA_HANDLER = DisableAbleCommandHandler("diaryaryza", diaryaryza, run_async=True)
 dispatcher.add_handler(DIARYARYZA_HANDLER)
 
 __mod_name__ = "Aries Extras"
 
 
-__command_list__ = ["aries", "diaryaryza"]
-__handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER]
+__command_list__ = ["aries", "diaryaryza", "lawak"]
+__handlers__ = [ARIES_HANDLER, DIARYARYZA_HANDLER, LAWAK_HANDLER]
