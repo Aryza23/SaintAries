@@ -106,5 +106,5 @@ youtube_search
 pytube==11.0.2
 cryptg==0.2.post4
 aioredis==2.0.0
-NumPy==1.21.4
+NumPy==1.21.5
 yt-dlp
