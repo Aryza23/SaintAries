@@ -29,7 +29,7 @@ pyjokes
 spongemock==0.3.4
 zalgo-text==0.6
 geopy
-nltk==3.6.5
+nltk==3.6.6
 psutil==5.8.0
 aiohttp>=2.2.5
 pillow
