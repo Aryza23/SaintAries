@@ -62,7 +62,7 @@
       "SUPPORT_CHAT": {
          "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah.",
          "required": true,
-         "value": "IDZEROIDSUPPORT"
+         "value": "SatanicSociety"
       },
       "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
