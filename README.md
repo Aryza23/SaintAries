@@ -8,6 +8,12 @@
 
 
 <p align="center">
+<a href="https://www.codefactor.io/repository/github/idzero23/SaintAries"><img src="https://www.codefactor.io/repository/github/idzero23/SaintAries/badge?s=c88caeeb0a1618f6af41e411a83bcd38832cd6ea" alt="CodeFactor" /></a> <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=idzero23/SaintAries&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/33e2dc1ed2c54ff18a80ba9f35e54b12"/></a>
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
+
+</p>
+
+<p align="center">
     <a href="https://python.org">
         <img src="http://forthebadge.com/images/badges/made-with-python.svg" alt="made-with-python">
     </a>
@@ -23,12 +29,7 @@
     <img src="https://img.shields.io/github/stars/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Stars">
 </p>
 
-## Bot Stats
-<p align="center">
-<a href="https://www.codefactor.io/repository/github/idzero23/SaintAries"><img src="https://www.codefactor.io/repository/github/idzero23/SaintAries/badge?s=c88caeeb0a1618f6af41e411a83bcd38832cd6ea" alt="CodeFactor" /></a> <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=idzero23/SaintAries&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/33e2dc1ed2c54ff18a80ba9f35e54b12"/></a>
-<a href="https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/idzero23/SaintAries.svg/?label=active+issues&show_trend=true&token=ah-I8aZ5wlj4-wyTy-WPOGgb"/></a>
-<a href="https://deepsource.io/gh/idzero23/SaintAries/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/idzero23/SaintAries.svg/?label=resolved+issues&show_trend=true&token=ah-I8aZ5wlj4-wyTy-WPOGgb"/></a>
-</p>
+
 
 ## A Powerful and Modular
 
