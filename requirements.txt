@@ -21,7 +21,7 @@ faker
 carbonnow
 validators
 hachoir==3.1.2
-pykeyboard==0.1.2
+pykeyboard==0.1.4
 pynewtonmath==1.0.1
 aiofiles==0.8.0
 ffmpeg
