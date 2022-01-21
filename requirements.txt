@@ -92,7 +92,7 @@ opencv-python-headless
 odmantic==0.3.5
 nekos.py
 pendulum==2.1.2
-launchpadlib==1.10.15.1
+launchpadlib==1.10.16
 requests_html==0.10.0
 pydub==0.25.1
 google-api-python-client
