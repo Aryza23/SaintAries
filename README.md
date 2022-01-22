@@ -8,7 +8,7 @@
 
 
 <p align="center">
-<a href="https://www.codefactor.io/repository/github/idzero23/SaintAries"><img src="https://www.codefactor.io/repository/github/idzero23/SaintAries/badge?s=c88caeeb0a1618f6af41e411a83bcd38832cd6ea" alt="CodeFactor" /></a> <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=idzero23/SaintAries&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/33e2dc1ed2c54ff18a80ba9f35e54b12"/></a>
+<a href="https://www.codefactor.io/repository/github/Aryza23/SaintAries"><img src="https://www.codefactor.io/repository/github/Aryza23/SaintAries/badge?s=c88caeeb0a1618f6af41e411a83bcd38832cd6ea" alt="CodeFactor" /></a> <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Aryza23/SaintAries&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/33e2dc1ed2c54ff18a80ba9f35e54b12"/></a>
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
 
 </p>
@@ -17,16 +17,16 @@
     <a href="https://python.org">
         <img src="http://forthebadge.com/images/badges/made-with-python.svg" alt="made-with-python">
     </a>
-    <a href="https://GitHub.com/idzero23">
+    <a href="https://GitHub.com/Aryza23">
         <img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built-with-love">
     </a> <br>
-    <img src="https://img.shields.io/github/license/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="LICENSE">
-    <img src="https://img.shields.io/github/contributors/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Contributors">
-    <img src="https://img.shields.io/github/repo-size/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Repository Size"> <br>
+    <img src="https://img.shields.io/github/license/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="LICENSE">
+    <img src="https://img.shields.io/github/contributors/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="Contributors">
+    <img src="https://img.shields.io/github/repo-size/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="Repository Size"> <br>
     <img src="https://img.shields.io/badge/python-3.9-green?style=for-the-badge&logo=appveyor" alt="Python Version">
-    <img src="https://img.shields.io/github/issues/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Issues">
-    <img src="https://img.shields.io/github/forks/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Forks">
-    <img src="https://img.shields.io/github/stars/idzero23/saintaries?style=for-the-badge&logo=appveyor" alt="Stars">
+    <img src="https://img.shields.io/github/issues/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="Issues">
+    <img src="https://img.shields.io/github/forks/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="Forks">
+    <img src="https://img.shields.io/github/stars/Aryza23/saintaries?style=for-the-badge&logo=appveyor" alt="Stars">
 </p>
 
 
@@ -37,7 +37,7 @@ Saint Aries is a Characther powerful in saints saiya anime and modular telegram 
 
 ### Deploy To Heroku 📡</h4>
 
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/idzero23/SaintAries"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Aryza23/SaintAries"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
 
 ## NOTE:
 
