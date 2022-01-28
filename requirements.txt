@@ -86,7 +86,7 @@ better_profanity==0.7.0
 textblob==0.17.1 
 nudepy==0.5.1
 motor>=2.1.0,<2.6.0
-gpytranslate==1.3.0
+gpytranslate==1.4.0
 fontTools==4.29.0
 opencv-python-headless
 odmantic==0.3.5
