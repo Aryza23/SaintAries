@@ -94,7 +94,7 @@ __Powered By @idzeroid_bot__.
     )
 
 
-@pbot.on_message(filters.command(["nsfwscan", f"nsfwscan@idzeroid_bot"]))
+@pbot.on_message(filters.command(["nsfwscan", "nsfwscan@idzeroid_bot"]))
 @capture_err
 async def nsfw_scan_command(_, message):
     if not message.reply_to_message:
@@ -139,9 +139,7 @@ async def nsfw_scan_command(_, message):
     )
 
 
-@pbot.on_message(
-    filters.command(["antinsfw", f"antinsfw@idzeroid_bot"]) & ~filters.private
-)
+@pbot.on_message(filters.command(["antinsfw", "antinsfw@idzeroid_bot"]) & ~filters.private)
 @adminsOnly("can_change_info")
 async def nsfw_enable_disable(_, message):
     if len(message.command) != 2:

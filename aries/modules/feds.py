@@ -462,7 +462,7 @@ def fed_info(update: Update, context: CallbackContext):
 
     owner = bot.get_chat(info["owner"])
     try:
-        owner_name = owner.first_name + " " + owner.last_name
+        owner_name = f'{owner.first_name} {owner.last_name}'
     except:
         owner_name = owner.first_name
     FEDADMIN = sql.all_fed_users(fed_id)
@@ -517,7 +517,7 @@ def fed_admin(update: Update, context: CallbackContext):
     text += "👑 Owner:\n"
     owner = bot.get_chat(info["owner"])
     try:
-        owner_name = owner.first_name + " " + owner.last_name
+        owner_name = f'{owner.first_name} {owner.last_name}'
     except:
         owner_name = owner.first_name
     text += " ❍ {}\n".format(mention_html(owner.id, owner_name))

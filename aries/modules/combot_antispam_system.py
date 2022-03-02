@@ -68,17 +68,16 @@ def setcas(bot: Bot, update: Update):
         msg.reply_text("Invalid arguments!")
         return
     param = split_msg[1]
-    if param == "on" or param == "true":
+    if param in ["on", "true"]:
         sql.set_cas_status(chat.id, True)
         msg.reply_text("Successfully updated configuration.")
-        return
-    elif param == "off" or param == "false":
+    elif param in ["off", "false"]:
         sql.set_cas_status(chat.id, False)
         msg.reply_text("Successfully updated configuration.")
-        return
     else:
         msg.reply_text("Invalid status to set!")  # on or off ffs
-        return
+
+    return
 
 
 @user_admin
@@ -90,17 +89,16 @@ def setban(bot: Bot, update: Update):
         msg.reply_text("Invalid arguments!")
         return
     param = split_msg[1]
-    if param == "on" or param == "true":
+    if param in ["on", "true"]:
         sql.set_cas_autoban(chat.id, True)
         msg.reply_text("Successfully updated configuration.")
-        return
-    elif param == "off" or param == "false":
+    elif param in ["off", "false"]:
         sql.set_cas_autoban(chat.id, False)
         msg.reply_text("Successfully updated configuration.")
-        return
     else:
         msg.reply_text("Invalid autoban definition to set!")  # on or off ffs
-        return
+
+    return
 
 
 @user_admin
@@ -122,8 +120,10 @@ def getTimeSetting(bot: Bot, update: Update):
     msg = update.effective_message
     timeSetting = sql.getKickTime(chat.id)
     text = (
-        "This group will automatically kick people in " + str(timeSetting) + " seconds."
+        f"This group will automatically kick people in {str(timeSetting)}"
+        + " seconds."
     )
+
     msg.reply_text(text)
     return
 
@@ -153,7 +153,7 @@ def setTimeSetting(bot: Bot, update: Update, args: List[str]):
 def get_version(bot: Bot, update: Update):
     msg = update.effective_message
     ver = cas.vercheck()
-    msg.reply_text("CAS API version: " + ver)
+    msg.reply_text(f"CAS API version: {ver}")
     return
 
 
@@ -163,7 +163,7 @@ def caschecker(bot: Bot, update: Update, args: List[str]):
     user_id = extract_user(update.effective_message, args)
     if user_id and int(user_id) != 777000:
         user = bot.get_chat(user_id)
-    elif user_id and int(user_id) == 777000:
+    elif user_id:
         msg.reply_text(
             "This is Telegram. Unless you manually entered this reserved account's ID, it is likely a broadcast from a linked channel."
         )
@@ -197,12 +197,10 @@ def caschecker(bot: Bot, update: Update, args: List[str]):
     result = cas.banchecker(user.id)
     text += str(result)
     if result:
-        parsing = cas.offenses(user.id)
-        if parsing:
+        if parsing := cas.offenses(user.id):
             text += "\nTotal of Offenses: "
             text += str(parsing)
-        parsing = cas.timeadded(user.id)
-        if parsing:
+        if parsing := cas.timeadded(user.id):
             parseArray = str(parsing).split(", ")
             text += "\nDay added: "
             text += str(parseArray[1])
@@ -223,9 +221,8 @@ def casquery(bot: Bot, update: Update, args: List[str]):
     except:
         msg.reply_text("There was a problem parsing the query.")
         return
-    text = "Your query returned: "
     result = cas.banchecker(user_id)
-    text += str(result)
+    text = "Your query returned: " + str(result)
     msg.reply_text(text)
 
 
@@ -303,21 +300,20 @@ def setDefense(bot: Bot, update: Update, args: List[str]):
         msg.reply_text("Invalid arguments!")
         return
     param = args[0]
-    if param == "on" or param == "true":
+    if param in ["on", "true"]:
         sql.setDefenseStatus(chat.id, True)
         msg.reply_text(
             "Defense mode has been turned on, this group is under attack. Every user that now joins will be auto kicked."
         )
-        return
-    elif param == "off" or param == "false":
+    elif param in ["off", "false"]:
         sql.setDefenseStatus(chat.id, False)
         msg.reply_text(
             "Defense mode has been turned off, group is no longer under attack."
         )
-        return
     else:
         msg.reply_text("Invalid status to set!")  # on or off ffs
-        return
+
+    return
 
 
 @user_admin

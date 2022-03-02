@@ -34,24 +34,23 @@ async def check_chat_captcha(client, message):
         return
     try:
         user_s = await client.get_chat_member(chat_id, user_id)
-        if (user_s.is_member is False) and (LocalDB.get(user_id, None) is not None):
-            try:
-                await client.delete_messages(
-                    chat_id=chat_id, message_ids=LocalDB[user_id]["msg_id"]
-                )
-            except:
-                pass
-            return
-        elif user_s.is_member is False:
+        if user_s.is_member is False:
+            if LocalDB.get(user_id, None) is not None:
+                try:
+                    await client.delete_messages(
+                        chat_id=chat_id, message_ids=LocalDB[user_id]["msg_id"]
+                    )
+                except:
+                    pass
             return
     except UserNotParticipant:
         return
     chat_member = await client.get_chat_member(chat_id, user_id)
-    if chat_member.restricted_by:
-        if chat_member.restricted_by.id == (await client.get_me()).id:
-            pass
-        else:
-            return
+    if (
+        chat_member.restricted_by
+        and chat_member.restricted_by.id != (await client.get_me()).id
+    ):
+        return
     try:
         if LocalDB.get(user_id, None) is not None:
             try:
@@ -111,7 +110,7 @@ async def add_chat(bot, message):
             )
         else:
             await message.reply_text(
-                text=f"Please select the captcha type",
+                text="Please select the captcha type",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -120,7 +119,8 @@ async def add_chat(bot, message):
                                 callback_data=f"new_{chat_id}_{user_id}_N",
                             ),
                             InlineKeyboardButton(
-                                text="Emoji", callback_data=f"new_{chat_id}_{user_id}_E"
+                                text="Emoji",
+                                callback_data=f"new_{chat_id}_{user_id}_E",
                             ),
                         ]
                     ]

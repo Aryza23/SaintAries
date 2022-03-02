@@ -11,19 +11,13 @@ karmadb = db.karma
 
 async def _get_lovers(chat_id: int):
     lovers = coupledb.find_one({"chat_id": chat_id})
-    if lovers:
-        lovers = lovers["couple"]
-    else:
-        lovers = {}
+    lovers = lovers["couple"] if lovers else {}
     return lovers
 
 
 async def get_couple(chat_id: int, date: str):
     lovers = await _get_lovers(chat_id)
-    if date in lovers:
-        return lovers[date]
-    else:
-        return False
+    return lovers[date] if date in lovers else False
 
 
 async def save_couple(chat_id: int, date: str, couple: dict):
@@ -50,10 +44,7 @@ async def get_karmas_count() -> dict:
 
 async def get_karmas(chat_id: int) -> Dict[str, int]:
     karma = karmadb.find_one({"chat_id": chat_id})
-    if karma:
-        karma = karma["karma"]
-    else:
-        karma = {}
+    karma = karma["karma"] if karma else {}
     return karma
 
 
@@ -75,12 +66,9 @@ async def update_karma(chat_id: int, name: str, karma: dict):
 
 
 async def int_to_alpha(user_id: int) -> str:
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-    text = ""
     user_id = str(user_id)
-    for i in user_id:
-        text += alphabet[int(i)]
-    return text
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+    return "".join(alphabet[int(i)] for i in user_id)
 
 
 async def alpha_to_int(user_id_alphabet: str) -> int:

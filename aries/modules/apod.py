@@ -17,8 +17,8 @@ async def aposj(e):
         expla = m.find_all("p")[2].text.replace("\n", " ")
         expla = expla.split("     ")[0]
         if len(expla) > 3000:
-            expla = expla[:3000] + "..."
-        expla = "__" + expla + "__"
+            expla = f'{expla[:3000]}...'
+        expla = f"__{expla}__"
         await e.reply(expla, file=img)
         if e.out:
             await e.delete()

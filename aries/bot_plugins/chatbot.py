@@ -20,10 +20,7 @@ def remove_chat(chat_id):
 
 
 def get_all_chats():
-    r = list(lydia.find())
-    if r:
-        return r
-    return False
+    return r if (r := list(lydia.find())) else False
 
 
 def get_session(chat_id):

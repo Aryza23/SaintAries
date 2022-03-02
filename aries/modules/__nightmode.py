@@ -94,25 +94,24 @@ async def profanity(event):
             "Please provide some input yes or no.\n\nCurrent setting is : **off**"
         )
         return
-    if input == "on":
-        if event.is_group:
-            chats = nightmod.find({})
-            for c in chats:
-                if event.chat_id == c["id"]:
-                    await event.reply("Nightmode is already activated for this chat.")
-                    return
-            nightmod.insert_one(
-                {
-                    "id": event.chat_id,
-                    "valid": False,
-                    "zone": None,
-                    "ctime": None,
-                    "otime": None,
-                }
-            )
-            await event.reply(
-                "Nightmode turned on for this chat\n**Note:** It will not work unless you specify time and zone with `/setnightmode`"
-            )
+    if input == "on" and event.is_group:
+        chats = nightmod.find({})
+        for c in chats:
+            if event.chat_id == c["id"]:
+                await event.reply("Nightmode is already activated for this chat.")
+                return
+        nightmod.insert_one(
+            {
+                "id": event.chat_id,
+                "valid": False,
+                "zone": None,
+                "ctime": None,
+                "otime": None,
+            }
+        )
+        await event.reply(
+            "Nightmode turned on for this chat\n**Note:** It will not work unless you specify time and zone with `/setnightmode`"
+        )
     if input == "off":
         if event.is_group:
             chats = nightmod.find({})
@@ -122,7 +121,7 @@ async def profanity(event):
                     await event.reply("Nightmode turned off for this chat.")
                     return
         await event.reply("Nightmode isn't turned on for this chat.")
-    if not input == "on" and not input == "off":
+    if input not in ["on", "off"]:
         await event.reply("I only understand by on or off")
         return
 
@@ -154,7 +153,7 @@ async def _(event):
         ttime = dateparser.parse(
             "now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "YMD"}
         )
-        if ttime == None or otime == None or ctime == None:
+        if ttime is None or otime is None or ctime is None:
             await event.reply("Please enter valid date and time and zone.")
             return
         cctime = dateparser.parse(
@@ -166,7 +165,7 @@ async def _(event):
         if cctime == ootime:
             await event.reply("Chat opening and closing time cannot be same.")
             return
-        if not ootime > cctime and not cctime < ootime:
+        if not ootime > cctime:
             await event.reply("Chat opening time must be greater than closing time")
             return
         if cctime > ootime:
@@ -224,13 +223,11 @@ async def _(event):
             ctime = c["ctime"]
             c["otime"]
             present = dateparser.parse(
-                f"now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "YMD"}
+                "now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "YMD"}
             )
+
             if present > ctime and valid:
-                await tbot.send_message(
-                    id,
-                    f"**Nightbot:** It's time closing the chat now ...",
-                )
+                await tbot.send_message(id, "**Nightbot:** It's time closing the chat now ...")
                 await tbot(
                     functions.messages.EditChatDefaultBannedRightsRequest(
                         peer=id, banned_rights=closechat
@@ -254,7 +251,6 @@ async def _(event):
                     {"$set": {"ctime": newtime}},
                 )
                 break
-                return
             continue
     except Exception as e:
         print(e)
@@ -274,13 +270,11 @@ async def _(event):
             c["ctime"]
             otime = c["otime"]
             present = dateparser.parse(
-                f"now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "YMD"}
+                "now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "YMD"}
             )
+
             if present > otime and valid:
-                await tbot.send_message(
-                    id,
-                    f"**Nightbot:** It's time opening the chat now ...",
-                )
+                await tbot.send_message(id, "**Nightbot:** It's time opening the chat now ...")
                 await tbot(
                     functions.messages.EditChatDefaultBannedRightsRequest(
                         peer=id, banned_rights=openchat
@@ -304,7 +298,6 @@ async def _(event):
                     {"$set": {"otime": newtime}},
                 )
                 break
-                return
             continue
     except Exception as e:
         print(e)

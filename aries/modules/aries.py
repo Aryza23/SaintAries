@@ -39,8 +39,7 @@ async def _(event):
         await event.reply("Give some url")
         return
     sample_url = "https://da.gd/s?url={}".format(input_str)
-    response_api = requests.get(sample_url).text
-    if response_api:
+    if response_api := requests.get(sample_url).text:
         await event.reply(
             "**Shortened url**==> {}\n**Given url**==> {}.".format(
                 response_api, input_str
@@ -85,12 +84,14 @@ def lawak(update, context):
     msg = update.effective_message
     msg.reply_video(
         random.choice(LAWAK_STRINGS),
-        caption=f"""<i>Powered by: Aries Robot</i> 🔥""",
+        caption="""<i>Powered by: Aries Robot</i> 🔥""",
         parse_mode=ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Support", url="https://t.me/idzeroidsupport"),
+                    InlineKeyboardButton(
+                        "Support", url="https://t.me/idzeroidsupport"
+                    ),
                 ],
             ]
         ),

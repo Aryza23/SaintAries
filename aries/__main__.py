@@ -104,18 +104,13 @@ buttons = [
 ]
 
 
-HELP_STRINGS = f"""
-*Main Commands :* [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)
-✪ /start: Starts me! You've probably already used this.
-✪ /help: Click this, I'll let you know about myself!
-✪ /donate: You can support my creater using this command.
-✪ /settings: 
-   ◔ in PM: will send you your settings for all supported modules.
-   ◔ in a Group: will redirect you to pm, with all that chat's settings.
-""".format(
+HELP_STRINGS = """\x1f*Main Commands :* [Saint Aries](https://telegra.ph/file/ac893610cae84f302b2da.jpg)\x1f✪ /start: Starts me! You've probably already used this.\x1f✪ /help: Click this, I'll let you know about myself!\x1f✪ /donate: You can support my creater using this command.\x1f✪ /settings: \x1f   ◔ in PM: will send you your settings for all supported modules.\x1f   ◔ in a Group: will redirect you to pm, with all that chat's settings.\x1f""".format(
     dispatcher.bot.first_name,
-    "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n",
+    ""
+    if not ALLOW_EXCL
+    else "\nAll commands can either be used with / or !.\n",
 )
+
 
 
 DONATE_STRING = """Hello, glad to hear you want to donate!
@@ -138,11 +133,11 @@ USER_SETTINGS = {}
 GDPR = []
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("aries.modules." + module_name)
+    imported_module = importlib.import_module(f"aries.modules.{module_name}")
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
-    if not imported_module.__mod_name__.lower() in IMPORTED:
+    if imported_module.__mod_name__.lower() not in IMPORTED:
         IMPORTED[imported_module.__mod_name__.lower()] = imported_module
     else:
         raise Exception("Can't have two modules with the same name! Please change one")
@@ -265,12 +260,13 @@ def start(update: Update, context: CallbackContext):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                            text="Support",
+                            url="https://telegram.dog/idzeroidsupport",
                         ),
                         InlineKeyboardButton(
                             text="Updates", url="https://telegram.dog/idzeroid"
                         ),
-                    ],
+                    ]
                 ]
             ),
         )
@@ -370,13 +366,11 @@ def help_button(update, context):
         context.bot.answer_callback_query(query.id)
         # query.message.delete()
     except Exception as excp:
-        if excp.message == "Message is not modified":
-            pass
-        elif excp.message == "Query_id_invalid":
-            pass
-        elif excp.message == "Message can't be deleted":
-            pass
-        else:
+        if excp.message not in [
+            "Message is not modified",
+            "Query_id_invalid",
+            "Message can't be deleted",
+        ]:
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
 
@@ -459,15 +453,20 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_credit":
         query.message.edit_text(
-            text=f"*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*"
-            f"\n\nAries source code was rewritten by @IdzXartez and All Of Conrtibutor For Help Aries"
-            f"\n\nIf Any Question About aries, \nLet Us Know At @Idzeroidsupport.",
+            text="*Aries Is the redisigned version of Daisy and Saitama And Othrer for the best performance.*",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Back", callback_data="aboutmanu_tac")]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Back", callback_data="aboutmanu_tac"
+                        )
+                    ]
+                ]
             ),
         )
+
 
     elif query.data == "aboutmanu_permis":
         query.message.edit_text(
@@ -514,16 +513,7 @@ def aries_about_callback(update, context):
         )
     elif query.data == "aboutmanu_tac":
         query.message.edit_text(
-            text=f"<b> ｢ Terms and Conditions 」</b>\n"
-            f"\n<i>To Use This Bot, You Need To Read Terms and Conditions Carefully.</i>\n"
-            f"\n✪ We always respect your privacy \n  We never log into bot's api and spying on you \n  We use a encripted database \n  Bot will automatically stops if someone logged in with api."
-            f"\n✪ Always try to keep credits, so \n  This hardwork is done by @IdzXartez spending many sleepless nights.. So, Respect it."
-            f"\n✪ Some modules in this bot is owned by different authors, So, \n  All credits goes to them \n  Also for <b>Paul Larson for Marie</b>."
-            f"\n✪ If you need to ask anything about \n  this bot, Go @Idzeroidsupport."
-            f"\n✪ If you asking nonsense in Support \n  Chat, you will get warned/banned."
-            f"\n✪ All api's we used owned by originnal authors \n  Some api's we use Free version \n  Please don't overuse AI Chat."
-            f"\n\nFor any kind of help, related to this bot, Join @idzeroidsupport."
-            f"\n\n<i>Terms & Conditions will be changed anytime</i>\n",
+            text="<b> ｢ Terms and Conditions 」</b>\\n",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -531,21 +521,17 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="Credits", callback_data="aboutmanu_credit"
                         ),
-                        InlineKeyboardButton(text="Back", callback_data="aboutmanu_"),
+                        InlineKeyboardButton(
+                            text="Back", callback_data="aboutmanu_"
+                        ),
                     ]
                 ]
             ),
         )
+
     elif query.data == "aboutmanu_cbguide":
         query.message.edit_text(
-            text=f"* ｢ How To Setup Music 」*\n"
-            f"\n1. **first, add me to your group."
-            f"\n2. **then promote me as admin and give all permissions except anonymous admin."
-            f"\n3. **after promoting me, type /admincache in group to update the admin list."
-            f"\n4. **add @IdzMusic to your group."
-            f"\n5. **turn on the video chat first before start to play music.\n\n"
-            f"\n📌 **if the userbot not joined to video chat, make sure if the video chat already turned on, or you can ask Admins in @idzeroidsupport.**\n"
-            f"\n⚡ __Powered by Aries A.I__\n",
+            text="* ｢ How To Setup Music 」*\\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -553,7 +539,9 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[⇜]", callback_data="aboutmanu_cbhelps"
                         ),
-                        InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
                         InlineKeyboardButton(
                             text="[⇝]", callback_data="aboutmanu_cbhelps"
                         ),
@@ -561,18 +549,10 @@ def aries_about_callback(update, context):
                 ]
             ),
         )
+
     elif query.data == "aboutmanu_cbhelps":
         query.message.edit_text(
-            text=f"* ｢ Music Command 」*\n"
-            f"\n1. **/play (name song) for playing music."
-            f"\n2. **/pause for paused music."
-            f"\n3. **/resume for resume music."
-            f"\n4. **/stop or /end for end music playing."
-            f"\n5. **/music (name song) for download song."
-            f"\n6. **/video (name video) for download video."
-            f"\n7. **/lyrics for searching lyrics.\n\n"
-            f"\n📌 **Also you can download music or video with push button menu.**\n"
-            f"\n⚡ __Powered by Aries A.I__\n",
+            text="* ｢ Music Command 」*\\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -580,7 +560,9 @@ def aries_about_callback(update, context):
                         InlineKeyboardButton(
                             text="[⇜]", callback_data="aboutmanu_cbguide"
                         ),
-                        InlineKeyboardButton(text="🔄", callback_data="aboutmanu_howto"),
+                        InlineKeyboardButton(
+                            text="🔄", callback_data="aboutmanu_howto"
+                        ),
                         InlineKeyboardButton(
                             text="[⇝]", callback_data="aboutmanu_cbguide"
                         ),
@@ -623,12 +605,15 @@ def get_help(update, context):
                     [
                         InlineKeyboardButton(
                             text="Help",
-                            url="t.me/{}?start=help".format(context.bot.username),
+                            url="t.me/{}?start=help".format(
+                                context.bot.username
+                            ),
                         )
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Support", url=f"https://telegram.dog/idzeroidsupport"
+                            text="Support",
+                            url="https://telegram.dog/idzeroidsupport",
                         ),
                         InlineKeyboardButton(
                             text="Updates", url="https://telegram.dog/idzeroid"
@@ -636,12 +621,14 @@ def get_help(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Music Setup", callback_data="aboutmanu_cbguide"
+                            text="Music Setup",
+                            callback_data="aboutmanu_cbguide",
                         ),
                     ],
                 ]
             ),
         )
+
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
@@ -684,25 +671,24 @@ def send_settings(chat_id, user_id, user=False):
                 parse_mode=ParseMode.MARKDOWN,
             )
 
+    elif CHAT_SETTINGS:
+        chat_name = dispatcher.bot.getChat(chat_id).title
+        dispatcher.bot.send_message(
+            user_id,
+            text="Which module would you like to check {}'s settings for?".format(
+                chat_name
+            ),
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
+            ),
+        )
     else:
-        if CHAT_SETTINGS:
-            chat_name = dispatcher.bot.getChat(chat_id).title
-            dispatcher.bot.send_message(
-                user_id,
-                text="Which module would you like to check {}'s settings for?".format(
-                    chat_name
-                ),
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
-                ),
-            )
-        else:
-            dispatcher.bot.send_message(
-                user_id,
-                "Seems like there aren't any chat settings available :'(\nSend this "
-                "in a group chat you're admin in to find its current settings!",
-                parse_mode=ParseMode.MARKDOWN,
-            )
+        dispatcher.bot.send_message(
+            user_id,
+            "Seems like there aren't any chat settings available :'(\nSend this "
+            "in a group chat you're admin in to find its current settings!",
+            parse_mode=ParseMode.MARKDOWN,
+        )
 
 
 def settings_button(update, context):
@@ -781,13 +767,11 @@ def settings_button(update, context):
         context.bot.answer_callback_query(query.id)
         # query.message.delete()
     except Exception as excp:
-        if excp.message == "Message is not modified":
-            pass
-        elif excp.message == "Query_id_invalid":
-            pass
-        elif excp.message == "Message can't be deleted":
-            pass
-        else:
+        if excp.message not in [
+            "Message is not modified",
+            "Query_id_invalid",
+            "Message can't be deleted",
+        ]:
             query.message.edit_text(excp.message)
             LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
@@ -798,29 +782,28 @@ def get_settings(update: Update, context: CallbackContext):
     msg = update.effective_message  # type: Optional[Message]
 
     # ONLY send settings in PM
-    if chat.type != chat.PRIVATE:
-        if is_user_admin(chat, user.id):
-            text = "Click here to get this chat's settings, as well as yours."
-            msg.reply_text(
-                text,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="Settings",
-                                url="t.me/{}?start=stngs_{}".format(
-                                    context.bot.username, chat.id
-                                ),
-                            )
-                        ]
-                    ]
-                ),
-            )
-        else:
-            text = "Click here to check your settings."
-
-    else:
+    if chat.type == chat.PRIVATE:
         send_settings(chat.id, user.id, True)
+
+    elif is_user_admin(chat, user.id):
+        text = "Click here to get this chat's settings, as well as yours."
+        msg.reply_text(
+            text,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Settings",
+                            url="t.me/{}?start=stngs_{}".format(
+                                context.bot.username, chat.id
+                            ),
+                        )
+                    ]
+                ]
+            ),
+        )
+    else:
+        text = "Click here to check your settings."
 
 
 def migrate_chats(update, context):
@@ -873,8 +856,6 @@ def is_chat_allowed(update, context):
                 context.bot.leave_chat(chat_id)
             finally:
                 raise DispatcherHandlerStop
-    else:
-        pass
 
 
 def donate(update: Update, context: CallbackContext):
@@ -891,15 +872,12 @@ def donate(update: Update, context: CallbackContext):
             parse_mode=ParseMode.MARKDOWN,
         )
 
-    else:
-        pass
-
 
 def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@IdzeroidSupport", "⚡️")
+            dispatcher.bot.sendMessage("@IdzeroidSupport", "⚡️")
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
@@ -965,11 +943,11 @@ def main():
             allowed_updates=Update.ALL_TYPES,
         )
 
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
+    if len(argv) in {1, 3, 4}:
         telethn.run_until_disconnected()
 
+    else:
+        telethn.disconnect()
     updater.idle()
 
 
@@ -980,7 +958,7 @@ except BaseException:
     sys.exit(1)
 
 if __name__ == "__main__":
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info(f"Successfully loaded modules: {str(ALL_MODULES)}")
     telethn.start(bot_token=TOKEN)
     pbot.start()
     main()

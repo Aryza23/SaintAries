@@ -15,12 +15,12 @@ IDZ = "https://telegra.ph/file/08f41dc969408c08b8c68.jpg"
 @app.on_message(filters.command("repo") & ~filters.edited)
 async def give_repo(c, m):
     g = github.Github()
-    list_of_users = ""
-    count = 0
     repo = g.get_repo("idzero23/SaintAries")
-    for i in repo.get_contributors():
-        count += 1
-        list_of_users += f"•{count}. [{i.login}](https://github.com/{i.login})\n"
+    list_of_users = "".join(
+        f"•{count}. [{i.login}](https://github.com/{i.login})\n"
+        for count, i in enumerate(repo.get_contributors(), start=1)
+    )
+
     await m.reply_photo(
         photo=IDZ,
         caption=f"""**Hey I'm Aries Robot** 

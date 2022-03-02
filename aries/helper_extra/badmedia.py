@@ -17,7 +17,7 @@ async def is_nsfw(event):
             starkstark = event.client.download_media(lmao.media, thumb=-1)
         except:
             return False
-    elif lmao.photo or lmao.sticker:
+    elif lmao.photo:
         try:
             starkstark = event.client.download_media(lmao.media)
         except:
