@@ -35,9 +35,6 @@
 
 Saint Aries is a Characther powerful in saints saiya anime and modular telegram group management bot built using python3 and sqlalchemy. Literally she can do anything to help you make your group a better place like any other bot and she's painted with anime theme for weeb lover's.
 
-### Deploy To Heroku 📡</h4>
-
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Aryza23/SaintAries"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
 
 ## NOTE:
 
